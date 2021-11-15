@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+}
+
+textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 200px;
+}
+
+button {
+    margin: 10px auto 10px auto;
+    display: block;
+}

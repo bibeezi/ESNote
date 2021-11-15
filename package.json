@@ -1,0 +1,23 @@
+{
+  "name": "esnote",
+  "version": "1.0.0",
+  "description": "ESNote - An Effective Study Notebook Web Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibeezi/ESNote.git"
+  },
+  "author": "Bianca Claudette Palileo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bibeezi/ESNote/issues"
+  },
+  "homepage": "https://github.com/bibeezi/ESNote#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

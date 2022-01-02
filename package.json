@@ -11,7 +11,8 @@
     "start": "node server.js",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "dev": "concurrently -n 'server,client' -c 'magenta,blue' \"npm run server\" \"npm run client\""
+    "dev": "concurrently -n 'server,client' -c 'magenta,blue' \"npm run server\" \"npm run client\"",
+    "local-dev": "concurrently -n 'server,client' -c 'magenta,blue' \"set PORT=8080 && npm run server\" \"set PORT=3000 && npm run client\""
   },
   "keywords": [],
   "author": "",

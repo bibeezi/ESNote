@@ -7,12 +7,17 @@ const path = require('path');
 // Import from directories
 const routes = require('./routes/sample');
 
-if(process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
-
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Checks if application is on Heroku
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+else {
+    require('dotenv').config();
+    app.use(express.static("client/public"));
+}
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewURLParser: true,
@@ -31,14 +36,6 @@ app.use(express.urlencoded({extended: false}));
 // HTTP request logger
 app.use(morgan('dev'));
 app.use('/', routes);
-
-// Checks if application is on Heroku
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-}
-else {
-    app.use(express.static("client/public"));
-}
 
 // Check for successful server connection
 app.listen(PORT, console.log(`Server is listening at port : ${PORT}`));

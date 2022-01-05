@@ -1,1 +1,1 @@
-web: npm run local-dev
+local-dev: npm run local-dev

@@ -1,5 +1,4 @@
-// Import styles, and routing packages
-import './App.css';
+// Import routing package
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,8 +7,8 @@ import {
 } from 'react-router-dom';
 
 // Import functional components
-import NonUserHome from './NonUserHome';
-import UserHome from './UserHome';
+import NonUserHome from './components/NonUserHome/NonUserHome';
+import UserHome from './components/UserHome/UserHome';
 
 function App() {
   return (

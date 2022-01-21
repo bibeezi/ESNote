@@ -5,7 +5,7 @@ import { Header } from "./Header.style";
 
 const NonUserHome = () => {
     return (
-        <div>
+        <div className="wrapper">
             <Header>
                 <div>
                     <img src={ Images.Home } alt="Home Icon"></img>
@@ -15,17 +15,12 @@ const NonUserHome = () => {
 
             <Grid>
                 <div id="presentation">
-                    <div id="video">
-                        video
-                    </div>
                 </div>
 
-                <div id="register-login-form">
-                    <form>
+                <div id="register-login">
+                    <form id="form">
                         <h1>Login</h1>
-                        <label>Email or Username</label>
                         <input placeholder="Email or Username"></input>
-                        <label>Password</label>
                         <input placeholder="Password"></input>
                         <button>Login</button>
                         <hr></hr>

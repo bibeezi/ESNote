@@ -4,21 +4,25 @@ export const Header = styled.header`
     
     display: grid;
     grid-auto-flow: column;
-    border-bottom: 3px solid black;
     grid-auto-columns: 20em auto auto;
+    background-color: #F7F3E7;
+    box-shadow: 0 0 0.5em grey;
+    z-index: 10;
 
     h1 {
         display: inline-flex;
         margin: 0 auto;
+        padding-top: 0.2em;
         vertical-align: middle;
-        letter-spacing: 5px;
+        letter-spacing: 0.2em;
+        color: #7E2D00;
     }
 
     img {
         margin: 0 auto;
-        padding: 2% 5% 2% 2%;
-        width: 40px;
-        height: 40px;
+        padding: 0.5em;
+        height: 3em;
+        width: 3em;
         vertical-align: middle;
     }
 `;

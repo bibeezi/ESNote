@@ -21,8 +21,3 @@ code {
   src: local('Nunito'), url(./fonts/Nunito-Light.ttf) format('truetype');
   letter-spacing: 3px;
 }
-
-.wrapper {
-  display: grid;
-  grid-template-rows: 3.5em auto;
-}

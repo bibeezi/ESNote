@@ -2,10 +2,12 @@ import Images from "../../images/Images";
 
 import { Grid } from "./Grid.style";
 import { Header } from "./Header.style";
+import { Content } from "./Content.style";
+import { Form } from "./Form.style";
 
 const NonUserHome = () => {
     return (
-        <div className="wrapper">
+        <Grid>
             <Header>
                 <div>
                     <img src={ Images.Home } alt="Home Icon"></img>
@@ -13,23 +15,23 @@ const NonUserHome = () => {
                 </div>
             </Header>
 
-            <Grid>
+            <Content>
                 <div id="presentation">
                 </div>
 
                 <div id="register-login">
-                    <form id="form">
+                    <Form>
                         <h1>Login</h1>
                         <input placeholder="Email or Username"></input>
-                        <input placeholder="Password"></input>
-                        <button>Login</button>
+                        <input placeholder="Password" type="password"></input>
+                        <button id="login">Login</button>
                         <hr></hr>
                         <h1>Register</h1>
-                        <button>Sign Up</button>
-                    </form>
+                        <button id="registration">Sign Up</button>
+                    </Form>
                 </div>
-            </Grid>
-        </div>
+            </Content>
+        </Grid>
     );
 }
  

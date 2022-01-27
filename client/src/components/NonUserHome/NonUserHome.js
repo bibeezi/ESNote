@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import Images from "../../images/Images";
 
-import { Grid } from "./Grid.style";
 import { Header } from "./Header.style";
 import { Content } from "./Content.style";
 import { Form } from "./Form.style";
@@ -22,18 +21,19 @@ const NonUserHome = () => {
     };
 
     return (
-        <Grid>
+        <div>
             <Header>
                 <div>
                     <img src={ Images.Home } alt="Home Icon"></img>
                     <h1>ESNote</h1>
                 </div>
             </Header>
-
+            
             {   showRegistration && <Registration /> }
 
             <Content>
                 <div id="presentation">
+                    <img src={ Images.Presentation } alt='Effective Study Notebook Explanation Presentation'></img>
                 </div>
 
                 <div id="register-login">
@@ -48,7 +48,7 @@ const NonUserHome = () => {
                     </Form>
                 </div>
             </Content>
-        </Grid>
+        </div>
     );
 }
  

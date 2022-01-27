@@ -4,7 +4,9 @@ export const Header = styled.header`
     
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 20em auto auto;
+    width: 100%;
+    position: absolute;
+    top: 0;
     background-color: #F7F3E7;
     box-shadow: 0 0 0.5em grey;
     z-index: 10;
@@ -24,5 +26,20 @@ export const Header = styled.header`
         height: 3em;
         width: 3em;
         vertical-align: middle;
+    }
+
+    @media (max-width: 360px) {
+
+        h1 {
+            font-size: large;
+        }
+
+        img {
+            margin: 0 auto;
+            padding: 0.5em;
+            height: 2em;
+            width: 2em;
+            vertical-align: middle;
+        }
     }
 `;

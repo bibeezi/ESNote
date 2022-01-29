@@ -6,7 +6,9 @@ export const Content = styled.div`
     grid-auto-flow: rows;
     grid-template-columns: 60% 40%;
     height: 100%;
+    width: 100%;
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
+    position: absolute;
 
     #presentation {
         margin: 15rem 7rem 15rem 7rem;
@@ -21,7 +23,7 @@ export const Content = styled.div`
         object-fit: contain;
     }
 
-    #register-login {
+    .form {
         margin: 10rem 10rem 10rem 0;
         border: 1px solid grey;
         border-radius: 1em; 

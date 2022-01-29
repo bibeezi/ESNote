@@ -6,10 +6,14 @@ export const Form = styled.form`
     float: left;
     height: fit-content;
     width: 100%;
-
+   
     h1:first-child {
         margin-top: 0;
         font-size: 2.5em;
+
+        ${ ({ active }) => active && `
+            margin-top: 3rem;
+        `}
     }
 
     h1:nth-of-type(2) {
@@ -40,18 +44,30 @@ export const Form = styled.form`
         letter-spacing: 0.1em;
     }
 
-    #login {
+    #orange-button {
         margin: 3% auto 5% auto;
         background-color: #EDB68A;
     }
 
-    #registration {
+    #blue-button {
         margin: 0 auto 5% auto;
         background-color: #61D4D4;
+
+        ${ ({ active }) => active && `
+            margin: 3% 15% 5% 15%;
+        `}
+    }
+
+    #blue-button {
+        margin: 0 auto 5% auto;
+        background-color: #61D4D4;
+
+        ${ ({ active }) => active && `
+            margin: 3% 15% 5% 15%;
+        `}
     }
     
     hr{
         width: 80%;
     }
-
 `;

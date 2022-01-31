@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
 
+    position: relative;
     text-align: center;
     float: left;
     height: fit-content;
     width: 100%;
+
    
-    h1:first-child {
+    h1:first-of-type {
         margin-top: 0;
         font-size: 2.5em;
 
@@ -32,42 +34,37 @@ export const Form = styled.form`
         border: 0.1px solid grey;
         font-size: 1em;
     }
-
-    button {
-        padding: 0.5em 2em 0.5em 2em;
-        height: 2.5rem;
-        width: fit-content;
-        border-radius: 1.5em;
-        border: none;
-        font-family : inherit;
-        font-size: 1rem;
-        letter-spacing: 0.1em;
-    }
-
-    #orange-button {
-        margin: 3% auto 5% auto;
-        background-color: #EDB68A;
-    }
-
-    #blue-button {
-        margin: 0 auto 5% auto;
-        background-color: #61D4D4;
-
-        ${ ({ active }) => active && `
-            margin: 3% 15% 5% 15%;
-        `}
-    }
-
-    #blue-button {
-        margin: 0 auto 5% auto;
-        background-color: #61D4D4;
-
-        ${ ({ active }) => active && `
-            margin: 3% 15% 5% 15%;
-        `}
-    }
     
     hr{
         width: 80%;
+    }
+
+    .close {
+        display: inline-block;
+        z-index: 10;
+        content: "\\00d7";
+        height: 32px;
+        width: 32px;
+        position: absolute;
+        top: 1vh;
+        right: 0.5vw;
+        opacity: 0.3;
+    }
+    .close:hover {
+        opacity: 1;
+    }
+    .close:before, .close:after {
+        position: absolute;
+        left: 15px;
+        content: ' ';
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+    }
+    .close:before {
+        transform: rotate(45deg);
+    }
+    .close:after {
+        transform: rotate(-45deg);
     }
 `;

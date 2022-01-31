@@ -6,6 +6,7 @@ import { Header } from "./Header.style";
 import { Content } from "./Content.style";
 import { Form } from "./Form.style";
 import { Registration } from "./Registration.style";
+import { Button } from './Button.style';
 
 const NonUserHome = () => {
 
@@ -38,16 +39,20 @@ const NonUserHome = () => {
                 <div className="form">
                     <Form onSubmit={ (e) => handleSubmit(e)}>
                         <h1>Login</h1>
-                        <input placeholder="Email or Username"></input>
-                        <input placeholder="Password" type="password"></input>
-                        <button colour={ "orange" }>Login</button>
+                        <input placeholder="Email or Username" required></input>
+                        <input placeholder="Password" type="password" required></input>
+                        <Button
+                            type='submit'
+                            colours={ "orange" }>
+                            Login
+                        </Button>
                         <hr></hr>
                         <h1>Register</h1>
-                        <button
+                        <Button
                             onClick={ openSignUpForm }
-                            colour={ "blue" }>
+                            colours={ "blue" }>
                             Sign Up
-                        </button>
+                        </Button>
                     </Form>
                 </div>
             </Content>
@@ -56,24 +61,19 @@ const NonUserHome = () => {
                 showRegistration && 
                 <Registration>
                     <div className='form'>
-                        <Form onSubmit={ (e) => handleSubmit(e)} active={ active }>
+                        <Form onSubmit={ (e) => handleSubmit(e), openSignUpForm } active={ active }>
+                            <div className='close' onClick={ openSignUpForm }></div>
                             <h1>Sign Up</h1>
-                            <input placeholder="Username"></input>
-                            <input placeholder="Email"></input>
-                            <input placeholder="Password" type="password"></input>
-                            <input placeholder="Confirm Password"></input>
-                            <button
-                                onClick={ openSignUpForm } 
+                            <input placeholder="Username" required></input>
+                            <input placeholder="Email" required></input>
+                            <input placeholder="Password" type="password" required></input>
+                            <input placeholder="Confirm Password" type="password" required></input>
+                            <Button
+                                type='submit'
                                 active={ active }
-                                colour={ "grey" }>
-                                Cancel
-                            </button>
-                            <button
-                                onClick={ openSignUpForm } 
-                                active={ active }
-                                colour={ "blue" }>
+                                colours={ "blue" }>
                                 Create an Account
-                            </button>
+                            </Button>
                         </Form>
                     </div>
                 </Registration>

@@ -10,7 +10,6 @@ const router = express.Router();
 router.get("/getPages", (req, res) => {
     NoteModel.find({})
     .then((data) => {
-        console.log(data);
         res.json(data);
     })
     .catch((error) => {

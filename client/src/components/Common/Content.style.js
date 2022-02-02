@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
 
-    display: grid;
-    grid-auto-flow: rows;
-    grid-template-columns: 60% 40%;
+    ${ ({ page }) => page !== "user" && `
+        display: grid;
+        grid-auto-flow: rows;
+        grid-template-columns: 60% 40%;
+    `}
     height: 100%;
     width: 100%;
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
@@ -24,7 +26,12 @@ export const Content = styled.div`
     }
 
     .form {
-        margin: 10rem 10rem 10rem 0;
+        ${ ({ page }) => page !== "user" ? `
+            margin: 10rem 10rem 10rem 0;
+        ` : `
+            margin: 10rem auto 0 auto;
+            width: 80%;
+        `}
         border: 1px solid grey;
         border-radius: 1em; 
         background-color: #E0FFFF80;

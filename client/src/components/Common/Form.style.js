@@ -50,9 +50,11 @@ export const Form = styled.form`
         right: 0.5vw;
         opacity: 0.3;
     }
+
     .close:hover {
         opacity: 1;
     }
+
     .close:before, .close:after {
         position: absolute;
         left: 15px;
@@ -61,10 +63,18 @@ export const Form = styled.form`
         width: 2px;
         background-color: #333;
     }
+    
     .close:before {
         transform: rotate(45deg);
     }
+
     .close:after {
         transform: rotate(-45deg);
+    }
+
+    textarea {
+        display: block;
+        margin: 0 auto;
+        width: 70%;
     }
 `;

@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import Images from "../../images/Images";
 
-import { Header } from "./Header.style";
-import { Content } from "./Content.style";
-import { Form } from "./Form.style";
+import { Header } from "../Common/Header.style";
+import { Content } from "../Common/Content.style";
+import { Form } from "../Common/Form.style";
 import { Registration } from "./Registration.style";
-import { Button } from './Button.style';
+import { Button } from '../Common/Button.style';
 
 const NonUserHome = () => {
 

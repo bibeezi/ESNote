@@ -2,35 +2,61 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
 
-    ${ ({ page }) => page !== "user" && `
+    ${ ({ page }) => page === "user" ? `
+        height: fit-content;
+    ` : `
         display: grid;
         grid-auto-flow: rows;
         grid-template-columns: 60% 40%;
-    `}
-    height: 100%;
+        height: 100%;
+    `}  
     width: 100%;
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
     position: absolute;
 
-    #presentation {
-        margin: 15rem 7rem 15rem 7rem;
-        background-color: whitesmoke;
-        box-shadow: 0 0 2em lightgray;
-        overflow: hidden;
-    }
+    ${ ({ page }) => page === "user" ? `
+        .note-list {
+            margin: 0 auto;
+            width: 80%;
+        }
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
+        h1 {
+            text-align: center;
+        }
+
+        .page-list {
+            margin: 10px;
+        }
+
+        .page-content {
+            margin-left: 15%;
+            margin-right: 15%;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: white;
+        }
+    ` : `
+        #presentation {
+            margin: 15rem 7rem 15rem 7rem;
+            background-color: whitesmoke;
+            box-shadow: 0 0 2em lightgray;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    `}  
+    
 
     .form {
-        ${ ({ page }) => page !== "user" ? `
-            margin: 10rem 10rem 10rem 0;
-        ` : `
-            margin: 10rem auto 0 auto;
+        ${ ({ page }) => page === "user" ? `
+            margin: 10rem auto 10rem auto;
             width: 80%;
+        ` : `
+            margin: 10rem 10rem 10rem 0;
         `}
         border: 1px solid grey;
         border-radius: 1em; 

@@ -39,10 +39,19 @@ const UserHome = () => {
         // target is the element that is triggering the event
         const { name, value } = target;
 
-        setNote({
-            // [name] is dynamically assigned to the element's attribute
-            [name]: value
-        });
+        if(name === "title") {
+            setNote(prevState => ({
+                [name]: value,
+                body: prevState.body, 
+                pages: prevState.pages
+            }));
+        } else {
+            setNote(prevState => ({
+                title: prevState.title, 
+                [name] : value,
+                pages : prevState.pages
+            }));
+        }
     };
 
     // submit the form
@@ -72,10 +81,6 @@ const UserHome = () => {
 
     // show Pages in a list
     const showPages = (pages) => {
-        if( ! pages.length) {
-            return null;
-        }
-
         return pages.map((page, index) => (
             <div key={ index } className="page-list">
                 <div className="page-content">
@@ -108,8 +113,9 @@ const UserHome = () => {
                     </Form>
                 </div>
 
-                <div className="page-div">
-                    { showPages(note.pages) }
+                <div className="note-list">
+                    <h1>Notes</h1>
+                    { note.pages && showPages(note.pages) }
                 </div>
             </Content>
         </div>

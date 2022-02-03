@@ -1,12 +1,10 @@
-// Import npm packages
+
 const express = require('express');
 
-// Import from directories
 const UserModel = require('../models/users');
 
 const router = express.Router();
 
-// Routes
 router.post('/saveUser', (req, res) => {
 
     const data = req.body;
@@ -20,6 +18,26 @@ router.post('/saveUser', (req, res) => {
         return res.json({
             msg: 'Data received in Database!'
         });
+    });
+});
+
+router.get('/getUser', (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+
+    UserModel.find({
+        username: data.username,
+        password: data.password
+    })
+    .then((data) => {
+        if(data.length) {
+            return res.json(data);
+        } else {
+            return res.status(404).json({msg: 'ERROR in user route - /getUser'});
+        }
+    })
+    .catch((err) => {
+        console.log("ERROR in user - /getUser", err);
     });
 });
 

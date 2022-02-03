@@ -3,7 +3,6 @@ const express = require('express');
 
 // Import from directories
 const NoteModel = require('../models/notes');
-const UserModel = require('../models/users');
 
 const router = express.Router();
 
@@ -14,8 +13,8 @@ router.get("/getPages", (req, res) => {
     .then((data) => {
         res.json(data);
     })
-    .catch((error) => {
-        console.log(error);
+    .catch((err) => {
+        console.log("ERROR in sample - /getPages", err);
     });
 
 });

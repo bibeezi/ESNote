@@ -6,7 +6,7 @@ const path = require('path');
 
 // Import from directories
 const sample = require('./routes/sample');
-const regLogin = require('./routes/saveUser');
+const regLogin = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -20,6 +20,7 @@ else {
     app.use(express.static("client/public"));
 }
 
+// Connects with MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI, {
     useNewURLParser: true,
     useUnifiedTopology: true

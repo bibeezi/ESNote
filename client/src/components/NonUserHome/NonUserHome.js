@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 import Images from "../../images/Images";
 
@@ -14,11 +15,12 @@ const NonUserHome = () => {
 
     const [showRegistration, setShowRegistration] = useState(false);
     const [active, setActive] = useState(false);
-    const [register, setRegister] = useState({
+    const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
     });
+    const [userPage, setUserPage] = useState(false);
 
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
@@ -30,21 +32,21 @@ const NonUserHome = () => {
         
         switch(name) {
             case "username":
-                setRegister(prevState => ({
+                setUser(prevState => ({
                     [name]: value,
                     email: prevState.email, 
                     password: prevState.password
                 }));
                 break;
             case "email":
-                setRegister(prevState => ({
+                setUser(prevState => ({
                     username: prevState.username, 
                     [name]: value,
                     password: prevState.password
                 }));
                 break;
             case "password":
-                setRegister(prevState => ({
+                setUser(prevState => ({
                     username: prevState.username, 
                     email: prevState.email, 
                     [name]: value
@@ -55,27 +57,56 @@ const NonUserHome = () => {
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleRegsitration = (event) => {
         event.preventDefault();
 
         const payload = {
-            username: register.username,
-            email: register.email,
-            password: register.password
+            username: user.username,
+            email: user.email,
+            password: user.password
         };
-
-        console.log(payload);
 
         axios({
             url: '/user/saveUser',
             method: 'POST',
             data: payload
         })
-        .then((res) => {
-            console.log(res);
+        .then(() => {
+            setUser({
+                username: '',
+                email: '',
+                password: '',
+            });
         }) 
         .catch((err) => {
             console.log("ERROR in NonUserHome - /saveUser", err);
+        });
+    };
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        const payload = {
+            username: user.username,
+            email: user.email,
+            password: user.password
+        };
+
+        axios.get('/user/getUser', {
+            params: {
+                data: payload
+            }
+        })
+        .then((data) => {
+            setUser({
+                username: '',
+                email: '',
+                password: '',
+            });
+            setUserPage(true);
+        })
+        .catch((error) => {
+            console.log("ERROR in UserHome - /getPages", error);
         });
     };
 
@@ -94,15 +125,16 @@ const NonUserHome = () => {
                 </div>
 
                 <div className="form">
-                    <Form onSubmit={ (e) => handleSubmit(e)}>
+                    <Form onSubmit={ (e) => handleLogin(e)}>
                         <h1>Login</h1>
-                        <input placeholder="Email or Username" required></input>
-                        <input placeholder="Password" type="password" required></input>
+                        <input onChange={ handleChange } name="username" placeholder="Username" required></input>
+                        <input onChange={ handleChange } name="password" placeholder="Password" type="password" required></input>
                         <Button
                             type='submit'
                             colours={ "orange" }>
                             Login
                         </Button>
+                        { userPage ? <Navigate to='/user'/> : null }
                         <hr></hr>
                         <h1>Register</h1>
                         <Button
@@ -118,7 +150,7 @@ const NonUserHome = () => {
                 showRegistration && 
                 <Registration>
                     <div className='form'>
-                        <Form onSubmit={ (e) => { handleSubmit(e); openSignUpForm(); } } active={ active }>
+                        <Form onSubmit={ (e) => { handleRegsitration(e); openSignUpForm(); } } active={ active }>
                             <div className='close' onClick={ openSignUpForm }></div>
                             <h1>Sign Up</h1>
                             <input name="username" onChange={ handleChange } placeholder="Username" required></input>

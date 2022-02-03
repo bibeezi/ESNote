@@ -3,11 +3,13 @@ const express = require('express');
 
 // Import from directories
 const NoteModel = require('../models/notes');
+const UserModel = require('../models/users');
 
 const router = express.Router();
 
 // Routes
 router.get("/getPages", (req, res) => {
+
     NoteModel.find({})
     .then((data) => {
         res.json(data);
@@ -15,6 +17,7 @@ router.get("/getPages", (req, res) => {
     .catch((error) => {
         console.log(error);
     });
+
 });
 
 router.post('/savePage', (req, res) => {
@@ -24,11 +27,9 @@ router.post('/savePage', (req, res) => {
 
     newNote.save((error) => {
         if(error) {
-            res.status(500).json({ msg: 'ERROR OCCURRED IN newNote.save()'});
-            return;
+            return res.status(500).json({ msg: 'ERROR in sample route - /savePage'});
         }
 
-        // sends data to MongoDB Database
         return res.json({
             msg: 'Data received in Database!'
         });

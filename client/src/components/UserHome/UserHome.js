@@ -11,32 +11,32 @@ import { Button } from '../Common/Button.style';
 
 const UserHome = () => {
 
-    // contains the values of the form
     const [note, setNote] = useState({
         title: '',
         body: '',
         pages: []
     });
   
-    // get pages from Database when added to DOM
     useEffect(() => {
+
         getPages();
+
     }, []);
 
     const getPages = () => {
+
         axios.get('/getPages')
         .then((res) => {
             const data = res.data;
             setNote({ pages: data });
         })
         .catch((error) => {
-            console.log("ERROR OCCURRED IN getPages", error);
+            console.log("ERROR in UserHome - /getPages", error);
         });
+        
     };
 
-    // updates the state's values
     const handleChange = ({ target }) => {
-        // target is the element that is triggering the event
         const { name, value } = target;
 
         if(name === "title") {
@@ -54,9 +54,7 @@ const UserHome = () => {
         }
     };
 
-    // submit the form
-    const submit = (event) => {
-        // prevents browser refresh
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         const payload = {
@@ -64,22 +62,19 @@ const UserHome = () => {
             body: note.body
         };
 
-        // send data to the server
         axios({
             url: '/savePage',
             method: 'POST',
             data: payload
         })
         .then(() => {
-            console.log("Data was sent to the server!");
             getPages();
         })
-        .catch(() => {
-            console.log("ERROR OCCURRED in axios - /savePage");
+        .catch((err) => {
+            console.log("ERROR in UserHome - /savePage", err);
         });
     };
 
-    // show Pages in a list
     const showPages = (pages) => {
         return pages.map((page, index) => (
             <div key={ index } className="page-list">
@@ -102,8 +97,8 @@ const UserHome = () => {
 
             <Content page={ "user" }>
                 <div className="form">
-                    <Form onSubmit={ submit }>
-                        <input type="text" name="title" value={ note.title } onChange={ handleChange } placeholder="Type the Title of this note here!"/>
+                    <Form onSubmit={ handleSubmit }>
+                        <input name="title" value={ note.title } onChange={ handleChange } placeholder="Type the Title of this note here!"/>
                         <textarea name="body" cols="30" rows="10" value={ note.body } onChange={ handleChange } placeholder="Type your Notes here!"></textarea>
                         <Button
                             active={ true }

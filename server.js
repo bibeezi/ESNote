@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Import from directories
-const routes = require('./routes/sample');
+const sample = require('./routes/sample');
+const regLogin = require('./routes/saveUser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -35,7 +36,10 @@ app.use(express.urlencoded({extended: false}));
 
 // HTTP request logger
 app.use(morgan('dev'));
-app.use('/', routes);
+
+// routes
+app.use('/', sample);
+app.use('/user', regLogin);
 
 // Check for successful server connection
 app.listen(PORT, console.log(`Server is listening at port : ${PORT}`));

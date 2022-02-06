@@ -19,22 +19,42 @@ const UserHome = () => {
   
     useEffect(() => {
 
-        getPages();
+        getNotes();
 
     }, []);
 
-    const getPages = () => {
+    const getNotes = () => {
 
-        axios.get('/getPages')
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
+
+        axios.get('/getNotes', {
+            params: {
+                data: payload
+            }
+        })
         .then((res) => {
-            const data = res.data;
-            setNote({ pages: data });
+            console.log(res.data);
+            // res.data.foreach((note) => {
+            //     setNote((prevState) => ({
+            //         title: prevState.title,
+            //         body: prevState.body,
+            //         pages: [...prevState.pages, note]
+            //     }));
+            // });
+            setNote(prevState => ({
+                title: prevState.title,
+                body: prevState.body, 
+                pages: res.data
+            }));
         })
         .catch((error) => {
-            console.log("ERROR in UserHome - /getPages", error);
+            console.log("ERROR in UserHome - /getNotes", error);
         });
-        
     };
+
+    console.log(note.pages);
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -59,19 +79,20 @@ const UserHome = () => {
 
         const payload = {
             title: note.title,
-            body: note.body
+            body: note.body,
+            userID: localStorage.getItem("userID")
         };
 
         axios({
-            url: '/savePage',
+            url: '/saveNote',
             method: 'POST',
             data: payload
         })
         .then(() => {
-            getPages();
+            getNotes();
         })
         .catch((err) => {
-            console.log("ERROR in UserHome - /savePage", err);
+            console.log("ERROR in UserHome - /saveNote", err);
         });
     };
 
@@ -90,7 +111,10 @@ const UserHome = () => {
         <div>
             <Header>
                 <div>
-                    <img src={ Images.Home } alt="Home Icon"></img>
+                    <img 
+                        src={ Images.Home } 
+                        alt="Home Icon">
+                    </img>
                     <h1>ESNote</h1>
                 </div>
             </Header>
@@ -98,8 +122,20 @@ const UserHome = () => {
             <Content page={ "user" }>
                 <div className="form">
                     <Form onSubmit={ handleSubmit }>
-                        <input name="title" value={ note.title } onChange={ handleChange } placeholder="Type the Title of this note here!"/>
-                        <textarea name="body" cols="30" rows="10" value={ note.body } onChange={ handleChange } placeholder="Type your Notes here!"></textarea>
+                        <input 
+                            name="title" 
+                            value={ note.title } 
+                            onChange={ handleChange } 
+                            placeholder="Type the Title of this note here!"
+                        />
+                        <textarea 
+                            name="body" 
+                            cols="30" 
+                            rows="10" 
+                            value={ note.body } 
+                            onChange={ handleChange } 
+                            placeholder="Type your Notes here!">
+                        </textarea>
                         <Button
                             active={ true }
                             colours={ "blue" }>
@@ -109,7 +145,7 @@ const UserHome = () => {
                 </div>
 
                 <div className="note-list">
-                    <h1>Notes</h1>
+                    { note.pages.length ? <h1>Notes</h1> : null }
                     { note.pages && showPages(note.pages) }
                 </div>
             </Content>

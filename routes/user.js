@@ -1,7 +1,7 @@
 
 const express = require('express');
 
-const UserModel = require('../models/users');
+const UserModel = require('../models/userModel');
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.post('/saveUser', (req, res) => {
 
     newUser.save((error) => {
         if(error) {
-            return res.status(500).json({ msg: 'ERROR in saveUser route - /saveUser'});
+            return res.status(500).json({ msg: 'ERROR in user route - /saveUser'});
         }
 
         return res.json({
@@ -31,13 +31,13 @@ router.get('/getUser', (req, res) => {
     })
     .then((data) => {
         if(data.length) {
-            return res.json(data);
+            return res.json(data[0]._id);
         } else {
             return res.status(404).json({msg: 'ERROR in user route - /getUser'});
         }
     })
     .catch((err) => {
-        console.log("ERROR in user - /getUser", err);
+        return res.status(500).json({ msg: 'ERROR in user route - /getUser'});
     });
 });
 

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Import from directories
-const sample = require('./routes/sample');
+const note = require('./routes/note');
 const regLogin = require('./routes/user');
 
 const app = express();
@@ -39,7 +39,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
 // routes
-app.use('/', sample);
+app.use('/', note);
 app.use('/user', regLogin);
 
 // Check for successful server connection

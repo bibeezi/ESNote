@@ -2,19 +2,14 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
 
-    ${ ({ page }) => page === "user" ? `
-        height: fit-content;
-    ` : `
-        display: grid;
-        grid-auto-flow: rows;
-        grid-template-columns: 60% 40%;
-        height: 100%;
-    `}  
+    min-height: 100%;
     width: 100%;
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
     position: absolute;
-
     ${ ({ page }) => page === "user" ? `
+
+        height: fit-content;
+
         .note-list {
             margin: 0 auto;
             width: 80%;
@@ -36,24 +31,30 @@ export const Content = styled.div`
             background-color: white;
         }
     ` : `
+        display: grid;
+        grid-auto-flow: rows;
+        grid-template-columns: 60% 40%;
+        height: 100%;
+
         #presentation {
-            margin: 15rem 7rem 15rem 7rem;
+            margin: 15rem 9.5rem 15rem 9.5rem;
             background-color: whitesmoke;
             box-shadow: 0 0 2em lightgray;
             overflow: hidden;
         }
 
         img {
+            display: block;
+            margin: auto;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
-    `}  
-    
+    `}
 
     .form {
         ${ ({ page }) => page === "user" ? `
-            margin: 10rem auto 10rem auto;
+            margin: 10rem auto 5rem auto;
             width: 80%;
         ` : `
             margin: 10rem 10rem 10rem 0;
@@ -66,23 +67,45 @@ export const Content = styled.div`
         align-items: center;
     }
 
-    @media (max-width: 360px) {
-        
+    @media (min-width: 530px) and (max-width: 960px) {
+
+        height: fit-content;
         grid-template-columns: none;
-        grid-template-rows: 40% 60%;
-        padding-top: 22%;
+        padding-top: 5rem;
+
+        #presentation {
+            margin: 0 5em;
+            height: 40em;
+            overflow: hidden;
+        }
+
+        .form {
+            margin: 2em auto 2em auto;
+            width: 80%;
+            height: fit-content;
+        }
+    }
+
+    @media (max-width: 530px) {
+        
+        height: fit-content;
+        grid-template-columns: none;
+        padding-top: 25%;
 
         #presentation {
             margin: 0 2em;
-            border: 0.5px solid grey;
             height: 20em;
             overflow: hidden;
         }
 
-        img {
-            display: block;
-            margin: auto;
-            object-fit: cover;
+        .form {
+            margin: 2em auto 2em auto;
+            width: 80%;
+            height: fit-content;
         }
+    }
+
+    @media (max-width: 360px) {
+
     }
 `;

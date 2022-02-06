@@ -7,7 +7,9 @@ export const Form = styled.form`
     float: left;
     height: fit-content;
     width: 100%;
-
+    ${ ({ active }) => active && `
+        position: fixed;
+    `}
    
     h1:first-of-type {
         margin-top: 0;
@@ -30,11 +32,19 @@ export const Form = styled.form`
         padding: 0.2rem 0.2rem 0.2rem 0.5rem;
         height: 2.5rem;
         width: 70%;
-        border-radius: 0.75em;
+        border-radius: 0.5em;
         border: 0.1px solid grey;
         font-size: 1em;
     }
     
+    textarea {
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+        border-radius: 0.5em;
+        border: 0.1px solid grey;
+    }
+
     hr{
         width: 80%;
     }
@@ -72,9 +82,36 @@ export const Form = styled.form`
         transform: rotate(-45deg);
     }
 
-    textarea {
-        display: block;
-        margin: 0 auto;
-        width: 70%;
+    @media (min-width: 530px) and (max-width: 960px) {
+
+        padding-top: 2rem;
+
+        h1:first-of-type {
+            margin: 0 auto;
+            font-size: 2em;
+        }
+        
+        h1:nth-of-type(2) {
+            margin-top: 1rem;
+            font-size: 2em;
+        }
+    }
+
+    @media (max-width: 530px) {
+
+        padding-top: 2rem;
+
+        h1:first-of-type {
+            font-size: 2em;
+
+            ${ ({ active }) => active && `
+                margin-top: 0;
+            `}
+        }
+
+        h1:nth-of-type(2) {
+            margin-top: 1rem;
+            font-size: 2em;
+        }
     }
 `;

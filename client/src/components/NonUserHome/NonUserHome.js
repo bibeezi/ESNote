@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 
 import { Header } from "../Common/Header.style";
+import { Heading } from "../Common/Heading.style"
 import { Content } from "../Common/Content.style";
 import { Form } from "../Common/Form.style";
 import { Modal } from "./Modal";
@@ -123,7 +124,7 @@ const NonUserHome = () => {
                         src={ Images.Home } 
                         alt="Home Icon">
                     </img>
-                    <h1>ESNote</h1>
+                    <Heading>ESNote</Heading>
                 </div>
             </Header>
 

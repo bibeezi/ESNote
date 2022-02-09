@@ -4,6 +4,7 @@ export const Header = styled.header`
     
     display: grid;
     grid-auto-flow: column;
+    grid-template-columns: repeat(3, 33.3%);
     width: 100%;
     position: absolute;
     top: 0;
@@ -11,14 +12,20 @@ export const Header = styled.header`
     box-shadow: 0 0 0.5em grey;
     z-index: 10;
 
-    h1 {
-        display: inline-flex;
-        margin: 0 auto;
-        padding-top: 0.2em;
-        vertical-align: middle;
-        letter-spacing: 0.2em;
-        color: #7E2D00;
-    }
+    ${ ({ page }) => page === "user" ? `
+        box-shadow: none;
+
+        #icons img {
+            display: none;
+        }
+    ` : ``}
+
+    ${ ({ bottom }) => bottom === "shadow" ? `
+        box-shadow: none;
+        top: 4em;
+        height: 3em;
+        z-index: 9;
+    ` : ``}
 
     img {
         margin: 0 auto;
@@ -26,6 +33,58 @@ export const Header = styled.header`
         height: 3em;
         width: 3em;
         vertical-align: middle;
+    }
+
+    div:nth-of-type(2) {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div:nth-of-type(3) {
+        display: grid;
+        grid-template-areas:
+        "a a a a a b c d e f";
+        grid-auto-flow: column;
+    }
+
+    div:nth-of-type(3) img {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
+    #b {
+        grid-area: b;
+    }
+
+    #c {
+        grid-area: c;
+    }
+
+    #d {
+        grid-area: d;
+    }
+
+    #e {
+        grid-area: e;
+    }
+
+    #f {
+        grid-area: f;
+    }
+
+    #select-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    select {
+        height: 80%;
+        width: 90%;
+        margin: 0 auto;
+        background-color: whitesmoke;
+        border: 1px solid #7E2D00;
     }
 
     @media (max-width: 360px) {

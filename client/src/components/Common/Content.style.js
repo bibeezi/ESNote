@@ -7,7 +7,6 @@ export const Content = styled.div`
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
     position: absolute;
     ${ ({ page }) => page === "user" ? `
-
         height: fit-content;
 
         .note-list {
@@ -59,7 +58,6 @@ export const Content = styled.div`
         ` : `
             margin: 10rem 10rem 10rem 0;
         `}
-        border: 1px solid grey;
         border-radius: 1em; 
         background-color: #E0FFFF80;
         box-shadow: 0 0em 1em lightgray;

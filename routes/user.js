@@ -31,7 +31,11 @@ router.get('/getUser', (req, res) => {
     })
     .then((data) => {
         if(data.length) {
-            return res.json(data[0]._id);
+            const userData = {
+                userID: data[0].id,
+                username: data[0].username
+            }
+            return res.json(userData);
         } else {
             return res.status(404).json({msg: 'ERROR in user route - /getUser'});
         }

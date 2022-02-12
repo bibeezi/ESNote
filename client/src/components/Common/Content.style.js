@@ -7,27 +7,21 @@ export const Content = styled.div`
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
     position: absolute;
     ${ ({ page }) => page === "user" ? `
-        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
 
-        .note-list {
-            margin: 0 auto;
-            width: 80%;
+        .content {
+            border: 1px solid #7E2D00;
+            text-align: center;
+            color: #7E2D00;
+            margin-top: 64px;
         }
 
         h1 {
-            text-align: center;
-        }
-
-        .page-list {
-            margin: 10px;
-        }
-
-        .page-content {
-            margin-left: 15%;
-            margin-right: 15%;
-            border: 1px solid black;
-            padding: 20px;
-            background-color: white;
+            display: block;
+            background: #F7F3E7;
+            margin: 0 auto;
+            border-bottom: 1px solid #7E2D00;
         }
     ` : `
         display: grid;
@@ -50,6 +44,30 @@ export const Content = styled.div`
             object-fit: cover;
         }
     `}
+
+    //Note Taking
+    /* height: fit-content;
+
+        .note-list {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .page-list {
+            margin: 10px;
+        }
+
+        .page-content {
+            margin-left: 15%;
+            margin-right: 15%;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: white;
+        } */
 
     .form {
         ${ ({ page }) => page === "user" ? `

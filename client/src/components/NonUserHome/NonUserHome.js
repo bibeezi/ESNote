@@ -106,8 +106,9 @@ const NonUserHome = () => {
                 email: '',
                 password: '',
             });
-            
-            localStorage.setItem("userID", res.data);
+
+            localStorage.setItem("userID", res.data.userID);
+            localStorage.setItem("username", res.data.username);
 
             setUserPage(true);
         })

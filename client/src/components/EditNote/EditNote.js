@@ -5,11 +5,12 @@ import axios from 'axios';
 import Images from "../../images/Images";
 
 import { Header } from "../Common/Header.style";
+import { Heading } from "../Common/Heading.style";
 import { Content } from '../Common/Content.style';
 import { Form } from "../Common/Form.style";
 import { Button } from '../Common/Button.style';
 
-const UserHome = () => {
+const EditNote = () => {
 
     const [note, setNote] = useState({
         title: '',
@@ -45,8 +46,6 @@ const UserHome = () => {
             console.log("ERROR in UserHome - /getNotes", error);
         });
     };
-
-    console.log(note.pages);
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -107,11 +106,12 @@ const UserHome = () => {
                         src={ Images.Home } 
                         alt="Home Icon">
                     </img>
-                    <h1>ESNote</h1>
+                    <Heading>ESNote</Heading>
                 </div>
             </Header>
 
-            <Content page={ "user" }>
+            <Content
+            page={ "note-taking" }>
                 <div className="form">
                     <Form onSubmit={ handleSubmit }>
                         <input 
@@ -145,4 +145,4 @@ const UserHome = () => {
     );
 }
  
-export default UserHome;
+export default EditNote;

@@ -6,6 +6,7 @@ export const Content = styled.div`
     width: 100%;
     background-image: linear-gradient(#CDF0EA80, #BEAEE260);
     position: absolute;
+
     ${ ({ page }) => page === "user" ? `
         display: grid;
         grid-template-columns: repeat(2, 50%);
@@ -21,9 +22,42 @@ export const Content = styled.div`
             display: block;
             background: #F7F3E7;
             margin: 0 auto;
+            padding: 0.5em 0 0.5em 0;
             border-bottom: 1px solid #7E2D00;
         }
-    ` : `
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            grid-auto-rows: 25vh;
+            min-width: 80vh;
+            height: fit-content;
+            margin: 0px;
+        }
+    ` : page === "note-taking" ? `
+        height: fit-content;
+
+        .note-list {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .page-list {
+            margin: 10px;
+        }
+
+        .page-content {
+            margin-left: 15%;
+            margin-right: 15%;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: white;
+        }
+    `: `
         display: grid;
         grid-auto-flow: rows;
         grid-template-columns: 60% 40%;
@@ -46,31 +80,10 @@ export const Content = styled.div`
     `}
 
     //Note Taking
-    /* height: fit-content;
 
-        .note-list {
-            margin: 0 auto;
-            width: 80%;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .page-list {
-            margin: 10px;
-        }
-
-        .page-content {
-            margin-left: 15%;
-            margin-right: 15%;
-            border: 1px solid black;
-            padding: 20px;
-            background-color: white;
-        } */
 
     .form {
-        ${ ({ page }) => page === "user" ? `
+        ${ ({ page }) => page === "note-taking" ? `
             margin: 10rem auto 5rem auto;
             width: 80%;
         ` : `
@@ -120,8 +133,8 @@ export const Content = styled.div`
             height: fit-content;
         }
     }
-
+/* 
     @media (max-width: 360px) {
 
-    }
+    } */
 `;

@@ -1,102 +1,69 @@
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import Images from "../../images/Images";
 
 import { Header } from "../Common/Header.style";
 import { Heading } from "../Common/Heading.style";
 import { Content } from '../Common/Content.style';
-import { Form } from "../Common/Form.style";
-import { Button } from '../Common/Button.style';
+import { NotePreview } from './NotePreview.style';
+// import { Form } from "../Common/Form.style";
+// import { Button } from '../Common/Button.style';
 
 const EditNote = () => {
 
-    const [note, setNote] = useState({
-        title: '',
-        body: '',
-        pages: []
-    });
-  
-    useEffect(() => {
+    const [noteSize, setNoteSize] = useState({
+        noteWidth: 0,
+        noteHeight: 0
+    }); 
 
-        getNotes();
-
-    }, []);
-
-    const getNotes = () => {
-
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
-        axios.get('/getNotes', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNote(prevState => ({
-                title: prevState.title,
-                body: prevState.body, 
-                pages: res.data
-            }));
-        })
-        .catch((error) => {
-            console.log("ERROR in UserHome - /getNotes", error);
-        });
-    };
-
-    const handleChange = ({ target }) => {
+    const handleInputChange = ({ target }) => {
         const { name, value } = target;
 
-        if(name === "title") {
-            setNote(prevState => ({
-                [name]: value,
-                body: prevState.body, 
-                pages: prevState.pages
-            }));
-        } else {
-            setNote(prevState => ({
-                title: prevState.title, 
-                [name] : value,
-                pages : prevState.pages
-            }));
+        switch(name) {
+            case "noteWidth": 
+                if(value === "") {
+                    setNoteSize((prevState) => ({
+                        [name]: 0,
+                        noteHeight: prevState.noteHeight
+                    }));    
+                    break;
+                }
+
+                setNoteSize((prevState) => ({
+                    [name]: value,
+                    noteHeight: prevState.noteHeight
+                }));
+                break;
+            case "noteHeight":
+                if(value === "") {
+                    setNoteSize((prevState) => ({
+                        noteWidth: prevState.noteWidth,
+                        [name]: 0
+                    }));    
+                    break;
+                }
+
+                setNoteSize((prevState) => ({
+                    noteWidth: prevState.noteWidth,
+                    [name]: value
+                }));
+                break;
+            default:
+                break;
         }
-    };
 
-    const handleSubmit = (event) => {
+        changeNotesize();
+    }
+
+    const changeNotesize = () => {
+        
+    }
+
+    const handleInputSend = (event) => {
         event.preventDefault();
-
-        const payload = {
-            title: note.title,
-            body: note.body,
-            userID: localStorage.getItem("userID")
-        };
-
-        axios({
-            url: '/saveNote',
-            method: 'POST',
-            data: payload
-        })
-        .then(() => {
-            getNotes();
-        })
-        .catch((err) => {
-            console.log("ERROR in UserHome - /saveNote", err);
-        });
-    };
-
-    const showPages = (pages) => {
-        return pages.map((page, index) => (
-            <div key={ index } className="page-list">
-                <div className="page-content">
-                    <h3>{ page.title }</h3>
-                    <p>{ page.body }</p>
-                </div>
-            </div>
-        ));
-    };
+    }
 
     return (
         <div>
@@ -108,37 +75,36 @@ const EditNote = () => {
                     </img>
                     <Heading>ESNote</Heading>
                 </div>
+                <div>
+                    <Heading>Create a Note</Heading>
+                </div>
+                <div id="icons">
+                    <img id="f" alt="help"></img>
+                </div>
             </Header>
 
             <Content
-            page={ "note-taking" }>
-                <div className="form">
-                    <Form onSubmit={ handleSubmit }>
-                        <input 
-                            name="title" 
-                            value={ note.title } 
-                            onChange={ handleChange } 
-                            placeholder="Type the Title of this note here!"
-                        />
-                        <textarea 
-                            name="body" 
-                            cols="30" 
-                            rows="10" 
-                            value={ note.body } 
-                            onChange={ handleChange } 
-                            placeholder="Type your Notes here!">
-                        </textarea>
-                        <Button
-                            active={ true }
-                            colours={ "blue" }>
-                            Save
-                        </Button>
-                    </Form>
+            page = { "note-taking" }>
+                <div id="note-preview-container">
+                    {/* <div id="note-preview"></div> */}
+                    <NotePreview
+                        height={ noteSize.noteHeight }
+                        width={ noteSize.noteWidth }>
+                    </NotePreview>
                 </div>
 
-                <div className="note-list">
-                    { note.pages.length ? <h1>Notes</h1> : null }
-                    { note.pages && showPages(note.pages) }
+                <div>
+                    <form onSubmit={ (e) => handleInputSend }>
+                        <div className='line'>
+                            <h2>Page Size:</h2>
+                            <div className='indent'>
+                                <label>Height:</label>
+                                <input onChange={ handleInputChange } name="noteHeight" type="number" placeholder='e.g. 100'></input>
+                                <label>Width:</label>
+                                <input onChange={ handleInputChange } name="noteWidth" type="number" placeholder='e.g. 50'></input>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </Content>
         </div>

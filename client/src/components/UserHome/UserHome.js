@@ -43,8 +43,8 @@ const UserHome = () => {
 
     const showNotes = (notes) => {
         return notes.map((note, index) => (
-            <AddNote key={ index }>
-                <h1>{ note.title }</h1>
+            <AddNote key={ index } onClick={ handleAddNoteClick }>
+                <h1 className="note-title">{ note.title }</h1>
             </AddNote>
         ));
     };
@@ -102,7 +102,7 @@ const UserHome = () => {
                 <div className="content">
                     <h1>Notes</h1>
                     <div className="grid">
-                        <AddNote>
+                        <AddNote onClick={ handleAddNoteClick }>
                             <img src={ Images.Plus } alt="" />
                         </AddNote>
                         { notes.length && showNotes(notes) }

@@ -14,10 +14,6 @@ export const Header = styled.header`
 
     ${ ({ page }) => page === "user" ? `
         box-shadow: none;
-
-        #icons img {
-            display: none;
-        }
     ` : ``}
 
     ${ ({ bottom }) => bottom === "shadow" ? `

@@ -26,6 +26,10 @@ export const Content = styled.div`
             border-bottom: 1px solid #7E2D00;
         }
 
+        .note-title {
+            background: none;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 25%);
@@ -35,27 +39,56 @@ export const Content = styled.div`
             margin: 0px;
         }
     ` : page === "note-taking" ? `
-        height: fit-content;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 70% 30%;
 
-        .note-list {
-            margin: 0 auto;
-            width: 80%;
+        div {
+            display: flex;
+            margin-top: 64px;
         }
 
-        h1 {
-            text-align: center;
+        .line {
+            display: block;
+            margin: 25px auto 0 auto;
+            border-bottom: 2px solid #000000A1;
+            padding-bottom: 20px;
         }
 
-        .page-list {
-            margin: 10px;
+        div form {
+            width: 100%;
+            padding: 50px;
         }
 
-        .page-content {
-            margin-left: 15%;
-            margin-right: 15%;
+        #note-preview-container {
+            border-right: 1px solid #7E2D00;
+            align-items: center;
+        }
+
+        #note-preview {
             border: 1px solid black;
-            padding: 20px;
             background-color: white;
+            height: 90%;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .indent {
+            display: block;
+            margin-top: 0;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        label, input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
         }
     `: `
         display: grid;
@@ -79,8 +112,29 @@ export const Content = styled.div`
         }
     `}
 
-    //Note Taking
+    // Note Taking Sample
+    /* height: fit-content;
 
+        .note-list {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .page-list {
+            margin: 10px;
+        }
+
+        .page-content {
+            margin-left: 15%;
+            margin-right: 15%;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: white;
+        } */
 
     .form {
         ${ ({ page }) => page === "note-taking" ? `

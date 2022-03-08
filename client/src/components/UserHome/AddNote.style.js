@@ -20,12 +20,23 @@ export const AddNote = styled.div`
         position: relative;
         height: 50px;
         background: none;
-        bottom: -115px;
+        bottom: -100px;
         border-bottom: none;
-        font-size: 15px;
+        font-size: 10px;
         padding: 0.5em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+
+    @media (max-width: 360px) {
+
+        h1 {
+            width: 100%;
+        }
+
+        .add {
+            left: -30px;
+        }
     }
 `;

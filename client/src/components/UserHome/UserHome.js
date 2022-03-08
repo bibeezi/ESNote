@@ -91,17 +91,17 @@ const UserHome = () => {
 
             <Content
             page={ "user" }>
-                <div className="content">
+                <div className="contents notebooks">
                     <h1>Notebooks</h1>
-                    <div className="grid">
+                    <div className="grid notebook-grid">
                         <AddNote onClick={ handleAddNoteClick }>
                             <img src={ Images.Plus } alt="" />
                         </AddNote>
                     </div>
                 </div>
-                <div className="content">
+                <div className="contents notes">
                     <h1>Notes</h1>
-                    <div className="grid">
+                    <div className="grid note-grid">
                         <AddNote onClick={ handleAddNoteClick }>
                             <img src={ Images.Plus } alt="" />
                         </AddNote>

@@ -3,6 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
 // Import from directories
 const note = require('./routes/note');
@@ -41,6 +43,10 @@ app.use(morgan('dev'));
 // routes
 app.use('/', note);
 app.use('/user', regLogin);
+
+// use Cross-Origin Resource Sharing
+const corsOptions = {origin: 'http://localhost:8080'}
+app.use(cors(corsOptions));
 
 // Check for successful server connection
 app.listen(PORT, console.log(`Server is listening at port : ${PORT}`));

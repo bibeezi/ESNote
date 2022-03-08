@@ -83,18 +83,19 @@ export const Header = styled.header`
         border: 1px solid #7E2D00;
     }
 
-    @media (max-width: 360px) {
-
-        h1 {
-            font-size: large;
+    @media (min-width: 360px) and (max-width: 530px) {
+        img {
+            height: 2em;
+            width: 2em;
         }
+    }
 
+    @media (max-width: 360px) {
         img {
             margin: 0 auto;
             padding: 0.5em;
-            height: 2em;
-            width: 2em;
-            vertical-align: middle;
+            width: 1em;
+            height: 1em;
         }
     }
 `;

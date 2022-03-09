@@ -83,7 +83,7 @@ const EditNote = () => {
                     <Heading>Create a Note</Heading>
                 </div>
                 <div id="icons">
-                    <img id="f" alt="help"></img>
+                    {/* <img id="f" alt="help"></img> */}
                 </div>
             </Header>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import { Content } from "../Common/Content.style";
 import { Form } from "../Common/Form.style";
 import { Modal } from "./Modal";
 import { Button } from '../Common/Button.style';
+import { ErrorMessages } from './ErrorMessages.style';
 
 
 const NonUserHome = () => {
@@ -23,41 +24,93 @@ const NonUserHome = () => {
     });
     const [userPage, setUserPage] = useState(false);
     const [refresh, setRefresh] = useState(false);
+    const userRegex = /^[a-zA-Z][a-zA-Z0-9-_].{6,20}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
+    const [passwordMatch, setPasswordMatch] = useState('');
+    const [valid, setValid] = useState({
+        username: false,
+        email: false,
+        password: false,
+        passwordMatch: false
+    });
+    const [focus, setFocus] = useState({
+        username: false,
+        email: false,
+        password: false,
+        passwordMatch: false
+    });
 
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
         setActive(prev => !prev);
     };
 
+    console.log(valid);
+    console.log(user);
+
     const handleChange = ({ target }) => {
         const { name, value } = target;
         
         switch(name) {
-            case "username":
+            case "username": {
                 setUser(prevState => ({
                     [name]: value,
                     email: prevState.email, 
                     password: prevState.password
                 }));
+
+                const result = userRegex.test(value);
+
+                setValid(prevState => ({
+                    username: result,
+                    password: prevState.password, 
+                    passwordMatch: prevState.passwordMatch
+                }));
                 break;
-            case "email":
+            }
+            case "email": {
                 setUser(prevState => ({
                     username: prevState.username, 
                     [name]: value,
                     password: prevState.password
                 }));
                 break;
-            case "password":
+            }
+            case "password": {
                 setUser(prevState => ({
                     username: prevState.username, 
                     email: prevState.email, 
                     [name]: value
                 }));
+
+                const result = passwordRegex.test(user.password);
+        
+                setValid(prevState => ({
+                    username: prevState.username,
+                    password: result, 
+                    passwordMatch: prevState.passwordMatch
+                }));
                 break;
+            }
+            case "passwordMatch": {
+                setPasswordMatch(value);
+
+                console.log(value);
+                const match = user.password === passwordMatch ? true : false;
+
+                setValid(prevState => ({
+                    username: prevState.username,
+                    password: prevState.password, 
+                    passwordMatch: match
+                }));
+                break;
+            }
             default:
                 break;
         }
     };
+
+    console.log(setValid);
 
     const handleRegsitration = (event) => {
         event.preventDefault();
@@ -117,6 +170,66 @@ const NonUserHome = () => {
         });
     };
 
+    const handleFocus = ({ target }) => {
+        const { name } = target;
+        
+        switch(name) {
+            case "username":
+                setFocus(prevState => ({
+                    [name]: true,
+                    password: prevState.password,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "password":
+                setFocus(prevState => ({
+                    username: prevState.username, 
+                    [name]: true,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "passwordMatch":
+                setFocus(prevState => ({
+                    username: prevState.username, 
+                    password: prevState.password,
+                    [name]: true
+                }));
+                break;
+            default:
+                break;
+        }
+    };
+
+    const handleBlur = ({ target }) => {
+        const { name } = target;
+        
+        switch(name) {
+            case "username":
+                setFocus(prevState => ({
+                    [name]: false,
+                    password: prevState.password,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "password":
+                setFocus(prevState => ({
+                    username: prevState.username, 
+                    [name]: false,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "passwordMatch":
+                setFocus(prevState => ({
+                    username: prevState.username, 
+                    password: prevState.password,
+                    [name]: false
+                }));
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <div>
             <Header>
@@ -143,10 +256,11 @@ const NonUserHome = () => {
                         <h1>Login</h1>
 
                         <input 
-                            onChange={ handleChange } 
+                            onChange={ handleChange }
                             name="username" 
                             placeholder="Username" 
                             required>
+                            
                         </input>
 
                         <input
@@ -187,41 +301,56 @@ const NonUserHome = () => {
                             onSubmit={ (e) => { handleRegsitration(e); openSignUpForm(); } } 
                             active={ active }>
                                 <div 
-                                className='close' 
-                                onClick={ openSignUpForm }>
+                                    className='close' 
+                                    onClick={ openSignUpForm }>
                                 </div>
 
                                 <h1>Sign Up</h1>
 
                                 <input 
-                                name="username" 
-                                onChange={ handleChange } 
-                                placeholder="Username" 
-                                required>
+                                    onChange={ handleChange } 
+                                    onFocus={ (e) => handleFocus(e) }
+                                    onBlur={ (e) => handleBlur(e) }
+                                    name="username" 
+                                    placeholder="Username">
                                 </input>
+                                <ErrorMessages active={focus.username && !valid.username ? true : false}>
+                                    Must be 6 to 20 characters and must start with a letter.
+                                </ErrorMessages>
 
                                 <input 
-                                name="email"
-                                type='email'
-                                onChange={ handleChange } 
-                                placeholder="Email" 
-                                required>
+                                    onChange={ handleChange }
+                                    name="email"
+                                    placeholder="Email" 
+                                    type='email'>
                                 </input>
+                                <ErrorMessages active={focus.email && !valid.email ? true : false}>
+                                    Must be filled in - example@example.com
+                                </ErrorMessages>
 
                                 <input 
-                                name="password" 
-                                onChange={ handleChange } 
-                                placeholder="Password" 
-                                type="password" 
-                                required>
+                                    onChange={ handleChange } 
+                                    onFocus={ (e) => handleFocus(e) }
+                                    onBlur={ (e) => handleBlur(e) }
+                                    name="password" 
+                                    placeholder="Password" 
+                                    type="password">
                                 </input>
+                                <ErrorMessages active={focus.password && !valid.password ? true : false}>
+                                    Must be 8 to 20 characters and must have a captial letter, a number and a special character - !@#$%
+                                </ErrorMessages>
 
                                 <input 
-                                onChange={ handleChange } 
-                                placeholder="Confirm Password" 
-                                type="password" 
-                                required>
-                                </input>
+                                    onChange={ handleChange } 
+                                    onFocus={ (e) => handleFocus(e) }
+                                    onBlur={ (e) => handleBlur(e) }
+                                    name="passwordMatch"
+                                    placeholder="Confirm Password" 
+                                    type="password">
+                                </input>                                
+                                <ErrorMessages active={focus.passwordMatch && !valid.passwordMatch ? true : false}>
+                                    The password and confirm password inputs don't match!
+                                </ErrorMessages>
 
                                 <Button
                                     type='submit'
@@ -229,6 +358,7 @@ const NonUserHome = () => {
                                     colours={ "blue" }>
                                     Create an Account
                                 </Button>
+
                                 { refresh ? <Navigate to='/'/> : null }
                         </Form>
                     </Modal>

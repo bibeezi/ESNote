@@ -37,11 +37,11 @@ router.get('/getUser', (req, res) => {
             }
             return res.json(userData);
         } else {
-            return res.status(404).json({msg: 'ERROR in user route - /getUser'});
+            return res.status(200).json({msg: 'User Not Found'});
         }
     })
     .catch((err) => {
-        return res.status(500).json({ msg: 'ERROR in user route - /getUser'});
+        return res.status(500).json({ msg: 'ERROR in user route - /getUser', err});
     });
 });
 

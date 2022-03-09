@@ -43,8 +43,8 @@ const NonUserHome = () => {
         passwordMatch: false
     });
 
-    console.log(user);
-    console.log(passwordMatch);
+    const [validLogin, setValidLogin] = useState(null);
+
 
     useEffect(() => {
         const match = user.password === passwordMatch && passwordMatch != "" ? true : false;
@@ -54,7 +54,7 @@ const NonUserHome = () => {
             password: prevState.password, 
             passwordMatch: match
         }));
-    }, [passwordMatch])
+    }, [user.password, passwordMatch]);
 
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
@@ -79,6 +79,8 @@ const NonUserHome = () => {
                     password: prevState.password, 
                     passwordMatch: prevState.passwordMatch
                 }));
+
+                setValidLogin(null);
                 break;
             }
             case "email": {
@@ -112,27 +114,14 @@ const NonUserHome = () => {
                     password: result, 
                     passwordMatch: prevState.passwordMatch
                 }));
+
+                setValidLogin(null);
                 break;
             }
-            // case "passwordMatch": {
-
-            //     const match = user.password === passwordMatch ? true : false;
-
-            //     console.log(user.password, passwordMatch, match);
-
-            //     setValid(prevState => ({
-            //         username: prevState.username,
-            //         password: prevState.password, 
-            //         passwordMatch: match
-            //     }));
-            //     break;
-            // }
             default:
                 break;
         }
     };
-
-    console.log(valid);
 
     const handleRegsitration = (event) => {
         event.preventDefault();
@@ -164,6 +153,7 @@ const NonUserHome = () => {
     const handleLogin = (event) => {
         event.preventDefault();
 
+
         const payload = {
             username: user.username,
             email: user.email,
@@ -176,16 +166,21 @@ const NonUserHome = () => {
             }
         })
         .then((res) => {
-            setUser({
-                username: '',
-                email: '',
-                password: '',
-            });
 
-            localStorage.setItem("userID", res.data.userID);
-            localStorage.setItem("username", res.data.username);
+            if(res.data.msg !== "User Not Found") {
+                setUser({
+                    username: '',
+                    email: '',
+                    password: '',
+                });
 
-            setUserPage(true);
+                localStorage.setItem("userID", res.data.userID);
+                localStorage.setItem("username", res.data.username);
+
+                setUserPage(true);  
+            }
+
+            setValidLogin(false);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /getUser", error);
@@ -314,6 +309,9 @@ const NonUserHome = () => {
                             type="password" 
                             required>
                         </input>
+                        <ErrorMessages active={ user.username !== "" && user.password !== "" && validLogin === false ? true : false }>
+                            Username or Password is incorrect!
+                        </ErrorMessages>
 
                         <Button
                             type='submit'

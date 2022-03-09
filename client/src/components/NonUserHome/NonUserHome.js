@@ -24,8 +24,11 @@ const NonUserHome = () => {
     });
     const [userPage, setUserPage] = useState(false);
     const [refresh, setRefresh] = useState(false);
+
     const userRegex = /^[a-zA-Z][a-zA-Z0-9-_].{6,20}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     const [passwordMatch, setPasswordMatch] = useState('');
     const [valid, setValid] = useState({
         username: false,
@@ -40,13 +43,23 @@ const NonUserHome = () => {
         passwordMatch: false
     });
 
+    console.log(user);
+    console.log(passwordMatch);
+
+    useEffect(() => {
+        const match = user.password === passwordMatch && passwordMatch != "" ? true : false;
+
+        setValid(prevState => ({
+            username: prevState.username,
+            password: prevState.password, 
+            passwordMatch: match
+        }));
+    }, [passwordMatch])
+
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
         setActive(prev => !prev);
     };
-
-    console.log(valid);
-    console.log(user);
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -74,6 +87,15 @@ const NonUserHome = () => {
                     [name]: value,
                     password: prevState.password
                 }));
+
+                const result = emailRegex.test(value);
+
+                setValid(prevState => ({
+                    username: prevState.username,
+                    email: result,
+                    password: prevState.password, 
+                    passwordMatch: prevState.passwordMatch
+                }));
                 break;
             }
             case "password": {
@@ -92,25 +114,25 @@ const NonUserHome = () => {
                 }));
                 break;
             }
-            case "passwordMatch": {
-                setPasswordMatch(value);
+            // case "passwordMatch": {
 
-                console.log(value);
-                const match = user.password === passwordMatch ? true : false;
+            //     const match = user.password === passwordMatch ? true : false;
 
-                setValid(prevState => ({
-                    username: prevState.username,
-                    password: prevState.password, 
-                    passwordMatch: match
-                }));
-                break;
-            }
+            //     console.log(user.password, passwordMatch, match);
+
+            //     setValid(prevState => ({
+            //         username: prevState.username,
+            //         password: prevState.password, 
+            //         passwordMatch: match
+            //     }));
+            //     break;
+            // }
             default:
                 break;
         }
     };
 
-    console.log(setValid);
+    console.log(valid);
 
     const handleRegsitration = (event) => {
         event.preventDefault();
@@ -177,6 +199,15 @@ const NonUserHome = () => {
             case "username":
                 setFocus(prevState => ({
                     [name]: true,
+                    email: prevState.email,
+                    password: prevState.password,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "email":
+                setFocus(prevState => ({
+                    username: prevState.username,
+                    [name]: true,
                     password: prevState.password,
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -184,6 +215,7 @@ const NonUserHome = () => {
             case "password":
                 setFocus(prevState => ({
                     username: prevState.username, 
+                    email: prevState.email,
                     [name]: true,
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -191,6 +223,7 @@ const NonUserHome = () => {
             case "passwordMatch":
                 setFocus(prevState => ({
                     username: prevState.username, 
+                    email: prevState.email,
                     password: prevState.password,
                     [name]: true
                 }));
@@ -207,6 +240,15 @@ const NonUserHome = () => {
             case "username":
                 setFocus(prevState => ({
                     [name]: false,
+                    email: prevState.email,
+                    password: prevState.password,
+                    passwordMatch: prevState.passwordMatch
+                }));
+                break;
+            case "email":
+                setFocus(prevState => ({
+                    username: prevState.username,
+                    [name]: false,
                     password: prevState.password,
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -214,6 +256,7 @@ const NonUserHome = () => {
             case "password":
                 setFocus(prevState => ({
                     username: prevState.username, 
+                    email: prevState.email,
                     [name]: false,
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -221,6 +264,7 @@ const NonUserHome = () => {
             case "passwordMatch":
                 setFocus(prevState => ({
                     username: prevState.username, 
+                    email: prevState.email,
                     password: prevState.password,
                     [name]: false
                 }));
@@ -320,6 +364,8 @@ const NonUserHome = () => {
 
                                 <input 
                                     onChange={ handleChange }
+                                    onFocus={ (e) => handleFocus(e) }
+                                    onBlur={ (e) => handleBlur(e) }
                                     name="email"
                                     placeholder="Email" 
                                     type='email'>
@@ -336,19 +382,19 @@ const NonUserHome = () => {
                                     placeholder="Password" 
                                     type="password">
                                 </input>
-                                <ErrorMessages active={focus.password && !valid.password ? true : false}>
+                                <ErrorMessages active={ focus.password && !valid.password ? true : false}>
                                     Must be 8 to 20 characters and must have a captial letter, a number and a special character - !@#$%
                                 </ErrorMessages>
 
                                 <input 
-                                    onChange={ handleChange } 
+                                    onChange={ (e) => setPasswordMatch(e.target.value) }
                                     onFocus={ (e) => handleFocus(e) }
                                     onBlur={ (e) => handleBlur(e) }
                                     name="passwordMatch"
                                     placeholder="Confirm Password" 
                                     type="password">
                                 </input>                                
-                                <ErrorMessages active={focus.passwordMatch && !valid.passwordMatch ? true : false}>
+                                <ErrorMessages active={ focus.passwordMatch && !valid.passwordMatch ? true : false}>
                                     The password and confirm password inputs don't match!
                                 </ErrorMessages>
 

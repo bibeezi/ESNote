@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Navigate } from 'react-router-dom';
 
-import Images from "../../images/Images";
+import Images from "../../../images/Images";
 
 import { Header } from "../Common/Header.style";
 import { Heading }  from "../Common/Heading.style";

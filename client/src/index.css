@@ -1,6 +1,7 @@
 html, #root, .App, .App > div {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
-  position: relative;
 }
 
 body {

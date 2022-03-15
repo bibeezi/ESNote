@@ -171,11 +171,11 @@ export const Content = styled.div`
             ` : `
                 margin: 10rem 10rem 10rem 0;
             `}
-                border-radius: 1em; 
-                background-color: #E0FFFF80;
-                box-shadow: 0 0em 1em lightgray;
-                display: flex;
-                align-items: center;
+            border-radius: 1em; 
+            background-color: #E0FFFF80;
+            box-shadow: 0 0em 1em lightgray;
+            display: flex;
+            align-items: center;
         }
 
         @media (min-width: 530px) and (max-width: 960px) {

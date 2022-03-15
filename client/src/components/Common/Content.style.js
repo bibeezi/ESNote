@@ -4,32 +4,35 @@ export const NonUserHomeContent = styled.div`
 
     display: grid;
     min-height: 100vh;
-    background-image: linear-gradient(#E98DBE, #AED9EA);
+    height: fit-content;
+    background-image: linear-gradient(#AED9EA55, #E98DBE55);
 
     /* max-width: 360px */
     grid-template-columns: none;
-    padding-top: 5rem;        
+    grid-template-rows: 25em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         grid-template-columns: none;
+        grid-template-rows: 30em;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         grid-template-columns: none;
+        grid-template-rows: 30em;
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        grid-template-columns: 60% 40%;
-        padding-top: 10rem;  
+        grid-template-columns: none;
+        grid-template-rows: 50em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-template-columns: 60% 40%;
-        padding-top: 10rem;  
+        grid-template-columns: none;
+        grid-template-rows: 50em 30em;
     }
 
     @media only screen and (min-width: 1200px) {
         grid-template-columns: 60% 40%;
-        padding-top: 10rem;  
+        grid-template-rows: 100vh;
     }
 `;

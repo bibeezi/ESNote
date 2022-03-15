@@ -39,34 +39,34 @@ export const CommonHeader = styled.div`
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
 
-        height: 6.4em;
+        height: 5.4em;
 
         img {
             margin-left: 1em;
-            width: 4em;
-            height: 4em;
+            width: 3em;
+            height: 3em;
         }
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
 
-        height: 6.4em;
+        height: 5.4em;
 
         img {
             margin-left: 1em;
-            width: 4em;
-            height: 4em;
+            width: 3em;
+            height: 3em;
         }
     }
 
     @media only screen and (min-width: 1200px) {
 
-        height: 6.4em;
+        height: 5.4em;
 
         img {
             margin-left: 1em;
-            width: 4em;
-            height: 4em;
+            width: 3em;
+            height: 3em;
         }
     }
 `;

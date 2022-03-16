@@ -5,7 +5,7 @@ import Images from "../../images/Images";
 import Header from "./Header";
 import Presentation from "./Presentation";
 import { NonUserHomeContent } from "../Common/Content.style";
-import { FormContainer } from "../Common/FormContainer.style";
+import { LoginFormContainer, RegistrationFormContainer } from "../Common/FormContainer.style";
 import LoginForm from "./LoginForm";
 import RegistrationForm from './RegistrationForm';
 import { RegistrationModal } from '../Common/Modal.style';
@@ -272,7 +272,7 @@ const NonUserHome = () => {
 
             <NonUserHomeContent page="NonUserHome">
                 <Presentation presentationImage={ Images.Presentation } />
-                <FormContainer>
+                <LoginFormContainer>
                     <LoginForm
                         validLogin={ validLogin }
                         user={ user }
@@ -280,16 +280,16 @@ const NonUserHome = () => {
                         handleChange={ handleChange }
                         openSignUpForm={ openSignUpForm }>
                     </LoginForm>
-                </FormContainer>
+                </LoginFormContainer>
             </NonUserHomeContent>
 
             { showRegistration && 
             <RegistrationModal>
-                {/* <FormContainer>
+                <RegistrationFormContainer>
                     <RegistrationForm
-                    >
+                        openSignUpForm={ openSignUpForm }>
                     </RegistrationForm>
-                </FormContainer> */}
+                </RegistrationFormContainer>
             </RegistrationModal> }
         </div>
     );

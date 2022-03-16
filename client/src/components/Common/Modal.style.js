@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const RegistrationModal = styled.div`
 
+    display: flex;
     position: fixed;
     top: 0;
     height: 100vh;

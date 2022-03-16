@@ -90,3 +90,36 @@ export const FormHeadingRegister = styled.h1`
         font-size: 2em;
     }
 `;
+
+export const FormHeadingNoMargin = styled.h1`
+
+    margin: 0;
+    transform: translateY(-1em);
+
+    /* max-width: 360px */
+    font-size: 1.5em;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 2em;
+        transform: translateY(-0.6em);
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 2em;
+        transform: translateY(-0.6em);
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 2em;
+        transform: translateY(-0.6em);
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 2em;
+        transform: translateY(-0.6em);
+    }
+`;

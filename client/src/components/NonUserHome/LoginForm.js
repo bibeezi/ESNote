@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { StyledLoginForm } from "../Common/Form.style";
 import { FormHeading, FormHeadingRegister } from "../Common/Heading.style";
 import { OrangeButton, BlueButton } from "../Common/Button.style";
-import { LoginInput } from "../Common/Inputs.style";
+import { Input } from "../Common/Inputs.style";
 import { ErrorMessages } from "../Common/ErrorMessages.style";
 
 const LoginForm = ({ user, userPage, validLogin, handleLogin, handleChange, openSignUpForm }) => {
@@ -13,20 +13,20 @@ const LoginForm = ({ user, userPage, validLogin, handleLogin, handleChange, open
             
             <FormHeading>Login</FormHeading>
 
-            <LoginInput 
+            <Input 
                 onChange={ handleChange }
                 name="username" 
                 placeholder="Username" 
                 required>
-            </LoginInput>
+            </Input>
 
-            <LoginInput
+            <Input
                 onChange={ handleChange } 
                 name="password" 
                 placeholder="Password" 
                 type="password" 
                 required>
-            </LoginInput>
+            </Input>
             <ErrorMessages active={ user.username !== "" && user.password !== "" && validLogin === false ? true : false }>
                 Username or Password is incorrect!
             </ErrorMessages>

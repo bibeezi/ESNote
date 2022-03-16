@@ -1,74 +1,74 @@
 import { StyledRegistrationForm } from "../Common/Form.style";
+import { CloseButton } from "../Common/Close.style";
+import { FormHeadingNoMargin } from "../Common/Heading.style";
+import { Input, InputRegistration } from "../Common/Inputs.style";
+import { BlueButtonMargin } from "../Common/Button.style";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ openSignUpForm }) => {
     return (
         <StyledRegistrationForm 
         // onSubmit={ (e) => { handleRegsitration(e); openSignUpForm(); } } 
         // active={ active }
         >
-            <div 
-                className='close' 
-                // onClick={ openSignUpForm }
-                >
-            </div>
+            <CloseButton onClick={ openSignUpForm }></CloseButton>
+            <FormHeadingNoMargin>Sign Up</FormHeadingNoMargin>
 
-            <h1>Sign Up</h1>
-
-            <input 
+            <InputRegistration 
                 // onChange={ handleChange } 
                 // onFocus={ (e) => handleFocus(e) }
                 // onBlur={ (e) => handleBlur(e) }
                 name="username" 
                 placeholder="Username">
-            </input>
+            </InputRegistration>
             {/* <ErrorMessages active={focus.username && !valid.username ? true : false}>
                 Must be 6 to 20 characters and must start with a letter.
             </ErrorMessages> */}
 
-            <input 
+            <Input 
                 // onChange={ handleChange }
                 // onFocus={ (e) => handleFocus(e) }
                 // onBlur={ (e) => handleBlur(e) }
                 name="email"
                 placeholder="Email" 
                 type='email'>
-            </input>
+            </Input>
             {/* <ErrorMessages active={focus.email && !valid.email ? true : false}>
                 Must be filled in - example@example.com
             </ErrorMessages> */}
 
-            <input 
+            <Input 
                 // onChange={ handleChange } 
                 // onFocus={ (e) => handleFocus(e) }
                 // onBlur={ (e) => handleBlur(e) }
                 name="password" 
                 placeholder="Password" 
                 type="password">
-            </input>
+            </Input>
             {/* <ErrorMessages active={ focus.password && !valid.password ? true : false}>
                 Must be 8 to 20 characters and must have a captial letter, a number and a special character - !@#$%
             </ErrorMessages> */}
 
-            <input 
+            <Input 
                 // onChange={ (e) => setPasswordMatch(e.target.value) }
                 // onFocus={ (e) => handleFocus(e) }
                 // onBlur={ (e) => handleBlur(e) }
                 name="passwordMatch"
                 placeholder="Confirm Password" 
                 type="password">
-            </input>                                
+            </Input>                                
             {/* <ErrorMessages active={ focus.passwordMatch && !valid.passwordMatch ? true : false}>
                 The password and confirm password inputs don't match!
             </ErrorMessages> */}
-{/* 
-            <Button
+
+            <BlueButtonMargin
                 type='submit'
-                active={ active }
+                // active={ active }
                 colours={ "blue" }>
                 Create an Account
-            </Button> */}
+            </BlueButtonMargin>
 
             {/* { refresh ? <Navigate to='/'/> : null } */}
+
         </StyledRegistrationForm>
     );
 }

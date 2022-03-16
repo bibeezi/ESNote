@@ -27,8 +27,8 @@ export const NonUserHomeContent = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-template-columns: none;
-        grid-template-rows: 50em 30em;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 100vh;
     }
 
     @media only screen and (min-width: 1200px) {

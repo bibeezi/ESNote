@@ -10,7 +10,7 @@ export const CommonHeader = styled.div`
     top: 0;
     background-color: #FAF3EB;
     box-shadow: 0 0 1em grey;
-    z-index: 10;
+    z-index: 1;
 
     #home-div {
         display: flex;

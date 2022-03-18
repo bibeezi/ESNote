@@ -13,6 +13,12 @@ export const Input = styled.input`
 
     /* max-width: 360px */
 
+    @media only screen and (max-height: 360px) {
+        height: 1.5em;
+        margin: 0.25em auto;
+        font-size: 1em;
+    }
+
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
     }
@@ -46,6 +52,12 @@ export const InputRegistration = styled.input`
     font-size: 1em;
 
     /* max-width: 360px */
+
+    @media only screen and (max-height: 360px) {
+        height: 1.5em;
+        margin: 0 auto 0.25em auto;
+        font-size: 1em;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 

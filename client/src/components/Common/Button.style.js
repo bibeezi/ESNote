@@ -83,7 +83,7 @@ export const BlueButton = styled.button`
     }
 `;
 
-export const BlueButtonMargin = styled.button`
+export const BlueButtonRegistration = styled.button`
 
     border-radius: 1.5em;
     border: none;
@@ -95,6 +95,11 @@ export const BlueButtonMargin = styled.button`
     /* max-width: 360px */
     margin: 1em auto 1em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
+
+    @media only screen and (max-height: 360px) {
+        margin: 0.25 auto;
+        font-size: 1em;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

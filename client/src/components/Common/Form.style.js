@@ -23,12 +23,10 @@ export const StyledLoginForm = styled.form`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        text-align: left;
 
     }
 
     @media only screen and (min-width: 1200px) {
-        text-align: left;
 
     }
 `;

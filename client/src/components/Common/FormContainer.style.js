@@ -54,6 +54,10 @@ export const RegistrationFormContainer = styled.div`
     /* max-width: 360px */
     width: 80%;
 
+    @media only screen and (max-height: 360px) {
+        height: 80%;
+    }
+
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
     }

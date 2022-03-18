@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 import { StyledLoginForm } from "../Common/Form.style";
@@ -6,7 +8,53 @@ import { OrangeButton, BlueButton } from "../Common/Button.style";
 import { Input } from "../Common/Inputs.style";
 import { ErrorMessages } from "../Common/ErrorMessages.style";
 
-const LoginForm = ({ user, userPage, validLogin, handleLogin, handleChange, openSignUpForm }) => {
+const LoginForm = ({ 
+    user, 
+    validLogin, 
+    setUser,
+    setValidLogin, 
+    handleChange, 
+    openSignUpForm 
+}) => {
+
+    const [userPage, setUserPage] = useState(false);
+    
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        const payload = {
+            username: user.username,
+            email: user.email,
+            password: user.password
+        };
+
+        axios.get('/user/getUser', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+
+            if(res.data.msg !== "User Not Found") {
+                setUser({
+                    username: '',
+                    email: '',
+                    password: '',
+                });
+
+                localStorage.setItem("userID", res.data.userID);
+                localStorage.setItem("username", res.data.username);
+
+                setUserPage(true);  
+            }
+
+            setValidLogin(false);
+        })
+        .catch((error) => {
+            console.log("ERROR in UserHome - /getUser", error);
+        });
+    };
+
     return (
         <StyledLoginForm 
         onSubmit={ (e) => handleLogin(e) }>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import Images from "../../images/Images";
 import Header from "./Header";
@@ -13,16 +12,13 @@ import { RegistrationModal } from '../Common/Modal.style';
 const NonUserHome = () => {
 
     const [showRegistration, setShowRegistration] = useState(false);
-    const [active, setActive] = useState(false);
     const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
     });
-    const [userPage, setUserPage] = useState(false);
-    const [refresh, setRefresh] = useState(false);
 
-    const userRegex = /^[a-zA-Z][a-zA-Z0-9-_].{6,20}$/;
+    const userRegex = /^[a-zA-Z][a-zA-Z0-9-_].{4,20}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -33,21 +29,16 @@ const NonUserHome = () => {
         password: false,
         passwordMatch: false
     });
-    const [focus, setFocus] = useState({
-        username: false,
-        email: false,
-        password: false,
-        passwordMatch: false
-    });
 
     const [validLogin, setValidLogin] = useState(null);
 
-
     useEffect(() => {
-        const match = user.password === passwordMatch && passwordMatch != "" ? true : false;
+
+        const match = user.password === passwordMatch && passwordMatch !== "" ? true : false;
 
         setValid(prevState => ({
             username: prevState.username,
+            email: prevState.email,
             password: prevState.password, 
             passwordMatch: match
         }));
@@ -55,7 +46,6 @@ const NonUserHome = () => {
 
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
-        setActive(prev => !prev);
     };
 
     const handleChange = ({ target }) => {
@@ -73,6 +63,7 @@ const NonUserHome = () => {
 
                 setValid(prevState => ({
                     username: result,
+                    email: prevState.email,
                     password: prevState.password, 
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -104,10 +95,13 @@ const NonUserHome = () => {
                     [name]: value
                 }));
 
-                const result = passwordRegex.test(user.password);
-        
+                const result = passwordRegex.test(value);
+
+                console.log(result);
+
                 setValid(prevState => ({
                     username: prevState.username,
+                    email: prevState.email,
                     password: result, 
                     passwordMatch: prevState.passwordMatch
                 }));
@@ -120,163 +114,19 @@ const NonUserHome = () => {
         }
     };
 
-    const handleRegsitration = (event) => {
-        event.preventDefault();
-
-        const payload = {
-            username: user.username,
-            email: user.email,
-            password: user.password
-        };
-
-        axios({
-            url: '/user/saveUser',
-            method: 'POST',
-            data: payload
-        })
-        .then(() => {
-            setUser({
-                username: '',
-                email: '',
-                password: '',
-            });
-            setRefresh(true);
-        }) 
-        .catch((err) => {
-            console.log("ERROR in NonUserHome - /saveUser", err);
-        });
-    };
-
-    const handleLogin = (event) => {
-        event.preventDefault();
-
-
-        const payload = {
-            username: user.username,
-            email: user.email,
-            password: user.password
-        };
-
-        axios.get('/user/getUser', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-
-            if(res.data.msg !== "User Not Found") {
-                setUser({
-                    username: '',
-                    email: '',
-                    password: '',
-                });
-
-                localStorage.setItem("userID", res.data.userID);
-                localStorage.setItem("username", res.data.username);
-
-                setUserPage(true);  
-            }
-
-            setValidLogin(false);
-        })
-        .catch((error) => {
-            console.log("ERROR in UserHome - /getUser", error);
-        });
-    };
-
-    const handleFocus = ({ target }) => {
-        const { name } = target;
-        
-        switch(name) {
-            case "username":
-                setFocus(prevState => ({
-                    [name]: true,
-                    email: prevState.email,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "email":
-                setFocus(prevState => ({
-                    username: prevState.username,
-                    [name]: true,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "password":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    [name]: true,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    password: prevState.password,
-                    [name]: true
-                }));
-                break;
-            default:
-                break;
-        }
-    };
-
-    const handleBlur = ({ target }) => {
-        const { name } = target;
-        
-        switch(name) {
-            case "username":
-                setFocus(prevState => ({
-                    [name]: false,
-                    email: prevState.email,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "email":
-                setFocus(prevState => ({
-                    username: prevState.username,
-                    [name]: false,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "password":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    [name]: false,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    password: prevState.password,
-                    [name]: false
-                }));
-                break;
-            default:
-                break;
-        }
-    };
-
     return ( 
         <div>
-            <Header page="NonUserHome" homeImage={ Images.Home } />
+            <Header homeImage={ Images.Home } />
 
-            <NonUserHomeContent page="NonUserHome">
+            <NonUserHomeContent>
                 <Presentation presentationImage={ Images.Presentation } />
+
                 <LoginFormContainer>
                     <LoginForm
-                        validLogin={ validLogin }
                         user={ user }
-                        handleLogin={ handleLogin }
+                        validLogin={ validLogin }
+                        setUser={ setUser }
+                        setValidLogin={ setValidLogin }
                         handleChange={ handleChange }
                         openSignUpForm={ openSignUpForm }>
                     </LoginForm>
@@ -287,6 +137,11 @@ const NonUserHome = () => {
             <RegistrationModal>
                 <RegistrationFormContainer>
                     <RegistrationForm
+                        user={ user }
+                        valid={ valid }
+                        setUser={ setUser }
+                        setPasswordMatch={ setPasswordMatch }
+                        handleChange={ handleChange }
                         openSignUpForm={ openSignUpForm }>
                     </RegistrationForm>
                 </RegistrationFormContainer>

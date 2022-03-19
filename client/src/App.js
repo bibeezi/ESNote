@@ -7,6 +7,7 @@ import {
 
 // Import functional components
 import NonUserHome from './components/NonUserHome/NonUserHome';
+import UserHome from './components/UserHome/UserHome';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className='App'>
         <Routes>
           <Route exact path='/' element={ <NonUserHome /> }></Route>
+          <Route exact path='/user' element={ <UserHome /> }></Route>
         </Routes>
       </div>
     </Router>

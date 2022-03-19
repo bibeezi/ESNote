@@ -35,6 +35,36 @@ export const HeaderHeading = styled.h1`
     }
 `;
 
+export const WelcomeHeading = styled.h1`
+
+    letter-spacing: 0.2em;
+    color: #7E2D00;
+
+    /* max-width: 360px */
+    font-size: 0.75em;
+    margin: auto;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.5em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 2em;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 2em;
+    }
+`;
+
 export const FormHeading = styled.h1`
 
     margin-top: 1em;
@@ -91,7 +121,7 @@ export const FormHeadingRegister = styled.h1`
     }
 `;
 
-export const FormHeadingNoMargin = styled.h1`
+export const FormHeadingSignUp = styled.h1`
 
     margin: 0;
     transform: translateY(-1em);

@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 import { StyledRegistrationForm } from "../Common/Form.style";
 import { CloseButton } from "../Common/Close.style";
-import { FormHeadingNoMargin } from "../Common/Heading.style";
+import { FormHeadingSignUp } from "../Common/Heading.style";
 import { Input, InputRegistration } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
 import { ErrorMessages } from "../Common/ErrorMessages.style";
@@ -141,7 +141,7 @@ const RegistrationForm = ({
         <StyledRegistrationForm 
         onSubmit={ (e) => { handleRegistration(e); openSignUpForm(); } }>
             <CloseButton onClick={ openSignUpForm }></CloseButton>
-            <FormHeadingNoMargin>Sign Up</FormHeadingNoMargin>
+            <FormHeadingSignUp>Sign Up</FormHeadingSignUp>
 
             <InputRegistration 
                 onChange={ handleChange } 

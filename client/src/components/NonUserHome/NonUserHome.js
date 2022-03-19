@@ -18,7 +18,7 @@ const NonUserHome = () => {
         password: '',
     });
 
-    const userRegex = /^[a-zA-Z][a-zA-Z0-9-_].{4,20}$/;
+    const userRegex = /^[a-zA-Z0-9].{5,20}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -60,6 +60,8 @@ const NonUserHome = () => {
                 }));
 
                 const result = userRegex.test(value);
+
+                console.log(result);
 
                 setValid(prevState => ({
                     username: result,

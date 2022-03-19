@@ -1,17 +1,17 @@
-import { CommonHeader } from "../Common/Header.style";
+import { HeaderBar, HomeHeader } from "../Common/Header.style";
 import { HeaderHeading } from "../Common/Heading.style";
 
 const Header = ({ homeImage }) => {
     return (
-        <CommonHeader>
-            <div id="home-div">
+        <HeaderBar>
+            <HomeHeader>
                 <img
                     src={ homeImage }
                     alt="Home Icon">
                 </img>
                 <HeaderHeading>ESNote</HeaderHeading>
-            </div>
-        </CommonHeader>
+            </HomeHeader>
+        </HeaderBar>
     );
 };
 

@@ -247,7 +247,7 @@ export const SubheaderBar = styled.div`
     box-shadow: 0 0.5em 0.5em -0.5em grey;
 
     @media only screen and (max-height: 321px) {
-
+    
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

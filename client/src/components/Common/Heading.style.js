@@ -153,3 +153,63 @@ export const FormHeadingSignUp = styled.h1`
         transform: translateY(-0.6em);
     }
 `;
+
+export const Subheading = styled.h1`
+
+    letter-spacing: 0.2em;
+    color: #7E2D00;
+
+    /* max-width: 360px */
+    font-size: 1em;
+    margin: auto;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.5em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 2em;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 2em;
+    }
+`;
+
+export const Title = styled.h1`
+
+    
+
+    /* max-width: 360px */
+    height: fit-content;
+    margin: 0;
+    color: #7E2D00;
+    font-size: 0.75em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    }
+
+    @media only screen and (min-width: 1200px) {
+    }
+`;

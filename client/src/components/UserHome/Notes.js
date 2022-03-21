@@ -10,7 +10,6 @@ import { Title } from "../Common/Heading.style";
 
 const Notes = () => {
 
-    const username = localStorage.getItem("username");
     const [notes, setNotes] = useState([]);
     const [notePage, setNotePage] = useState(false);
 
@@ -40,8 +39,8 @@ const Notes = () => {
     };
 
     const showNotes = (notes) => {
-        return notes.map((note, index) => (
-            <Container key={ index }>
+        return notes.map((note) => (
+            <Container key={ note._id }>
                 <NoteShape onClick={ handleAddNoteClick }></NoteShape>
                 <Title>{ note.title }</Title>
             </Container>
@@ -61,12 +60,15 @@ const Notes = () => {
             <NotesGrid>
                 <Container>
                     <NoteShape onClick={ handleAddNoteClick }>
-                        <img src={ Images.Plus } />
+                        <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Note</Title>
                 </Container>
                 { notes.length && showNotes(notes) }
             </NotesGrid>
+
+            { notePage ? <Navigate to='/create-note-template'/> : null }
+
         </StyledNotes>
     );
 }

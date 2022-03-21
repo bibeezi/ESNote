@@ -124,3 +124,40 @@ export const SearchInput = styled.input`
         font-size: 1em;
     }
 `;
+
+export const SectionInput = styled.input`
+
+    margin: 0.5em;
+    padding: 0.2em 0.2em 0.2em 0.5em;
+    height: 2.5em;
+    width: 30%;
+    align-self: center;
+    background-color: #FEFEFE;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+    border: 1px solid #7E2D009A;
+    font-size: 0.75em;
+    font-family: Nunito;
+
+    /* max-width: 360px */
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;

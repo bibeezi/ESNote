@@ -11,7 +11,6 @@ import { Title } from "../Common/Heading.style";
 
 const Notebooks = () => {
 
-    const username = localStorage.getItem("username");
     const [notebooks, setNotebooks] = useState([]);
     const [notebookPage, setNotebookPage] = useState(false);
 
@@ -41,8 +40,8 @@ const Notebooks = () => {
     };
 
     const showNotebooks = (notebooks) => {
-        return notebooks.map((notebook, index) => (
-            <Container key={ index }>
+        return notebooks.map((notebook) => (
+            <Container key={ notebook._id }>
                 <NoteShape onClick={ handleAddNotebookClick }></NoteShape>
                 <Title>{ notebook.title }</Title>
             </Container>
@@ -62,12 +61,15 @@ const Notebooks = () => {
             <NotebooksGrid>
                 <Container>
                     <NoteShape onClick={ handleAddNotebookClick }>
-                        <img src={ Images.Plus } />
+                        <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Notebook</Title>
                 </Container>
                 { notebooks.length && showNotebooks(notebooks) }
             </NotebooksGrid>
+
+            { notebookPage ? <Navigate to='/create-notebook-template'/> : null }
+
         </StyledNotebooks>
     );
 }

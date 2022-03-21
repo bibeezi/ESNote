@@ -84,7 +84,7 @@ const LoginForm = ({
                 Login
             </OrangeButton>
 
-            { userPage ? <Navigate to='/user'/> : null }
+            { userPage ? <Navigate to='/user-home'/> : null }
 
             <hr></hr>
 

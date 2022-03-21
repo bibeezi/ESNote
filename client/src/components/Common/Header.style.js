@@ -197,6 +197,58 @@ export const IconsHeader = styled.div`
     }
 `;
 
+export const IconsHeaderCreateNote = styled.div`
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+
+    img {
+        height: 40%;
+        margin: 0;
+        align-self: center;
+        justify-self: center;
+    }
+
+    /* max-width: 360px */
+    overflow-x: auto;
+    grid-auto-columns: 35%;
+    column-gap: 5%;
+
+
+    @media only screen and (max-height: 321px) {
+        grid-auto-columns: 25%;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        grid-auto-columns: 15%;
+        column-gap: 0;
+        justify-content: right;
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        grid-auto-columns: 20%;
+        column-gap: 0;
+        justify-content: right;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        grid-auto-columns: 15%;
+        column-gap: 0;
+        justify-content: right;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        grid-auto-columns: 15%;
+        column-gap: 0;
+        justify-content: right;
+    }
+`;
+
 export const SearchSortHeader = styled.div`
 
     display: grid;
@@ -241,10 +293,6 @@ export const SubheaderBar = styled.div`
     background-color: #FAF3EB;
     box-shadow: 0 0.5em 0.5em -0.5em grey;
 
-    @media only screen and (max-height: 321px) {
-    
-    }
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         height: 2.5em;
         
@@ -267,6 +315,39 @@ export const SubheaderBar = styled.div`
 
     @media only screen and (min-width: 1200px) {
         height: 5.4em;
+        
+    }
+`;
+
+export const SectionHeader = styled.div`
+
+    /* max-width: 360px */
+    display: flex;
+    height: fit-content;
+    align-items: center;
+
+    img {
+        height: 1.5em;
+        margin-left: 1em;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
         
     }
 `;

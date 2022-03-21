@@ -3,6 +3,9 @@ import { HeaderBarUserHome, HomeHeader, WelcomeHeader, IconsHeader } from "../Co
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = () => {
+
+    const username = localStorage.getItem("username");
+
     return (
         <HeaderBarUserHome>
             <HomeHeader>
@@ -14,7 +17,7 @@ const Header = () => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Welcome User!</WelcomeHeading>
+                <WelcomeHeading>Welcome { username }!</WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeader>

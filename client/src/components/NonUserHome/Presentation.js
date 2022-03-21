@@ -1,4 +1,4 @@
-import { StyledPresentation } from "./Presentation.style";
+import { StyledPresentation } from "./NonUserHome.style";
 
 const Presentation = ({ presentationImage }) => {
     return (

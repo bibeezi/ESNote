@@ -8,7 +8,8 @@ import {
 // Import functional components
 import NonUserHome from './components/NonUserHome/NonUserHome';
 import UserHome from './components/UserHome/UserHome';
-import EditNote from './components/EditNote/EditNote';
+import NoteTemplate from './components/CreateNote/NoteTemplate';
+import NotebookTemplate from './components/CreateNotebook/NotebookTemplate'
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <div className='App'>
         <Routes>
           <Route exact path='/' element={ <NonUserHome /> }></Route>
-          <Route path='/user' element={ <UserHome /> }></Route>
-          <Route path='/editNotes' element= { <EditNote /> }></Route>
+          <Route exact path='/user-home' element={ <UserHome /> }></Route>
+          <Route exact path='/create-note-template' element={ <NoteTemplate /> }></Route>
+          <Route exact path='/create-notebook-template' element={ <NotebookTemplate /> }></Route>
         </Routes>
       </div>
     </Router>

@@ -1,244 +1,20 @@
 import styled from "styled-components";
 
-export const HeaderHeading = styled.h1`
+export const StyledNotePreview = styled.div`
 
-    letter-spacing: 0.2em;
-    color: #7E2D00;
-
-    /* max-width: 360px */
-    margin-left: 0.5em;
-    font-size: 0.75em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        margin-left: 0.5em;
-        font-size: 1em;
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        margin-left: 0.5em;
-        font-size: 1em;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        margin-left: 0.5em;
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        margin-left: 0.5em;
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        margin-left: 0.5em;
-        font-size: 2em;
-    }
-`;
-
-export const WelcomeHeading = styled.h1`
-
-    letter-spacing: 0.2em;
-    color: #7E2D00;
-
-    /* max-width: 360px */
-    font-size: 0.75em;
-    margin: auto;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-        font-size: 1em;
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 1em;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.5em;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        font-size: 2em;
-    }
-`;
-
-export const FormHeading = styled.h1`
-
-    margin-top: 1em;
-
-    /* max-width: 360px */
-    font-size: 2em;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 2.5em;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 2.5em;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2.5em;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        font-size: 2.5em;
-    }
-`;
-
-export const FormHeadingRegister = styled.h1`
-
-    text-align: center;
-
-    /* max-width: 360px */
-    font-size: 1.5em;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        font-size: 2em;
-    }
-`;
-
-export const FormHeadingSignUp = styled.h1`
-
-    margin: 0;
-    transform: translateY(-1em);
-
-    /* max-width: 360px */
-    font-size: 1.5em;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 2em;
-        transform: translateY(-0.6em);
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 2em;
-        transform: translateY(-0.6em);
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2em;
-        transform: translateY(-0.6em);
-    }
-
-    @media only screen and (min-width: 1200px) {
-        font-size: 2em;
-        transform: translateY(-0.6em);
-    }
-`;
-
-export const Subheading = styled.h1`
-
-    letter-spacing: 0.2em;
-    color: #7E2D00;
-
-    /* max-width: 360px */
-    font-size: 1em;
-    margin: auto;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 1.25em;
-
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.75em;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2em;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        font-size: 2em;
-    }
-`;
-
-export const Title = styled.h1`
-
-    height: fit-content;
-    width: 50%;
-    margin: 0;
-    text-align: center;
-    color: #7E2D00;
-    font-size: 0.75em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    /* max-width: 360px */
-
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
 
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-
-    }
-
-    @media only screen and (min-width: 1200px) {
-
-    }
-`;
-
-export const SectionHeading = styled.h1`
-
-    /* max-width: 360px */
-    display: inline-block;
-    width: fit-content;
-    padding-left: 0.5em;
-    font-size: 1em;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -250,22 +26,194 @@ export const SectionHeading = styled.h1`
     }
 `;
 
-export const SectionTitle = styled.h1`
+export const StyledNoteSettings = styled.div`
 
-    /* max-width: 360px */
-    width: fit-content;
-    font-size: 1em;
+    box-shadow: 0 0 1em -0.3em grey;
+    overflow-y: auto;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        
+
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
         
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const Template = styled.div`
+
+    height: 80%;
+    width: 40%;
+    background-color: whitesmoke;
+    border: 1px solid black;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const SectionsGrid = styled.div`
+
+    display: grid;
+    grid-template-rows: fit-content(100%);
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const AddtoNotebookContainer = styled.div`
+
+    background-color: blue;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const TagsContainer = styled.div`
+
+    background-color: green;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const SpacedRepetitionContainer = styled.div`
+
+    background-color: yellow;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const IndentContainer = styled.div`
+
+    background-color: brown;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const StyledSection = styled.div`
+
+    margin: 0 1em 0 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid black;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {

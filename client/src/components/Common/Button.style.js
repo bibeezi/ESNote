@@ -1,26 +1,126 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Button = styled.button`
+export const OrangeButton = styled.button`
 
-    padding: 0.5em 2em 0.5em 2em;
-    height: 2.5rem;
-    width: fit-content;
     border-radius: 1.5em;
     border: none;
     font-family : inherit;
-    font-size: 1rem;
+    font-size: 1em;
     letter-spacing: 0.1em;
+    background-color: #FFBB4D;
 
-    ${ ({ colours }) => colours === "blue" ? `
-        margin: 0 auto 5% auto;
-        background-color: #61D4D4;
-    ` : colours === "orange" ? `
-        margin: 3% auto 5% auto;
-        background-color: #EDB68A;
-    ` : `` 
+    /* max-width: 360px */
+    margin: 1em auto 1em auto;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
     }
 
-    ${ ({ active }) => active && `
-        margin: 3% 15% 5% 15%;
-    `}
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        margin: 1.5em auto 1.5em auto;
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        margin: 1.5em auto 1.5em auto;
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        margin: 1.5em auto 1.5em auto;
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        margin: 1.5em auto 1.5em auto;
+        padding: 0.5em 2em 0.5em 2em;
+       
+    }
+`;
+
+export const BlueButton = styled.button`
+
+    border-radius: 1.5em;
+    border: none;
+    font-family : inherit;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    background-color: #61D4D4;
+
+    /* max-width: 360px */
+    margin: 0 auto 3em auto;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        display: block;
+        padding: 0.5em 2em 0.5em 2em;
+       
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        display: block;
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        display: block;
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        display: block;
+        padding: 0.5em 2em 0.5em 2em;
+    }
+`;
+
+export const BlueButtonRegistration = styled.button`
+
+    border-radius: 1.5em;
+    border: none;
+    font-family : inherit;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    background-color: #61D4D4;
+
+    /* max-width: 360px */
+    margin: 1em auto 1em auto;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+
+    @media only screen and (max-height: 360px) {
+        margin: 0.25 auto;
+        font-size: 1em;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        padding: 0.5em 2em 0.5em 2em;
+       
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        padding: 0.5em 2em 0.5em 2em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding: 0.5em 2em 0.5em 2em;
+    }
 `;

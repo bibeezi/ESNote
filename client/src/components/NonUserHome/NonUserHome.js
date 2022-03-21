@@ -1,239 +1,149 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import Images from "../../images/Images";
-
-import { Header } from "../Common/Header.style";
-import { Heading } from "../Common/Heading.style"
-import { Content } from "../Common/Content.style";
-import { Form } from "../Common/Form.style";
-import { Modal } from "./Modal";
-import { Button } from '../Common/Button.style';
-
+import Header from "./Header";
+import Presentation from "./Presentation";
+import { NonUserHomeContent } from "../Common/Content.style";
+import { LoginFormContainer, RegistrationFormContainer } from "../Common/FormContainer.style";
+import LoginForm from "./LoginForm";
+import RegistrationForm from './RegistrationForm';
+import { RegistrationModal } from '../Common/Modal.style';
 
 const NonUserHome = () => {
 
     const [showRegistration, setShowRegistration] = useState(false);
-    const [active, setActive] = useState(false);
     const [user, setUser] = useState({
         username: '',
         email: '',
         password: '',
     });
-    const [userPage, setUserPage] = useState(false);
-    const [refresh, setRefresh] = useState(false);
+
+    const userRegex = /^[a-zA-Z0-9].{5,20}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    const [passwordMatch, setPasswordMatch] = useState('');
+    const [valid, setValid] = useState({
+        username: false,
+        email: false,
+        password: false,
+        passwordMatch: false
+    });
+
+    const [validLogin, setValidLogin] = useState(null);
+
+    useEffect(() => {
+
+        const match = user.password === passwordMatch && passwordMatch !== "" ? true : false;
+
+        setValid(prevState => ({
+            username: prevState.username,
+            email: prevState.email,
+            password: prevState.password, 
+            passwordMatch: match
+        }));
+    }, [user.password, passwordMatch]);
 
     const openSignUpForm = () => {
         setShowRegistration(prev => !prev);
-        setActive(prev => !prev);
     };
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
         
         switch(name) {
-            case "username":
+            case "username": {
                 setUser(prevState => ({
                     [name]: value,
                     email: prevState.email, 
                     password: prevState.password
                 }));
+
+                const result = userRegex.test(value);
+
+                setValid(prevState => ({
+                    username: result,
+                    email: prevState.email,
+                    password: prevState.password, 
+                    passwordMatch: prevState.passwordMatch
+                }));
+
+                setValidLogin(null);
                 break;
-            case "email":
+            }
+            case "email": {
                 setUser(prevState => ({
                     username: prevState.username, 
                     [name]: value,
                     password: prevState.password
                 }));
+
+                const result = emailRegex.test(value);
+
+                setValid(prevState => ({
+                    username: prevState.username,
+                    email: result,
+                    password: prevState.password, 
+                    passwordMatch: prevState.passwordMatch
+                }));
                 break;
-            case "password":
+            }
+            case "password": {
                 setUser(prevState => ({
                     username: prevState.username, 
                     email: prevState.email, 
                     [name]: value
                 }));
+
+                const result = passwordRegex.test(value);
+
+                setValid(prevState => ({
+                    username: prevState.username,
+                    email: prevState.email,
+                    password: result, 
+                    passwordMatch: prevState.passwordMatch
+                }));
+
+                setValidLogin(null);
                 break;
+            }
             default:
                 break;
         }
     };
 
-    const handleRegsitration = (event) => {
-        event.preventDefault();
-
-        const payload = {
-            username: user.username,
-            email: user.email,
-            password: user.password
-        };
-
-        axios({
-            url: '/user/saveUser',
-            method: 'POST',
-            data: payload
-        })
-        .then(() => {
-            setUser({
-                username: '',
-                email: '',
-                password: '',
-            });
-            setRefresh(true);
-        }) 
-        .catch((err) => {
-            console.log("ERROR in NonUserHome - /saveUser", err);
-        });
-    };
-
-    const handleLogin = (event) => {
-        event.preventDefault();
-
-        const payload = {
-            username: user.username,
-            email: user.email,
-            password: user.password
-        };
-
-        axios.get('/user/getUser', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setUser({
-                username: '',
-                email: '',
-                password: '',
-            });
-
-            localStorage.setItem("userID", res.data.userID);
-            localStorage.setItem("username", res.data.username);
-
-            setUserPage(true);
-        })
-        .catch((error) => {
-            console.log("ERROR in UserHome - /getUser", error);
-        });
-    };
-
-    return (
+    return ( 
         <div>
-            <Header>
-                <div>
-                    <img 
-                        src={ Images.Home } 
-                        alt="Home Icon">
-                    </img>
-                    <Heading>ESNote</Heading>
-                </div>
-            </Header>
+            <Header homeImage={ Images.Home } />
 
-            <Content>
-                <div id="presentation">
-                    <img 
-                        src={ Images.Presentation } 
-                        alt='Effective Study Notebook Explanation Presentation'>
-                    </img>
-                </div>
+            <NonUserHomeContent>
+                <Presentation presentationImage={ Images.Presentation } />
 
-                <div className="form">
-                    <Form 
-                    onSubmit={ (e) => handleLogin(e)}>
-                        <h1>Login</h1>
+                <LoginFormContainer>
+                    <LoginForm
+                        user={ user }
+                        validLogin={ validLogin }
+                        setUser={ setUser }
+                        setValidLogin={ setValidLogin }
+                        handleChange={ handleChange }
+                        openSignUpForm={ openSignUpForm }>
+                    </LoginForm>
+                </LoginFormContainer>
+            </NonUserHomeContent>
 
-                        <input 
-                            onChange={ handleChange } 
-                            name="username" 
-                            placeholder="Username" 
-                            required>
-                        </input>
-
-                        <input
-                            onChange={ handleChange } 
-                            name="password" 
-                            placeholder="Password" 
-                            type="password" 
-                            required>
-                        </input>
-
-                        <Button
-                            type='submit'
-                            colours={ "orange" }>
-                            Login
-                        </Button>
-
-                        { userPage ? <Navigate to='/user'/> : null }
-
-                        <hr></hr>
-
-                        <h1>Register</h1>
-
-                        <Button
-                            type='button'
-                            onClick={ openSignUpForm }
-                            colours={ "blue" }>
-                            Sign Up
-                        </Button>
-                    </Form>
-                </div>
-            </Content>
-
-            {
-                showRegistration && 
-                <div className='form'>
-                    <Modal>
-                        <Form 
-                            onSubmit={ (e) => { handleRegsitration(e); openSignUpForm(); } } 
-                            active={ active }>
-                                <div 
-                                className='close' 
-                                onClick={ openSignUpForm }>
-                                </div>
-
-                                <h1>Sign Up</h1>
-
-                                <input 
-                                name="username" 
-                                onChange={ handleChange } 
-                                placeholder="Username" 
-                                required>
-                                </input>
-
-                                <input 
-                                name="email"
-                                type='email'
-                                onChange={ handleChange } 
-                                placeholder="Email" 
-                                required>
-                                </input>
-
-                                <input 
-                                name="password" 
-                                onChange={ handleChange } 
-                                placeholder="Password" 
-                                type="password" 
-                                required>
-                                </input>
-
-                                <input 
-                                onChange={ handleChange } 
-                                placeholder="Confirm Password" 
-                                type="password" 
-                                required>
-                                </input>
-
-                                <Button
-                                    type='submit'
-                                    active={ active }
-                                    colours={ "blue" }>
-                                    Create an Account
-                                </Button>
-                                { refresh ? <Navigate to='/'/> : null }
-                        </Form>
-                    </Modal>
-                </div>
-            }
+            { showRegistration && 
+            <RegistrationModal>
+                <RegistrationFormContainer>
+                    <RegistrationForm
+                        user={ user }
+                        valid={ valid }
+                        setUser={ setUser }
+                        setPasswordMatch={ setPasswordMatch }
+                        handleChange={ handleChange }
+                        openSignUpForm={ openSignUpForm }>
+                    </RegistrationForm>
+                </RegistrationFormContainer>
+            </RegistrationModal> }
         </div>
     );
 }

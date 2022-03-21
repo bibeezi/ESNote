@@ -3,16 +3,13 @@ const mongoose = require('mongoose');
 
 // MongoDB Schema - how data is going to be
 const Schema = mongoose.Schema;
-const UserSchema = new Schema ({
-    username: String,
-    email: String,
-    password: String,
-    notes: [],
-    notebooks: []
+const NoteBookSchema = new Schema ({
+    title: String,
+    notes: Array
 });
 
 // Schema Model - save data to database using model instances
-const UserModel = mongoose.model('User', UserSchema);
+const NotebookModel = mongoose.model('Notebook', NoteBookSchema);
 
 // allows other files to use the model
-module.exports = UserModel;
+module.exports = NotebookModel;

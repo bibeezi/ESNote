@@ -61,8 +61,6 @@ const NonUserHome = () => {
 
                 const result = userRegex.test(value);
 
-                console.log(result);
-
                 setValid(prevState => ({
                     username: result,
                     email: prevState.email,
@@ -98,8 +96,6 @@ const NonUserHome = () => {
                 }));
 
                 const result = passwordRegex.test(value);
-
-                console.log(result);
 
                 setValid(prevState => ({
                     username: prevState.username,

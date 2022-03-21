@@ -4,60 +4,69 @@ import { Navigate } from 'react-router-dom';
 
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
-import { WelcomeHeading } from "../Common/Heading.style";
+import { Subheading } from "../Common/Heading.style";
 import { StyledNotebooks, NotebooksGrid } from "./Notebooks.style";
+import { Container, NoteShape } from "./Notes.style";
+import { Title } from "../Common/Heading.style";
 
 const Notebooks = () => {
 
     const username = localStorage.getItem("username");
-    const [notes, setNotes] = useState([]);
-    const [notePage, setNotePage] = useState(false);
+    const [notebooks, setNotebooks] = useState([]);
+    const [notebookPage, setNotebookPage] = useState(false);
 
     useEffect(() => {
 
-        getNotes();
+        getNotebooks();
 
     }, []);
 
-    const getNotes = () => {
+    const getNotebooks = () => {
 
         const payload = {
             userID: localStorage.getItem("userID")
         };
 
-        axios.get('/getNotes', {
+        axios.get('/notebooks/getNotebooks', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            setNotes(res.data);
+            setNotebooks(res.data);
         })
         .catch((error) => {
-            console.log("ERROR in UserHome - /getNotes", error);
+            console.log("ERROR in UserHome - /notebooks/getNotebooks", error);
         });
     };
 
-    const showNotes = (notes) => {
-        return notes.map((note, index) => (
-            <div key={ index } onClick={ handleAddNoteClick }>
-                <h1 className="note-title">{ note.title }</h1>
-            </div>
+    const showNotebooks = (notebooks) => {
+        return notebooks.map((notebook, index) => (
+            <Container key={ index }>
+                <NoteShape onClick={ handleAddNotebookClick }></NoteShape>
+                <Title>{ notebook.title }</Title>
+            </Container>
         ));
     };
 
-    const handleAddNoteClick = () => {
-        setNotePage(prevState => !prevState);
+    const handleAddNotebookClick = () => {
+        setNotebookPage(prevState => !prevState);
     }
 
     return (
         <StyledNotebooks>
             <SubheaderBar>
-                <WelcomeHeading>Notebooks</WelcomeHeading>
+                <Subheading>Notebooks</Subheading>
             </SubheaderBar>
 
             <NotebooksGrid>
-                
+                <Container>
+                    <NoteShape onClick={ handleAddNotebookClick }>
+                        <img src={ Images.Plus } />
+                    </NoteShape>
+                    <Title>Add Notebook</Title>
+                </Container>
+                { notebooks.length && showNotebooks(notebooks) }
             </NotebooksGrid>
         </StyledNotebooks>
     );

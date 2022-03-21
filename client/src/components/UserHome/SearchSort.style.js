@@ -11,7 +11,7 @@ export const StyledSort = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-
+        
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -39,6 +39,7 @@ export const StyledSearch = styled.div`
     /* max-width: 360px */
 
     @media only screen and (max-height: 360px) {
+
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

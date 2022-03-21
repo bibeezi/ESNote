@@ -169,7 +169,7 @@ export const IconsHeader = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
+
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -199,21 +199,15 @@ export const IconsHeader = styled.div`
 
 export const SearchSortHeader = styled.div`
 
-    
-    /* max-width: 360px */
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    background-color: #FAF3EB;
+    box-shadow: 0 0 -1em 1em black;
+    border-top: 1px solid #7E2D009A;
+    border-bottom: 1px solid #7E2D009A;
+    z-index: 2;
 
-    @media only screen and (max-width: 360px) {
-        display: grid;
-        grid-template-columns: repeat(2, 50%);
-        height: 3.4em;
-        width: 100%;
-        top: 3.4em;
-        background-color: #FAF3EB;
-        box-shadow: 0 0 -1em 1em black;
-        border-top: 1px solid #7E2D009A;
-        border-bottom: 1px solid #7E2D009A;
-        z-index: 2;
-    }
+    /* max-width: 360px */
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
@@ -228,11 +222,12 @@ export const SearchSortHeader = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        border-bottom: 2px solid #7E2D009A;
         
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        border-bottom: 2px solid #7E2D009A;
     }
 `;
 
@@ -240,7 +235,7 @@ export const SubheaderBar = styled.div`
 
     /* max-width: 360px */
     display: flex;
-    height: 3.4em;
+    height: 1.7em;
     align-items: center;
     justify-content: center;
     background-color: #FAF3EB;
@@ -251,22 +246,27 @@ export const SubheaderBar = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
+        height: 2.5em;
         
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
+        height: 3.4em;
         
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+        height: 5.4em;
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        height: 5.4em;
         
     }
 
     @media only screen and (min-width: 1200px) {
+        height: 5.4em;
         
     }
 `;

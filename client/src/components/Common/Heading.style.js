@@ -164,15 +164,16 @@ export const Subheading = styled.h1`
     margin: auto;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        font-size: 1em;
+        
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 1em;
+        font-size: 1.25em;
+
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.5em;
+        font-size: 1.75em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -186,30 +187,36 @@ export const Subheading = styled.h1`
 
 export const Title = styled.h1`
 
-    
-
-    /* max-width: 360px */
     height: fit-content;
+    width: 50%;
     margin: 0;
+    text-align: center;
     color: #7E2D00;
     font-size: 0.75em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    /* max-width: 360px */
+
+
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
+
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+
     }
 
     @media only screen and (min-width: 1200px) {
+
     }
 `;

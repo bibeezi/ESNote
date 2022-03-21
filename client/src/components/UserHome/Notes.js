@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotes, NotesGrid, Note, NoteContainer } from "./Notes.style";
+import { StyledNotes, NotesGrid, NoteShape, Container } from "./Notes.style";
 import { Title } from "../Common/Heading.style";
 
 const Notes = () => {
@@ -41,10 +41,10 @@ const Notes = () => {
 
     const showNotes = (notes) => {
         return notes.map((note, index) => (
-            <NoteContainer>
-                <Note key={ index } onClick={ handleAddNoteClick }></Note>
+            <Container key={ index }>
+                <NoteShape onClick={ handleAddNoteClick }></NoteShape>
                 <Title>{ note.title }</Title>
-            </NoteContainer>
+            </Container>
         ));
     };
 
@@ -59,12 +59,12 @@ const Notes = () => {
             </SubheaderBar>
 
             <NotesGrid>
-                <NoteContainer>
-                    <Note onClick={ handleAddNoteClick }>
+                <Container>
+                    <NoteShape onClick={ handleAddNoteClick }>
                         <img src={ Images.Plus } />
-                    </Note>
+                    </NoteShape>
                     <Title>Add Note</Title>
-                </NoteContainer>
+                </Container>
                 { notes.length && showNotes(notes) }
             </NotesGrid>
         </StyledNotes>

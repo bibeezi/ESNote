@@ -85,7 +85,7 @@ export const SearchInput = styled.input`
     margin-right: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
-    width: 80%;
+    width: 70%;
     align-self: center;
     background-color: #FEFEFE;
     box-sizing: border-box;
@@ -96,12 +96,6 @@ export const SearchInput = styled.input`
 
     /* max-width: 360px */
 
-    @media only screen and (max-height: 360px) {
-        /* height: 1.5em;
-        margin: 0 auto 0.25em auto;
-        font-size: 1em; */
-    }
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
     }
@@ -111,14 +105,22 @@ export const SearchInput = styled.input`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-
+        height: 3em;
+        margin-right: 1em;
+        font-size: 1em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-
+        height: 3em;
+        width: 50%;
+        margin-right: 1em;
+        font-size: 1em;
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        height: 3em;
+        width: 50%;
+        margin-right: 1em;
+        font-size: 1em;
     }
 `;

@@ -38,71 +38,84 @@ export const UserHomeContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
+    height: calc(100vh - 3.4em);
+    padding-top: 3.4em;
+    grid-template-rows: 3.4em auto;
 
     /* max-width: 360px */
 
-
-    @media only screen and (max-width: 360px) {
-        height: calc(100vh - 3.4em);
-        padding-top: 3.4em;
-        grid-template-rows: 3.4em auto;
-    }
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        grid-template-rows: 30em;
+        
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        grid-template-rows: 30em;
+
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        grid-template-rows: 50em;
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+        grid-template-rows: 5.4em auto;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        display: grid;
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+        grid-template-rows: 5.4em auto;
     }
 
     @media only screen and (min-width: 1200px) {
-        grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        display: grid;
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+        grid-template-rows: 5.4em auto;
     }
 `;
 
-export const SlideContentUserHome = styled.div`
+export const SlideContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
+    height: calc(100vh - 6.8em);
+    grid-template-rows: repeat(2, 50%);
 
     /* max-width: 360px */
 
-
-    @media only screen and (max-width: 360px) {
+    @media only screen and (max-height: 360px) {
         height: calc(100vh - 6.8em);
-        grid-template-rows: repeat(2, 50%);
+        grid-template-columns: repeat(2, 50%);
+        grid-template-rows: none; 
+    }
+
+    @media only screen and (min-height: 360px) and (max-height: 376px) {
+        height: calc(100vh - 6.8em);
+        grid-template-columns: repeat(2, 50%);
+        grid-template-rows: none; 
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        grid-template-rows: 30em;
+
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        grid-template-rows: 30em;
+        
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        grid-template-rows: 50em;
+        height: calc(100vh - 10.8em);
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        height: calc(100vh - 10.8em);
+        grid-template-columns: repeat(2, 50%);
+        grid-template-rows: none; 
     }
 
     @media only screen and (min-width: 1200px) {
-        grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        height: calc(100vh - 10.8em);
+        grid-template-columns: repeat(2, 50%);
+        grid-template-rows: none; 
+        
     }
 `;

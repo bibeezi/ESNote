@@ -8,19 +8,43 @@ const Section = ({ id, handleChange }) => {
         <StyledSection>
             <SectionTitle>Section { id }</SectionTitle>
             <SectionLabel>
-                <SectionInput onChange={ handleChange } placeholder="X"></SectionInput>
+                <SectionInput 
+                    onChange={ (e) => handleChange(e) } 
+                    id={ id }
+                    name="x"
+                    type="number"
+                    placeholder="X"> 
+                </SectionInput>
             </SectionLabel>
             
             <SectionLabel>
-                <SectionInput onChange={ handleChange } placeholder="Y"></SectionInput>
+                <SectionInput 
+                    onChange={ (e) => handleChange(e) } 
+                    id={ id }
+                    name="y"
+                    type="number"
+                    placeholder="Y">
+                </SectionInput>
             </SectionLabel>
 
             <SectionLabel>
-                <SectionInput onChange={ handleChange } placeholder="H"></SectionInput>
+                <SectionInput 
+                    onChange={ (e) => handleChange(e) } 
+                    id={ id }
+                    name="h"
+                    type="number"
+                    placeholder="H">
+                </SectionInput>
             </SectionLabel>
 
             <SectionLabel>
-                <SectionInput onChange={ handleChange } placeholder="W"></SectionInput>
+                <SectionInput 
+                    onChange={ (e) => handleChange(e) } 
+                    id={ id }
+                    name="w"
+                    type="number"
+                    placeholder="W">
+                </SectionInput>
             </SectionLabel>
         </StyledSection>
     );

@@ -8,11 +8,45 @@ import { CreateNoteContent } from "../Common/Content.style";
 
 const NoteTemplate = () => {
 
+    const [sectionValues, setSectionValues] = useState([
+        {
+            id: "1",
+            values: {
+                x: 0,
+                y: 0,
+                h: 0,
+                w: 0
+            }
+        }
+    ]);
+
+    const handleChange = ({ target }) => {
+        const { name, id, value } = target;
+        
+        switch(name) {
+            case "x":
+                // setSectionValues((prevState) => ({
+                //     sectionValues: prevState.
+                // }));
+                break;
+            case "y":
+                break;
+            case "h":
+                break;
+            case "w":
+                break;
+            default:
+                console.log("input did not update properly");
+        }
+        
+        console.log(sectionValues);
+    }
+
     const [sections, setSections] = useState([
         <Section 
             key="1" 
             id="1" 
-            handleChange={ handleChange }>
+            handleChange={ (e) => handleChange(e) }>
         </Section>
     ]);
     const [sectionCounter, setSectionCounter] = useState(2);
@@ -23,14 +57,24 @@ const NoteTemplate = () => {
             <Section 
                 key={ sectionCounter } 
                 id={ sectionCounter } 
-                handleChange={ handleChange }>
+                handleChange={ (e) => handleChange(e) }>
             </Section>
             ]);
+
+        setSectionValues((prevState) => [
+            ...prevState,
+            {
+                id: sectionCounter.toString(),
+                values: {
+                    x: 0,
+                    y: 0,
+                    h: 0,
+                    w: 0
+                }
+            }
+        ]);
+
         setSectionCounter((prevState) => prevState + 1);
-    }
-
-    const handleChange = () => {
-
     }
     
     return (

@@ -50,14 +50,15 @@ const NonUserHome = () => {
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
+
+        var userCopy = user;
         
         switch(name) {
             case "username": {
-                setUser(prevState => ({
-                    [name]: value,
-                    email: prevState.email, 
-                    password: prevState.password
-                }));
+
+                userCopy.username = value;
+
+                setUser(userCopy);
 
                 const result = userRegex.test(value);
 
@@ -72,11 +73,10 @@ const NonUserHome = () => {
                 break;
             }
             case "email": {
-                setUser(prevState => ({
-                    username: prevState.username, 
-                    [name]: value,
-                    password: prevState.password
-                }));
+
+                userCopy.email = value;
+
+                setUser(userCopy);
 
                 const result = emailRegex.test(value);
 
@@ -89,11 +89,10 @@ const NonUserHome = () => {
                 break;
             }
             case "password": {
-                setUser(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email, 
-                    [name]: value
-                }));
+
+                userCopy.password = value;
+
+                setUser(userCopy);
 
                 const result = passwordRegex.test(value);
 

@@ -81,6 +81,7 @@ export const Template = styled.div`
 export const SectionsGrid = styled.div`
 
     display: grid;
+    margin-bottom: 1em;
     grid-template-rows: fit-content(100%);
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

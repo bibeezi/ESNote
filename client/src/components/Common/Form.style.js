@@ -69,7 +69,7 @@ export const NoteTemplateForm = styled.form`
 
     display: grid;
     margin: 0 auto;
-    height: 100%;
+    height: fit-content;
     width: 95%;
     grid-auto-flow: row;
     grid-template-rows: fit-content(100%);

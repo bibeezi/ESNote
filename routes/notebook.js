@@ -17,11 +17,9 @@ router.get("/getNotebooks", (req, res) => {
         _id: userID
     })
     .then((data) => {
-        console.log(data[0].notebooks);
         NotebookModel.find(
             { _id: { "$in": data[0].notebooks }
         }).then((notebooks) => {
-            console.log(notebooks);
             return res.json(notebooks);
         })
         .catch((err) => {

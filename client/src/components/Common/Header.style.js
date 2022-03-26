@@ -351,3 +351,38 @@ export const SectionHeader = styled.div`
         
     }
 `;
+
+export const SectionSettingHeader = styled.div`
+
+    /* max-width: 360px */
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    img {
+        height: 1.25em;
+        width: 1.25em;
+        margin-right: 1em;
+        justify-self: right;
+        align-self: center;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;

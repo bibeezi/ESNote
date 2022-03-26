@@ -1,12 +1,19 @@
-import { StyledSection } from "./CreateNote.style";
+import Images from "../../images/Images";
+import { StyledSectionSettings } from "./CreateNote.style";
 import { SectionLabel } from "../Common/Label.style";
 import { SectionInput } from "../Common/Inputs.style";
 import { SectionTitle } from "../Common/Heading.style";
+import { SectionSettingHeader } from "../Common/Header.style";
 
-const Section = ({ id, handleChange }) => {
+const SectionSetting = ({ id, handleChange, handleDelete }) => {
     return (
-        <StyledSection>
-            <SectionTitle>Section { id }</SectionTitle>
+        <StyledSectionSettings id={ id }>
+
+            <SectionSettingHeader>
+                <SectionTitle>Section { id }</SectionTitle>
+                <img alt="delete section" src={ Images.Delete } onClick={ (e) => handleDelete(e) }/>
+            </SectionSettingHeader>
+
             <SectionLabel>
                 <SectionInput 
                     onChange={ (e) => handleChange(e) } 
@@ -46,8 +53,8 @@ const Section = ({ id, handleChange }) => {
                     placeholder="W">
                 </SectionInput>
             </SectionLabel>
-        </StyledSection>
+        </StyledSectionSettings>
     );
 }
  
-export default Section;
+export default SectionSetting;

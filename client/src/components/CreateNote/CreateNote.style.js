@@ -51,33 +51,6 @@ export const StyledNoteSettings = styled.div`
     }
 `;
 
-export const Template = styled.div`
-
-    height: 80%;
-    width: 40%;
-    background-color: whitesmoke;
-    border: 1px solid black;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-
-    }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
-    }
-
-    @media only screen and (min-width: 1200px) {
-        
-    }
-`;
-
 export const SectionsGrid = styled.div`
 
     display: grid;
@@ -200,7 +173,7 @@ export const IndentContainer = styled.div`
     }
 `;
 
-export const StyledSection = styled.div`
+export const StyledSectionSettings = styled.div`
 
     margin: 0 1em 0 1em;
     padding-bottom: 1em;

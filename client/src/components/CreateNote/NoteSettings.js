@@ -12,7 +12,7 @@ import { SectionHeader } from "../Common/Header.style";
 import { SectionHeading } from "../Common/Heading.style";
 
 const NoteSettings = ({ 
-    sections,
+    sectionSettings,
     addSection
 }) => {
 
@@ -23,13 +23,14 @@ const NoteSettings = ({
                     <SectionHeading>Add Section</SectionHeading>
                     <img onClick={ addSection } src={ Images.Plus } alt="plus"></img>
                 </SectionHeader>
+
                 <SectionsGrid>
-                    { sections }
+                    { sectionSettings }
                 </SectionsGrid>
 
-                {/* <AddtoNotebookContainer />
+                {/* <AddtoNotebookContainer /> */}
 
-                <TagsContainer />
+                {/* <TagsContainer />
 
                 <SpacedRepetitionContainer />
                     

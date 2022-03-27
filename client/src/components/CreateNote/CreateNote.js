@@ -29,9 +29,9 @@ const CreateNote = () => {
             default:
                 console.log("input did not update properly");
         }
-        
+
         setSectionValues(prevState => prevState.map((sectionValues) => {
-            return sectionValues.id === id ? Object.assign(sectionValues, copySectionValues) : sectionValues
+            return sectionValues.id === id ? Object.assign(sectionValues, copySectionValues[parseInt(id)-1]) : sectionValues
         }));
     }
 
@@ -97,10 +97,6 @@ const CreateNote = () => {
 
         setSectionCounter((prevState) => prevState + 1);
     }
-
-    useEffect(() => {
-        console.log(sectionValues);
-    }, [sectionValues])
     
     return (
         <div>
@@ -108,7 +104,8 @@ const CreateNote = () => {
 
             <CreateNoteContent>
                 <NotePreview 
-                    sectionValues={ sectionValues }>
+                    sectionValues={ sectionValues }
+                    sectionCounter={ sectionCounter }>
                 </NotePreview>
 
                 <NoteSettings

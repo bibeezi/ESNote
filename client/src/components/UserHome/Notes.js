@@ -25,7 +25,7 @@ const Notes = () => {
             userID: localStorage.getItem("userID")
         };
 
-        axios.get('/getNotes', {
+        axios.get('/note/getNotes', {
             params: {
                 data: payload
             }

@@ -34,7 +34,7 @@ router.get("/getNotes", (req, res) => {
 router.post('/saveNote', (req, res) => {
 
     const data = req.body;
-    const userID = req.body.userID;
+    const userID = data.userID;
     const newNote = new NoteModel(data);
     
     newNote.save((error, doc) => {

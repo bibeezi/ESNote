@@ -136,7 +136,7 @@ export const SectionInput = styled.input`
     margin: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
-    width: 30%;
+    width: 40%;
     align-self: center;
     background-color: #FEFEFE;
     box-sizing: border-box;
@@ -150,26 +150,21 @@ export const SectionInput = styled.input`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        width: 40%;
         
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        width: 40%;
 
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        width: 40%;
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        width: 40%;
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 40%;
     
     }
 `;

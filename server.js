@@ -6,9 +6,10 @@ const path = require('path');
 const dotenv = require('dotenv');
 
 // Import from directories
-const note = require('./routes/note');
 const regLogin = require('./routes/user');
+const note = require('./routes/note');
 const notebook = require('./routes/notebook');
+const template = require('./routes/template');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -41,9 +42,10 @@ app.use(express.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
 // routes
-app.use('/', note);
 app.use('/user', regLogin);
-app.use('/notebooks', notebook)
+app.use('/note', note);
+app.use('/notebooks', notebook);
+app.use('/template', template);
 
 // Check for successful server connection
 app.listen(PORT, console.log(`Server is listening at port : ${PORT}`));

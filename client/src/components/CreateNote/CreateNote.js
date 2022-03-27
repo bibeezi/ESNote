@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import NotePreview from "./NotePreview";
@@ -38,24 +38,33 @@ const CreateNote = () => {
     const handleDelete = ({ target }) => {
         const { id } = target.parentNode.parentNode;
 
-        var filteredSettings = sectionSettings.filter((component) => component.props.id !== id );
+        setSectionSettings((prevState) => 
+            prevState.filter((component) => component.props.id !== id )
+            .map((component) =>
+                <SectionSetting 
+                    key={ component.props.id } 
+                    id={ component.props.id } 
+                    handleChange={ handleChange }
+                    handleDelete={ handleDelete }>
+                </SectionSetting>
+            )
+        );
 
-        console.log(filteredSettings);
-
+        setSectionValues((prevState) => prevState.filter((sectionValues) => sectionValues.id !== id));
     }
-
+    
     const [sectionValues, setSectionValues] = useState([
         {
             id: "1",
             values: {
-                x: 0,
-                y: 0,
-                h: 0,
-                w: 0
+                x: 1,
+                y: 1,
+                h: 1,
+                w: 1
             }
         }
     ]);
-    const sectionSettings = useState([
+    const [sectionSettings, setSectionSettings] = useState([
         <SectionSetting 
             key="1" 
             id="1" 
@@ -79,15 +88,19 @@ const CreateNote = () => {
         sectionValues.push({
             id: sectionCounter.toString(),
             values: {
-                x: 0,
-                y: 0,
-                h: 0,
-                w: 0
+                x: 1,
+                y: 1,
+                h: 1,
+                w: 1
             }
         }); 
 
         setSectionCounter((prevState) => prevState + 1);
     }
+
+    useEffect(() => {
+        console.log(sectionValues);
+    }, [sectionValues])
     
     return (
         <div>

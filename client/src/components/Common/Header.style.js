@@ -64,6 +64,11 @@ export const HeaderBarUserHome = styled.div`
         height: 5.4em;
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: 3.4em;
+        
+    }
+
     @media only screen and (min-width: 1200px) {
         height: 5.4em;
     }
@@ -74,7 +79,6 @@ export const HomeHeader = styled.div`
     display: flex;
     align-items: center;
 
-    /* max-width: 360px */
     img {
         margin-left: 0.5em;
         width: 1.5em;
@@ -107,6 +111,14 @@ export const HomeHeader = styled.div`
             width: 3em;
             height: 3em;
         }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        img {
+            width: 2em;
+            height: 2em;
+        }
+        
     }
 
     @media only screen and (min-width: 1200px) {
@@ -313,6 +325,11 @@ export const SubheaderBar = styled.div`
         
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: 3.4em;
+
+    }
+
     @media only screen and (min-width: 1200px) {
         height: 5.4em;
         
@@ -336,18 +353,22 @@ export const SectionHeader = styled.div`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        
+        font-size: 1.5em;
+
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.5em;
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1.5em;
         
     }
 
     @media only screen and (min-width: 1200px) {
+        font-size: 1.5em;
         
     }
 `;
@@ -371,18 +392,22 @@ export const SectionSettingHeader = styled.div`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1.25em;
         
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.25em;
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1.25em;
         
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        font-size: 1.25em;
+
     }
 `;

@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const StyledNotePreview = styled.div`
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -18,11 +18,16 @@ export const StyledNotePreview = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
+        grid-template-columns: 20% 60% 20%;
+    }
+    
+    @media only screen and (min-width: 1200px) and (min-height: 800px) {
+        grid-template-columns: 20% 60% 20%;
+
     }
 
     @media only screen and (min-width: 1200px) {
-        
+
     }
 `;
 
@@ -195,6 +200,6 @@ export const StyledSectionSettings = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        margin: 0 2em 0 2em;
     }
 `;

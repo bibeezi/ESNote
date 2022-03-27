@@ -8,6 +8,7 @@ export const LoginFormContainer = styled.div`
     background-color: #E2F3F9;
     border-radius: 1em;
     align-items: center;
+    justify-content: center;
     box-shadow: 0 0 1em grey;
 
     /* max-width: 360px */

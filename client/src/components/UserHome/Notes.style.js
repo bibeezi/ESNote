@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 export const StyledNotes = styled.div`
     
-
-    /* max-width: 360px */
-
-    @media only screen and (max-height: 360px) {
-        height: calc(100vh - 6.9em);
-    }
-
     @media only screen and (min-height: 360px) and (max-height: 376px) {
         height: calc(100vh - 6.9em);
+
     }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        height: calc(100vh - 6.8em);
+        border-left: 1px solid #7E2D009A;
+
+    }
+
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
@@ -22,11 +23,26 @@ export const StyledNotes = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        border-left: 1px solid #7E2D009A;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         border-left: 1px solid #7E2D009A;
+    }
+
+    @media only screen and (min-width: 768) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100vh - 6.8em);
+        border-left: 1px solid #7E2D009A;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100vh - 6.8em);
+        border-left: 1px solid #7E2D009A;
+        
     }
 
     @media only screen and (min-width: 1200px) {
@@ -48,6 +64,8 @@ export const NotesGrid = styled.div`
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         height: calc(100% - 2.5em);
+        grid-template-columns: repeat(3, calc(100% / 3));
+        grid-auto-rows: 80%;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -76,6 +94,12 @@ export const NotesGrid = styled.div`
     @media only screen and (min-height: 376px) and (max-height: 651px) and (min-width: 321px) {
         grid-template-columns: repeat(4, 25%);
         grid-auto-rows: 50% 50%;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100% - 3.4em);
+        grid-template-columns: 50% 50%;
+        grid-auto-rows: 100%;
     }
 
     @media only screen and (min-width: 1200px) {

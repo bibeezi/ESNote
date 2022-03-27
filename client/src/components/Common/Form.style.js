@@ -80,22 +80,31 @@ export const NoteTemplateForm = styled.form`
     }
     
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        width: 75%;
+
     }
 
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        margin-top: 1em;
+        width: 80%;
+    }
+    
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        width: 70%;
+        margin-top: 2em;
+        width: 80%;
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        width: 65%;
+        margin-top: 2em;
+        width: 80%;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        width: 60%;
+        margin-top: 2em;
+        width: 80%;
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 60%;
+        margin-top: 2em;
+        width: 80%;
     }
 `;

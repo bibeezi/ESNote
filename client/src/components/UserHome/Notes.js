@@ -64,7 +64,7 @@ const Notes = () => {
                     </NoteShape>
                     <Title>Add Note</Title>
                 </Container>
-                { notes.length && showNotes(notes) }
+                { notes.length > 0 ? showNotes(notes) : null }
             </NotesGrid>
 
             { notePage ? <Navigate to='/create-note-template'/> : null }

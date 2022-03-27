@@ -65,7 +65,7 @@ const Notebooks = () => {
                     </NoteShape>
                     <Title>Add Notebook</Title>
                 </Container>
-                { notebooks.length && showNotebooks(notebooks) }
+                { notebooks.length > 0 ? showNotebooks(notebooks) : null }
             </NotebooksGrid>
 
             { notebookPage ? <Navigate to='/create-notebook-template'/> : null }

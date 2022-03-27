@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate } from 'react-router-dom';
 
 import { StyledNotePreview } from "./CreateNote.style";
 import { Template, Sections } from "./Template.style";
@@ -6,7 +7,7 @@ import { NextButton } from "../Common/Button.style";
 
 const NotePreview = ({ sectionValues }) => {
 
-    const [EditNote, setEditNote] = useState(false);
+    const [editNote, setEditNote] = useState(false);
 
     const openEditNote = () => {
         setEditNote(prevState => !prevState);
@@ -20,6 +21,8 @@ const NotePreview = ({ sectionValues }) => {
 
     return ( 
         <StyledNotePreview>
+            <div></div>
+
             <Template>
                 { showSections(sectionValues) }
             </Template>
@@ -28,6 +31,9 @@ const NotePreview = ({ sectionValues }) => {
                 onClick={ openEditNote }>
                 Next
             </NextButton>
+
+            { editNote ? <Navigate to='/edit-note'/> : null }
+
         </StyledNotePreview>
     );
 }

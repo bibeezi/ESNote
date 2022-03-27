@@ -127,42 +127,44 @@ export const BlueButtonRegistration = styled.button`
 
 export const NextButton = styled.button`
 
+    height: fit-content;
+    width: fit-content;
+    margin-top: 1.5em;
+    padding: 0.25em 1em 0.25em 1em;
     border-radius: 1.5em;
     border: none;
     font-family : inherit;
     font-size: 1em;
     letter-spacing: 0.1em;
     background-color: #FFBB4D;
-
-    /* max-width: 360px */
-    margin: 1em auto;
-    padding: 0.25em 1em 0.25em 1em;
+    justify-self: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        margin: 1.5em auto 1.5em auto;
+        margin-top: 2.5em;
         padding: 0.5em 2em 0.5em 2em;
         
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        margin: 1.5em auto 1.5em auto;
+        margin-top: 3.5em;
         padding: 0.5em 2em 0.5em 2em;
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        margin: 1.5em auto 1.5em auto;
+        margin-bottom: 1.5em;
         padding: 0.5em 2em 0.5em 2em;
+        align-self: end;
         
     }
 
     @media only screen and (min-width: 1200px) {
-        margin: 1.5em auto 1.5em auto;
+        margin-bottom: 1.5em;
         padding: 0.5em 2em 0.5em 2em;
-       
+        align-self: end;
     }
 `;

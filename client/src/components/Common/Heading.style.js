@@ -4,8 +4,6 @@ export const HeaderHeading = styled.h1`
 
     letter-spacing: 0.2em;
     color: #7E2D00;
-
-    /* max-width: 360px */
     margin-left: 0.5em;
     font-size: 0.75em;
 
@@ -20,13 +18,18 @@ export const HeaderHeading = styled.h1`
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        margin-left: 0.5em;
+        margin: 0 0 0 0.5em;
         font-size: 2em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         margin-left: 0.5em;
         font-size: 2em;
+    }
+    
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        margin-left: 0.5em;
+        font-size: 1.5em;
     }
 
     @media only screen and (min-width: 1200px) {
@@ -45,7 +48,7 @@ export const WelcomeHeading = styled.h1`
     margin: auto;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        font-size: 1em;
+        font-size: 0.75;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -58,6 +61,11 @@ export const WelcomeHeading = styled.h1`
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 2em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        margin: 0 auto;
+        font-size: 1em;
     }
 
     @media only screen and (min-width: 1200px) {
@@ -178,6 +186,11 @@ export const Subheading = styled.h1`
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 2em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        font-size: 1em;
+
     }
 
     @media only screen and (min-width: 1200px) {

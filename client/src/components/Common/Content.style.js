@@ -42,8 +42,6 @@ export const UserHomeContent = styled.div`
     padding-top: 3.4em;
     grid-template-rows: 3.4em auto;
 
-    /* max-width: 360px */
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
     }
@@ -59,14 +57,18 @@ export const UserHomeContent = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        display: grid;
         height: calc(100vh - 5.4em);
         padding-top: 5.4em;
         grid-template-rows: 5.4em auto;
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100vh - 3.4em);
+        padding-top: 3.4em;
+        grid-template-rows: 3.4em auto;
+    }
+
     @media only screen and (min-width: 1200px) {
-        display: grid;
         height: calc(100vh - 5.4em);
         padding-top: 5.4em;
         grid-template-rows: 5.4em auto;
@@ -112,6 +114,12 @@ export const SlideContent = styled.div`
         grid-template-rows: none; 
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100vh - 6.8em);
+        grid-template-rows: none;
+        grid-template-columns: repeat(2, 50%);
+    }
+
     @media only screen and (min-width: 1200px) {
         height: calc(100vh - 10.8em);
         grid-template-columns: repeat(2, 50%);
@@ -139,14 +147,21 @@ export const CreateNoteContent = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+        grid-template-rows: none;
+        grid-template-columns: 60% 40%;
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+        grid-template-rows: none;
+        grid-template-columns: 60% 40%;
     }
 `;

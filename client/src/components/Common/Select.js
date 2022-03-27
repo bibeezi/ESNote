@@ -39,6 +39,12 @@ export const SelectSort = styled.select`
         font-size: 1em;
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: 2.5em;
+        margin-right: 0.5em;
+        font-size: 0.75em;
+    }
+
     @media only screen and (min-width: 1200px) {
         height: 3em;
         width: 50%;

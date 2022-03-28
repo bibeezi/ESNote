@@ -26,7 +26,7 @@ const Notebooks = () => {
             userID: localStorage.getItem("userID")
         };
 
-        axios.get('/notebooks/getNotebooks', {
+        axios.get('/notebook/getNotebooks', {
             params: {
                 data: payload
             }
@@ -35,7 +35,7 @@ const Notebooks = () => {
             setNotebooks(res.data);
         })
         .catch((error) => {
-            console.log("ERROR in UserHome - /notebooks/getNotebooks", error);
+            console.log("ERROR in UserHome - /notebook/getNotebooks", error);
         });
     };
 

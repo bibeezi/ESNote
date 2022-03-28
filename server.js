@@ -44,7 +44,7 @@ app.use(morgan('dev'));
 // routes
 app.use('/user', regLogin);
 app.use('/note', note);
-app.use('/notebooks', notebook);
+app.use('/notebook', notebook);
 app.use('/template', template);
 
 // Check for successful server connection

@@ -7,7 +7,11 @@ const Images = {
     User: require('./user.png').default,
     Setting: require('./setting.png').default,
     Question: require('./question.png').default,
-    Delete: require('./delete.png').default
+    Delete: require('./delete.png').default,
+    NotFavourited: require('./not_favourited.png').default,
+    Favourited: require('./favourited.png').default,
+    OnSwitch: require('./on_switch.png').default,
+    OffSwitch: require('./off_switch.png').default
 }
 
 export default Images;

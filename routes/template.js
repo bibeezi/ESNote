@@ -48,10 +48,11 @@ router.post("/saveTemplate", (req, res) => {
                     { "notes": doc._id.toString() } 
                 }
             ).exec();
-        
-            return res.json({
-                msg: 'Data received in Database!'
-            });
+        });
+
+        return res.json({
+            noteID: doc._id.toString(),
+            msg: 'Data received in Database!'
         });
     });
 });

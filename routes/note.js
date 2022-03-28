@@ -1,5 +1,6 @@
 // Import npm packages
 const express = require('express');
+var mongoose = require('mongoose');
 
 // Import from directories
 const NoteModel = require('../models/noteModel');
@@ -31,28 +32,43 @@ router.get("/getNotes", (req, res) => {
     });
 });
 
-router.post('/saveNote', (req, res) => {
+// router.post('/saveNote', (req, res) => {
 
-    const data = req.body;
-    const userID = data.userID;
-    const newNote = new NoteModel(data);
+//     const data = req.body;
+//     const userID = data.userID;
+//     const newNote = new NoteModel(data);
     
-    newNote.save((error, doc) => {
-        if(error) {
-            return res.status(500).json({ msg: 'ERROR in note route - /saveNote'});
+//     newNote.save((error, doc) => {
+//         if(error) {
+//             return res.status(500).json({ msg: 'ERROR in note route - /saveNote'});
+//         }
+
+//         UserModel.updateOne(
+//             { _id: userID },
+//             { "$push": 
+//                 { "notes": doc._id.toString() } 
+//             }
+//         ).exec();
+
+//         return res.json({
+//             msg: 'Data received in Database!'
+//         });
+//     });
+// });
+
+router.get("/getNote", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+    const noteID = mongoose.Types.ObjectId(data.noteID);
+
+    NoteModel.findById(noteID, (err, doc) => {
+        if(err) {
+            return res.status(500).json({ msg: 'ERROR in note route - /getNote', err});
         }
 
-        UserModel.updateOne(
-            { _id: userID },
-            { "$push": 
-                { "notes": doc._id.toString() } 
-            }
-        ).exec();
-
-        return res.json({
-            msg: 'Data received in Database!'
-        });
+        return res.json(doc);
     });
+
 });
 
 module.exports = router;

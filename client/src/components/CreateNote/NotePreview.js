@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -37,8 +37,8 @@ const NotePreview = ({ sectionValues, sectionCounter }) => {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             }
         })
-        .then((data) => {
-
+        .then((res) => {
+            localStorage.setItem("newNoteID", res.data.noteID);
         }) 
         .catch((err) => {
             console.log("ERROR in CreateNote - /saveTemplate", err);
@@ -58,7 +58,7 @@ const NotePreview = ({ sectionValues, sectionCounter }) => {
                 Next
             </NextButton>
 
-            { editNote ? <Navigate to='/edit-note'/> : null }
+            { editNote ? <Navigate to='/edit-note' /> : null }
 
         </StyledNotePreview>
     );

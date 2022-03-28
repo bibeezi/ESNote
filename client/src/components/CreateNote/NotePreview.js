@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 import { StyledNotePreview } from "./CreateNote.style";
-import { Template, Sections } from "./Template.style";
+import { Template } from "../Common/Template.style";
+import { Sections } from "../Common/Section.style"
 import { NextButton } from "../Common/Button.style";
 
-const NotePreview = ({ sectionValues, sectionCounter }) => {
+const NotePreview = ({ sectionValues }) => {
 
     const [editNote, setEditNote] = useState(false);
 
@@ -16,7 +17,7 @@ const NotePreview = ({ sectionValues, sectionCounter }) => {
 
     const showSections = (sections) => {
         return sections.map((section) => (
-            <Sections section={ section }></Sections>
+            <Sections section={ section } />
         ));
     };
 

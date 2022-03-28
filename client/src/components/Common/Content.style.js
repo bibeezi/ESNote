@@ -169,12 +169,15 @@ export const CreateNoteContent = styled.div`
 export const EditNoteContent = styled.div`
 
     display: grid;
+    grid-template-rows: 10% 90%;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
     height: calc(100vh - 3.4em);
     padding-top: 3.4em;
-    grid-template-rows: 40% 60%;
+    grid-auto-flow: row;
 
-    /* max-width: 360px */
+    label {
+        margin-bottom: 0.25em;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

@@ -1,5 +1,5 @@
 import { SearchSortHeader } from "../Common/Header.style";
-import { SelectSort } from "../Common/Select";
+import { SelectSort } from "../Common/Select.style";
 import { StyledSort, StyledSearch } from "./SearchSort.style";
 import { SearchInput } from "../Common/Inputs.style";
 

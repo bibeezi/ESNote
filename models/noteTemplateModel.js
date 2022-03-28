@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const NoteTemplateSchema = new Schema ({
     sections: [{
+        id: String,
         x: Number,
         y: Number,
         h: Number,

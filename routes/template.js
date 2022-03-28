@@ -1,5 +1,6 @@
 // Import npm packages
 const express = require('express');
+var mongoose = require('mongoose');
 
 // Import from directories
 const NoteTemplateModel = require('../models/noteTemplateModel');
@@ -16,6 +17,7 @@ router.post("/saveTemplate", (req, res) => {
     const newTemplateData = [];
 
     data.sections.forEach((section) => newTemplateData.push({
+        id: section.values.id,
         x: section.values.x,
         y: section.values.y,
         h: section.values.h,
@@ -31,7 +33,10 @@ router.post("/saveTemplate", (req, res) => {
 
         const newNoteData = {
             title: "",
-            body: "",
+            body: [{
+                sectionID: "",
+                content: ""
+            }],
             template: doc._id.toString()
         }
 
@@ -48,13 +53,30 @@ router.post("/saveTemplate", (req, res) => {
                     { "notes": doc._id.toString() } 
                 }
             ).exec();
-        });
 
-        return res.json({
-            noteID: doc._id.toString(),
-            msg: 'Data received in Database!'
+            return res.json({
+                noteID: doc._id.toString(),
+                msg: 'Data received in Database!'
+            });
         });
     });
+});
+
+router.get("/getTemplate", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+    const templateID = mongoose.Types.ObjectId(data.templateID);
+
+    NoteTemplateModel.findById(templateID, (err, doc) => {
+        if(err) {
+            return res.status(500).json({ 
+                msg: 'ERROR in template route - /getTemplate', err
+            });
+        }
+
+        return res.json(doc);
+    });
+
 });
 
 module.exports = router;

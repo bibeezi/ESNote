@@ -1,4 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+export const TemplateContainerEditNote = styled.div`
+    
+    display: flex;
+    height: calc(100vh - 6.7em);
+    width: 100vw;
+    justify-content: center;
+
+`;
 
 export const Template = styled.div`
 
@@ -43,15 +52,22 @@ export const Template = styled.div`
     }
 `;
 
-export const Sections = styled.div`
+export const TemplateEditNote = styled.div`
 
-    ${ ({ section }) => css`
-        grid-column: ${ section.values.x } / span ${ section.values.w };
-        grid-row: ${ section.values.y } / span ${ section.values.h };
-        border: 1px solid red;
-    `}
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(4, 25%);
+    margin-top: 5%;
+    height: 80%;
+    width: 90%;
+    border: 1px solid #7E2D005F;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -59,6 +75,10 @@ export const Sections = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
 
     }
 

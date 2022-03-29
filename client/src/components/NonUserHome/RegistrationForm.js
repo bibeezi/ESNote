@@ -7,7 +7,7 @@ import { CloseButton } from "../Common/Close.style";
 import { FormHeadingSignUp } from "../Common/Heading.style";
 import { Input, InputRegistration } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
-import { ErrorMessages } from "../Common/ErrorMessages.style";
+import { ErrorMessages } from "../Common/Messages.style";
 
 const RegistrationForm = ({ 
     user,

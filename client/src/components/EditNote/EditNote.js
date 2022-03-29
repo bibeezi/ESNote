@@ -6,56 +6,88 @@ import Note from "./Note";
 import { TitleContainer } from "./EditNote.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
+import { Save } from "./EditNote.style";
+import { SavedMessages } from "../Common/Messages.style";
+import { SaveButton } from "../Common/Button.style";
 
 const EditNote = () => {
 
-    const [note, setNote] = useState({});
-    const [template, setTemplate] = useState({});
+    const CHAR_SAVE = 150;
+    const [note, setNote] = useState({title: ''});
+    const [noteContent, setNoteContent] = useState({
+        title: "",
+        body: [],
+        template: ""
+    });
+    const [charCount, setCharCount] = useState(0);
+    const [saved, setSaved] = useState(false);
 
+    
     useEffect(() => {
         setTimeout(() => {
-            getNote();
-        }, 50);
-    }, []);
+            setSaved(false);
+        }, 3000);
+    }, [saved]);
 
 
-    const getNote = () => {
+    const handleChange = ({ target }) => {
+        const { name, value } = target;
 
-        const payload = {
-            noteID: localStorage.getItem("newNoteID")
+        name === 'title' && setNoteContent(prevState => ( { ...prevState, [name]: value }));
+
+        if(charCount === CHAR_SAVE) {
+            var newBody = Array.from(target.parentNode.children).map((child) => {
+                return { sectionID: child.name, content: child.value }
+            });
+    
+            setNoteContent(prevState => ({
+                ...prevState,
+                body: newBody
+            }));
+
+            axios.put('/note/saveNote', {
+                noteBodies: newBody,
+                noteTitle: noteContent.title,
+                noteTemplate: noteContent.template,
+                noteID: note._id
+            })
+            .then((res) => {
+                setCharCount(0);
+                setSaved(true);
+            })
+            .catch((err) => {
+                console.log("ERROR in EditNote - /saveNote", err);
+            });
         }
+        else {
+            setCharCount(charCount + 1);
+        }
+    }
 
-        axios.get('/note/getNote', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNote(res.data);
+    const save = ({ target }) => {
 
-            getTemplate(res.data.template);
-        })
-        .catch((error) => {
-            console.log("ERROR in EditNote - /getNote", error);
+        const textareas = target.parentNode.parentNode.children[1].children[0].childNodes;
+
+        var newBody = Array.from(textareas).map((child) => {
+            return { sectionID: child.name, content: child.value }
         });
-    };
+        
+        setNoteContent(prevState => ({
+            ...prevState,
+            body: newBody
+        }));
 
-    const getTemplate = (templateID) => {
-
-        const payload = {
-            templateID: templateID
-        }
-
-        axios.get('/template/getTemplate', {
-            params: {
-                data: payload
-            }
+        axios.put('/note/saveNote', {
+            noteBodies: newBody,
+            noteTitle: noteContent.title,
+            noteTemplate: noteContent.template,
+            noteID: note._id
         })
         .then((res) => {
-            setTemplate(res.data);
+            setSaved(true);
         })
-        .catch((error) => {
-            console.log("ERROR in EditNote - /getTemplate", error);
+        .catch((err) => {
+            console.log("ERROR in EditNote - /saveNote", err);
         });
     }
 
@@ -69,13 +101,21 @@ const EditNote = () => {
                     <EditNoteInput 
                         name="title"
                         type="text"
-                        placeholder="Title"> 
+                        placeholder="Title"
+                        defaultValue={ note.title }
+                        onChange={ handleChange }> 
                     </EditNoteInput>
                 </TitleContainer>
                 <Note
-                    template={ template }
-                    note={ note }>
+                    note={ note }
+                    setNote={ setNote }
+                    setNoteContent={ setNoteContent }
+                    handleChange={ handleChange }>
                 </Note>
+                <Save>
+                    { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
+                    <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
+                </Save>
             </EditNoteContent>
         </div>
     );

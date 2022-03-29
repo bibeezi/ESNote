@@ -18,8 +18,10 @@ router.get("/getNotes", (req, res) => {
         _id: userID
     })
     .then((data) => {
+        const userNotes = data[0].notes
+
         NoteModel.find(
-            { _id: { "$in": data[0].notes }
+            { _id: { "$in": userNotes }
         }).then((notes) => {
             return res.json(notes);
         })
@@ -32,29 +34,35 @@ router.get("/getNotes", (req, res) => {
     });
 });
 
-// router.post('/saveNote', (req, res) => {
+router.put('/saveNote', (req, res) => {
 
-//     const data = req.body;
-//     const userID = data.userID;
-//     const newNote = new NoteModel(data);
-    
-//     newNote.save((error, doc) => {
-//         if(error) {
-//             return res.status(500).json({ msg: 'ERROR in note route - /saveNote'});
-//         }
+    const data = req.body;
+    const noteID = mongoose.Types.ObjectId(data.noteID);
+    const title = data.noteTitle;
+    const bodies = data.noteBodies;
+    const template = data.template;
 
-//         UserModel.updateOne(
-//             { _id: userID },
-//             { "$push": 
-//                 { "notes": doc._id.toString() } 
-//             }
-//         ).exec();
+    NoteModel.findOneAndUpdate(
+        { _id: { "$in": noteID }}, 
+        {
+            $set: {
+                title: title,
+                body: bodies,
+                template: template
+            }
+        },
+        {
+            new: true
+        },
+        function(err, doc) {
+            if(err) {
+                return res.status(404).json({ msg: 'ERROR in note route - /saveNote'});
+            }
 
-//         return res.json({
-//             msg: 'Data received in Database!'
-//         });
-//     });
-// });
+            return res.json(doc);
+        }
+    );
+});
 
 router.get("/getNote", (req, res) => {
 

@@ -6,7 +6,7 @@ import { StyledLoginForm } from "../Common/Form.style";
 import { FormHeading, FormHeadingRegister } from "../Common/Heading.style";
 import { OrangeButton, BlueButton } from "../Common/Button.style";
 import { Input } from "../Common/Inputs.style";
-import { ErrorMessages } from "../Common/ErrorMessages.style";
+import { ErrorMessages } from "../Common/Messages.style";
 
 const LoginForm = ({ 
     user, 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TemplateContainerEditNote = styled.div`
     
     display: flex;
-    height: calc(100vh - 6.7em);
+    height: calc(100vh - 6.7em - 12%);
     width: 100vw;
     justify-content: center;
 

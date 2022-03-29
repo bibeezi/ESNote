@@ -80,7 +80,7 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
                     key={ section._id }
                     name={ section._id }
                     values={ section }
-                    defaultValue={ note.body[index].sectionID === section._id ? note.body[index].content : null }
+                    defaultValue={ note.body.length !== 1 ? note.body[index].content : null }
                     onChange={ (e) => handleChange(e) }>
                     {  }
                 </TextArea>

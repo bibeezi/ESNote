@@ -112,11 +112,12 @@ const EditNote = () => {
                     setNoteContent={ setNoteContent }
                     handleChange={ handleChange }>
                 </Note>
-                <Save>
-                    { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
-                    <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
-                </Save>
             </EditNoteContent>
+
+            <Save>
+                { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
+                <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
+            </Save>
         </div>
     );
 }

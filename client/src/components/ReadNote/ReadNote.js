@@ -22,7 +22,7 @@ const ReadNote = () => {
 
     return (
         <div>
-            <Header />
+            <Header note={ note } />
 
             <ReadNoteContent>
                 <div></div>

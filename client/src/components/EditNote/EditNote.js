@@ -5,7 +5,7 @@ import Header from "./Header";
 import Note from "./Note";
 import { TitleContainer } from "./EditNote.style";
 import { EditNoteInput } from "../Common/Inputs.style";
-import { EditReadNoteContent } from "../Common/Content.style";
+import { EditNoteContent } from "../Common/Content.style";
 import { Save } from "./EditNote.style";
 import { SavedMessages } from "../Common/Messages.style";
 import { SaveButton } from "../Common/Button.style";
@@ -98,7 +98,7 @@ const EditNote = () => {
         <div>
             <Header />
 
-            <EditReadNoteContent>
+            <EditNoteContent>
                 <TitleContainer>
                     <label>Title:</label>
 
@@ -117,7 +117,7 @@ const EditNote = () => {
                     setNoteContent={ setNoteContent }
                     handleChange={ handleChange }>
                 </Note>
-            </EditReadNoteContent>
+            </EditNoteContent>
 
             <Save>
                 { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }

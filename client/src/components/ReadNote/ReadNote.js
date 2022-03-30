@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Note from "./Note";
-import { EditReadNoteContent } from "../Common/Content.style";
+import { ReadNoteContent } from "../Common/Content.style";
 import { TitleContainer } from "../EditNote/EditNote.style";
 import { ReadNoteTitle } from "../Common/Heading.style";
 
@@ -24,7 +24,9 @@ const ReadNote = () => {
         <div>
             <Header />
 
-            <EditReadNoteContent>
+            <ReadNoteContent>
+                <div></div>
+                
                 <TitleContainer>
                     { showTitle(note) }
                 </TitleContainer>
@@ -33,7 +35,7 @@ const ReadNote = () => {
                     note={ note }
                     setNote={ setNote }>
                 </Note>
-            </EditReadNoteContent>
+            </ReadNoteContent>
         </div>
     );
 }

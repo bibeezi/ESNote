@@ -23,11 +23,11 @@ router.get("/getNotebooks", (req, res) => {
             return res.json(notebooks);
         })
         .catch((err) => {
-            return res.status(404).json({ msg: 'ERROR in notebook route - /getNotebooks', err });
+            return res.status(200).json({ msg: 'Notebooks Not Found', error: err });
         });
     })
     .catch((err) => {
-        return res.status(404).json({ msg: 'ERROR in notebook route - /getNotebooks', err});
+        return res.status(404).json({ msg: 'ERROR in notebook route - /getNotebooks', error: err});
     });
 });
 

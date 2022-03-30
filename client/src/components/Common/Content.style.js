@@ -166,7 +166,7 @@ export const CreateNoteContent = styled.div`
     }
 `;
 
-export const EditNoteContent = styled.div`
+export const EditReadNoteContent = styled.div`
 
     display: grid;
     grid-template-rows: 10% 83% 7%;
@@ -216,3 +216,54 @@ export const EditNoteContent = styled.div`
         padding-top: 5.4em;
     }
 `;
+
+// export const ReadNoteContent = styled.div`
+
+//     display: grid;
+//     grid-template-rows: 10% 83% 7%;
+//     background-image: linear-gradient(#AED9EA55, #E98DBE55);
+//     height: calc(100vh - 3.4em);
+//     padding-top: 3.4em;
+//     grid-auto-flow: row;
+
+//     @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+//     }
+
+//     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+//         height: calc(100vw - 3.4em);
+//         overflow-y: auto;
+//     }
+
+
+//     @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+//     }   
+
+//     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+//         height: calc(100vw - 3.4em);
+//         overflow-y: auto;
+//     }
+
+
+//     @media only screen and (min-width: 768px) and (max-width: 992px) {
+//         height: calc(100vh - 5.4em);
+//         padding-top: 5.4em;
+
+//     }
+
+//     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+//         height: calc(100vw - 3.4em);
+//         overflow-y: auto;
+//     }
+
+//     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+//         height: calc(100vh - 5.4em);
+//         padding-top: 5.4em;
+//     }
+
+//     @media only screen and (min-width: 1200px) {
+//         height: calc(100vh - 5.4em);
+//         padding-top: 5.4em;
+//     }
+// `;

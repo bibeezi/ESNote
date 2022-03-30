@@ -6,7 +6,7 @@ import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
 import { StyledNotebooks, NotebooksGrid } from "./Notebooks.style";
-import { Container, NoteShape } from "./Notes.style";
+import { NoteContainer, NoteShape } from "./Notes.style";
 import { Title } from "../Common/Heading.style";
 
 const Notebooks = () => {
@@ -32,7 +32,7 @@ const Notebooks = () => {
             }
         })
         .then((res) => {
-            setNotebooks(res.data);
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /notebook/getNotebooks", error);
@@ -41,10 +41,10 @@ const Notebooks = () => {
 
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
-            <Container key={ notebook._id }>
+            <NoteContainer key={ notebook._id }>
                 <NoteShape onClick={ handleAddNotebookClick }></NoteShape>
                 <Title>{ notebook.title }</Title>
-            </Container>
+            </NoteContainer>
         ));
     };
 
@@ -59,12 +59,12 @@ const Notebooks = () => {
             </SubheaderBar>
 
             <NotebooksGrid>
-                <Container>
+                <NoteContainer>
                     <NoteShape onClick={ handleAddNotebookClick }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Notebook</Title>
-                </Container>
+                </NoteContainer>
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
             </NotebooksGrid>
 

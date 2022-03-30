@@ -26,11 +26,11 @@ router.get("/getNotes", (req, res) => {
             return res.json(notes);
         })
         .catch((err) => {
-            return res.status(404).json({ msg: 'ERROR in note route - /getNotes', err });
+            return res.status(200).json({ msg: 'Notes Not Found', error: err });
         });
     })
     .catch((err) => {
-        return res.status(404).json({ msg: 'ERROR in note route - /getNotes', err});
+        return res.status(404).json({ msg: 'ERROR in note route - /getNotes', error: err});
     });
 });
 

@@ -1,0 +1,41 @@
+
+import { useEffect, useState } from "react";
+
+import Header from "./Header";
+import Note from "./Note";
+import { EditReadNoteContent } from "../Common/Content.style";
+import { TitleContainer } from "../EditNote/EditNote.style";
+import { ReadNoteTitle } from "../Common/Heading.style";
+
+const ReadNote = () => {
+
+    const [note, setNote] = useState({title: ''});
+
+    useEffect(() => {
+        showTitle(note);
+    }, [note])
+
+    
+    const showTitle = (note) => {
+        return <ReadNoteTitle>{ note.title }</ReadNoteTitle>
+    }
+
+    return (
+        <div>
+            <Header />
+
+            <EditReadNoteContent>
+                <TitleContainer>
+                    { showTitle(note) }
+                </TitleContainer>
+
+                <Note 
+                    note={ note }
+                    setNote={ setNote }>
+                </Note>
+            </EditReadNoteContent>
+        </div>
+    );
+}
+ 
+export default ReadNote;

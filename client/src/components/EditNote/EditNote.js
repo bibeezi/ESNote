@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Header from "./Header";
 import Note from "./Note";
-import { TitleContainer } from "./EditNote.style";
+import { TitleContainer } from "../Common/Heading.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
 import { Save } from "./EditNote.style";

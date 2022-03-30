@@ -1,10 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Save = styled.div`
+export const NoteContainer = styled.div`
 
-    display: grid;
-    grid-template-columns: 50% 50%;
-    padding: 0 1em 0 1em;
+    margin-bottom: 2em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

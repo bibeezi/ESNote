@@ -12,7 +12,8 @@ import { Title } from "../Common/Heading.style";
 const Notebooks = () => {
 
     const [notebooks, setNotebooks] = useState([]);
-    const [notebookPage, setNotebookPage] = useState(false);
+    const [editNotebook, setEditNotebook] = useState(false);
+    const [readNotebook, setReadNotebook] = useState(false);
 
     useEffect(() => {
 
@@ -42,14 +43,18 @@ const Notebooks = () => {
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
             <NoteContainer key={ notebook._id }>
-                <NoteShape onClick={ handleAddNotebookClick }></NoteShape>
+                <NoteShape id={ notebook._id } onClick={ handleReadNotebook }></NoteShape>
                 <Title>{ notebook.title }</Title>
             </NoteContainer>
         ));
     };
 
-    const handleAddNotebookClick = () => {
-        setNotebookPage(prevState => !prevState);
+    const handleReadNotebook = () => {
+        setReadNotebook(prevState => !prevState);
+    }
+
+    const handleAddNotebook = () => {
+        setEditNotebook(prevState => !prevState);
     }
 
     return (
@@ -60,7 +65,7 @@ const Notebooks = () => {
 
             <NotebooksGrid>
                 <NoteContainer>
-                    <NoteShape onClick={ handleAddNotebookClick }>
+                    <NoteShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Notebook</Title>
@@ -68,7 +73,8 @@ const Notebooks = () => {
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
             </NotebooksGrid>
 
-            { notebookPage ? <Navigate to='/create-notebook-template'/> : null }
+            { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
+            { readNotebook ? <Navigate to='/read-notebook'/> : null }
 
         </StyledNotebooks>
     );

@@ -42,13 +42,13 @@ const Notes = () => {
     const showNotes = (notes) => {
         return notes.map((note) => (
             <NoteContainer key={ note._id }>
-                <NoteShape id={ note._id } onClick={ (e) => { handleAddNoteClick(e) } }></NoteShape>
+                <NoteShape id={ note._id } onClick={ (e) => { handleAddNote(e) } }></NoteShape>
                 <Title>{ note.title }</Title>
             </NoteContainer>
         ));
     };
 
-    const handleAddNoteClick = ({ target }) => {
+    const handleAddNote = ({ target }) => {
 
         const payload = {
             noteID: target.id
@@ -69,7 +69,7 @@ const Notes = () => {
         });
     }
 
-    const handleNewNoteClick = () => {
+    const handleNewNote = () => {
         setCreateNoteTemplate(prevState => !prevState);
 
     }
@@ -82,7 +82,7 @@ const Notes = () => {
 
             <NotesGrid>
                 <NoteContainer>
-                    <NoteShape onClick={ handleNewNoteClick }>
+                    <NoteShape onClick={ handleNewNote }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Note</Title>

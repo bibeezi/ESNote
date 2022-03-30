@@ -65,9 +65,9 @@ const Note = ({ note, setNote }) => {
  
     return (
         <TemplateContainer>
-                <TemplateReadNote>
-                    { Object.keys(template).length !== 0 && showNote(template.sections) }
-                </TemplateReadNote>
+            <TemplateReadNote>
+                { Object.keys(template).length !== 0 && showNote(template.sections) }
+            </TemplateReadNote>
         </TemplateContainer>            
     );
 }

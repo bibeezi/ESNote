@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
 import { ReadNoteContent } from "../Common/Content.style";
-import { TitleContainer } from "../EditNote/EditNote.style";
-import { ReadNoteTitle } from "../Common/Heading.style";
+import { TitleContainer, ReadNoteTitle } from "../Common/Heading.style";
 
 const ReadNote = () => {
 

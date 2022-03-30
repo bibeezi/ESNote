@@ -12,6 +12,7 @@ import CreateNote from './components/CreateNote/CreateNote';
 import NotebookTemplate from './components/CreateNotebook/NotebookTemplate'
 import EditNote from './components/EditNote/EditNote';
 import ReadNote from './components/ReadNote/ReadNote';
+import ReadNotebook from './components/ReadNotebook/ReadNotebook';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path='/create-notebook-template' element={ <NotebookTemplate /> }></Route>
           <Route exact path='/edit-note' element={ <EditNote /> }></Route>
           <Route exact path='/read-note' element={ <ReadNote /> }></Route>
+          <Route exact path='/read-notebook' element={ <ReadNotebook /> }></Route>
         </Routes>
       </div>
     </Router>

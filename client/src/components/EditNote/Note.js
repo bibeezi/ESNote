@@ -81,7 +81,7 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
                     name={ section._id }
                     values={ section }
                     defaultValue={ 
-                        note.body.length > 1 ? 
+                        note.body.length > 0 ? 
                             (note.body[index].sectionID === section._id ? 
                                 note.body[index].content : 
                                 null) :

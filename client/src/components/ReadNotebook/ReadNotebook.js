@@ -7,32 +7,52 @@ import { ReadNotebookContent } from "../Common/Content.style";
 
 const ReadNotebook = () => {
 
+    const [notebook, setNotebook] = useState({});
     const [notes, setNotes] = useState([]);
 
     useEffect(() => {
-        getNotes();
+        setTimeout(() => {
+            getNotebook();
+        }, 50);
     }, []);
 
-    useEffect(() => {
-        showNotes(notes);
-    }, [notes]);
-
-    const getNotes = () => {
+    const getNotebook = () => {
 
         const payload = {
-            userID: localStorage.getItem("userID")
+            notebookID: localStorage.getItem("clickedNotebookID")
         };
 
-        axios.get('/note/getNotes', {
+        axios.get('/notebook/getNotebook', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            res.data.msg !== "Notes Not Found" && setNotes(res.data);
+            setNotebook(res.data);
+
+            getNotes(res.data.notes);
         })
         .catch((error) => {
-            console.log("ERROR in UserHome - /getNotes", error);
+            console.log("ERROR in ReadNotebook - /getNotebook", error);
+        });
+    }
+
+    const getNotes = (noteIDs) => {
+
+        const payload = {
+            noteIDs: noteIDs
+        };
+
+        axios.get('/note/getNotebookNotes', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            setNotes(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in ReadNotebook - /getNotebookNotes", error);
         });
     };
 
@@ -44,7 +64,7 @@ const ReadNotebook = () => {
 
     return (
         <div>
-            <Header/>
+            <Header notebook={ notebook }/>
 
             <ReadNotebookContent>
                 { showNotes(notes) }

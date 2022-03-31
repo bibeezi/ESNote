@@ -12,7 +12,7 @@ import { SaveButton } from "../Common/Button.style";
 
 const EditNote = () => {
 
-    const CHAR_SAVE = 3;
+    const CHAR_SAVE = 150;
     const [note, setNote] = useState({title: ''});
     const [noteContent, setNoteContent] = useState({
         title: "",

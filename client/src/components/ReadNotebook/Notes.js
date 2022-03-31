@@ -34,8 +34,10 @@ const Notes = ({ note }) => {
     }
 
     const showNote = (sections) => {
-        return sections.map((section) => (console.log(note),
-            <ReadSections key={ section._id } section={ section }></ReadSections>
+        return sections.map((section, index) => (
+            section._id === note.body[index].sectionID ? 
+                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> :
+                null
         ));
     };
  

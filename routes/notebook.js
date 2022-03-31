@@ -1,5 +1,6 @@
 // Import npm packages
 const express = require('express');
+const mongoose = require('mongoose');
 
 // Import from directories
 const NotebookModel = require('../models/notebookModel');
@@ -31,4 +32,19 @@ router.get("/getNotebooks", (req, res) => {
     });
 });
 
+router.get("/getNotebook", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+    const notebookID = mongoose.Types.ObjectId(data.notebookID);
+
+    NotebookModel.findById(notebookID, (err, doc) => {
+        if(err) {
+            return res.status(500).json({ msg: 'ERROR in notebook route - /getNotebook', err});
+        }
+
+        return res.json(doc);
+    });
+});
+
 module.exports = router;
+

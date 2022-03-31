@@ -21,8 +21,8 @@ const Header = () => {
             </WelcomeHeader>
             
             <IconsHeader>
-                <img alt="Tags" src={ Images.Tag }></img>
                 <img alt="Spaced Repetition" src={ Images.Exclamation }></img>
+                <img alt="Tags" src={ Images.Tag }></img>
                 <img alt="User Settings" src={ Images.User }></img>
                 <img alt="Settings" src={ Images.Setting }></img>
                 <img alt="Help" src={ Images.Question }></img>

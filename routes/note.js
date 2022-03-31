@@ -1,6 +1,6 @@
 // Import npm packages
 const express = require('express');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Import from directories
 const NoteModel = require('../models/noteModel');
@@ -34,6 +34,37 @@ router.get("/getNotes", (req, res) => {
     });
 });
 
+router.get("/getNote", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+    const noteID = mongoose.Types.ObjectId(data.noteID);
+
+    NoteModel.findById(noteID, (err, doc) => {
+        if(err) return res.status(500).json({ msg: 'ERROR in note route - /getNote', err});
+
+        return res.json(doc);
+    });
+
+});
+
+router.get("/getNotebookNotes", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+
+    var noteIDs = data.noteIDs.map((note) => {
+        return mongoose.Types.ObjectId(note);
+    });
+
+    NoteModel.find(
+        { _id: { "$in": noteIDs }
+    }, 
+    (err, docs) => {
+        if (err) return res.status(500).json({ msg: 'ERROR in note route - /getNotebookNotes', err});
+
+        return res.json(docs);
+    });
+});
+
 router.put('/saveNote', (req, res) => {
 
     const data = req.body;
@@ -62,21 +93,6 @@ router.put('/saveNote', (req, res) => {
             return res.json(doc);
         }
     );
-});
-
-router.get("/getNote", (req, res) => {
-
-    const data = JSON.parse(req.query.data);
-    const noteID = mongoose.Types.ObjectId(data.noteID);
-
-    NoteModel.findById(noteID, (err, doc) => {
-        if(err) {
-            return res.status(500).json({ msg: 'ERROR in note route - /getNote', err});
-        }
-
-        return res.json(doc);
-    });
-
 });
 
 module.exports = router;

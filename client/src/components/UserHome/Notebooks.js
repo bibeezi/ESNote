@@ -43,14 +43,32 @@ const Notebooks = () => {
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
             <NoteContainer key={ notebook._id }>
-                <NoteShape id={ notebook._id } onClick={ handleReadNotebook }></NoteShape>
+                <NoteShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></NoteShape>
                 <Title>{ notebook.title }</Title>
             </NoteContainer>
         ));
     };
 
-    const handleReadNotebook = () => {
-        setReadNotebook(prevState => !prevState);
+    const handleReadNotebook = ({ target }) => {
+
+        const payload = {
+            notebookID: target.id
+        };
+
+        axios.get('/notebook/getNotebook', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            res.data !== null ? localStorage.setItem("clickedNotebookID", res.data._id) : alert("Can't get this note!");
+
+            setReadNotebook(prevState => !prevState);
+        })
+        .catch((error) => {
+            console.log("ERROR in Notebooks - /getNotebook", error);
+        });
+
     }
 
     const handleAddNotebook = () => {

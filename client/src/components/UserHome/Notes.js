@@ -42,13 +42,13 @@ const Notes = () => {
     const showNotes = (notes) => {
         return notes.map((note) => (
             <NoteContainer key={ note._id }>
-                <NoteShape id={ note._id } onClick={ (e) => { handleAddNote(e) } }></NoteShape>
+                <NoteShape id={ note._id } onClick={ (e) => handleReadNote(e) }></NoteShape>
                 <Title>{ note.title }</Title>
             </NoteContainer>
         ));
     };
 
-    const handleAddNote = ({ target }) => {
+    const handleReadNote = ({ target }) => {
 
         const payload = {
             noteID: target.id
@@ -62,7 +62,7 @@ const Notes = () => {
         .then((res) => {
             res.data !== null ? localStorage.setItem("clickedNoteID", res.data._id) : alert("Can't get this note!");
             
-            setReadNote(true);
+            setReadNote((prevState) => !prevState);
         })
         .catch((error) => {
             console.log("ERROR in Notes - /getNote", error);

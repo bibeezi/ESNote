@@ -308,6 +308,7 @@ export const ReadNotebookContent = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        grid-template-columns: 50% 50%;
         padding-top: 5.4em;
         
     }

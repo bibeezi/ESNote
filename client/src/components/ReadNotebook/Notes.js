@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { NotebookTitleContainer } from "../Common/Header.style";
-import { ReadNoteTitle } from "../Common/Heading.style";
-import { TemplateReadNote } from "../Common/Template.style";
+import { ReadNotebookTitle } from "../Common/Heading.style";
+import { TemplateReadNotebook } from "../Common/Template.style";
 import { NoteContainer } from "./ReadNotebook.style";
 import { ReadSections } from "../Common/Section.style";
 
@@ -45,11 +45,11 @@ const Notes = ({ note }) => {
     return (
         <NoteContainer>
             <NotebookTitleContainer>
-                <ReadNoteTitle>{ note.title }</ReadNoteTitle>
+                <ReadNotebookTitle>{ note.title }</ReadNotebookTitle>
             </NotebookTitleContainer>
-            <TemplateReadNote>
+            <TemplateReadNotebook>
                 { Object.keys(template).length !== 0 && showNote(template.sections) }
-            </TemplateReadNote>
+            </TemplateReadNotebook>
         </NoteContainer>            
     );
 }

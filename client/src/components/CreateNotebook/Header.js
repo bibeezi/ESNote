@@ -1,13 +1,13 @@
 import Images from "../../images/Images";
-import { HeaderBar } from "../Common/Header.style";
-import { HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
+
+import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = () => {
 
     return (
         <HeaderBar>
-            <HomeHeader>
+            <HomeHeader>   
                 <img
                     src={ Images.Home }
                     alt="Home Icon">
@@ -16,7 +16,7 @@ const Header = () => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Create Note Template</WelcomeHeading>
+                <WelcomeHeading>Create Notebook Template</WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeaderCreate>
@@ -24,6 +24,6 @@ const Header = () => {
             </IconsHeaderCreate>
         </HeaderBar>
     );
-};
-
+}
+ 
 export default Header;

@@ -133,3 +133,35 @@ export const TemplateReadNote = styled.div`
         width: 30%;
     }
 `;
+
+export const TemplateReadNotebook = styled.div`
+
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(4, 25%);
+    margin: auto;
+    height: 90%;
+    width: 90%;
+    border: 1px solid #7E2D005F;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        width: 90%;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        width: 70%;
+    }
+`;

@@ -5,8 +5,8 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotes, NotesGrid, NoteShape, NoteContainer } from "./Notes.style";
-import { Title } from "../Common/Heading.style";
+import { StyledNotes, StyledGrid, StyledShape, StyledContainer } from "./UserHome.style";
+import { UserHomeTitle } from "../Common/Heading.style";
 
 const Notes = () => {
 
@@ -41,10 +41,10 @@ const Notes = () => {
 
     const showNotes = (notes) => {
         return notes.map((note) => (
-            <NoteContainer key={ note._id }>
-                <NoteShape id={ note._id } onClick={ (e) => handleReadNote(e) }></NoteShape>
-                <Title>{ note.title }</Title>
-            </NoteContainer>
+            <StyledContainer key={ note._id }>
+                <StyledShape id={ note._id } onClick={ (e) => handleReadNote(e) }></StyledShape>
+                <UserHomeTitle>{ note.title }</UserHomeTitle>
+            </StyledContainer>
         ));
     };
 
@@ -80,15 +80,15 @@ const Notes = () => {
                 <Subheading>Notes</Subheading>
             </SubheaderBar>
 
-            <NotesGrid>
-                <NoteContainer>
-                    <NoteShape onClick={ handleNewNote }>
+            <StyledGrid>
+                <StyledContainer>
+                    <StyledShape onClick={ handleNewNote }>
                         <img alt="click to add" src={ Images.Plus } />
-                    </NoteShape>
-                    <Title>Add Note</Title>
-                </NoteContainer>
+                    </StyledShape>
+                    <UserHomeTitle>Add Note</UserHomeTitle>
+                </StyledContainer>
                 { notes.length > 0 ? showNotes(notes) : null }
-            </NotesGrid>
+            </StyledGrid>
 
             { createNoteTemplate ? <Navigate to='/create-note-template'/> : null }
             { readNote ? <Navigate to='/read-note' /> : null }

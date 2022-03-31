@@ -4,7 +4,7 @@ import Header from "./Header";
 import NotePreview from "./NotePreview";
 import NoteSettings from "./NoteSettings";
 import SectionSetting from "./SectionSetting";
-import { CreateNoteContent } from "../Common/Content.style";
+import { CreateContent } from "../Common/Content.style";
 
 const CreateNote = () => {
 
@@ -106,7 +106,7 @@ const CreateNote = () => {
         <div>
             <Header />
 
-            <CreateNoteContent>
+            <CreateContent>
                 <NotePreview 
                     sectionValues={ sectionValues }
                     sectionCounter={ sectionCounter }>
@@ -116,7 +116,7 @@ const CreateNote = () => {
                     sectionSettings={ sectionSettings }
                     addSection={ addSection }>
                 </NoteSettings>
-            </CreateNoteContent>
+            </CreateContent>
         </div>
     );
 }

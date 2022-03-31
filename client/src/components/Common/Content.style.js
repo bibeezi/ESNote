@@ -6,8 +6,6 @@ export const NonUserHomeContent = styled.div`
     min-height: 100vh;
     height: fit-content;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
-
-    /* max-width: 360px */
     grid-template-columns: none;
     grid-template-rows: 25em;
 
@@ -79,10 +77,9 @@ export const SlideContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
-    height: calc(100vh - 6.8em);
+    height: calc(100vh - 6.9em);
     grid-template-rows: repeat(2, 50%);
-
-    /* max-width: 360px */
+    border-bottom: 1px solid black;
 
     @media only screen and (max-height: 360px) {
         height: calc(100vh - 6.8em);
@@ -128,15 +125,13 @@ export const SlideContent = styled.div`
     }
 `;
 
-export const CreateNoteContent = styled.div`
+export const CreateContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
     height: calc(100vh - 3.4em);
     padding-top: 3.4em;
     grid-template-rows: 40% 60%;
-
-    /* max-width: 360px */
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
@@ -282,26 +277,90 @@ export const ReadNotebookContent = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        grid-auto-rows: calc(100vw - 3.4em);
 
     }
 
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
+        padding-top: 5.4em;
 
     }   
 
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        grid-auto-rows: calc(100vw - 3.4em);
         
     }
 
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+        padding-top: 7.4em;
 
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        grid-auto-rows: calc(100vw - 3.4em);
         
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        grid-template-columns: 50% 50%;
+        padding-top: 5.4em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        grid-template-columns: 50% 50%;
+        padding-top: 6.4em;
+        
+    }
+`;
+
+export const StyledPreview = styled.div`
+
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        grid-template-columns: 20% 60% 20%;
+    }
+    
+    @media only screen and (min-width: 1200px) and (min-height: 800px) {
+        grid-template-columns: 20% 60% 20%;
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+
+    }
+`;
+
+export const StyledSettings = styled.div`
+
+    box-shadow: 0 0 1em -0.3em grey;
+    overflow-y: auto;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {

@@ -1,6 +1,6 @@
 import { SearchSortHeader } from "../Common/Header.style";
 import { SelectSort } from "../Common/Select.style";
-import { StyledSort, StyledSearch } from "./SearchSort.style";
+import { StyledSort, StyledSearch } from "./UserHome.style";
 import { SearchInput } from "../Common/Inputs.style";
 
 const SearchSort = () => {

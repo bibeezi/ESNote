@@ -1,12 +1,6 @@
 import Images from "../../images/Images";
-import { 
-    StyledNoteSettings,
-    SectionsGrid, 
-    AddtoNotebookContainer, 
-    TagsContainer, 
-    SpacedRepetitionContainer, 
-    IndentContainer 
-} from "./CreateNote.style";
+import { SectionsGrid } from "./CreateNote.style";
+import { StyledSettings } from "../Common/Content.style";
 import { NoteTemplateForm } from "../Common/Form.style";
 import { SectionHeader } from "../Common/Header.style";
 import { SectionHeading } from "../Common/Heading.style";
@@ -17,7 +11,7 @@ const NoteSettings = ({
 }) => {
 
     return ( 
-        <StyledNoteSettings>
+        <StyledSettings>
             <NoteTemplateForm>
                 <SectionHeader>
                     <SectionHeading>Add Section</SectionHeading>
@@ -32,11 +26,9 @@ const NoteSettings = ({
 
                 {/* <TagsContainer />
 
-                <SpacedRepetitionContainer />
-                    
-                <IndentContainer /> */}
+                <SpacedRepetitionContainer /> */}
             </NoteTemplateForm>
-        </StyledNoteSettings>
+        </StyledSettings>
     );
 }
  

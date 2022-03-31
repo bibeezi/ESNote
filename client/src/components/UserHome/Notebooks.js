@@ -5,9 +5,8 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotebooks, NotebooksGrid } from "./Notebooks.style";
-import { NoteContainer, NoteShape } from "./Notes.style";
-import { Title } from "../Common/Heading.style";
+import { StyledNotebooks, StyledGrid, StyledContainer, StyledShape } from "./UserHome.style";
+import { UserHomeTitle } from "../Common/Heading.style";
 
 const Notebooks = () => {
 
@@ -42,10 +41,10 @@ const Notebooks = () => {
 
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
-            <NoteContainer key={ notebook._id }>
-                <NoteShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></NoteShape>
-                <Title>{ notebook.title }</Title>
-            </NoteContainer>
+            <StyledContainer key={ notebook._id }>
+                <StyledShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></StyledShape>
+                <UserHomeTitle>{ notebook.title }</UserHomeTitle>
+            </StyledContainer>
         ));
     };
 
@@ -81,15 +80,15 @@ const Notebooks = () => {
                 <Subheading>Notebooks</Subheading>
             </SubheaderBar>
 
-            <NotebooksGrid>
-                <NoteContainer>
-                    <NoteShape onClick={ handleAddNotebook }>
+            <StyledGrid>
+                <StyledContainer>
+                    <StyledShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
-                    </NoteShape>
-                    <Title>Add Notebook</Title>
-                </NoteContainer>
+                    </StyledShape>
+                    <UserHomeTitle>Add Notebook</UserHomeTitle>
+                </StyledContainer>
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
-            </NotebooksGrid>
+            </StyledGrid>
 
             { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
             { readNotebook ? <Navigate to='/read-notebook'/> : null }

@@ -131,7 +131,7 @@ export const SearchInput = styled.input`
     }
 `;
 
-export const SectionInput = styled.input`
+export const SettingInput = styled.input`
 
     margin: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;
@@ -165,6 +165,7 @@ export const SectionInput = styled.input`
     }
 
     @media only screen and (min-width: 1200px) {
+        font-size: 1em;
     
     }
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TemplateContainer = styled.div`
     
@@ -37,6 +37,12 @@ export const Template = styled.div`
     width: 100%;
     background-color: whitesmoke;
     border: 1px solid black;
+    ${({ page }) => page === "createNotebook" ? 
+    css`
+        border-radius: 0.25em 1em 1em 0.25em;
+    ` : 
+        null 
+    }
     align-self: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -66,7 +72,8 @@ export const Template = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        height: 90%;
+        width: 80%;
     }
 `;
 

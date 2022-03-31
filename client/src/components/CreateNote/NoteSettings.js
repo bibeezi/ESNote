@@ -1,9 +1,10 @@
+
 import Images from "../../images/Images";
-import { SectionsGrid } from "./CreateNote.style";
+
 import { StyledSettings } from "../Common/Content.style";
-import { NoteTemplateForm } from "../Common/Form.style";
-import { SectionHeader } from "../Common/Header.style";
-import { SectionHeading } from "../Common/Heading.style";
+import { TemplateForm, SettingsGrid } from "../Common/Form.style";
+import { SettingHeader } from "../Common/Header.style";
+import { SettingHeading } from "../Common/Heading.style";
 
 const NoteSettings = ({ 
     sectionSettings,
@@ -12,22 +13,22 @@ const NoteSettings = ({
 
     return ( 
         <StyledSettings>
-            <NoteTemplateForm>
-                <SectionHeader>
-                    <SectionHeading>Add Section</SectionHeading>
+            <TemplateForm>
+                <SettingHeader>
+                    <SettingHeading>Add Section</SettingHeading>
                     <img onClick={ addSection } src={ Images.Plus } alt="plus"></img>
-                </SectionHeader>
+                </SettingHeader>
 
-                <SectionsGrid>
+                <SettingsGrid>
                     { sectionSettings }
-                </SectionsGrid>
+                </SettingsGrid>
 
                 {/* <AddtoNotebookContainer /> */}
 
                 {/* <TagsContainer />
 
                 <SpacedRepetitionContainer /> */}
-            </NoteTemplateForm>
+            </TemplateForm>
         </StyledSettings>
     );
 }

@@ -65,7 +65,7 @@ export const StyledRegistrationForm = styled.form`
     }
 `;
 
-export const NoteTemplateForm = styled.form`
+export const TemplateForm = styled.form`
 
     display: grid;
     margin: 0 auto;
@@ -106,5 +106,57 @@ export const NoteTemplateForm = styled.form`
     @media only screen and (min-width: 1200px) {
         margin-top: 2em;
         width: 80%;
+    }
+`;
+
+export const SettingsGrid = styled.div`
+
+    display: grid;
+    margin-bottom: 1em;
+    grid-template-rows: fit-content(100%);
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const SettingContainer = styled.div`
+
+    margin: 0 1em 0 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid black;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        margin: 0 2em 0 2em;
     }
 `;

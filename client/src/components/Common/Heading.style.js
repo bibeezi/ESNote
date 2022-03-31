@@ -232,9 +232,8 @@ export const UserHomeTitle = styled.h1`
     }
 `;
 
-export const SectionHeading = styled.h1`
+export const SettingHeading = styled.h1`
 
-    /* max-width: 360px */
     display: inline-block;
     width: fit-content;
     padding-left: 0.5em;

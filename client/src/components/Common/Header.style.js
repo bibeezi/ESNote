@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css }from "styled-components";
 
 export const HeaderBar = styled.div`
 
@@ -132,7 +132,6 @@ export const HomeHeader = styled.div`
 
 export const WelcomeHeader = styled.div`
     
-    /* max-width: 360px */
     display: flex;
     align-items: center;
     text-align: center;
@@ -162,6 +161,9 @@ export const IconsHeader = styled.div`
 
     display: grid;
     grid-auto-flow: column;
+    overflow-x: auto;
+    grid-auto-columns: 35%;
+    column-gap: 5%;
 
     img {
         height: 40%;
@@ -169,12 +171,6 @@ export const IconsHeader = styled.div`
         align-self: center;
         justify-self: center;
     }
-
-    /* max-width: 360px */
-    overflow-x: auto;
-    grid-auto-columns: 35%;
-    column-gap: 5%;
-
 
     @media only screen and (max-height: 321px) {
         grid-auto-columns: 25%;
@@ -222,7 +218,6 @@ export const IconsHeaderCreate = styled.div`
         justify-self: center;
     }
 
-    /* max-width: 360px */
     overflow-x: auto;
     grid-auto-columns: 35%;
     column-gap: 5%;
@@ -271,8 +266,6 @@ export const SearchSortHeader = styled.div`
     border-bottom: 1px solid #7E2D009A;
     z-index: 2;
 
-    /* max-width: 360px */
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
     }
@@ -296,7 +289,6 @@ export const SearchSortHeader = styled.div`
 
 export const SubheaderBar = styled.div`
 
-    /* max-width: 360px */
     display: flex;
     height: 1.7em;
     align-items: center;
@@ -335,16 +327,27 @@ export const SubheaderBar = styled.div`
     }
 `;
 
-export const SectionHeader = styled.div`
+export const SettingHeader = styled.div`
 
-    /* max-width: 360px */
     display: flex;
     height: fit-content;
     align-items: center;
 
     img {
         height: 1.5em;
-        margin-left: 1em;
+
+        ${({ page }) => page === "createNotebook" ? css`            
+
+        ` : css`
+            margin-left: 1em;
+        `}
+    }
+
+    div {
+        height: 1.4em;
+        width: 1.4em;
+        border: 1px solid black;
+        border-radius: 0.3em;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -372,9 +375,8 @@ export const SectionHeader = styled.div`
     }
 `;
 
-export const SectionSettingHeader = styled.div`
+export const SubSettingHeader = styled.div`
 
-    /* max-width: 360px */
     display: grid;
     grid-template-columns: 50% 50%;
 

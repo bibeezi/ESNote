@@ -11,7 +11,8 @@ const Images = {
     NotFavourited: require('./not_favourited.png').default,
     Favourited: require('./favourited.png').default,
     OnSwitch: require('./on_switch.png').default,
-    OffSwitch: require('./off_switch.png').default
+    OffSwitch: require('./off_switch.png').default,
+    Edit: require('./edit.png').default
 }
 
 export default Images;

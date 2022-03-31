@@ -6,13 +6,14 @@ import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
 import { StyledNotebooks, NotebooksGrid } from "./Notebooks.style";
-import { Container, NoteShape } from "./Notes.style";
+import { NoteContainer, NoteShape } from "./Notes.style";
 import { Title } from "../Common/Heading.style";
 
 const Notebooks = () => {
 
     const [notebooks, setNotebooks] = useState([]);
-    const [notebookPage, setNotebookPage] = useState(false);
+    const [editNotebook, setEditNotebook] = useState(false);
+    const [readNotebook, setReadNotebook] = useState(false);
 
     useEffect(() => {
 
@@ -32,7 +33,7 @@ const Notebooks = () => {
             }
         })
         .then((res) => {
-            setNotebooks(res.data);
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /notebook/getNotebooks", error);
@@ -41,15 +42,37 @@ const Notebooks = () => {
 
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
-            <Container key={ notebook._id }>
-                <NoteShape onClick={ handleAddNotebookClick }></NoteShape>
+            <NoteContainer key={ notebook._id }>
+                <NoteShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></NoteShape>
                 <Title>{ notebook.title }</Title>
-            </Container>
+            </NoteContainer>
         ));
     };
 
-    const handleAddNotebookClick = () => {
-        setNotebookPage(prevState => !prevState);
+    const handleReadNotebook = ({ target }) => {
+
+        const payload = {
+            notebookID: target.id
+        };
+
+        axios.get('/notebook/getNotebook', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            res.data !== null ? localStorage.setItem("clickedNotebookID", res.data._id) : alert("Can't get this note!");
+
+            setReadNotebook(prevState => !prevState);
+        })
+        .catch((error) => {
+            console.log("ERROR in Notebooks - /getNotebook", error);
+        });
+
+    }
+
+    const handleAddNotebook = () => {
+        setEditNotebook(prevState => !prevState);
     }
 
     return (
@@ -59,16 +82,17 @@ const Notebooks = () => {
             </SubheaderBar>
 
             <NotebooksGrid>
-                <Container>
-                    <NoteShape onClick={ handleAddNotebookClick }>
+                <NoteContainer>
+                    <NoteShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Notebook</Title>
-                </Container>
+                </NoteContainer>
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
             </NotebooksGrid>
 
-            { notebookPage ? <Navigate to='/create-notebook-template'/> : null }
+            { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
+            { readNotebook ? <Navigate to='/read-notebook'/> : null }
 
         </StyledNotebooks>
     );

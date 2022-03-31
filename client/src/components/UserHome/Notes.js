@@ -5,13 +5,14 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotes, NotesGrid, NoteShape, Container } from "./Notes.style";
+import { StyledNotes, NotesGrid, NoteShape, NoteContainer } from "./Notes.style";
 import { Title } from "../Common/Heading.style";
 
 const Notes = () => {
 
     const [notes, setNotes] = useState([]);
-    const [notePage, setNotePage] = useState(false);
+    const [createNoteTemplate, setCreateNoteTemplate] = useState(false);
+    const [readNote, setReadNote] = useState(false);
 
     useEffect(() => {
 
@@ -31,7 +32,7 @@ const Notes = () => {
             }
         })
         .then((res) => {
-            setNotes(res.data);
+            res.data.msg !== "Notes Not Found" && setNotes(res.data);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /getNotes", error);
@@ -40,15 +41,37 @@ const Notes = () => {
 
     const showNotes = (notes) => {
         return notes.map((note) => (
-            <Container key={ note._id }>
-                <NoteShape onClick={ handleAddNoteClick }></NoteShape>
+            <NoteContainer key={ note._id }>
+                <NoteShape id={ note._id } onClick={ (e) => handleReadNote(e) }></NoteShape>
                 <Title>{ note.title }</Title>
-            </Container>
+            </NoteContainer>
         ));
     };
 
-    const handleAddNoteClick = () => {
-        setNotePage(prevState => !prevState);
+    const handleReadNote = ({ target }) => {
+
+        const payload = {
+            noteID: target.id
+        };
+
+        axios.get('/note/getNote', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            res.data !== null ? localStorage.setItem("clickedNoteID", res.data._id) : alert("Can't get this note!");
+            
+            setReadNote((prevState) => !prevState);
+        })
+        .catch((error) => {
+            console.log("ERROR in Notes - /getNote", error);
+        });
+    }
+
+    const handleNewNote = () => {
+        setCreateNoteTemplate(prevState => !prevState);
+
     }
 
     return (
@@ -58,16 +81,17 @@ const Notes = () => {
             </SubheaderBar>
 
             <NotesGrid>
-                <Container>
-                    <NoteShape onClick={ handleAddNoteClick }>
+                <NoteContainer>
+                    <NoteShape onClick={ handleNewNote }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
                     <Title>Add Note</Title>
-                </Container>
+                </NoteContainer>
                 { notes.length > 0 ? showNotes(notes) : null }
             </NotesGrid>
 
-            { notePage ? <Navigate to='/create-note-template'/> : null }
+            { createNoteTemplate ? <Navigate to='/create-note-template'/> : null }
+            { readNote ? <Navigate to='/read-note' /> : null }
 
         </StyledNotes>
     );

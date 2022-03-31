@@ -16,8 +16,8 @@ const NotePreview = ({ sectionValues }) => {
     }
 
     const showSections = (sections) => {
-        return sections.map((section) => (
-            <Sections section={ section } />
+        return sections.map((section) => ( 
+            <Sections key={ section.id } section={ section } />
         ));
     };
 

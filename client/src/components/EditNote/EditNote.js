@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Header from "./Header";
 import Note from "./Note";
-import { TitleContainer } from "./EditNote.style";
+import { TitleContainer } from "../Common/Heading.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
 import { Save } from "./EditNote.style";
@@ -35,7 +35,8 @@ const EditNote = () => {
 
         name === 'title' && setNoteContent(prevState => ( { ...prevState, [name]: value }));
 
-        if(charCount === CHAR_SAVE) {
+        if(charCount === CHAR_SAVE && name !== 'title') {
+
             var newBody = Array.from(target.parentNode.children).map((child) => {
                 return { sectionID: child.name, content: child.value }
             });
@@ -51,13 +52,15 @@ const EditNote = () => {
                 noteTemplate: noteContent.template,
                 noteID: note._id
             })
-            .then((res) => {
-                setCharCount(0);
-                setSaved(true);
-            })
             .catch((err) => {
                 console.log("ERROR in EditNote - /saveNote", err);
             });
+
+            setCharCount(0);
+            setSaved(true);
+        }
+        else if(charCount === CHAR_SAVE) {
+            setCharCount(0);
         }
         else {
             setCharCount(charCount + 1);
@@ -66,12 +69,12 @@ const EditNote = () => {
 
     const save = ({ target }) => {
 
-        const textareas = target.parentNode.parentNode.children[1].children[0].childNodes;
+        const textareas = target.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[0].childNodes;
 
         var newBody = Array.from(textareas).map((child) => {
             return { sectionID: child.name, content: child.value }
         });
-        
+
         setNoteContent(prevState => ({
             ...prevState,
             body: newBody
@@ -98,6 +101,7 @@ const EditNote = () => {
             <EditNoteContent>
                 <TitleContainer>
                     <label>Title:</label>
+
                     <EditNoteInput 
                         name="title"
                         type="text"
@@ -106,6 +110,7 @@ const EditNote = () => {
                         onChange={ handleChange }> 
                     </EditNoteInput>
                 </TitleContainer>
+
                 <Note
                     note={ note }
                     setNote={ setNote }
@@ -116,6 +121,7 @@ const EditNote = () => {
 
             <Save>
                 { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
+                
                 <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
             </Save>
         </div>

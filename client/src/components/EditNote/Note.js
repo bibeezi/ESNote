@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { TemplateContainerEditNote, TemplateEditNote } from "../Common/Template.style"
+import { TemplateContainer, TemplateEditNote } from "../Common/Template.style"
 import { TextArea } from "../Common/Section.style";
 
 const Note = ({ handleChange, setNoteContent, note, setNote }) => {
@@ -80,9 +80,14 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
                     key={ section._id }
                     name={ section._id }
                     values={ section }
-                    defaultValue={ note.body.length !== 1 ? note.body[index].content : null }
+                    defaultValue={ 
+                        note.body.length > 0 ? 
+                            (note.body[index].sectionID === section._id ? 
+                                note.body[index].content : 
+                                null) :
+                            null 
+                        }
                     onChange={ (e) => handleChange(e) }>
-                    {  }
                 </TextArea>
             ));
     }
@@ -93,7 +98,7 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
     }, [template, note])
 
     return (
-        <TemplateContainerEditNote>
+        <TemplateContainer>
             { Object.keys(template).length !== 0 &&
 
                 <TemplateEditNote>
@@ -103,7 +108,7 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
                 </TemplateEditNote>
                 
             }
-        </TemplateContainerEditNote>
+        </TemplateContainer>
     );
 }
  

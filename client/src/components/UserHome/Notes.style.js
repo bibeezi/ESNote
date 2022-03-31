@@ -60,8 +60,6 @@ export const NotesGrid = styled.div`
     grid-auto-rows: 100%;
     overflow-y: auto;
 
-    /* max-width: 360px */
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         height: calc(100% - 2.5em);
         grid-template-columns: repeat(3, calc(100% / 3));
@@ -109,14 +107,12 @@ export const NotesGrid = styled.div`
     }
 `;
 
-export const Container = styled.div`
+export const NoteContainer = styled.div`
 
     display: grid;
     grid-template-rows: 70% auto;
     align-items: center;
     justify-items: center;
-
-    /* max-width: 360px */
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         grid-template-rows: 65% auto; 
@@ -156,8 +152,6 @@ export const NoteShape = styled.div`
         height: 2em;
         width: 2em;
     }
-
-    /* max-width: 360px */
 
     @media only screen and (max-height: 360px) {
         height: 5em;

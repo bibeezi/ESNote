@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { ReadNoteTitle, NotebookTitleContainer } from "../Common/Heading.style";
+import { NotebookTitleContainer } from "../Common/Header.style";
+import { ReadNoteTitle } from "../Common/Heading.style";
 import { TemplateReadNote } from "../Common/Template.style";
 import { NoteContainer } from "./ReadNotebook.style";
 import { ReadSections } from "../Common/Section.style";

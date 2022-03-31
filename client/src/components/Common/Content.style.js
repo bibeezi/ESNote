@@ -81,8 +81,7 @@ export const SlideContent = styled.div`
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
     height: calc(100vh - 6.8em);
     grid-template-rows: repeat(2, 50%);
-
-    /* max-width: 360px */
+    border-bottom: 1px solid black;
 
     @media only screen and (max-height: 360px) {
         height: calc(100vh - 6.8em);

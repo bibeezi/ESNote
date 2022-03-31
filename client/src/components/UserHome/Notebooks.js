@@ -5,9 +5,8 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotebooks, NotebooksGrid } from "./Notebooks.style";
-import { NoteContainer, NoteShape } from "./Notes.style";
-import { Title } from "../Common/Heading.style";
+import { StyledNotebooks, StyledGrid, NoteContainer, NoteShape } from "./UserHome.style";
+import { UserHomeTitle } from "../Common/Heading.style";
 
 const Notebooks = () => {
 
@@ -44,7 +43,7 @@ const Notebooks = () => {
         return notebooks.map((notebook) => (
             <NoteContainer key={ notebook._id }>
                 <NoteShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></NoteShape>
-                <Title>{ notebook.title }</Title>
+                <UserHomeTitle>{ notebook.title }</UserHomeTitle>
             </NoteContainer>
         ));
     };
@@ -81,15 +80,15 @@ const Notebooks = () => {
                 <Subheading>Notebooks</Subheading>
             </SubheaderBar>
 
-            <NotebooksGrid>
+            <StyledGrid>
                 <NoteContainer>
                     <NoteShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
-                    <Title>Add Notebook</Title>
+                    <UserHomeTitle>Add Notebook</UserHomeTitle>
                 </NoteContainer>
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
-            </NotebooksGrid>
+            </StyledGrid>
 
             { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
             { readNotebook ? <Navigate to='/read-notebook'/> : null }

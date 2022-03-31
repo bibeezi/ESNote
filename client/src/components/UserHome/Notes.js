@@ -5,8 +5,8 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotes, NotesGrid, NoteShape, NoteContainer } from "./Notes.style";
-import { Title } from "../Common/Heading.style";
+import { StyledNotes, StyledGrid, NoteShape, NoteContainer } from "./UserHome.style";
+import { UserHomeTitle } from "../Common/Heading.style";
 
 const Notes = () => {
 
@@ -43,7 +43,7 @@ const Notes = () => {
         return notes.map((note) => (
             <NoteContainer key={ note._id }>
                 <NoteShape id={ note._id } onClick={ (e) => handleReadNote(e) }></NoteShape>
-                <Title>{ note.title }</Title>
+                <UserHomeTitle>{ note.title }</UserHomeTitle>
             </NoteContainer>
         ));
     };
@@ -80,15 +80,15 @@ const Notes = () => {
                 <Subheading>Notes</Subheading>
             </SubheaderBar>
 
-            <NotesGrid>
+            <StyledGrid>
                 <NoteContainer>
                     <NoteShape onClick={ handleNewNote }>
                         <img alt="click to add" src={ Images.Plus } />
                     </NoteShape>
-                    <Title>Add Note</Title>
+                    <UserHomeTitle>Add Note</UserHomeTitle>
                 </NoteContainer>
                 { notes.length > 0 ? showNotes(notes) : null }
-            </NotesGrid>
+            </StyledGrid>
 
             { createNoteTemplate ? <Navigate to='/create-note-template'/> : null }
             { readNote ? <Navigate to='/read-note' /> : null }

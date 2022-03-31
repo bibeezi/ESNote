@@ -203,7 +203,7 @@ export const EditNoteInput = styled.input`
 
     @media only screen and (min-width: 1200px) {
         width: 25%;
-        font-size: 1.5em;
+        font-size: 1.25em;
     
     }
 `;

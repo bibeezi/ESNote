@@ -198,69 +198,7 @@ export const Subheading = styled.h1`
     }
 `;
 
-export const TitleContainer = styled.div`
-
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: end;
-
-    label {
-        margin-bottom: 0.25em;
-    }
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-
-    }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
-    }
-
-    @media only screen and (min-width: 1200px) {
-        
-    }
-`;
-
-export const NotebookTitleContainer = styled.div`
-
-    display: flex;
-    height: 3em;
-    width: 100%;
-    justify-content: center;
-    align-items: end;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-
-    }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
-    }
-
-    @media only screen and (min-width: 1200px) {
-        
-    }
-`;
-
-export const Title = styled.h1`
+export const UserHomeTitle = styled.h1`
 
     height: fit-content;
     width: 50%;
@@ -285,11 +223,12 @@ export const Title = styled.h1`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1em;
 
     }
 
     @media only screen and (min-width: 1200px) {
-
+        font-size: 1em;
     }
 `;
 
@@ -325,7 +264,7 @@ export const ReadNoteTitle = styled.h1`
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 70%;
+        width: 30%;
         font-size: 1.75em;
 
     }

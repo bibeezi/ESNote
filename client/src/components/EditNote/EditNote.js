@@ -3,10 +3,10 @@ import axios from "axios";
 
 import Header from "./Header";
 import Note from "./Note";
-import { TitleContainer } from "../Common/Heading.style";
+import { TitleContainer } from "../Common/Header.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
-import { Save } from "./EditNote.style";
+import { SaveContainer, SaveButtonContainer, SaveMessageContainer } from "./EditNote.style";
 import { SavedMessages } from "../Common/Messages.style";
 import { SaveButton } from "../Common/Button.style";
 
@@ -69,8 +69,8 @@ const EditNote = () => {
 
     const save = ({ target }) => {
 
-        const textareas = target.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[0].childNodes;
-        const title = target.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[1];
+        const textareas = target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes;
+        const title = target.parentNode.parentNode.parentNode.childNodes[0].childNodes[1];
 
         var newBody = Array.from(textareas).map((child) => {
             return { sectionID: child.name, content: child.value }
@@ -118,13 +118,17 @@ const EditNote = () => {
                     setNoteContent={ setNoteContent }
                     handleChange={ handleChange }>
                 </Note>
-            </EditNoteContent>
 
-            <Save>
-                { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
-                
-                <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
-            </Save>
+                <SaveContainer>
+                    <SaveMessageContainer>
+                        { saved ? <SavedMessages>Saved!</SavedMessages> : <SavedMessages></SavedMessages> }
+                    </SaveMessageContainer>
+
+                    <SaveButtonContainer>
+                        <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
+                    </SaveButtonContainer>
+                </SaveContainer>
+            </EditNoteContent>
         </div>
     );
 }

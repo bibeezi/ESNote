@@ -136,7 +136,7 @@ export const NextButton = styled.button`
     font-family : inherit;
     font-size: 1em;
     letter-spacing: 0.1em;
-    background-color: #FFBB4D;
+    background-color: #61D4D4;
     justify-self: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -179,11 +179,9 @@ export const SaveButton = styled.button`
     font-family : inherit;
     font-size: 1em;
     letter-spacing: 0.1em;
-    background-color: #61D4D4;
+    background-color: #FFBB4D;
     justify-self: right;
-    position: absolute;
-    bottom: 1em;
-    right: 1em;
+    transform: translateY(-0.5em);
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         padding: 0.5em 2em 0.5em 2em;
@@ -205,23 +203,20 @@ export const SaveButton = styled.button`
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         font-size: 1.25em;
         padding: 0.5em 2em 0.5em 2em;
-        bottom: 2em;
-        right: 2em;
+        
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 1.5em;
         padding: 0.5em 2em 0.5em 2em;
-        bottom: 2em;
-        right: 2em;
+        transform: translateY(-1.5em);
         
     }
 
     @media only screen and (min-width: 1200px) {
         font-size: 1.5em;
         padding: 0.5em 2em 0.5em 2em;
-        bottom: 2em;
-        right: 2em;
+        
     }
 `;

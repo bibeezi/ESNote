@@ -282,33 +282,40 @@ export const ReadNotebookContent = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        grid-auto-rows: calc(100vw - 3.4em);
 
     }
 
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
+        padding-top: 5.4em;
 
     }   
 
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        grid-auto-rows: calc(100vw - 3.4em);
         
     }
 
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+        padding-top: 7.4em;
 
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        grid-auto-rows: calc(100vw - 3.4em);
         
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        padding-top: 5.4em;
         
     }
 
     @media only screen and (min-width: 1200px) {
+        grid-template-columns: 50% 50%;
+        padding-top: 6.4em;
         
     }
 `;

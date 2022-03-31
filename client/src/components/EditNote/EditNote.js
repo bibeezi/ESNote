@@ -70,6 +70,7 @@ const EditNote = () => {
     const save = ({ target }) => {
 
         const textareas = target.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[0].childNodes;
+        const title = target.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[1];
 
         var newBody = Array.from(textareas).map((child) => {
             return { sectionID: child.name, content: child.value }
@@ -82,7 +83,7 @@ const EditNote = () => {
 
         axios.put('/note/saveNote', {
             noteBodies: newBody,
-            noteTitle: noteContent.title,
+            noteTitle: title.value,
             noteTemplate: noteContent.template,
             noteID: note._id
         })

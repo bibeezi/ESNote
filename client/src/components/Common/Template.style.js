@@ -130,6 +130,6 @@ export const TemplateReadNote = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 30%;
+        width: 70%;
     }
 `;

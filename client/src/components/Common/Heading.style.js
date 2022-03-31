@@ -325,8 +325,8 @@ export const ReadNoteTitle = styled.h1`
     }
 
     @media only screen and (min-width: 1200px) {
+        width: 70%;
         font-size: 1.75em;
-        width: 30%;
 
     }
 `;

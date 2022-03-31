@@ -209,7 +209,7 @@ export const IconsHeader = styled.div`
     }
 `;
 
-export const IconsHeaderCreateNote = styled.div`
+export const IconsHeaderCreate = styled.div`
 
     display: grid;
     grid-auto-flow: column;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
-import { StyledNotePreview } from "./CreateNote.style";
+import { StyledPreview } from "../Common/Content.style";
 import { Template } from "../Common/Template.style";
 import { Sections } from "../Common/Section.style"
 import { NextButton } from "../Common/Button.style";
@@ -47,7 +47,7 @@ const NotePreview = ({ sectionValues }) => {
     };
 
     return ( 
-        <StyledNotePreview>
+        <StyledPreview>
             <div></div>
 
             <Template>
@@ -61,7 +61,7 @@ const NotePreview = ({ sectionValues }) => {
 
             { editNote ? <Navigate to='/edit-note' /> : null }
 
-        </StyledNotePreview>
+        </StyledPreview>
     );
 }
  

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Images from "../../images/Images";
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
-import { StyledNotebooks, StyledGrid, NoteContainer, NoteShape } from "./UserHome.style";
+import { StyledNotebooks, StyledGrid, StyledContainer, StyledShape } from "./UserHome.style";
 import { UserHomeTitle } from "../Common/Heading.style";
 
 const Notebooks = () => {
@@ -41,10 +41,10 @@ const Notebooks = () => {
 
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
-            <NoteContainer key={ notebook._id }>
-                <NoteShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></NoteShape>
+            <StyledContainer key={ notebook._id }>
+                <StyledShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></StyledShape>
                 <UserHomeTitle>{ notebook.title }</UserHomeTitle>
-            </NoteContainer>
+            </StyledContainer>
         ));
     };
 
@@ -81,12 +81,12 @@ const Notebooks = () => {
             </SubheaderBar>
 
             <StyledGrid>
-                <NoteContainer>
-                    <NoteShape onClick={ handleAddNotebook }>
+                <StyledContainer>
+                    <StyledShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
-                    </NoteShape>
+                    </StyledShape>
                     <UserHomeTitle>Add Notebook</UserHomeTitle>
-                </NoteContainer>
+                </StyledContainer>
                 { notebooks.length > 0 ? showNotebooks(notebooks) : null }
             </StyledGrid>
 

@@ -1,6 +1,6 @@
 import Images from "../../images/Images";
 
-import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
+import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = () => {
@@ -19,11 +19,9 @@ const Header = () => {
                 <WelcomeHeading>Create Notebook Template</WelcomeHeading>
             </WelcomeHeader>
             
-            <IconsHeader>
-                <img alt="Toggle as Favourite" src={ Images.NotFavourited }></img>
-                <img alt="Settings" src={ Images.Setting }></img>
+            <IconsHeaderCreate>
                 <img alt="Help" src={ Images.Question }></img>
-            </IconsHeader>
+            </IconsHeaderCreate>
         </HeaderBar>
     );
 }

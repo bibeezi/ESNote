@@ -1,6 +1,6 @@
 import Images from "../../images/Images";
 import { HeaderBar } from "../Common/Header.style";
-import { HomeHeader, WelcomeHeader, IconsHeaderCreateNote } from "../Common/Header.style";
+import { HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = () => {
@@ -19,9 +19,9 @@ const Header = () => {
                 <WelcomeHeading>Create Note Template</WelcomeHeading>
             </WelcomeHeader>
             
-            <IconsHeaderCreateNote>
+            <IconsHeaderCreate>
                 <img alt="Help" src={ Images.Question }></img>
-            </IconsHeaderCreateNote>
+            </IconsHeaderCreate>
         </HeaderBar>
     );
 };

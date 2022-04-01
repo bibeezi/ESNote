@@ -36,6 +36,12 @@ const AddNote = () => {
         });
     }, [])
 
+    useEffect(() => {
+        var addedNotesIDs = addedNotes.filter((note) => note.props.id.substring(24) !== "img").map((note) => note.props.id);
+        
+        localStorage.setItem("addedNoteIDs", JSON.stringify(addedNotesIDs));
+    }, [addedNotes]);
+
 
     const handleList = () => {
         setShowList((prevState) => !prevState);
@@ -49,7 +55,7 @@ const AddNote = () => {
         displayList(value);
     }
 
-    const displayOption = ({ target }) => {
+    const addNote = ({ target }) => {
         const { id, title } = target;
 
         setAddedNotes((prevState) => [
@@ -61,7 +67,7 @@ const AddNote = () => {
             </NotebookNoteHeading>,
             <img 
                 key={ id + "img" } 
-                id={ id } 
+                id={ id + "img" } 
                 onClick={ (e) => deleteAddedNote(e) } 
                 src={ Images.Delete } 
                 alt="Delete Note" 
@@ -71,8 +77,16 @@ const AddNote = () => {
 
     const deleteAddedNote = ({ target }) => {
         const { id } = target;
-        
-        setAddedNotes((prevState) => prevState.filter((note) => note === id || note === id + "img"));
+
+        setAddedNotes((prevState) => 
+            prevState.filter((note) => note.props.id.substring(24) === "img" ? 
+                note.props.id.substring(0, 24) !== id.substring(0, 24) 
+            :   
+                note.props.id !== id.substring(0, 24) 
+            ).map(component =>
+                component
+            )
+        );
 
         var value = target.parentNode.parentNode.childNodes[0].childNodes[0].value;
 
@@ -88,6 +102,7 @@ const AddNote = () => {
     }
 
     const displayList = (value) => {
+
         var noteIDsAdded = addedNotes.map((note) => note.props.id);
 
         var filtered = notes.filter((note) => 
@@ -98,7 +113,7 @@ const AddNote = () => {
                 key={ note._id }
                 id={ note._id }
                 title={ note.title }
-                onMouseDown={ (e) => displayOption(e) }>
+                onMouseDown={ (e) => addNote(e) }>
                 { note.title }
             </ListOption>) : <ListOption>No Notes Found!</ListOption>
         );

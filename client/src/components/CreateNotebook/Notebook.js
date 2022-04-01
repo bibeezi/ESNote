@@ -4,11 +4,11 @@ import { SettingHeader } from "../Common/Header.style";
 import { SettingHeading } from "../Common/Heading.style";
 import { LongSettingInput } from "../Common/Inputs.style";
 
-const Title = ({ handleChange }) => {
+const Notebook = ({ handleChange }) => {
     return (
         <>
         <SettingHeader>
-            <SettingHeading>Title</SettingHeading>
+            <SettingHeading>Title and Colour</SettingHeading>
         </SettingHeader>
 
         <SettingsGrid>
@@ -16,9 +16,18 @@ const Title = ({ handleChange }) => {
                 <label>
                     <LongSettingInput 
                         onChange={ (e) => handleChange(e) }
-                        name="title"
+                        name="notebookTitle"
                         type="text"
                         placeholder="Title"> 
+                    </LongSettingInput>
+                </label>
+
+                <label>
+                    <LongSettingInput 
+                        onChange={ (e) => handleChange(e) }
+                        name="notebookHex"
+                        type="text"
+                        placeholder="Colour or Hex"> 
                     </LongSettingInput>
                 </label>
             </SettingContainer>
@@ -27,4 +36,4 @@ const Title = ({ handleChange }) => {
     );
 }
  
-export default Title;
+export default Notebook;

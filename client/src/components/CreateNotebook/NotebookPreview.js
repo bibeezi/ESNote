@@ -1,14 +1,19 @@
 
 import { StyledPreview } from "../Common/Content.style";
-import { Template } from "../Common/Template.style";
+import { TemplateCreateNotebook } from "../Common/Template.style";
 import { NextButton } from "../Common/Button.style";
+import { Strap, Bookmark } from "../Common/Section.style";
 
-const NotebookPreview = () => {
+const NotebookPreview = ({ strap, bookmark, colour }) => {
+
     return (
         <StyledPreview>
             <div></div>
-
-            <Template page="createNotebook"/>
+            
+            <TemplateCreateNotebook page="createNotebook" colour={ colour }>
+                <Strap strap={ strap }></Strap>
+                <Bookmark bookmark={ bookmark }></Bookmark>
+            </TemplateCreateNotebook>
             
             <NextButton
                 // onClick={ (e) => { openEditNote(); handleNext(e); } }

@@ -98,3 +98,67 @@ export const TextArea = styled.textarea`
         font-size: 1.5em;
     }
 `;
+
+export const Strap = styled.div`
+
+    ${({ strap }) => strap.show === true && css`
+        grid-column: ${ strap.strapX } / span 1;
+        grid-row: 1 / span 1;
+        border: 1px solid lightgrey;
+        background-color: ${ strap.strapHex };
+    `}
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1.25em;
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.25em;
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1.5em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 1.5em;
+    }
+`;
+
+export const Bookmark = styled.div`
+
+    ${({ bookmark }) => bookmark.show === true && css`
+        grid-column: ${ bookmark.bookmarkX } / span 1;
+        grid-row: 1 / span 4;
+        border: 1px solid lightgrey;
+        background-color: ${ bookmark.bookmarkHex };
+    `}
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+
+    }
+
+`

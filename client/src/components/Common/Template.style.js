@@ -172,3 +172,50 @@ export const TemplateReadNotebook = styled.div`
         width: 70%;
     }
 `;
+
+export const TemplateCreateNotebook = styled.div`
+
+    display: grid;
+    grid-template-columns: repeat(12, calc(100% / 12));
+    grid-template-rows: repeat(4, 25%);
+    grid-auto-flow: columns;
+    height: 80%;
+    width: 100%;
+    background-color: ${({colour}) => colour ? colour : "antiquewhite"};
+    border: 1px solid black;
+    ${({ page }) => page === "createNotebook" ? 
+    css`
+        border-radius: 0.25em 1em 1em 0.25em;
+    ` : 
+        null 
+    }
+    align-self: center;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;

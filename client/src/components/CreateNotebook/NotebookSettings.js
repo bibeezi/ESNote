@@ -1,5 +1,5 @@
 
-import Title from "./Title"
+import Notebook from "./Notebook"
 import AddNote from "./AddNote";
 import Bookmark from "./Bookmark";
 import Strap from "./Strap";
@@ -18,7 +18,7 @@ const NotebookSettings = ({
     return (
         <StyledSettings>
             <TemplateForm>
-                <Title handleChange={ handleChange } />
+                <Notebook handleChange={ handleChange } />
 
                 <AddNote />
 

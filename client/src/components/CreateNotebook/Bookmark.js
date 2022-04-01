@@ -29,7 +29,7 @@ const Bookmark = ({
                 <label>
                     <SettingInput 
                         onChange={ (e) => handleChange(e) }
-                        name="bookmark-x"
+                        name="bookmarkX"
                         type="number"
                         placeholder="X"> 
                     </SettingInput>
@@ -38,9 +38,9 @@ const Bookmark = ({
                 <label>
                     <SettingInput 
                         onChange={ (e) => handleChange(e) }
-                        name="bookmark-hex"
+                        name="bookmarkHex"
                         type="text"
-                        placeholder="Hex"> 
+                        placeholder="Colour or Hex"> 
                     </SettingInput>
                 </label>
             </SettingContainer>

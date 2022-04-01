@@ -28,7 +28,7 @@ const Strap = ({
                 <label>
                     <SettingInput 
                         onChange={ (e) => handleChange(e) }
-                        name="strap-x"
+                        name="strapX"
                         type="number"
                         placeholder="X"> 
                     </SettingInput>
@@ -37,9 +37,9 @@ const Strap = ({
                 <label>
                     <SettingInput 
                         onChange={ (e) => handleChange(e) }
-                        name="strap-hex"
+                        name="strapHex"
                         type="text"
-                        placeholder="Hex"> 
+                        placeholder="Colour or Hex"> 
                     </SettingInput>
                 </label>
             </SettingContainer>

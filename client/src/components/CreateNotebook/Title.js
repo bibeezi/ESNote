@@ -2,7 +2,7 @@
 import { SettingsGrid, SettingContainer } from "../Common/Form.style";
 import { SettingHeader } from "../Common/Header.style";
 import { SettingHeading } from "../Common/Heading.style";
-import { SettingInput } from "../Common/Inputs.style";
+import { LongSettingInput } from "../Common/Inputs.style";
 
 const Title = ({ handleChange }) => {
     return (
@@ -14,12 +14,12 @@ const Title = ({ handleChange }) => {
         <SettingsGrid>
             <SettingContainer>
                 <label>
-                    <SettingInput 
+                    <LongSettingInput 
                         onChange={ (e) => handleChange(e) }
                         name="title"
                         type="text"
                         placeholder="Title"> 
-                    </SettingInput>
+                    </LongSettingInput>
                 </label>
             </SettingContainer>
         </SettingsGrid>

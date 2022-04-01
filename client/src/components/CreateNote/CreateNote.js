@@ -12,22 +12,23 @@ const CreateNote = () => {
         const { name, id, value } = target;
 
         var copySectionValues = sectionValues;
+        var sectionValue;
 
         switch(name) {
             case "x":
-                var sectionValue = value === "" ? 1 : value;
+                sectionValue = value === "" ? 1 : value;
                 copySectionValues[parseInt(id)-1].values.x = parseInt(sectionValue);
                 break;
             case "y":
-                var sectionValue = value === "" ? 1 : value;
+                sectionValue = value === "" ? 1 : value;
                 copySectionValues[parseInt(id)-1].values.y = parseInt(sectionValue);
                 break;
             case "h":
-                var sectionValue = value === "" ? 4 : value;
+                sectionValue = value === "" ? 4 : value;
                 copySectionValues[parseInt(id)-1].values.h = parseInt(sectionValue);
                 break;
             case "w":
-                var sectionValue = value === "" ? 4 : value;
+                sectionValue = value === "" ? 4 : value;
                 copySectionValues[parseInt(id)-1].values.w = parseInt(sectionValue);
                 break;
             default:

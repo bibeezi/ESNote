@@ -14,9 +14,10 @@ const AddNote = () => {
 
     const [notes, setNotes] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
-    const [addNotes, setAddNotes] = useState([]);
+    const [addedNotes, setAddedNotes] = useState([]);
     const [showList, setShowList] = useState(false);
 
+    
     useEffect(() => {
         const payload = {
             userID: localStorage.getItem("userID")
@@ -35,50 +36,62 @@ const AddNote = () => {
         });
     }, [])
 
-    const handleChange = ({ target }) => {
-        const { value } = target;
-
-        setShowList(true);
-
-        var notesAdded = addNotes.map((note, index) => index % 2 === 0 ? note.props.children.toLowerCase() : "img");
-
-        var filtered = notes.filter((note) => 
-            note.title.toLowerCase().startsWith(value.toLowerCase()) && notesAdded.indexOf(note.title.toLowerCase()) === -1);
-        
-        setFilteredNotes(filtered.length ? filtered.map(note => 
-            <ListOption 
-                key={ note._id }
-                id={ note._id }
-                title={ note.title }
-                onMouseDown={ (e) => displayOption(e) }>
-                { note.title }
-            </ListOption>) : <ListOption>No Notes Found!</ListOption>
-        );
-    }
-
-    const displayOption = ({ target }) => {
-        const { id, title } = target;
-
-        setAddNotes((prevState) => [
-            ...prevState,
-            <NotebookNoteHeading key={ id }>{ title }</NotebookNoteHeading>,
-            <img src={ Images.Delete } alt="Delete Note" />
-        ]);
-    }
 
     const handleList = () => {
         setShowList((prevState) => !prevState);
     }
 
-    const handleBlur = ({ target }) => {
+    const handleChange = ({ target }) => {
         const { value } = target;
 
+        setShowList(true);
+
+        displayList(value);
+    }
+
+    const displayOption = ({ target }) => {
+        const { id, title } = target;
+
+        setAddedNotes((prevState) => [
+            ...prevState,
+            <NotebookNoteHeading 
+                key={ id } 
+                id={ id }>
+                { title }
+            </NotebookNoteHeading>,
+            <img 
+                key={ id + "img" } 
+                id={ id } 
+                onClick={ (e) => deleteAddedNote(e) } 
+                src={ Images.Delete } 
+                alt="Delete Note" 
+            />
+        ]);
+    }
+
+    const deleteAddedNote = ({ target }) => {
+        const { id } = target;
+        
+        setAddedNotes((prevState) => prevState.filter((note) => note === id || note === id + "img"));
+
+        var value = target.parentNode.parentNode.childNodes[0].childNodes[0].value;
+
+        displayList(value);
+    }
+
+    const handleBlur = ({ target }) => {
+        const { value } = target;
+        
         setShowList(false);
 
-        var notesAdded = addNotes.map((note, index) => index % 2 === 0 ? note.props.children.toLowerCase() : "img");
+        displayList(value);
+    }
+
+    const displayList = (value) => {
+        var noteIDsAdded = addedNotes.map((note) => note.props.id);
 
         var filtered = notes.filter((note) => 
-            note.title.toLowerCase().startsWith(value.toLowerCase()) && notesAdded.indexOf(note.title.toLowerCase()) === -1);
+            note.title.toLowerCase().startsWith(value.toLowerCase()) && noteIDsAdded.indexOf(note._id) === -1);
         
         setFilteredNotes(filtered.length ? filtered.map(note => 
             <ListOption 
@@ -90,10 +103,6 @@ const AddNote = () => {
             </ListOption>) : <ListOption>No Notes Found!</ListOption>
         );
     }
-
-    useEffect(() => {
-        console.log(addNotes);
-    }, [addNotes])
 
     return (
         <>
@@ -118,12 +127,12 @@ const AddNote = () => {
 
                     { showList ? filteredNotes : null }
 
-                    { addNotes.length ? 
+                    { addedNotes.length ? 
                         <SettingHeading>Notes to be Added:</SettingHeading> &&
 
                         <SettingHeader>
 
-                            { addNotes }
+                            { addedNotes }
 
                         </SettingHeader> 
                     : null }

@@ -260,6 +260,35 @@ export const SettingHeading = styled.h1`
     }
 `;
 
+export const NotebookNoteHeading = styled.h1`
+
+    display: inline-block;
+    width: fit-content;
+    padding-left: 0.5em;
+    font-size: 1em;
+    font-weight: 100;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
 export const SectionTitle = styled.h1`
 
     /* max-width: 360px */

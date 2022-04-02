@@ -104,7 +104,7 @@ export const Strap = styled.div`
     ${({ strap }) => strap.show === true && css`
         grid-column: ${ strap.strapX } / span 1;
         grid-row: 1 / span 1;
-        border: 1px solid lightgrey;
+        border: 1px solid ${ strap.strapHex };
         background-color: ${ strap.strapHex };
     `}
 
@@ -137,7 +137,7 @@ export const Bookmark = styled.div`
     ${({ bookmark }) => bookmark.show === true && css`
         grid-column: ${ bookmark.bookmarkX } / span 1;
         grid-row: 1 / span 4;
-        border: 1px solid lightgrey;
+        border: 1px solid ${ bookmark.bookmarkHex };
         background-color: ${ bookmark.bookmarkHex };
     `}
 

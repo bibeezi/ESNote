@@ -5,7 +5,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const NotebookSchema = new Schema ({
     title: String,
-    notes: Array
+    colour: String,
+    notes: Array,
+    strapValues: {
+        strap: Boolean,
+        strapX: Number,
+        strapHex: String
+    },
+    bookmarkValues: {
+        bookmark: Boolean,
+        bookmarkX: Number,
+        bookmarkHex: String
+    }
 });
 
 // Schema Model - save data to database using model instances

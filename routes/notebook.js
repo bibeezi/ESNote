@@ -46,5 +46,50 @@ router.get("/getNotebook", (req, res) => {
     });
 });
 
+router.post("/saveNotebook", (req, res) => {
+
+    const data = req.body;
+    const userID = data.userID;
+    const noteIDs = data.noteIDs;
+    const strapValues = data.strap;
+    const bookmarkValues = data.bookmark;
+    const colour = data.colour;
+    const title = data.title; 
+    
+    const newNotebookData = {
+        title: title,
+        colour: colour,
+        notes: noteIDs,
+        strapValues: {
+            strap: strapValues.show,
+            strapX: strapValues.strapX,
+            strapHex: strapValues.strapHex
+        },
+        bookmarkValues: {
+            bookmark: bookmarkValues.show,
+            bookmarkX: bookmarkValues.bookmarkX,
+            bookmarkHex: bookmarkValues.bookmarkHex
+        }
+    }
+
+    const newNotebook = new NotebookModel(newNotebookData);
+
+    newNotebook.save((error, document) => {
+        if (error) return res.status(500).json({msg: 'ERROR in notebook route - /saveNotebook'});
+
+        UserModel.updateOne(
+            { _id: userID },
+            { "$push": 
+                { "notebooks": document._id.toString() } 
+            }
+        ).exec();
+
+        return res.json({
+            notebookID: document._id.toString(),
+            msg: 'Data received in Database!'
+        });
+    })
+});
+
 module.exports = router;
 

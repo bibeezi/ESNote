@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Header from "./Header";
 import NotebookPreview from "./NotebookPreview";
@@ -134,8 +134,8 @@ const CreateNotebook = () => {
 
            <CreateContent>
                 <NotebookPreview
-                    strap={ strapValues }
-                    bookmark={ bookmarkValues }
+                    strapValues={ strapValues }
+                    bookmarkValues={ bookmarkValues }
                     colour={ colour }
                     title={ title }>
                 </NotebookPreview>

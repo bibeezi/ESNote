@@ -7,8 +7,8 @@ const UserSchema = new Schema ({
     username: String,
     email: String,
     password: String,
-    notes: [],
-    notebooks: []
+    notes: Array,
+    notebooks: Array
 });
 
 // Schema Model - save data to database using model instances

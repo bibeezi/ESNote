@@ -14,6 +14,8 @@ router.get("/getNotes", (req, res) => {
     const data = JSON.parse(req.query.data);
     const userID = data.userID;
 
+    console.log(userID);
+
     UserModel.find({
         _id: userID
     })

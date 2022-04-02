@@ -12,6 +12,11 @@ export const NoteContainer = styled.div`
 
     }   
 
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+
+    }
+
+
     @media only screen and (min-width: 768px) and (max-width: 992px) {
 
     }

@@ -66,7 +66,7 @@ const ReadNotebook = () => {
         <div>
             <Header notebook={ notebook }/>
 
-            <ReadNotebookContent>
+            <ReadNotebookContent notebookLength={ notes.length }>
                 { showNotes(notes) }
             </ReadNotebookContent>
         </div>

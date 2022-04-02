@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NonUserHomeContent = styled.div`
 
@@ -271,6 +271,11 @@ export const ReadNotebookContent = styled.div`
     padding-top: 3.4em;
     grid-auto-flow: row;
     grid-auto-rows: calc(100vh - 3.4em);
+    ${({ notebookLength }) => notebookLength <= 1 ? css`
+        grid-template-columns: 50% 50%;
+    ` : css`
+        grid-template-columns: none;
+    `}
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -304,13 +309,16 @@ export const ReadNotebookContent = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-template-columns: 50% 50%;
         padding-top: 5.4em;
         
     }
 
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        padding-top: 6.4em;
+
+    }
+
     @media only screen and (min-width: 1200px) {
-        grid-template-columns: 50% 50%;
         padding-top: 6.4em;
         
     }

@@ -140,7 +140,7 @@ export const SettingInput = styled.input`
     box-sizing: border-box;
     border-radius: 0.5em;
     border: 1px solid #7E2D009A;
-    font-size: 0.75em;
+    font-size: 1em;
     font-family: Nunito;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -179,7 +179,7 @@ export const LongSettingInput = styled.input`
     box-sizing: border-box;
     border-radius: 0.5em;
     border: 1px solid #7E2D009A;
-    font-size: 0.75em;
+    font-size: 1em;
     font-family: Nunito;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -222,7 +222,7 @@ export const SearchInputCreateNotebook = styled.input`
         border-radius: 0.5em;
     `}
     border: 1px solid #7E2D009A;
-    font-size: 0.75em;
+    font-size: 1em;
     font-family: Nunito;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

@@ -66,7 +66,7 @@ export const StyledSearch = styled.div`
 export const StyledGrid = styled.div`
 
     display: grid;
-    height: calc(100% - 3.4em);
+    height: calc(100% - 1.7em);
     grid-auto-flow: row;
     grid-template-columns: repeat(2, 50%);
     grid-auto-rows: 100%;
@@ -104,6 +104,12 @@ export const StyledGrid = styled.div`
         
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        grid-auto-rows: 100%;
+
+    }
+
+
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         height: calc(100% - 5.4em);
         grid-template-columns: repeat(4, 25%);
@@ -126,7 +132,7 @@ export const StyledGrid = styled.div`
 export const StyledNotebooks = styled.div`
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        height: calc(100vh - 6.9em);
+        height: calc(100vh - 6.8em);
         border-right: 1px solid #7E2D009A;
     }
 
@@ -183,27 +189,23 @@ export const StyledNotes = styled.div`
         
     }   
 
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
         height: calc(100vh - 6.8em);
         border-top: none;
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        border-top: none;
+        height: calc(100vh - 6.8em);
+    }
+
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         height: calc(100vh - 10.8em);
         border-top: none;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
-        height: calc(100vh - 6.8em);
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
-        height: calc(100vh - 6.8em);
-        
     }
 
     @media only screen and (min-width: 1200px) {
@@ -215,7 +217,7 @@ export const StyledNotes = styled.div`
 export const StyledContainer = styled.div`
 
     display: grid;
-    grid-template-rows: 80% auto;
+    grid-template-rows: 70% auto;
     align-items: center;
     justify-items: center;
 
@@ -238,6 +240,7 @@ export const StyledContainer = styled.div`
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
+        grid-template-rows: 70% auto;
 
     }
 

@@ -337,7 +337,7 @@ export const SettingHeader = styled.div`
         height: 1.5em;
 
         ${({ page }) => page === "createNotebook" ? css`            
-
+            padding-left: 0.5em;
         ` : css`
             margin-left: 1em;
         `}
@@ -346,6 +346,7 @@ export const SettingHeader = styled.div`
     div {
         height: 1.4em;
         width: 1.4em;
+        margin-left: 0.5em;
         border: 1px solid black;
         border-radius: 0.3em;
     }

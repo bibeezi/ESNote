@@ -56,11 +56,11 @@ export const WelcomeHeading = styled.h1`
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.5em;
+        font-size: 1.25em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 2em;
+        font-size: 1.25em;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {

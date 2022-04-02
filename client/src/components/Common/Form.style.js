@@ -68,13 +68,12 @@ export const StyledRegistrationForm = styled.form`
 export const TemplateForm = styled.form`
 
     display: grid;
-    margin: 0 auto;
+    margin: 0 auto 1em auto;
     height: fit-content;
     width: 95%;
     grid-auto-flow: row;
     grid-template-rows: fit-content(100%);
 
-    /* max-width: 360px */
     @media only screen and (max-height: 360px) {
         
     }

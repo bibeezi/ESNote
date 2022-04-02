@@ -1,6 +1,6 @@
 // Import npm packages
 const express = require('express');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Import from directories
 const NoteTemplateModel = require('../models/noteTemplateModel');
@@ -77,6 +77,35 @@ router.get("/getTemplate", (req, res) => {
         return res.json(doc);
     });
 
+});
+
+router.get("/getTemplates", (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+
+    const noteIDs = data.noteIDs.map((note) => {
+        return mongoose.Types.ObjectId(note._id);
+    });
+
+    NoteModel.find({ 
+        _id: { "$in": noteIDs },
+    }, 'template', 
+    (err, docs) => {
+        if (err) return res.status(500).json({ msg: 'ERROR in template route - /getTemplates', err});
+
+        const templateIDs = docs.map((doc) => {
+            return mongoose.Types.ObjectId(doc.template);
+        });
+
+        NoteTemplateModel.find(
+            { _id: { "$in": templateIDs }
+        }, 
+        (err, docs) => {
+            if (err) return res.status(500).json({ msg: 'ERROR in template route - /getTemplates', err});
+    
+            return res.json(docs);
+        });
+    });
 });
 
 module.exports = router;

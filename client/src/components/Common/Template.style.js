@@ -228,3 +228,53 @@ export const TemplateCreateNotebook = styled.div`
         width: 80%;
     }
 `;
+
+export const TemplateUserHome = styled.div`
+
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+    grid-auto-flow: columns;
+    height: 80%;
+    width: 50%;
+    ${({ shape, colour }) => shape === "notebook" ? css`
+        grid-template-columns: repeat(12, calc(100% / 12));
+        border-radius: 0.25em 1em 1em 0.25em;
+        background-color: ${ colour };
+    ` : css`
+        grid-template-columns: repeat(4, 25%);
+        background-color: whitesmoke;
+    `}
+    border: 1px solid black;
+    align-self: end;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 40%;
+        justify-self: center;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        width: 40%;
+        justify-self: center;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        height: 90%;
+        width: 80%;
+    }
+`;

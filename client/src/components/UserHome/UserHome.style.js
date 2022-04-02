@@ -1,11 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledSort = styled.div`
 
     display: flex;
     justify-content: left;
-
-    /* max-width: 360px */
 
     @media only screen and (max-height: 360px) {
     }
@@ -35,8 +33,6 @@ export const StyledSearch = styled.div`
 
     display: flex;
     justify-content: right;
-
-    /* max-width: 360px */
 
     @media only screen and (max-height: 360px) {
 
@@ -260,7 +256,12 @@ export const StyledShape = styled.div`
     height: 7em;
     width: 5em;
     border: 1px solid #80655C;
-    border-radius: 0.25em 1em 1em 0.25em;
+    ${({ shape}) => shape === "note" ? css`
+        border-radius: none;
+    `
+    : css`
+        border-radius: 0.25em 1em 1em 0.25em;
+    `}
     align-self: end;
     align-items: center;
     justify-content: center;

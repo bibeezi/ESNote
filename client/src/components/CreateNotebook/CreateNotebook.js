@@ -7,28 +7,28 @@ import NotebookSettings from "./NotebookSettings";
 
 const CreateNotebook = () => {
 
-    const [strapValues, setStrapValues] = useState({
+    const [strap, setStrap] = useState({
         show: false,
-        strapX: 2,
-        strapHex: "#FFFFFF"
+        x: 2,
+        hex: "#FFFFFF"
     });
-    const [bookmarkValues, setBookmarkValues] = useState({
+    const [bookmark, setBookmark] = useState({
         show: false,
-        bookmarkX: 10,
-        bookmarkHex: "#FFFFFF"
+        x: 10,
+        hex: "#FFFFFF"
     });
     const [title, setTitle] = useState('');
     const [colour, setColour] = useState('antiquewhite');
 
     const handleStrap = () => {
-        setStrapValues((prevState) => ({
+        setStrap((prevState) => ({
             ...prevState,
             show: !prevState.show
         }));
     }
 
     const handleBookmark = () => {
-        setBookmarkValues((prevState) => ({
+        setBookmark((prevState) => ({
             ...prevState,
             show: !prevState.show
         }));
@@ -43,11 +43,11 @@ const CreateNotebook = () => {
 
         switch(name) {
             case "strapX":
-                newValue = value === "" && 2;
+                newValue = value === "" ? 2 : value;
                 
-                setStrapValues((prevState) => ({
+                setStrap((prevState) => ({
                     ...prevState,
-                    [name]: newValue
+                    x: newValue
                 }));
                 break;
 
@@ -63,18 +63,18 @@ const CreateNotebook = () => {
                         :
                         standardizeColor(value);
 
-                setStrapValues((prevState) => ({
+                setStrap((prevState) => ({
                     ...prevState,
-                    [name]: newValue
+                    hex: newValue
                 }));
                 break;
 
             case "bookmarkX":
-                newValue = value === "" && 10;
+                newValue = value === "" ? 10 : value;
 
-                setBookmarkValues((prevState) => ({
+                setBookmark((prevState) => ({
                     ...prevState,
-                    [name]: newValue
+                    x: newValue
                 }));
                 break;
 
@@ -90,9 +90,9 @@ const CreateNotebook = () => {
                         :
                         standardizeColor(value);
 
-                setBookmarkValues((prevState) => ({
+                    setBookmark((prevState) => ({
                     ...prevState,
-                    [name]: newValue
+                    hex: newValue
                 }));
                 break;
 
@@ -134,17 +134,17 @@ const CreateNotebook = () => {
 
            <CreateContent>
                 <NotebookPreview
-                    strapValues={ strapValues }
-                    bookmarkValues={ bookmarkValues }
+                    strap={ strap }
+                    bookmark={ bookmark }
                     colour={ colour }
                     title={ title }>
                 </NotebookPreview>
 
                 <NotebookSettings 
                     handleChange={ handleChange }
-                    strap={ strapValues.show }
+                    strap={ strap.show }
                     handleStrap={ handleStrap }
-                    bookmark={ bookmarkValues.show }
+                    bookmark={ bookmark.show }
                     handleBookmark={ handleBookmark }>
                 </NotebookSettings>
            </CreateContent>

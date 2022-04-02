@@ -7,15 +7,15 @@ const NotebookSchema = new Schema ({
     title: String,
     colour: String,
     notes: Array,
-    strapValues: {
-        strap: Boolean,
-        strapX: Number,
-        strapHex: String
+    strap: {
+        show: Boolean,
+        x: Number,
+        hex: String
     },
-    bookmarkValues: {
-        bookmark: Boolean,
-        bookmarkX: Number,
-        bookmarkHex: String
+    bookmark: {
+        show: Boolean,
+        x: Number,
+        hex: String
     }
 });
 

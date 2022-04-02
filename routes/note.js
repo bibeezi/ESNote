@@ -14,8 +14,6 @@ router.get("/getNotes", (req, res) => {
     const data = JSON.parse(req.query.data);
     const userID = data.userID;
 
-    console.log(userID);
-
     UserModel.find({
         _id: userID
     })
@@ -53,7 +51,7 @@ router.get("/getNotebookNotes", (req, res) => {
 
     const data = JSON.parse(req.query.data);
 
-    var noteIDs = data.noteIDs.map((note) => {
+    const noteIDs = data.noteIDs.map((note) => {
         return mongoose.Types.ObjectId(note);
     });
 

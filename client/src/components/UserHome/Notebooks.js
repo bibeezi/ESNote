@@ -8,6 +8,9 @@ import { Subheading } from "../Common/Heading.style";
 import { StyledNotebooks, StyledGrid, StyledContainer, StyledShape } from "./UserHome.style";
 import { UserHomeTitle } from "../Common/Heading.style";
 
+import { TemplateUserHome } from "../Common/Template.style";
+import { Strap, Bookmark } from "../Common/Section.style";
+
 const Notebooks = () => {
 
     const [notebooks, setNotebooks] = useState([]);
@@ -42,11 +45,22 @@ const Notebooks = () => {
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
             <StyledContainer key={ notebook._id }>
-                <StyledShape id={ notebook._id } onClick={ (e) => handleReadNotebook(e) }></StyledShape>
+                <TemplateUserHome colour={ notebook.colour } shape={ "notebook" }>
+                    <Strap strap={ notebook.strap }></Strap>
+                    <Bookmark bookmark={ notebook.bookmark }></Bookmark>
+                </TemplateUserHome>
+                {/* <StyledShape 
+                    id={ notebook._id } 
+                    onClick={ (e) => handleReadNotebook(e) } 
+                    shape={ "notebook" }>
+                </StyledShape> */}
+                
                 <UserHomeTitle>{ notebook.title }</UserHomeTitle>
             </StyledContainer>
         ));
     };
+
+    console.log(notebooks);
 
     const handleReadNotebook = ({ target }) => {
 

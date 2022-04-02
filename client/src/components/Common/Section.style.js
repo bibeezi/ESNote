@@ -65,6 +65,42 @@ export const ReadSections = styled.div`
     }
 `;
 
+export const UserHomeSections = styled.div`
+
+    background-color: whitesmoke;
+    border: 2px solid lightblue;
+    border-style: dotted;
+    font-size: 0.2em;
+    cursor: default;
+
+    ${ ({ section }) => css`
+        grid-column: ${ section.x } / span ${ section.w };
+        grid-row: ${ section.y } / span ${ section.h };
+    `}
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1.25em;
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.25em;
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1.25em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 1.25em;
+        
+    }
+`;
+
 export const TextArea = styled.textarea`
 
     margin: 0;
@@ -102,10 +138,10 @@ export const TextArea = styled.textarea`
 export const Strap = styled.div`
 
     ${({ strap }) => strap.show === true && css`
-        grid-column: ${ strap.strapX } / span 1;
+        grid-column: ${ strap.x } / span 1;
         grid-row: 1 / span 1;
-        border: 1px solid ${ strap.strapHex };
-        background-color: ${ strap.strapHex };
+        border: 1px solid ${ strap.hex };
+        background-color: ${ strap.hex };
     `}
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -135,10 +171,10 @@ export const Strap = styled.div`
 export const Bookmark = styled.div`
 
     ${({ bookmark }) => bookmark.show === true && css`
-        grid-column: ${ bookmark.bookmarkX } / span 1;
+        grid-column: ${ bookmark.x } / span 1;
         grid-row: 1 / span 4;
-        border: 1px solid ${ bookmark.bookmarkHex };
-        background-color: ${ bookmark.bookmarkHex };
+        border: 1px solid ${ bookmark.hex };
+        background-color: ${ bookmark.hex };
     `}
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

@@ -7,7 +7,7 @@ import { TemplateCreateNotebook } from "../Common/Template.style";
 import { NextButton } from "../Common/Button.style";
 import { Strap, Bookmark } from "../Common/Section.style";
 
-const NotebookPreview = ({ strapValues, bookmarkValues, colour, title }) => {
+const NotebookPreview = ({ strap, bookmark, colour, title }) => {
 
     const [readNotebook, setReadNotebook] = useState();
 
@@ -23,8 +23,8 @@ const NotebookPreview = ({ strapValues, bookmarkValues, colour, title }) => {
             title: title,
             colour: colour,
             noteIDs: JSON.parse(localStorage.getItem("addedNoteIDs")),
-            strap: strapValues,
-            bookmark: bookmarkValues,
+            strap: strap,
+            bookmark: bookmark,
         }
 
         axios({
@@ -46,8 +46,8 @@ const NotebookPreview = ({ strapValues, bookmarkValues, colour, title }) => {
             <div></div>
             
             <TemplateCreateNotebook page="createNotebook" colour={ colour }>
-                <Strap strap={ strapValues }></Strap>
-                <Bookmark bookmark={ bookmarkValues }></Bookmark>
+                <Strap strap={ strap }></Strap>
+                <Bookmark bookmark={ bookmark }></Bookmark>
             </TemplateCreateNotebook>
             
             <NextButton

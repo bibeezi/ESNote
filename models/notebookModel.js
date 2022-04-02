@@ -16,6 +16,10 @@ const NotebookSchema = new Schema ({
         show: Boolean,
         x: Number,
         hex: String
+    },
+    date: {
+        type: String,
+        default: Date.now()
     }
 });
 

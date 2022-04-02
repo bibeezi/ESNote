@@ -11,7 +11,7 @@ import { UserHomeTitle } from "../Common/Heading.style";
 import { TemplateUserHome } from "../Common/Template.style";
 import { Strap, Bookmark } from "../Common/Section.style";
 
-const Notebooks = ({ search, notebooks }) => {
+const Notebooks = ({ search, notes, sortBy, notebooks }) => {
 
     const [editNotebook, setEditNotebook] = useState(false);
     const [readNotebook, setReadNotebook] = useState(false);
@@ -19,8 +19,8 @@ const Notebooks = ({ search, notebooks }) => {
 
     
     useEffect(() => {
-        searchNotebooks();
-    }, [notebooks, search]);
+        searchSortNotebooks();
+    }, [notebooks, search, sortBy]);
 
 
     const showNotebooks = (notebooks) => {
@@ -66,8 +66,52 @@ const Notebooks = ({ search, notebooks }) => {
         setEditNotebook(prevState => !prevState);
     }
 
-    const searchNotebooks = () => {
-        var filteredNotebooks = notebooks.filter((notebook) => notebook.title.toLowerCase().search(search.toLowerCase()) !== -1);
+    const searchSortNotebooks = () => {
+
+        var filteredNotes = notes.filter((note) => 
+            note.title.toLowerCase().search(search.toLowerCase()) !== -1 
+            ||
+            Object.values(note.body).some(val => val.content.toLowerCase().search(search.toLowerCase()) !== -1));
+
+        var noteIDs = filteredNotes.map(note => note._id);
+
+        var filteredNotebooks = notebooks.filter(notebook => 
+            notebook.notes.some(val => noteIDs.includes(val)) 
+            || 
+            notebook.title.toLowerCase().search(search.toLowerCase()) !== -1);        
+        
+        switch(sortBy) {
+            case "nameDESC":
+                filteredNotebooks = filteredNotebooks.sort((notebook1, notebook2) => {
+                    if(notebook1.title < notebook2.title) { return -1; }
+                    if(notebook1.title > notebook2.title) { return 1; }
+                    return 0;
+                });
+                break;
+            case "dateDESC":
+                filteredNotebooks = filteredNotebooks.sort((notebook1, notebook2) => {
+                    if(notebook1.date < notebook2.date) { return -1; }
+                    if(notebook1.date > notebook2.date) { return 1; }
+                    return 0;
+                });
+                break;
+            case "nameASC":
+                filteredNotebooks = filteredNotebooks.sort((notebook1, notebook2) => {
+                    if(notebook1.title < notebook2.title) { return 1; }
+                    if(notebook1.title > notebook2.title) { return -1; }
+                    return 0;
+                });
+                break;
+            case "dateASC":
+                filteredNotebooks = filteredNotebooks.sort((notebook1, notebook2) => {
+                    if(notebook1.date < notebook2.date) { return 1; }
+                    if(notebook1.date > notebook2.date) { return -1; }
+                    return 0;
+                });
+                break;
+            default:
+                break;
+        }
         
         setSearchedNotebooks(filteredNotebooks);
     }

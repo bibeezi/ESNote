@@ -13,6 +13,7 @@ const UserHome = () => {
     const [notes, setNotes] = useState([]);
     const [noteTemplates, setNoteTemplates] = useState([]);
     const [search, setSearch] = useState('');
+    const [sortBy, setSortBy] = useState('nameDESC');
 
     useEffect(() => {
 
@@ -84,7 +85,16 @@ const UserHome = () => {
     const handleChange = ({ target }) => {
         const { name, value } = target;
 
-        setSearch(value);
+        switch(name) {
+            case "search":
+                setSearch(value);
+                break;
+            case "sort":
+                setSortBy(value);
+                break;
+            default:
+                break;
+        }
     }
 
     return (
@@ -97,11 +107,14 @@ const UserHome = () => {
                 <SlideContent>
                     <Notebooks 
                         search={ search }
+                        sortBy={ sortBy }
+                        notes={ notes }
                         notebooks={ notebooks }
                     />
                     
                     <Notes 
                         search={ search }
+                        sortBy={ sortBy }
                         notes={ notes }
                         noteTemplates={ noteTemplates }
                     />

@@ -11,7 +11,7 @@ import { UserHomeTitle } from "../Common/Heading.style";
 import { UserHomeSections } from "../Common/Section.style";
 import { TemplateUserHome } from "../Common/Template.style";
 
-const Notes = ({ search, notes, noteTemplates }) => {
+const Notes = ({ search, sortBy, notes, noteTemplates }) => {
 
     const [createNoteTemplate, setCreateNoteTemplate] = useState(false);
     const [readNote, setReadNote] = useState(false);
@@ -19,8 +19,8 @@ const Notes = ({ search, notes, noteTemplates }) => {
 
 
     useEffect(() => {
-        searchNotes();
-    }, [notes, noteTemplates, search]);
+        searchSortNotes();
+    }, [notes, noteTemplates, search, sortBy]);
 
 
     const showNotes = (notes) => {
@@ -75,14 +75,47 @@ const Notes = ({ search, notes, noteTemplates }) => {
         setCreateNoteTemplate(prevState => !prevState);
     }
 
-    const searchNotes = () => {
+    const searchSortNotes = () => {
+
         var filteredNotes = notes.filter((note) => 
-            note.title.toLowerCase().search(search.toLowerCase()) !== -1);
+            note.title.toLowerCase().search(search.toLowerCase()) !== -1 ||
+            Object.values(note.body).some(val => val.content.toLowerCase().search(search.toLowerCase()) !== -1));
+
+        switch(sortBy) {
+            case "nameDESC":
+                filteredNotes = filteredNotes.sort((note1, note2) => {
+                    if(note1.title < note2.title) { return -1; }
+                    if(note1.title > note2.title) { return 1; }
+                    return 0;
+                });
+                break;
+            case "dateDESC":
+                filteredNotes = filteredNotes.sort((note1, note2) => {
+                    if(note1.date < note2.date) { return -1; }
+                    if(note1.date > note2.date) { return 1; }
+                    return 0;
+                });
+                break;
+            case "nameASC":
+                filteredNotes = filteredNotes.sort((note1, note2) => {
+                    if(note1.title < note2.title) { return 1; }
+                    if(note1.title > note2.title) { return -1; }
+                    return 0;
+                });
+                break;
+            case "dateASC":
+                filteredNotes = filteredNotes.sort((note1, note2) => {
+                    if(note1.date < note2.date) { return 1; }
+                    if(note1.date > note2.date) { return -1; }
+                    return 0;
+                });
+                break;
+            default:
+                break;
+        }
         
         setSearchedNotes(filteredNotes);
     }
-
-
 
     return (
         <StyledNotes>

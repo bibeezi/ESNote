@@ -45,15 +45,14 @@ const Notebooks = () => {
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
             <StyledContainer key={ notebook._id }>
-                <TemplateUserHome colour={ notebook.colour } shape={ "notebook" }>
+                <TemplateUserHome 
+                    id={ notebook._id }
+                    colour={ notebook.colour } 
+                    shape={ "notebook" }
+                    onClick={ (e) => handleReadNotebook(e) } >
                     <Strap strap={ notebook.strap }></Strap>
                     <Bookmark bookmark={ notebook.bookmark }></Bookmark>
                 </TemplateUserHome>
-                {/* <StyledShape 
-                    id={ notebook._id } 
-                    onClick={ (e) => handleReadNotebook(e) } 
-                    shape={ "notebook" }>
-                </StyledShape> */}
                 
                 <UserHomeTitle>{ notebook.title }</UserHomeTitle>
             </StyledContainer>

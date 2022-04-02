@@ -234,8 +234,8 @@ export const TemplateUserHome = styled.div`
     display: grid;
     grid-template-rows: repeat(4, 25%);
     grid-auto-flow: columns;
-    height: 80%;
-    width: 50%;
+    height: 7em;
+    width: 5em;
     ${({ shape, colour }) => shape === "notebook" ? css`
         grid-template-columns: repeat(12, calc(100% / 12));
         border-radius: 0.25em 1em 1em 0.25em;
@@ -252,8 +252,8 @@ export const TemplateUserHome = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        width: 40%;
-        justify-self: center;
+        height: 5em;
+        width: 4em;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -265,8 +265,7 @@ export const TemplateUserHome = styled.div`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
-        width: 40%;
-        justify-self: center;
+        
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -274,7 +273,6 @@ export const TemplateUserHome = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        height: 90%;
-        width: 80%;
+        
     }
 `;

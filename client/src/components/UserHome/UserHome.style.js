@@ -278,7 +278,7 @@ export const StyledShape = styled.div`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
+
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {

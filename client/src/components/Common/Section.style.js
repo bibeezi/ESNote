@@ -82,21 +82,17 @@ export const UserHomeSections = styled.div`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        font-size: 1.25em;
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.25em;
 
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        font-size: 1.25em;
         
     }
 
     @media only screen and (min-width: 1200px) {
-        font-size: 1.25em;
         
     }
 `;

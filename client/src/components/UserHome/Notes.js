@@ -11,59 +11,17 @@ import { UserHomeTitle } from "../Common/Heading.style";
 import { UserHomeSections } from "../Common/Section.style";
 import { TemplateUserHome } from "../Common/Template.style";
 
-const Notes = () => {
+const Notes = ({ search, notes, noteTemplates }) => {
 
-    const [notes, setNotes] = useState([]);
-    const [noteTemplates, setNoteTemplates] = useState([]);
     const [createNoteTemplate, setCreateNoteTemplate] = useState(false);
     const [readNote, setReadNote] = useState(false);
+    const [searchedNotes, setSearchedNotes] = useState([]);
+
 
     useEffect(() => {
+        searchNotes();
+    }, [notes, noteTemplates, search]);
 
-        getNotes();
-
-    }, []);
-
-    const getNotes = () => {
-
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
-        axios.get('/note/getNotes', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            res.data.msg !== "Notes Not Found" && setNotes(res.data);
-
-            getTemplates(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in Notes - /getNotes", error);
-        });
-    };
-
-    const getTemplates = (noteIDs) => {
-
-        const payload = {
-            userID: localStorage.getItem("userID"),
-            noteIDs: noteIDs
-        };
-
-        axios.get('/template/getTemplates', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNoteTemplates(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in Notes - /getTemplates", error);
-        });
-    }
 
     const showNotes = (notes) => {
         return notes.map((note) => {
@@ -117,6 +75,15 @@ const Notes = () => {
         setCreateNoteTemplate(prevState => !prevState);
     }
 
+    const searchNotes = () => {
+        var filteredNotes = notes.filter((note) => 
+            note.title.toLowerCase().search(search.toLowerCase()) !== -1);
+        
+        setSearchedNotes(filteredNotes);
+    }
+
+
+
     return (
         <StyledNotes>
             <SubheaderBar>
@@ -130,7 +97,8 @@ const Notes = () => {
                     </StyledShape>
                     <UserHomeTitle>Add Note</UserHomeTitle>
                 </StyledContainer>
-                { notes.length > 0 && noteTemplates.length > 0 ? showNotes(notes) : null }
+                { notes.length > 0 && noteTemplates.length > 0 ? showNotes(searchedNotes) : null }
+
             </StyledGrid>
 
             { createNoteTemplate ? <Navigate to='/create-note-template'/> : null }

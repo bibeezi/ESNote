@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from 'react-router-dom';
 
@@ -11,36 +11,17 @@ import { UserHomeTitle } from "../Common/Heading.style";
 import { TemplateUserHome } from "../Common/Template.style";
 import { Strap, Bookmark } from "../Common/Section.style";
 
-const Notebooks = () => {
+const Notebooks = ({ search, notebooks }) => {
 
-    const [notebooks, setNotebooks] = useState([]);
     const [editNotebook, setEditNotebook] = useState(false);
     const [readNotebook, setReadNotebook] = useState(false);
+    const [searchedNotebooks, setSearchedNotebooks] = useState([]);
 
+    
     useEffect(() => {
+        searchNotebooks();
+    }, [notebooks, search]);
 
-        getNotebooks();
-
-    }, []);
-
-    const getNotebooks = () => {
-
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
-        axios.get('/notebook/getNotebooks', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in UserHome - /notebook/getNotebooks", error);
-        });
-    };
 
     const showNotebooks = (notebooks) => {
         return notebooks.map((notebook) => (
@@ -58,8 +39,6 @@ const Notebooks = () => {
             </StyledContainer>
         ));
     };
-
-    console.log(notebooks);
 
     const handleReadNotebook = ({ target }) => {
 
@@ -87,6 +66,12 @@ const Notebooks = () => {
         setEditNotebook(prevState => !prevState);
     }
 
+    const searchNotebooks = () => {
+        var filteredNotebooks = notebooks.filter((notebook) => notebook.title.toLowerCase().search(search.toLowerCase()) !== -1);
+        
+        setSearchedNotebooks(filteredNotebooks);
+    }
+
     return (
         <StyledNotebooks>
             <SubheaderBar>
@@ -100,7 +85,7 @@ const Notebooks = () => {
                     </StyledShape>
                     <UserHomeTitle>Add Notebook</UserHomeTitle>
                 </StyledContainer>
-                { notebooks.length > 0 ? showNotebooks(notebooks) : null }
+                { notebooks.length > 0 ? showNotebooks(searchedNotebooks) : null }
             </StyledGrid>
 
             { editNotebook ? <Navigate to='/create-notebook-template'/> : null }

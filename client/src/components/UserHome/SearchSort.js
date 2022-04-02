@@ -3,7 +3,8 @@ import { SelectSort } from "../Common/Select.style";
 import { StyledSort, StyledSearch } from "./UserHome.style";
 import { SearchInput } from "../Common/Inputs.style";
 
-const SearchSort = () => {
+const SearchSort = ({ handleChange }) => {
+
     return (
         <SearchSortHeader>
             <StyledSort>
@@ -13,7 +14,11 @@ const SearchSort = () => {
                 </SelectSort>
             </StyledSort>
             <StyledSearch>
-                <SearchInput placeholder="Search"></SearchInput>
+                <SearchInput 
+                    onChange={ (e) => { handleChange(e) } }
+                    name="search"
+                    placeholder="Search">                        
+                </SearchInput>
             </StyledSearch>
         </SearchSortHeader>
     );

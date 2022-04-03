@@ -6,7 +6,7 @@ import Images from "../../images/Images";
 import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
-const Header = ({ note }) => {
+const Header = ({ note, handleSettings }) => {
 
     const [editNote, setEditNote] = useState(false);
 
@@ -32,7 +32,7 @@ const Header = ({ note }) => {
             <IconsHeader>
                 <img alt="Edit Note" src={ Images.Edit } onClick={ handleEditNote }></img>
                 <img alt="Toggle as Favourite" src={ Images.NotFavourited }></img>
-                <img alt="Settings" src={ Images.Setting }></img>
+                <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
                 <img alt="Help" src={ Images.Question }></img>
             </IconsHeader>
 

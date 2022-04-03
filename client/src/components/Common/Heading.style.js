@@ -129,7 +129,7 @@ export const FormHeadingRegister = styled.h1`
     }
 `;
 
-export const FormHeadingSignUp = styled.h1`
+export const FormHeadingModal = styled.h1`
 
     margin: 0;
     transform: translateY(-1em);

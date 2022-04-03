@@ -320,9 +320,12 @@ export const ReadNotebookContent = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        grid-template-columns: 50% 50%;
+        ${({ notebookLength }) => notebookLength > 1 ? css`
+            grid-template-columns: 50% 50%;
+        ` : css`
+            grid-template-columns: none;
+        `}
         padding-top: 6.4em;
-        
     }
 `;
 

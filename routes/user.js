@@ -24,10 +24,12 @@ router.post('/saveUser', (req, res) => {
 router.get('/getUser', (req, res) => {
 
     const data = JSON.parse(req.query.data);
+    const username = data.username;
+    const password = data.password;
 
     UserModel.find({
-        username: data.username,
-        password: data.password
+        username: { $regex: new RegExp(username, "i") },
+        password: password
     })
     .then((data) => {
         if(data.length) {
@@ -44,5 +46,26 @@ router.get('/getUser', (req, res) => {
         return res.status(500).json({ msg: 'ERROR in user route - /getUser', err});
     });
 });
+
+router.get('/checkUsername', (req, res) => {
+
+    const data = JSON.parse(req.query.data);
+    const username = data.username;
+
+    UserModel.find({
+        username: { $regex: new RegExp(username, "i") },
+    })
+    .then((data) => {
+        if(data.length) {
+            return res.status(200).json({msg: "Username Taken"});
+        } else {
+            return res.json(data[0].username);
+        }
+    })
+    .catch((err) => {
+        return res.status(200).json({ msg: 'ERROR in user route - /checkUsername', err});
+    });
+});
+
 
 module.exports = router;

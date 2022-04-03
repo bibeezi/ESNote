@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RegistrationModal = styled.div`
+export const Modal = styled.div`
 
     display: flex;
     position: fixed;
@@ -9,9 +9,6 @@ export const RegistrationModal = styled.div`
     width: 100%;
     background-color: #FFFFFFBB;
     z-index: 2;
-
-    /* max-width: 360px */
-
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

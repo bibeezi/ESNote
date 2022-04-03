@@ -51,8 +51,8 @@ router.post("/saveNotebook", (req, res) => {
     const data = req.body;
     const userID = data.userID;
     const noteIDs = data.noteIDs;
-    const strapValues = data.strap;
-    const bookmarkValues = data.bookmark;
+    const strap = data.strap;
+    const bookmark = data.bookmark;
     const colour = data.colour;
     const title = data.title; 
     
@@ -60,15 +60,15 @@ router.post("/saveNotebook", (req, res) => {
         title: title,
         colour: colour,
         notes: noteIDs,
-        strapValues: {
-            strap: strapValues.show,
-            strapX: strapValues.strapX,
-            strapHex: strapValues.strapHex
+        strap: {
+            show: strap.show,
+            x: strap.x,
+            hex: strap.hex
         },
-        bookmarkValues: {
-            bookmark: bookmarkValues.show,
-            bookmarkX: bookmarkValues.bookmarkX,
-            bookmarkHex: bookmarkValues.bookmarkHex
+        bookmark: {
+            show: bookmark.show,
+            x: bookmark.x,
+            hex: bookmark.hex
         }
     }
 

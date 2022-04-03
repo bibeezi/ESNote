@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 import { StyledRegistrationForm } from "../Common/Form.style";
 import { CloseButton } from "../Common/Close.style";
-import { FormHeadingSignUp } from "../Common/Heading.style";
+import { FormHeadingModal } from "../Common/Heading.style";
 import { Input, InputRegistration } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
 import { ErrorMessages } from "../Common/Messages.style";
@@ -12,46 +12,57 @@ import { ErrorMessages } from "../Common/Messages.style";
 const RegistrationForm = ({ 
     user,
     valid,
-    setUser,
     setPasswordMatch, 
     handleChange,
     openSignUpForm 
 }) => {
 
     const [refresh, setRefresh] = useState(false);
+    const [tried, setTried] = useState(false);
     const [focus, setFocus] = useState({
         username: false,
         email: false,
         password: false,
         passwordMatch: false
     });
+    const [usernameTaken, setUsernameTaken] = useState(false);
 
     const handleRegistration = (event) => {
         event.preventDefault();
 
-        const payload = {
-            username: user.username,
-            email: user.email,
-            password: user.password
-        };
+        setTried(true);
+        
+        if(valid.username && valid.email && valid.password && valid.passwordMatch) {
 
-        axios({
-            url: '/user/saveUser',
-            method: 'POST',
-            data: payload
-        })
-        .then(() => {
-            setUser({
-                username: '',
-                email: '',
-                password: '',
+            const payload = {
+                username: user.username,
+                email: user.email,
+                password: user.password
+            };
+
+            axios.get('/user/checkUsername', {
+                params: {
+                    data: payload
+                }
+            }).then((res) => {
+                if(res.data.msg !== "Username Taken") {
+                    axios({
+                        url: '/user/saveUser',
+                        method: 'POST',
+                        data: payload
+                    }).then(() => {
+                        setRefresh((prevState) => !prevState);
+                        setUsernameTaken(false);
+                    }).catch((err) => {
+                        console.log("ERROR in NonUserHome - /saveUser", err);
+                    });
+                }
+
+                setUsernameTaken(true);
+            }).catch((err) => {
+                console.log("ERROR in RegistrationForm - /checkUsername", err)
             });
-
-            setRefresh(true);
-        }) 
-        .catch((err) => {
-            console.log("ERROR in NonUserHome - /saveUser", err);
-        });
+        }
     };
 
     
@@ -138,10 +149,10 @@ const RegistrationForm = ({
     };
 
     return (
-        <StyledRegistrationForm 
-        onSubmit={ (e) => { handleRegistration(e); openSignUpForm(); } }>
-            <CloseButton onClick={ openSignUpForm }></CloseButton>
-            <FormHeadingSignUp>Sign Up</FormHeadingSignUp>
+        <StyledRegistrationForm onSubmit = { (e) => e.preventDefault() }>
+                
+            <CloseButton onMouseDown={ (e) => openSignUpForm(e) }></CloseButton>
+            <FormHeadingModal>Sign Up</FormHeadingModal>
 
             <InputRegistration 
                 onChange={ handleChange } 
@@ -150,8 +161,8 @@ const RegistrationForm = ({
                 name="username" 
                 placeholder="Username">
             </InputRegistration>
-            <ErrorMessages active={ focus.username && !valid.username ? true : false }>
-                Must be 6 to 20 characters, starting with a letter.
+            <ErrorMessages active={ (focus.username || tried) && !valid.username || usernameTaken ? true : false }>
+                { usernameTaken ? "Username Already Taken" : "Must be 6 to 20 characters, starting with a letter." } 
             </ErrorMessages>
 
             <Input 
@@ -162,7 +173,7 @@ const RegistrationForm = ({
                 placeholder="Email" 
                 type='email'>
             </Input>
-            <ErrorMessages active={ focus.email && !valid.email ? true : false }>
+            <ErrorMessages active={ (focus.email || tried) && !valid.email ? true : false }>
                 Must be filled in - example@example.com
             </ErrorMessages>
 
@@ -174,7 +185,7 @@ const RegistrationForm = ({
                 placeholder="Password" 
                 type="password">
             </Input>
-            <ErrorMessages active={ focus.password && !valid.password ? true : false }>
+            <ErrorMessages active={ (focus.password || tried) && !valid.password ? true : false }>
                 Must be 8 to 20 characters and must have at least 1 captial letter, 1 number and 1 special character - !@#$%
             </ErrorMessages>
 
@@ -186,17 +197,17 @@ const RegistrationForm = ({
                 placeholder="Confirm Password" 
                 type="password">
             </Input>                                
-            <ErrorMessages active={ focus.passwordMatch && !valid.passwordMatch ? true : false }>
+            <ErrorMessages active={ (focus.passwordMatch || tried) && !valid.passwordMatch ? true : false }>
                 The password and confirm password inputs don't match!
             </ErrorMessages>
 
             <BlueButtonRegistration
-                type='submit'>
+                type='submit'
+                onClick={ (e) => { handleRegistration(e);}}>
                 Create an Account
             </BlueButtonRegistration>
 
-            { refresh ? <Navigate to='/'/> : null }
-
+            { refresh ? window.location.reload(true) : null }
         </StyledRegistrationForm>
     );
 }

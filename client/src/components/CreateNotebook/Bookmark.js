@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Images from "../../images/Images";
 
 import { SettingsGrid, SettingContainer } from "../Common/Form.style";

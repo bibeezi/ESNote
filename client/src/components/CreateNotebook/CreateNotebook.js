@@ -38,8 +38,6 @@ const CreateNotebook = () => {
         const { name, value } = target;
 
         var newValue;
-        var regexHex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-        var regexString = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
         switch(name) {
             case "strapX":
@@ -52,16 +50,7 @@ const CreateNotebook = () => {
                 break;
 
             case "strapHex":
-                newValue = regexHex.test(value) ? 
-                    value 
-                    : 
-                    regexString.test(value) ? 
-                        "#" + value 
-                        : 
-                        standardizeColor(value) === "#000000" && value !== "black" ? 
-                            "antiquewhite" 
-                        :
-                        standardizeColor(value);
+                newValue = getColourValue(value);
 
                 setStrap((prevState) => ({
                     ...prevState,
@@ -79,16 +68,7 @@ const CreateNotebook = () => {
                 break;
 
             case "bookmarkHex":
-                newValue = regexHex.test(value) ? 
-                    value 
-                    : 
-                    regexString.test(value) ? 
-                        "#" + value 
-                        : 
-                        standardizeColor(value) === "#000000" && value !== "black" ? 
-                            "antiquewhite" 
-                        :
-                        standardizeColor(value);
+                newValue = getColourValue(value);
 
                     setBookmark((prevState) => ({
                     ...prevState,
@@ -101,16 +81,7 @@ const CreateNotebook = () => {
                 break;
                 
             case "notebookHex":
-                newValue = regexHex.test(value) ? 
-                    value 
-                    : 
-                    regexString.test(value) ? 
-                        "#" + value 
-                        : 
-                        standardizeColor(value) === "#000000" && value !== "black" ? 
-                            "antiquewhite" 
-                        :
-                        standardizeColor(value);
+                newValue = getColourValue(value);
 
                 setColour(newValue);
                 break;
@@ -118,6 +89,24 @@ const CreateNotebook = () => {
             default:
                 break;
         }
+    }
+
+    const getColourValue = (value) => {
+
+        var regexHex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+        var regexString = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+        var colour = value.toLowerCase();
+        
+        return regexHex.test(colour) ? 
+            colour
+        : 
+            regexString.test(colour) ? 
+                "#" + colour
+            : 
+                standardizeColor(colour) === "#000000" && colour !== "black" ? 
+                    "antiquewhite" 
+                :
+                standardizeColor(colour);
     }
 
     const standardizeColor = (str) => {

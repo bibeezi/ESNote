@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import Images from "../../images/Images";
 import Header from "./Header";
 import Presentation from "./Presentation";
-import { NonUserHomeContent } from "../Common/Content.style";
-import { LoginFormContainer, RegistrationFormContainer } from "../Common/FormContainer.style";
 import LoginForm from "./LoginForm";
 import RegistrationForm from './RegistrationForm';
-import { RegistrationModal } from '../Common/Modal.style';
+import { NonUserHomeContent } from "../Common/Content.style";
+import { LoginFormContainer, RegistrationFormContainer } from "../Common/Form.style";
+import { Modal } from '../Common/Modal.style';
 
 const NonUserHome = () => {
 
@@ -17,11 +17,9 @@ const NonUserHome = () => {
         email: '',
         password: '',
     });
-
     const userRegex = /^[a-zA-Z0-9].{5,20}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     const [passwordMatch, setPasswordMatch] = useState('');
     const [valid, setValid] = useState({
         username: false,
@@ -29,8 +27,8 @@ const NonUserHome = () => {
         password: false,
         passwordMatch: false
     });
-
     const [validLogin, setValidLogin] = useState(null);
+
 
     useEffect(() => {
 
@@ -44,7 +42,10 @@ const NonUserHome = () => {
         }));
     }, [user.password, passwordMatch]);
 
-    const openSignUpForm = () => {
+
+    const openSignUpForm = (event) => {
+        event.preventDefault();
+
         setShowRegistration(prev => !prev);
     };
 
@@ -131,18 +132,17 @@ const NonUserHome = () => {
             </NonUserHomeContent>
 
             { showRegistration && 
-            <RegistrationModal>
-                <RegistrationFormContainer>
+            <Modal onClick={ (e) => openSignUpForm(e) }>
+                <RegistrationFormContainer onClick={ (e) => openSignUpForm(e) }>
                     <RegistrationForm
                         user={ user }
                         valid={ valid }
-                        setUser={ setUser }
                         setPasswordMatch={ setPasswordMatch }
                         handleChange={ handleChange }
                         openSignUpForm={ openSignUpForm }>
                     </RegistrationForm>
                 </RegistrationFormContainer>
-            </RegistrationModal> }
+            </Modal> }
         </div>
     );
 }

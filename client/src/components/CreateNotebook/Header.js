@@ -16,7 +16,7 @@ const Header = () => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Create Notebook Template</WelcomeHeading>
+                <WelcomeHeading>Create Notebook</WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeaderCreate>

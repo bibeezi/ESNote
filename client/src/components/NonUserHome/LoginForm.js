@@ -32,9 +32,7 @@ const LoginForm = ({
             params: {
                 data: payload
             }
-        })
-        .then((res) => {
-
+        }).then((res) => {
             if(res.data.msg !== "User Not Found") {
                 setUser({
                     username: '',
@@ -49,8 +47,7 @@ const LoginForm = ({
             }
 
             setValidLogin(false);
-        })
-        .catch((error) => {
+        }).catch((error) => {
             console.log("ERROR in UserHome - /getUser", error);
         });
     };

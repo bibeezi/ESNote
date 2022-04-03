@@ -6,6 +6,7 @@ export const HeaderHeading = styled.h1`
     color: #7E2D00;
     margin-left: 0.5em;
     font-size: 0.75em;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         margin-left: 0.5em;

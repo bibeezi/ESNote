@@ -12,8 +12,6 @@ export const HeaderBar = styled.div`
     box-shadow: 0 0 1em grey;
     z-index: 1;
 
-    /* max-width: 360px */
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
     }
@@ -45,8 +43,6 @@ export const HeaderBarUserHome = styled.div`
     top: 0;
     background-color: #FAF3EB;
     z-index: 1;
-
-    /* max-width: 360px */
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
@@ -83,6 +79,7 @@ export const HomeHeader = styled.div`
         margin-left: 0.5em;
         width: 1.5em;
         height: 1.5em;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

@@ -8,7 +8,7 @@ import { ReadNoteContent } from "../Common/Content.style";
 import { TitleContainer } from "../Common/Header.style";
 import { ReadNoteTitle } from "../Common/Heading.style";
 import { Modal } from "../Common/Modal.style";
-import { NoteSettingsFormContainer } from "../Common/Form.style";
+import { ReadSettingsFormContainer } from "../Common/Form.style";
 
 const ReadNote = () => {
 
@@ -24,7 +24,9 @@ const ReadNote = () => {
         return <ReadNoteTitle>{ note.title }</ReadNoteTitle>
     }
 
-    const handleSettings = () => {
+    const handleSettings = (event) => {
+        event.preventDefault();
+
         setOpenSettings(prevState => !prevState);
     }
 
@@ -46,12 +48,12 @@ const ReadNote = () => {
             </ReadNoteContent>
 
             { openSettings && 
-            <Modal onClick={ handleSettings }>
-                <NoteSettingsFormContainer>
+            <Modal onClick={ (e) => handleSettings(e) }>
+                <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
                     <NoteSettings
                         handleSettings={ handleSettings }>
                     </NoteSettings>
-                </NoteSettingsFormContainer>
+                </ReadSettingsFormContainer>
             </Modal>}
         </div>
     );

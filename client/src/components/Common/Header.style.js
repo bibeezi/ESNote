@@ -487,3 +487,48 @@ export const NotebookTitleContainer = styled.div`
         
     }
 `;
+
+export const SettingHeaderRead = styled.div`
+
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 1.5em;
+        margin-left: 1em;
+    }
+
+    div {
+        height: 1.4em;
+        width: 1.4em;
+        margin-left: 0.5em;
+        border: 1px solid black;
+        border-radius: 0.3em;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        font-size: 1.5em;
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 1.5em;
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        font-size: 1.5em;
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        font-size: 1.5em;
+        
+    }
+`;

@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 
 export const ErrorMessages = styled.p`
 
-    /* max-width: 360px */
     @media only screen and (max-width: 360px) {
         ${ ({ active }) => active === true ? css`
             display: inline-block;

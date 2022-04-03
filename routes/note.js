@@ -85,14 +85,40 @@ router.put('/saveNote', (req, res) => {
         {
             new: true
         },
-        function(err, doc) {
-            if(err) {
-                return res.status(404).json({ msg: 'ERROR in note route - /saveNote'});
-            }
+        (err, doc) => {
+            if(err) return res.status(404).json({ msg: 'ERROR in note route - /saveNote'});
 
             return res.json(doc);
         }
     );
+});
+
+router.delete('/deleteNote', (req, res) => {
+
+    const data = req.body;
+    const noteID = mongoose.Types.ObjectId(data.note);
+    const noteIDString = data.note;
+    const userID = mongoose.Types.ObjectId(data.userID);
+
+    UserModel.updateOne( 
+        { _id: userID },
+        {
+            $pull: {
+                notes: noteIDString
+            }
+        },
+        { sanitizeFilter: true },
+        (err, doc) => {
+            if(err) return res.status(404).json({ msg: 'ERROR in note route - /deleteNote'});
+
+            NoteModel.findOneAndDelete({ _id: noteID }, (err, doc) => {
+                if(err) return res.status(404).json({ msg: 'ERROR in note route - /deleteNote' });
+        
+                return res.status(200).send();
+            });
+        }
+    );
+
 });
 
 module.exports = router;

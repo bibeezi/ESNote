@@ -31,13 +31,13 @@ export const LoginFormContainer = styled.div`
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         height: 30em;
         width: 50%;
-        margin: 10em auto auto auto;
+        margin: 13.5em auto auto auto;
     }
 
     @media only screen and (min-width: 1200px) {
         height: 30em;
         width: 60%;
-        margin: 8em auto auto auto;
+        margin: 13em auto auto auto;
 
     }
 `;
@@ -234,7 +234,7 @@ export const SettingsGrid = styled.div`
     }
 `;
 
-export const NoteSettingsFormContainer = styled.div`
+export const ReadSettingsFormContainer = styled.div`
 
     height: fit-content;
     margin: auto;
@@ -243,14 +243,13 @@ export const NoteSettingsFormContainer = styled.div`
     box-shadow: 0 0 1em grey;
     width: 80%;
 
-    @media only screen and (max-height: 500px) {
-        overflow-y: scroll;
-        height: 80%;
-        scrollbar-width: none;
-    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 80%;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -279,6 +278,10 @@ export const StyledNoteSettingsForm = styled.form`
 
     @media only screen and (max-height: 360px) {
         
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 50%;
     }
     
     @media only screen and (min-width: 360px) and (max-width: 600px) {

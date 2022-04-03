@@ -14,7 +14,6 @@ export const StyledPresentation = styled.div`
         border-radius: 1em;
     }
 
-    /* max-width: 360px */
     margin: 5em 2em 0 2em;
     height: 20em;
 
@@ -32,12 +31,12 @@ export const StyledPresentation = styled.div`
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        margin: 10em 2em 0 2em;
+        margin: 13em 2em 0 2em;
         height: 35em;
     }
 
     @media only screen and (min-width: 1200px) {
         margin-top: 10em;
-        height: 30em;
+        height: 40em;
     }
 `;

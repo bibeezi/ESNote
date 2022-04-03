@@ -42,8 +42,6 @@ export const WelcomeHeading = styled.h1`
 
     letter-spacing: 0.2em;
     color: #7E2D00;
-
-    /* max-width: 360px */
     font-size: 0.75em;
     margin: auto;
 
@@ -76,8 +74,6 @@ export const WelcomeHeading = styled.h1`
 export const FormHeading = styled.h1`
 
     margin-top: 1em;
-
-    /* max-width: 360px */
     font-size: 2em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -104,8 +100,6 @@ export const FormHeading = styled.h1`
 export const FormHeadingRegister = styled.h1`
 
     text-align: center;
-
-    /* max-width: 360px */
     font-size: 1.5em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -133,8 +127,6 @@ export const FormHeadingModal = styled.h1`
 
     margin: 0;
     transform: translateY(-1em);
-
-    /* max-width: 360px */
     font-size: 1.5em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -166,8 +158,6 @@ export const Subheading = styled.h1`
 
     letter-spacing: 0.2em;
     color: #7E2D00;
-
-    /* max-width: 360px */
     font-size: 1em;
     margin: auto;
 
@@ -201,7 +191,7 @@ export const Subheading = styled.h1`
 export const UserHomeTitle = styled.h1`
 
     height: fit-content;
-    width: 50%;
+    width: 70%;
     margin: 0;
     text-align: center;
     color: #7E2D00;
@@ -291,7 +281,6 @@ export const NotebookNoteHeading = styled.h1`
 
 export const SectionTitle = styled.h1`
 
-    /* max-width: 360px */
     width: fit-content;
     font-size: 1em;
 
@@ -393,3 +382,4 @@ export const ReadNotebookTitle = styled.h1`
 
     }
 `;
+

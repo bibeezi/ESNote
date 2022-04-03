@@ -3,12 +3,15 @@ import axios from "axios";
 
 import Header from "./Header";
 import Note from "./Note";
+import Settings from "../ReadNote/Settings";
 import { TitleContainer } from "../Common/Header.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
 import { SaveContainer, SaveButtonContainer, SaveMessageContainer } from "./EditNote.style";
 import { SavedMessages } from "../Common/Messages.style";
 import { SaveButton } from "../Common/Button.style";
+import { Modal } from "../Common/Modal.style";
+import { ReadSettingsFormContainer } from "../Common/Form.style";
 
 const EditNote = () => {
 
@@ -21,14 +24,24 @@ const EditNote = () => {
     });
     const [charCount, setCharCount] = useState(0);
     const [saved, setSaved] = useState(false);
+    const [openSettings, setOpenSettings] = useState(false);
+    const [notebooks, setNotebooks] = useState([]);
 
     
     useEffect(() => {
         setTimeout(() => {
             setSaved(false);
         }, 3000);
+
+        getNotebooks();
     }, [saved]);
 
+
+    const handleSettings = (event) => {
+        event.preventDefault();
+
+        setOpenSettings(prevState => !prevState);
+    }
 
     const handleChange = ({ target }) => {
         const { name, value } = target;
@@ -95,9 +108,28 @@ const EditNote = () => {
         });
     }
 
+    const getNotebooks = () => {
+
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
+
+        axios.get('/notebook/getNotebooks', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in ReadNote - /notebook/getNotebooks", error);
+        });
+    };
+
     return (
         <div>
-            <Header />
+            <Header handleSettings={ handleSettings }/>
 
             <EditNoteContent>
                 <TitleContainer>
@@ -128,6 +160,18 @@ const EditNote = () => {
                         <SaveButton onClick={ (e) => save(e) }>Save</SaveButton>
                     </SaveButtonContainer>
                 </SaveContainer>
+
+                { openSettings && 
+                <Modal onClick={ (e) => handleSettings(e) }>
+                    <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
+                        <Settings
+                            handleSettings={ handleSettings }
+                            note={ note }
+                            notebooks={ notebooks }
+                            getNotebooks={ getNotebooks }>
+                        </Settings>
+                    </ReadSettingsFormContainer>
+                </Modal>}
             </EditNoteContent>
         </div>
     );

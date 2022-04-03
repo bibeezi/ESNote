@@ -207,7 +207,7 @@ export const LongSettingInput = styled.input`
     }
 `;
 
-export const SearchInputCreateNotebook = styled.input`
+export const SearchInputList = styled.input`
 
     margin: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;

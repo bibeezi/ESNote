@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Header from "./Header";
 import Note from "./Note";
@@ -14,9 +15,12 @@ const ReadNote = () => {
 
     const [note, setNote] = useState({title: ''});
     const [openSettings, setOpenSettings] = useState(false);
+    const [notebooks, setNotebooks] = useState([]);
+
 
     useEffect(() => {
         showTitle(note);
+        getNotebooks();
     }, [note])
 
     
@@ -29,6 +33,25 @@ const ReadNote = () => {
 
         setOpenSettings(prevState => !prevState);
     }
+
+    const getNotebooks = () => {
+
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
+
+        axios.get('/notebook/getNotebooks', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in ReadNote - /notebook/getNotebooks", error);
+        });
+    };
 
     return (
         <div>
@@ -51,7 +74,10 @@ const ReadNote = () => {
             <Modal onClick={ (e) => handleSettings(e) }>
                 <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
                     <Settings
-                        handleSettings={ handleSettings }>
+                        handleSettings={ handleSettings }
+                        note={ note }
+                        notebooks={ notebooks }
+                        getNotebooks={ getNotebooks }>
                     </Settings>
                 </ReadSettingsFormContainer>
             </Modal>}

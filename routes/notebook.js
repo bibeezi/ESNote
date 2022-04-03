@@ -119,5 +119,28 @@ router.delete('/deleteNotebook', (req, res) => {
 
 });
 
+router.put('/saveNote', (req, res) => {
+    
+    const data = req.body.data;
+    const notebookIDs = data.notebookIDs;
+    const noteID = data.noteID;
+
+    NotebookModel.updateMany(
+        { _id: { "$in": notebookIDs }}, 
+        {
+            $push: {
+                notes: noteID
+            }
+        }, {
+            multi: true
+        },
+        (err, doc) => {
+            if(err) return res.status(404).json({ msg: 'ERROR in notebook route - /saveNote'});
+
+            return res.json(doc);
+        }
+    );
+});
+
 module.exports = router;
 

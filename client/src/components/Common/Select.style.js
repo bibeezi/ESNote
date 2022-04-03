@@ -12,8 +12,6 @@ export const SelectSort = styled.select`
     font-size: 0.75em;
     font-family: Nunito;
 
-    /* max-width: 360px */
-
     @media only screen and (max-height: 360px) {
 
     }

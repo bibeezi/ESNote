@@ -4,10 +4,10 @@ import axios from "axios";
 
 import Images from "../../images/Images";
 
-import { SettingsGrid, SettingContainer } from "../Common/Form.style";
+import { SettingsGrid, SettingContainer, AddedItemsGrid } from "../Common/Form.style";
 import { SettingHeader } from "../Common/Header.style";
 import { SettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
-import { SearchInputCreateNotebook } from "../Common/Inputs.style";
+import { SearchInputList } from "../Common/Inputs.style";
 import { List, ListOption } from "../Common/List.style";
 
 const AddNote = () => {
@@ -47,10 +47,18 @@ const AddNote = () => {
         setShowList((prevState) => !prevState);
     }
 
-    const handleChange = ({ target }) => {
-        const { value } = target;
+    const handleChange = (event) => {
+        const { value } = event.target;
+        const reactName = event._reactName;
 
-        setShowList(true);
+        switch(reactName) {
+            case "onBlur":
+                setShowList(false);
+                break;
+            default:
+                setShowList(true);
+                break;
+        }
 
         displayList(value);
     }
@@ -93,17 +101,11 @@ const AddNote = () => {
         displayList(value);
     }
 
-    const handleBlur = ({ target }) => {
-        const { value } = target;
-        
-        setShowList(false);
-
-        displayList(value);
-    }
-
     const displayList = (value) => {
 
-        var noteIDsAdded = addedNotes.map((note) => note.props.id);
+        var noteIDsAdded = addedNotes.map((noteheader) => noteheader.props.children);
+
+        console.log(noteIDsAdded);
 
         var filtered = notes.filter((note) => 
             note.title.toLowerCase().startsWith(value.toLowerCase()) && noteIDsAdded.indexOf(note._id) === -1);
@@ -129,27 +131,27 @@ const AddNote = () => {
             <SettingContainer>
                 <List showList={ showList }>
                     <label>
-                        <SearchInputCreateNotebook
+                        <SearchInputList
                             showList={ showList } 
                             onChange={ (e) => handleChange(e) }
                             onFocus={ handleList }
-                            onBlur={ (e) => handleBlur(e) }
+                            onBlur={ (e) => handleChange(e) }
                             name="note"
                             type="text"
                             placeholder="Search Note"> 
-                        </SearchInputCreateNotebook>
+                        </SearchInputList>
                     </label>
 
-                    { showList ? filteredNotes : null }
+                    { showList ? <div>{ filteredNotes }</div> : null }
 
                     { addedNotes.length ? 
                         <SettingHeading>Notes to be Added:</SettingHeading> &&
 
-                        <SettingHeader>
+                        <AddedItemsGrid>
 
                             { addedNotes }
 
-                        </SettingHeader> 
+                        </AddedItemsGrid> 
                     : null }
                 </List>
             </SettingContainer>

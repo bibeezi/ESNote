@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 
 import { StyledRegistrationForm } from "../Common/Form.style";
 import { CloseButton } from "../Common/Close.style";

@@ -212,7 +212,6 @@ export const SettingsGrid = styled.div`
 
     display: grid;
     margin-bottom: 1em;
-    grid-template-rows: fit-content(100%);
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
     }
@@ -272,7 +271,7 @@ export const ReadSettingsFormContainer = styled.div`
 export const StyledSettingsFormRead = styled.form`
 
     height: 100%;
-    margin: 0 auto;
+    margin: 2em auto;
     text-align: center;
     width: 80%;
 
@@ -302,5 +301,36 @@ export const StyledSettingsFormRead = styled.form`
 
     @media only screen and (min-width: 1200px) {
         width: 60%;
+    }
+`;
+
+export const AddedItemsGrid = styled.div`
+
+    display: grid;
+    margin-bottom: 1em;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+
+    img {
+        height: 1.5em;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
     }
 `;

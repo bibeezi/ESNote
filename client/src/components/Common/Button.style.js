@@ -8,8 +8,6 @@ export const OrangeButton = styled.button`
     font-size: 1em;
     letter-spacing: 0.1em;
     background-color: #FFBB4D;
-
-    /* max-width: 360px */
     margin: 1em auto 1em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
 
@@ -50,8 +48,6 @@ export const BlueButton = styled.button`
     font-size: 1em;
     letter-spacing: 0.1em;
     background-color: #61D4D4;
-
-    /* max-width: 360px */
     margin: 0 auto 3em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
 
@@ -91,8 +87,6 @@ export const BlueButtonRegistration = styled.button`
     font-size: 1em;
     letter-spacing: 0.1em;
     background-color: #61D4D4;
-
-    /* max-width: 360px */
     margin: 1em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
 

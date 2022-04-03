@@ -126,11 +126,12 @@ export const FormHeadingRegister = styled.h1`
 export const FormHeadingModal = styled.h1`
 
     margin: 0;
-    transform: translateY(-1em);
-    font-size: 1.5em;
+    transform: translateY(-1.1em);
+    font-size: 1.25em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-
+        transform: translateY(-1em);
+        font-size: 1.5em;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {

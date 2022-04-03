@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Note from "./Note";
-import NoteSettings from "./NoteSettings";
+import Settings from "./Settings";
 import { ReadNoteContent } from "../Common/Content.style";
 import { TitleContainer } from "../Common/Header.style";
 import { ReadNoteTitle } from "../Common/Heading.style";
@@ -50,9 +50,9 @@ const ReadNote = () => {
             { openSettings && 
             <Modal onClick={ (e) => handleSettings(e) }>
                 <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
-                    <NoteSettings
+                    <Settings
                         handleSettings={ handleSettings }>
-                    </NoteSettings>
+                    </Settings>
                 </ReadSettingsFormContainer>
             </Modal>}
         </div>

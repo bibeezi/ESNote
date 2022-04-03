@@ -91,5 +91,33 @@ router.post("/saveNotebook", (req, res) => {
     })
 });
 
+router.delete('/deleteNotebook', (req, res) => {
+
+    const data = req.body;
+    const notebookID = mongoose.Types.ObjectId(data.notebook);
+    const notebookIDString = data.notebook;
+    const userID = mongoose.Types.ObjectId(data.userID);
+
+    UserModel.updateOne( 
+        { _id: userID },
+        {
+            $pull: {
+                notebooks: notebookIDString
+            }
+        },
+        { sanitizeFilter: true },
+        (err, doc) => {
+            if(err) return res.status(404).json({ msg: 'ERROR in notebook route - /deleteNotebook'});
+
+            NotebookModel.findOneAndDelete({ _id: notebookID }, (err, doc) => {
+                if(err) return res.status(404).json({ msg: 'ERROR in notebook route - /deleteNotebook' });
+        
+                return res.status(200).send();
+            });
+        }
+    );
+
+});
+
 module.exports = router;
 

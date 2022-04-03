@@ -3,12 +3,16 @@ import axios from "axios";
 
 import Header from "./Header";
 import Notes from "./Notes";
+import Settings from "./Settings";
 import { ReadNotebookContent } from "../Common/Content.style";
+import { Modal } from "../Common/Modal.style";
+import { ReadSettingsFormContainer } from "../Common/Form.style";
 
 const ReadNotebook = () => {
 
     const [notebook, setNotebook] = useState({});
     const [notes, setNotes] = useState([]);
+    const [openSettings, setOpenSettings] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -62,13 +66,28 @@ const ReadNotebook = () => {
         ));
     };
 
+    const handleSettings = (event) => {
+        event.preventDefault();
+
+        setOpenSettings(prevState => !prevState);
+    }
+
     return (
         <div>
-            <Header notebook={ notebook }/>
+            <Header notebook={ notebook } handleSettings={ handleSettings }/>
 
             <ReadNotebookContent notebookLength={ notes.length }>
                 { showNotes(notes) }
             </ReadNotebookContent>
+
+            { openSettings && 
+            <Modal onClick={ (e) => handleSettings(e) }>
+                <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
+                    <Settings
+                        handleSettings={ handleSettings }>
+                    </Settings>
+                </ReadSettingsFormContainer>
+            </Modal>}
         </div>
     );
 }

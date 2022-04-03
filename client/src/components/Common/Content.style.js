@@ -268,6 +268,7 @@ export const ReadNotebookContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
+    min-height: calc(100vh - 3.4em);
     height: fit-content;
     padding-top: 3.4em;
     grid-auto-flow: row;
@@ -306,7 +307,8 @@ export const ReadNotebookContent = styled.div`
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         grid-template-columns: 50% 50%;
-        padding-top: 6.4em;
+        min-height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
         
     }
 
@@ -325,7 +327,8 @@ export const ReadNotebookContent = styled.div`
         ` : css`
             grid-template-columns: none;
         `}
-        padding-top: 6.4em;
+        min-height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
     }
 `;
 

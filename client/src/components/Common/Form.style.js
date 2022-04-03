@@ -269,7 +269,7 @@ export const ReadSettingsFormContainer = styled.div`
     }
 `;
 
-export const StyledNoteSettingsForm = styled.form`
+export const StyledSettingsFormRead = styled.form`
 
     height: 100%;
     margin: 0 auto;

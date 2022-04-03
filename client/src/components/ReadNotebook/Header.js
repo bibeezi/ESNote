@@ -3,7 +3,7 @@ import Images from "../../images/Images";
 import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
-const Header = ({ notebook }) => {
+const Header = ({ notebook, handleSettings }) => {
 
     return (
         <HeaderBar>
@@ -21,7 +21,7 @@ const Header = ({ notebook }) => {
             
             <IconsHeader>
                 <img alt="Toggle as Favourite" src={ Images.NotFavourited }></img>
-                <img alt="Settings" src={ Images.Setting }></img>
+                <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
                 <img alt="Help" src={ Images.Question }></img>
             </IconsHeader>
         </HeaderBar>

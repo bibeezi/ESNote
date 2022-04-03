@@ -4,12 +4,12 @@ import { Navigate } from "react-router-dom";
 
 import Images from "../../images/Images";
 import { CloseButton } from "../Common/Close.style";
-import { StyledNoteSettingsForm } from "../Common/Form.style";
+import { StyledSettingsFormRead } from "../Common/Form.style";
 import { SettingHeaderRead } from "../Common/Header.style";
 import { FormHeadingModal, SettingHeading } from "../Common/Heading.style";
 import { ErrorMessages } from "../Common/Messages.style"
 
-const NoteSettings = ({ handleSettings }) => {
+const Settings = ({ handleSettings }) => {
 
     const [home, setHome] = useState(false);
     const [deleteCounter, setDeleteCounter] = useState(0);
@@ -26,7 +26,7 @@ const NoteSettings = ({ handleSettings }) => {
             }).then((res) => {
                 goHome();
             }).catch((err) => {
-                console.log("ERROR in NoteSettings - /deleteNote", err)
+                console.log("ERROR in Settings - /deleteNote", err)
             });
 
             setDeleteCounter(0);
@@ -40,7 +40,7 @@ const NoteSettings = ({ handleSettings }) => {
     }
 
     return (
-        <StyledNoteSettingsForm>
+        <StyledSettingsFormRead>
             <CloseButton onMouseDown={ (e) => { handleSettings(e); setDeleteCounter(0); } }></CloseButton>
             <FormHeadingModal>Note Settings</FormHeadingModal>
 
@@ -53,8 +53,8 @@ const NoteSettings = ({ handleSettings }) => {
             </ErrorMessages>
 
             { home ? <Navigate to="/user-home" /> : null }
-        </StyledNoteSettingsForm>
+        </StyledSettingsFormRead>
     );
 }
  
-export default NoteSettings;
+export default Settings;

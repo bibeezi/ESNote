@@ -11,13 +11,16 @@ import { ReadSettingsFormContainer } from "../Common/Form.style";
 const ReadNotebook = () => {
 
     const [notebook, setNotebook] = useState({});
-    const [notes, setNotes] = useState([]);
+    const [notebookNotes, setNotebookNotes] = useState([]);
+    const [allNotes, setAllNotes] = useState([]);
     const [openSettings, setOpenSettings] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
             getNotebook();
         }, 50);
+
+        getAllNotes();
     }, []);
 
     const getNotebook = () => {
@@ -34,14 +37,14 @@ const ReadNotebook = () => {
         .then((res) => {
             setNotebook(res.data);
 
-            getNotes(res.data.notes);
+            getNotebookNotes(res.data.notes);
         })
         .catch((error) => {
             console.log("ERROR in ReadNotebook - /getNotebook", error);
         });
     }
 
-    const getNotes = (noteIDs) => {
+    const getNotebookNotes = (noteIDs) => {
 
         const payload = {
             noteIDs: noteIDs
@@ -53,15 +56,33 @@ const ReadNotebook = () => {
             }
         })
         .then((res) => {
-            setNotes(res.data);
+            setNotebookNotes(res.data);
         })
         .catch((error) => {
             console.log("ERROR in ReadNotebook - /getNotebookNotes", error);
         });
     };
 
-    const showNotes = (notes) => {
-        return notes.map((note) => (
+    const getAllNotes = () => {
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
+
+        axios.get('/note/getNotes', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            setAllNotes(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in ReadNotebook - /getNotes", error);
+        });
+    }
+
+    const showNotes = (notebookNotes) => {
+        return notebookNotes.map((note) => (
             <Notes key={ note._id } note={ note } />
         ));
     };
@@ -76,15 +97,18 @@ const ReadNotebook = () => {
         <div>
             <Header notebook={ notebook } handleSettings={ handleSettings }/>
 
-            <ReadNotebookContent notebookLength={ notes.length }>
-                { showNotes(notes) }
+            <ReadNotebookContent notebookLength={ notebookNotes.length }>
+                { showNotes(notebookNotes) }
             </ReadNotebookContent>
 
             { openSettings && 
             <Modal onClick={ (e) => handleSettings(e) }>
                 <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
                     <Settings
-                        handleSettings={ handleSettings }>
+                        handleSettings={ handleSettings }
+                        notebook={ notebook }
+                        notes={ allNotes }
+                        getNotes={ getAllNotes }>
                     </Settings>
                 </ReadSettingsFormContainer>
             </Modal>}

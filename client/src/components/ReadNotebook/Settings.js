@@ -12,7 +12,7 @@ import { BlueButtonRegistration } from "../Common/Button.style";
 import { List, ListOptionSetting } from "../Common/List.style"
 import { SearchInputList } from "../Common/Inputs.style"
 
-const Settings = ({ handleSettings, notebooks, notes }) => {
+const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
 
     const [home, setHome] = useState(false);
     const [deleteCounter, setDeleteCounter] = useState(0);
@@ -21,9 +21,9 @@ const Settings = ({ handleSettings, notebooks, notes }) => {
     const [filteredNotes, setFilteredNotes] = useState([]);
 
     useEffect(() => {
-        // var addedNotesIDs = addedNotes.filter((note) => note.props.id.substring(24) !== "img").map((note) => note.props.id);
+        var addedNoteIDs = addedNotes.filter((note) => note.props.id.substring(24) !== "img").map((note) => note.props.id);
         
-        // localStorage.setItem("addedNoteIDs", JSON.stringify(addedNoteIDs));
+        localStorage.setItem("addedNoteIDs", JSON.stringify(addedNoteIDs));
     }, [addedNotes]);
 
     const handleList = () => {
@@ -88,48 +88,48 @@ const Settings = ({ handleSettings, notebooks, notes }) => {
 
         var noteIDsAdded = addedNotes.map((note) => note.props.id);
 
-        var filtered = notebooks.filter((notebook) => 
-            notebook.title.toLowerCase().startsWith(value.toLowerCase()) && 
-            notebookIDsAdded.indexOf(notebook._id) === -1 
+        var filtered = notes.filter((note) => 
+                note.title.toLowerCase().startsWith(value.toLowerCase()) 
+            && 
+                noteIDsAdded.indexOf(note._id) === -1 
+            &&
+                !notebook.notes.includes(note._id)
         );
 
-        // &&
-        // !notebook.notes.includes(note._id)
-
-        setFilteredNotebooks(filtered.length ? filtered.map(notebook => 
+        setFilteredNotes(filtered.length ? filtered.map(note => 
                 <ListOptionSetting
-                    key={ notebook._id }
-                    id={ notebook._id }
-                    title={ notebook.title }
-                    onMouseDown={ (e) => addNotebook(e) }>
-                    { notebook.title }
+                    key={ note._id }
+                    id={ note._id }
+                    title={ note.title }
+                    onMouseDown={ (e) => addNote(e) }>
+                    { note.title }
                 </ListOptionSetting>
             ) : 
                 <ListOptionSetting>
                     { 
-                        // notebooks.filter((notebook) => 
-                        //     !notebook.notes.includes(note._id)).length ? 
-                        //         "No Notes Available!" 
-                        //     : 
-                        //         "All Notes Are In This Notebook"
+                        notes.filter((note) => 
+                            !notebook.notes.includes(note._id)).length ? 
+                                "No Notes Available!" 
+                            : 
+                                "No More Notes To Add"
                     }
                 </ListOptionSetting>
         );
     }
 
     const saveNotebooks = () => {
-        // const payload = {
-        //     notebookIDs: JSON.parse(localStorage.getItem("addedNotebookIDs")),
-        //     noteID: note._id
-        // }
+        const payload = {
+            noteIDs: JSON.parse(localStorage.getItem("addedNoteIDs")),
+            notebookID: notebook._id
+        }
 
-        // axios.put('/notebook/saveNote', {
-        //     data: payload
-        // }).then((res) => {
-        //     getNotebooks();
-        // }).catch((err) => {
-        //     console.log("ERROR in NotebookPreview - /saveNotebook", err);
-        // });
+        axios.put('/notebook/updateNotebook', {
+            data: payload
+        }).then((res) => {
+            getNotes();
+        }).catch((err) => {
+            console.log("ERROR in Settings - /updateNotebook", err);
+        });
     }
 
     const deleteNotebook = () => {
@@ -174,20 +174,20 @@ const Settings = ({ handleSettings, notebooks, notes }) => {
                             onChange={ (e) => handleChange(e) }
                             onFocus={ handleList }
                             onBlur={ (e) => handleChange(e) }
-                            name="notebook"
+                            name="note"
                             type="text"
-                            placeholder="Search Notebooks"> 
+                            placeholder="Search Notes"> 
                         </SearchInputList>
                     </label>
 
-                    { showList ? <div>{filteredNotebooks}</div> : null }
+                    { showList ? <div>{ filteredNotes }</div> : null }
 
-                    { addedNotebooks.length ? 
+                    { addedNotes.length ? 
                         <SettingHeading>Notes to be Added:</SettingHeading> &&
 
                         <AddedItemsGrid>
 
-                            { addedNotebooks }
+                            { addedNotes }
 
                         </AddedItemsGrid> 
                     : null }
@@ -202,7 +202,7 @@ const Settings = ({ handleSettings, notebooks, notes }) => {
                 { deleteCounter === 1 ? "Click the Delete Icon Again If You're Sure You Want To Delete This Notebook!" : null }
             </ErrorMessages>
 
-            <BlueButtonRegistration onClick={ (e) => { saveNotebooks(); displayList(''); handleSettings(e); } }>Update Note</BlueButtonRegistration>
+            <BlueButtonRegistration onClick={ (e) => { saveNotebooks(); displayList(''); window.location.reload(true) } }>Update Note</BlueButtonRegistration>
 
             { home ? <Navigate to="/user-home" /> : null }
         </StyledSettingsFormRead>

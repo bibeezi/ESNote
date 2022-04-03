@@ -16,7 +16,7 @@ const Header = ({ notebook, handleSettings }) => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Read { notebook.title } </WelcomeHeading>
+                <WelcomeHeading>Read { notebook.title ? notebook.title : "Notebook" } </WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeader>

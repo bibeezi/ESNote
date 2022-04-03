@@ -13,7 +13,7 @@ export const List = styled.div`
             max-height: 7em;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            transform: translateY(-0.3em);
+            transform: translateY(-0.5em);
 
             ::-webkit-scrollbar {
                 background: transparent;
@@ -52,7 +52,7 @@ export const ListOption = styled.div`
     box-shadow: inset 0 1px 1px 0 grey;
     padding: 1em 0 1em 0.5em;
     margin-left: 0.25em;
-    width: 83.5%;
+    width: 83.25%;
     transform: translateY(-0.25em);
     text-overflow: ellipsis;
     overflow: hidden;
@@ -77,7 +77,6 @@ export const ListOption = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 84%;
         margin-left: 0.45em;
         transform: translateY(-0.4em);
     }
@@ -87,9 +86,9 @@ export const ListOptionSetting = styled.div`
 
     background-color: whitesmoke;
     box-shadow: inset 0 1px 1px 0 grey;
-    padding: 1em 0 1em 0.5em;
+    padding: 1em 0;
     margin-left: 0.25em;
-    width: 83.5%;
+    width: 85%;
     transform: translateY(-0.25em);
     text-overflow: ellipsis;
     overflow: hidden;
@@ -114,7 +113,7 @@ export const ListOptionSetting = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
-        margin-left: 1.15em;
-        transform: translateY(-0.4em);
+        margin-left: 1.3em;
+        transform: translateY(-0.3em);
     }
 `;

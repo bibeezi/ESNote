@@ -109,7 +109,7 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
                             !notebook.notes.includes(note._id)).length ? 
                                 "No Notebooks Available!" 
                             : 
-                                "All Notebooks Have This Note"
+                                "Note Added to All"
                     }
                 </ListOptionSetting>
         );
@@ -188,7 +188,8 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
                             { addedNotebooks }
 
                         </AddedItemsGrid> 
-                    : null }
+                    : 
+                        null }
                 </List>
             </SettingContainer>
 
@@ -201,7 +202,7 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
             </ErrorMessages>
 
             <BlueButtonRegistration 
-                onClick={ (e) => { saveNotebooks(); displayList(''); handleSettings(e); } }>
+                onClick={ (e) => { saveNotebooks(); displayList(''); window.location.reload(true); } }>
                 Update Note
             </BlueButtonRegistration>
 

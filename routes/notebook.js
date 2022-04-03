@@ -142,5 +142,30 @@ router.put('/saveNote', (req, res) => {
     );
 });
 
+router.put('/updateNotebook', (req, res) => {
+    
+    const data = req.body.data;
+    const noteIDs = data.noteIDs;
+    const notebookID = data.notebookID;
+
+    NotebookModel.updateOne(
+        { _id: { "$in": notebookID }}, 
+        {
+            $push: {
+                notes: { 
+                    $each: noteIDs
+                }
+            }
+        }, {
+            upsert: true
+        },
+        (err, doc) => {
+            if(err) return res.status(404).json({ msg: 'ERROR in notebook route - /updateNotebook'});
+
+            return res.json(doc);
+        }
+    );
+});
+
 module.exports = router;
 

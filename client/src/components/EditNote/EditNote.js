@@ -32,7 +32,7 @@ const EditNote = () => {
     useEffect(() => {
         setTimeout(() => {
             saveOnLoad();
-        }, 500);
+        }, 1000);
     }, [])
 
     useEffect(() => {

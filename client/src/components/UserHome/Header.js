@@ -5,6 +5,8 @@ import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = () => {
 
+    const username = localStorage.getItem("userID");
+    
     return (
         <HeaderBarUserHome>
             <HomeHeader >

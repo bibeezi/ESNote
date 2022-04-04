@@ -207,7 +207,7 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
             <BlueButtonRegistration 
                 type="button"
                 onClick={ (e) => { saveNotebooks(); displayList(''); } }>
-                Update Note
+                Update Notebook
             </BlueButtonRegistration>
 
             { home ? <Navigate to="/user-home" /> : null }

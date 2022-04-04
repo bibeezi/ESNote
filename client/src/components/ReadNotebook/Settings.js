@@ -127,6 +127,8 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
             data: payload
         }).then((res) => {
             getNotes();
+
+            window.location.reload(true) 
         }).catch((err) => {
             console.log("ERROR in Settings - /updateNotebook", err);
         });
@@ -202,7 +204,7 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
                 { deleteCounter === 1 ? "Click the Delete Icon Again If You're Sure You Want To Delete This Notebook!" : null }
             </ErrorMessages>
 
-            <BlueButtonRegistration onClick={ (e) => { saveNotebooks(); displayList(''); window.location.reload(true) } }>Update Note</BlueButtonRegistration>
+            <BlueButtonRegistration onClick={ (e) => { saveNotebooks(); displayList('');} }>Update Note</BlueButtonRegistration>
 
             { home ? <Navigate to="/user-home" /> : null }
         </StyledSettingsFormRead>

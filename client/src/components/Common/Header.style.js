@@ -210,7 +210,7 @@ export const IconsHeaderCreate = styled.div`
 
     img {
         max-height: 40%;
-        height: 40%;
+        height: 40px;
         margin: 0;
         align-self: center;
         justify-self: center;

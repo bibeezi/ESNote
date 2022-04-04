@@ -33,23 +33,24 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
                         { template[0].sections.map((section, index) =>
                             note.body.length === 1 && template[0].sections.length === 1 ?
                                 note.body[index].sectionID === section._id ?
-                                    <UserHomeSections
-                                        key={ section._id }
-                                        id={ note._id }
-                                        onClick={ (e) => handleReadNote(e) }
-                                        section={ section }>
-                                        { note.body[index].content }
-                                    </UserHomeSections>
+                                <UserHomeSections
+                                    key={ section._id }
+                                    id={ note._id }
+                                    onClick={ (e) => handleReadNote(e) }
+                                    section={ section }>
+                                    { note.body[0].content }
+                                </UserHomeSections> 
                                 :
                                     null
                             : 
+
                             <UserHomeSections
                                 key={ section._id }
                                 id={ note._id }
                                 onClick={ (e) => handleReadNote(e) }
                                 section={ section }>
-                                { note.body[0].content }
-                            </UserHomeSections> 
+                                { note.body[index].content }
+                            </UserHomeSections>
                         ) }
                     </TemplateUserHome>
 

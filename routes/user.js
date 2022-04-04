@@ -7,8 +7,9 @@ const router = express.Router();
 
 router.post('/saveUser', (req, res) => {
 
-    const data = req.body;
+    const data = req.body.data;
     const newUser = new UserModel(data);
+    console.log(data);
 
     newUser.save((error) => {
         if(error) {

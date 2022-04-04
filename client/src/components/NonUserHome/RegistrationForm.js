@@ -31,6 +31,8 @@ const RegistrationForm = ({
         event.preventDefault();
 
         setTried(true);
+
+        console.log(valid);
         
         if(valid.username && valid.email && valid.password && valid.passwordMatch) {
 
@@ -50,7 +52,7 @@ const RegistrationForm = ({
                         data: payload
                     }).then(() => {
 
-                        setRefresh((prevState) => !prevState);
+                        // setRefresh((prevState) => !prevState);
                         
                         setUsernameTaken(false);
 

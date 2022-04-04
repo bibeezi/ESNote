@@ -158,7 +158,7 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
     }
 
     return (
-        <StyledSettingsFormRead>
+        <StyledSettingsFormRead onSubmit={ (e) => e.preventDefault() }>
             <CloseButton onMouseDown={ (e) => { handleSettings(e); setDeleteCounter(0); } }></CloseButton>
             <FormHeadingModal>Note Settings</FormHeadingModal>
 
@@ -204,6 +204,7 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
             </ErrorMessages>
 
             <BlueButtonRegistration 
+                type="button"
                 onClick={ (e) => { saveNotebooks(); displayList(''); } }>
                 Update Note
             </BlueButtonRegistration>

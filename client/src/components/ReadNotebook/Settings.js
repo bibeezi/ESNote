@@ -160,7 +160,7 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
     }
 
     return (
-        <StyledSettingsFormRead>
+        <StyledSettingsFormRead onSubmit={ (e) => e.preventDefault() }>
             <CloseButton onMouseDown={ (e) => { handleSettings(e); setDeleteCounter(0); } }/>
             <FormHeadingModal>Notebook Settings</FormHeadingModal>
 
@@ -204,7 +204,11 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
                 { deleteCounter === 1 ? "Click the Delete Icon Again If You're Sure You Want To Delete This Notebook!" : null }
             </ErrorMessages>
 
-            <BlueButtonRegistration onClick={ (e) => { saveNotebooks(); displayList(''); } }>Update Note</BlueButtonRegistration>
+            <BlueButtonRegistration 
+                type="button"
+                onClick={ (e) => { saveNotebooks(); displayList(''); } }>
+                Update Note
+            </BlueButtonRegistration>
 
             { home ? <Navigate to="/user-home" /> : null }
         </StyledSettingsFormRead>

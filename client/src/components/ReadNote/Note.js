@@ -72,12 +72,6 @@ const Note = ({ note, setNote }) => {
             console.log("ERROR in Note - /getTemplate", error);
         });
     }
-
-    // const showNote = () => {
-    //     if ( template.sections >= 1 ) {
-    //         return 
-    //     }
-    // };
  
     return (
         <TemplateContainer>

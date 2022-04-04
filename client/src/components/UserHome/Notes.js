@@ -30,17 +30,26 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
             return (
                 <StyledContainer key={ note._id }>
                     <TemplateUserHome shape={ "note" }>
-                        { template[0].sections.map((section, index) => 
-                            section._id === note.body[index].sectionID ?
-                                <UserHomeSections
-                                    key={ section._id }
-                                    id={ note._id }
-                                    onClick={ (e) => handleReadNote(e) }
-                                    section={ section }>
-                                    { note.body[index].content }
-                                </UserHomeSections>
-                            :
-                                null
+                        { template[0].sections.map((section, index) =>
+                            note.body.length === 1 && template[0].sections.length === 1 ?
+                                note.body[index].sectionID === section._id ?
+                                    <UserHomeSections
+                                        key={ section._id }
+                                        id={ note._id }
+                                        onClick={ (e) => handleReadNote(e) }
+                                        section={ section }>
+                                        { note.body[index].content }
+                                    </UserHomeSections>
+                                :
+                                    null
+                            : 
+                            <UserHomeSections
+                                key={ section._id }
+                                id={ note._id }
+                                onClick={ (e) => handleReadNote(e) }
+                                section={ section }>
+                                { note.body[0].content }
+                            </UserHomeSections> 
                         ) }
                     </TemplateUserHome>
 

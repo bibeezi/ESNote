@@ -7,6 +7,7 @@ import { TemplateContainer, TemplateReadNote } from "../Common/Template.style";
 const Note = ({ note, setNote }) => {
 
     const [template, setTemplate] = useState({});
+    const [readSections, setReadSections] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -14,6 +15,23 @@ const Note = ({ note, setNote }) => {
         }, 50);
     }, []);
 
+    useEffect(() => {
+        setReadSections((prevState) => {
+            if ( template ) {
+                if ( template.sections ) {
+                    return template.sections.map((section, index) => (
+                        note.body.length === 1 && template.sections.length === 1 ?
+                            note.body[index].sectionID === section._id ?
+                                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> 
+                            :
+                                null
+                        :
+                            <ReadSections key={ section._id } section={ section }>{ note.body[0].content }</ReadSections> 
+                    ));
+                }
+            }
+        })
+    }, [template])
 
     const getNote = () => {
 
@@ -55,18 +73,16 @@ const Note = ({ note, setNote }) => {
         });
     }
 
-    const showNote = (sections) => {
-        return sections.map((section, index) => (
-            section._id === note.body[index].sectionID ? 
-                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> :
-                null
-        ));
-    };
+    // const showNote = () => {
+    //     if ( template.sections >= 1 ) {
+    //         return 
+    //     }
+    // };
  
     return (
         <TemplateContainer>
             <TemplateReadNote>
-                { Object.keys(template).length !== 0 && showNote(template.sections) }
+                { readSections }
             </TemplateReadNote>
         </TemplateContainer>            
     );

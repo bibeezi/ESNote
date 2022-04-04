@@ -81,17 +81,18 @@ const Note = ({ handleChange, setNoteContent, note, setNote, textareaRef }) => {
                     name={ section._id }
                     values={ section }
                     defaultValue={ 
-                        note.body.length > 0 ? 
-                            (note.body[index].sectionID === section._id ? 
-                                note.body[index].content : 
-                                null) :
-                            null 
-                        }
+                        note.body.length === 1 && template.sections.length === 1 ? 
+                            note.body[index].sectionID === section._id ? 
+                                note.body[index].content
+                            : 
+                                null 
+                        :
+                            ""
+                    }
                     onChange={ (e) => handleChange(e) }>
                 </TextArea>
             ));
     }
-
 
     useEffect(() => {
         showTextAreas(template);

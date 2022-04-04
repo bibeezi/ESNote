@@ -3,10 +3,6 @@ import { HeaderHeading } from "../Common/Heading.style";
 
 const Header = ({ homeImage }) => {
 
-    const goHome = () => {
-        window.location.reload(true);
-    }
-
     return (
         <HeaderBar>
 
@@ -14,10 +10,10 @@ const Header = ({ homeImage }) => {
                 <img
                     src={ homeImage }
                     alt="Home Icon"
-                    onClick={ goHome }>
+                    cursor={ false }>
                 </img>
                 
-                <HeaderHeading onClick={ goHome }>ESNote</HeaderHeading>
+                <HeaderHeading cursor={ false }>ESNote</HeaderHeading>
             </HomeHeader>
 
         </HeaderBar>

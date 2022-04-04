@@ -1,4 +1,4 @@
-import styled, { css }from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderBar = styled.div`
 
@@ -79,7 +79,10 @@ export const HomeHeader = styled.div`
         margin-left: 0.5em;
         width: 1.5em;
         height: 1.5em;
-        cursor: pointer;
+        ${({ cursor }) => cursor === false ? css`
+        ` : css`
+            cursor: pointer;
+        `}
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

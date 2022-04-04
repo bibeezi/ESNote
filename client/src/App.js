@@ -20,12 +20,12 @@ function App() {
       <div className='App'>
         <Routes>
           <Route exact path='/' element={ <NonUserHome /> }></Route>
-          <Route exact path='/user-home' element={ <UserHome /> }></Route>
-          <Route exact path='/create-note-template' element={ <CreateNote /> }></Route>
-          <Route exact path='/create-notebook-template' element={ <CreateNotebook /> }></Route>
-          <Route exact path='/edit-note' element={ <EditNote /> }></Route>
-          <Route exact path='/read-note' element={ <ReadNote /> }></Route>
-          <Route exact path='/read-notebook' element={ <ReadNotebook /> }></Route>
+          <Route path='/user-home' element={ <UserHome /> }></Route>
+          <Route path='/create-note-template' element={ <CreateNote /> }></Route>
+          <Route path='/create-notebook-template' element={ <CreateNotebook /> }></Route>
+          <Route path='/edit-note' element={ <EditNote /> }></Route>
+          <Route path='/read-note' element={ <ReadNote /> }></Route>
+          <Route path='/read-notebook' element={ <ReadNotebook /> }></Route>
         </Routes>
       </div>
     </Router>

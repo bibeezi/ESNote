@@ -125,7 +125,9 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
             data: payload
         }).then((res) => {
             getNotebooks();
-        }).catch((err) => {
+            
+            goHome();
+            }).catch((err) => {
             console.log("ERROR in NotebookPreview - /saveNotebook", err);
         });
     }
@@ -202,7 +204,7 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
             </ErrorMessages>
 
             <BlueButtonRegistration 
-                onClick={ (e) => { saveNotebooks(); displayList(''); window.location.reload(true); } }>
+                onClick={ (e) => { saveNotebooks(); displayList(''); } }>
                 Update Note
             </BlueButtonRegistration>
 

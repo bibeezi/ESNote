@@ -9,7 +9,7 @@ import { SettingHeaderRead } from "../Common/Header.style";
 import { FormHeadingModal, SettingHeading, NotebookNoteHeading} from "../Common/Heading.style";
 import { ErrorMessages } from "../Common/Messages.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
-import { List, ListOptionSetting } from "../Common/List.style"
+import { List, ListOptionSetting, Options } from "../Common/List.style"
 import { SearchInputList } from "../Common/Inputs.style"
 
 const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
@@ -180,7 +180,7 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
                         </SearchInputList>
                     </label>
 
-                    { showList ? <div>{ filteredNotes }</div> : null }
+                    { showList ? <Options>{ filteredNotes }</Options> : null }
 
                     { addedNotes.length ? 
                         <SettingHeading>Notes to be Added:</SettingHeading> &&

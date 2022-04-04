@@ -19,7 +19,7 @@ const SectionSetting = ({ id, handleChange, handleDelete }) => {
                     id={ id }
                     name="x"
                     type="number"
-                    placeholder="X"> 
+                    placeholder="X - 1 to 4"> 
                 </SettingInput>
             </label>
             
@@ -29,7 +29,7 @@ const SectionSetting = ({ id, handleChange, handleDelete }) => {
                     id={ id }
                     name="y"
                     type="number"
-                    placeholder="Y">
+                    placeholder="Y - 1 to 4">
                 </SettingInput>
             </label>
 
@@ -39,7 +39,7 @@ const SectionSetting = ({ id, handleChange, handleDelete }) => {
                     id={ id }
                     name="h"
                     type="number"
-                    placeholder="H">
+                    placeholder="H - 1 to 4">
                 </SettingInput>
             </label>
 
@@ -49,7 +49,7 @@ const SectionSetting = ({ id, handleChange, handleDelete }) => {
                     id={ id }
                     name="w"
                     type="number"
-                    placeholder="W">
+                    placeholder="W - 1 to 4">
                 </SettingInput>
             </label>
         </SettingContainer>

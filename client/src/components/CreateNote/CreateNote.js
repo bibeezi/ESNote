@@ -17,22 +17,27 @@ const CreateNote = () => {
         switch(name) {
             case "x":
                 sectionValue = value === "" ? 1 : value;
+
                 copySectionValues[parseInt(id)-1].values.x = parseInt(sectionValue);
                 break;
+
             case "y":
                 sectionValue = value === "" ? 1 : value;
+
                 copySectionValues[parseInt(id)-1].values.y = parseInt(sectionValue);
                 break;
             case "h":
                 sectionValue = value === "" ? 4 : value;
+
                 copySectionValues[parseInt(id)-1].values.h = parseInt(sectionValue);
                 break;
             case "w":
                 sectionValue = value === "" ? 4 : value;
+
                 copySectionValues[parseInt(id)-1].values.w = parseInt(sectionValue);
                 break;
             default:
-                console.log("input did not update properly");
+                break;
         }
 
         setSectionValues(prevState => prevState.map((sectionValues) => {

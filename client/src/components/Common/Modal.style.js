@@ -9,6 +9,7 @@ export const Modal = styled.div`
     width: 100%;
     background-color: #FFFFFFBB;
     z-index: 2;
+    overflow-y: scroll;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

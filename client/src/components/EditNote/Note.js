@@ -4,7 +4,7 @@ import axios from "axios";
 import { TemplateContainer, TemplateEditNote } from "../Common/Template.style"
 import { TextArea } from "../Common/Section.style";
 
-const Note = ({ handleChange, setNoteContent, note, setNote }) => {
+const Note = ({ handleChange, setNoteContent, note, setNote, textareaRef }) => {
 
     const [template, setTemplate] = useState({});
 
@@ -101,7 +101,7 @@ const Note = ({ handleChange, setNoteContent, note, setNote }) => {
         <TemplateContainer>
             { Object.keys(template).length !== 0 &&
 
-                <TemplateEditNote>
+                <TemplateEditNote ref={ textareaRef }>
 
                     { showTextAreas(template) }
 

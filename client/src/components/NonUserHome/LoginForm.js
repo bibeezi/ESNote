@@ -48,13 +48,12 @@ const LoginForm = ({
 
             setValidLogin(false);
         }).catch((error) => {
-            console.log("ERROR in UserHome - /getUser", error);
+            console.log("ERROR in LoginForm - /user/getUser", error);
         });
     };
 
     return (
-        <StyledLoginForm 
-        onSubmit={ (e) => handleLogin(e) }>
+        <StyledLoginForm onSubmit={ (e) => handleLogin(e) }>
             
             <FormHeading>Login</FormHeading>
 
@@ -72,7 +71,8 @@ const LoginForm = ({
                 type="password" 
                 required>
             </Input>
-            <ErrorMessages active={ user.username !== "" && user.password !== "" && validLogin === false ? true : false }>
+            <ErrorMessages 
+                active={ user.username !== "" && user.password !== "" && validLogin === false }>
                 Username or Password is incorrect!
             </ErrorMessages>
 

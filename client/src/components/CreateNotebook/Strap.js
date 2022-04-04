@@ -30,7 +30,7 @@ const Strap = ({
                         onChange={ (e) => handleChange(e) }
                         name="strapX"
                         type="number"
-                        placeholder="X"> 
+                        placeholder="X - 1 to 11"> 
                     </SettingInput>
                 </label>
 

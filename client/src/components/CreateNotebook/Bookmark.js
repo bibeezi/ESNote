@@ -29,7 +29,7 @@ const Bookmark = ({
                         onChange={ (e) => handleChange(e) }
                         name="bookmarkX"
                         type="number"
-                        placeholder="X"> 
+                        placeholder="X - 1 to 11"> 
                     </SettingInput>
                 </label>
 

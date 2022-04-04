@@ -27,6 +27,7 @@ const RegistrationForm = ({
     const [usernameTaken, setUsernameTaken] = useState(false);
 
     const handleRegistration = (event) => {
+
         event.preventDefault();
 
         setTried(true);
@@ -45,62 +46,61 @@ const RegistrationForm = ({
                 }
             }).then((res) => {
                 if(res.data.msg !== "Username Taken") {
-                    axios({
-                        url: '/user/saveUser',
-                        method: 'POST',
+                    axios.post('/user/saveUser', {
                         data: payload
                     }).then(() => {
+
                         setRefresh((prevState) => !prevState);
+                        
                         setUsernameTaken(false);
+
                     }).catch((err) => {
-                        console.log("ERROR in NonUserHome - /saveUser", err);
+                        console.log("ERROR in RegistrationForm - /user/saveUser", err);
                     });
                 }
 
                 setUsernameTaken(true);
+
             }).catch((err) => {
-                console.log("ERROR in RegistrationForm - /checkUsername", err)
+                console.log("ERROR in RegistrationForm - /user/checkUsername", err)
             });
         }
     };
 
     
     const handleFocus = ({ target }) => {
+
         const { name } = target;
         
         switch(name) {
             case "username":
                 setFocus(prevState => ({
-                    [name]: true,
-                    email: prevState.email,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "email":
-                setFocus(prevState => ({
-                    username: prevState.username,
-                    [name]: true,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "password":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    [name]: true,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    password: prevState.password,
+                    ...prevState,
                     [name]: true
                 }));
                 break;
+
+            case "email":
+                setFocus(prevState => ({
+                    ...prevState,
+                    [name]: true
+                }));
+                break;
+
+            case "password":
+                setFocus(prevState => ({
+                    ...prevState,
+                    [name]: true,
+                }));
+                break;
+
+            case "passwordMatch":
+                setFocus(prevState => ({
+                    ...prevState,
+                    [name]: true
+                }));
+                break;
+
             default:
                 break;
         }
@@ -112,36 +112,32 @@ const RegistrationForm = ({
         switch(name) {
             case "username":
                 setFocus(prevState => ({
-                    [name]: false,
-                    email: prevState.email,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "email":
-                setFocus(prevState => ({
-                    username: prevState.username,
-                    [name]: false,
-                    password: prevState.password,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "password":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    [name]: false,
-                    passwordMatch: prevState.passwordMatch
-                }));
-                break;
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    username: prevState.username, 
-                    email: prevState.email,
-                    password: prevState.password,
+                    ...prevState,
                     [name]: false
                 }));
                 break;
+
+            case "email":
+                setFocus(prevState => ({
+                    ...prevState,
+                    [name]: false
+                }));
+                break;
+
+            case "password":
+                setFocus(prevState => ({
+                    ...prevState,                    
+                    [name]: false
+                }));
+                break;
+
+            case "passwordMatch":
+                setFocus(prevState => ({
+                    ...prevState,
+                    [name]: false
+                }));
+                break;
+                
             default:
                 break;
         }
@@ -160,7 +156,8 @@ const RegistrationForm = ({
                 name="username" 
                 placeholder="Username">
             </InputRegistration>
-            <ErrorMessages active={ (focus.username || tried) && !valid.username || usernameTaken ? true : false }>
+            <ErrorMessages 
+                active={ (focus.username || tried) && !valid.username || usernameTaken }>
                 { usernameTaken ? "Username Already Taken" : "Must be 6 to 20 characters, starting with a letter." } 
             </ErrorMessages>
 
@@ -172,7 +169,8 @@ const RegistrationForm = ({
                 placeholder="Email" 
                 type='email'>
             </Input>
-            <ErrorMessages active={ (focus.email || tried) && !valid.email ? true : false }>
+            <ErrorMessages 
+                active={ (focus.email || tried) && !valid.email }>
                 Must be filled in - example@example.com
             </ErrorMessages>
 
@@ -184,7 +182,8 @@ const RegistrationForm = ({
                 placeholder="Password" 
                 type="password">
             </Input>
-            <ErrorMessages active={ (focus.password || tried) && !valid.password ? true : false }>
+            <ErrorMessages 
+                active={ (focus.password || tried) && !valid.password }>
                 Must be 8 to 20 characters and must have at least 1 captial letter, 1 number and 1 special character - !@#$%
             </ErrorMessages>
 
@@ -196,7 +195,8 @@ const RegistrationForm = ({
                 placeholder="Confirm Password" 
                 type="password">
             </Input>                                
-            <ErrorMessages active={ (focus.passwordMatch || tried) && !valid.passwordMatch ? true : false }>
+            <ErrorMessages 
+                active={ (focus.passwordMatch || tried) && !valid.passwordMatch }>
                 The password and confirm password inputs don't match!
             </ErrorMessages>
 
@@ -207,6 +207,7 @@ const RegistrationForm = ({
             </BlueButtonRegistration>
 
             { refresh ? window.location.reload(true) : null }
+            
         </StyledRegistrationForm>
     );
 }

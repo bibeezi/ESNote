@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import Header from "./Header";
@@ -26,8 +26,15 @@ const EditNote = () => {
     const [saved, setSaved] = useState(false);
     const [openSettings, setOpenSettings] = useState(false);
     const [notebooks, setNotebooks] = useState([]);
-
+    const inputRef = useRef(null);
+    const textareaRef = useRef(null);
     
+    useEffect(() => {
+        setTimeout(() => {
+            saveOnLoad();
+        }, 500);
+    }, [])
+
     useEffect(() => {
         setTimeout(() => {
             setSaved(false);
@@ -108,6 +115,34 @@ const EditNote = () => {
         });
     }
 
+    const saveOnLoad = () => {
+
+        const textareas = textareaRef.current?.childNodes;
+        const title = inputRef.current;
+
+        var newBody = Array.from(textareas).map((child) => {
+            return { sectionID: child.name, content: child.value }
+        });
+
+        setNoteContent(prevState => ({
+            ...prevState,
+            body: newBody
+        }));
+
+        axios.put('/note/saveNote', {
+            noteBodies: newBody,
+            noteTitle: title.value,
+            noteTemplate: noteContent.template,
+            noteID: note._id
+        })
+        .then((res) => {
+            setSaved(true);
+        })
+        .catch((err) => {
+            console.log("ERROR in EditNote - /saveNote", err);
+        });
+    }
+
     const getNotebooks = () => {
 
         const payload = {
@@ -129,13 +164,18 @@ const EditNote = () => {
 
     return (
         <div>
-            <Header handleSettings={ handleSettings }/>
+            <Header 
+                handleSettings={ handleSettings }
+                note={ note }
+                noteContent={ noteContent }>                    
+            </Header>
 
             <EditNoteContent>
                 <TitleContainer>
                     <label>Title:</label>
 
                     <EditNoteInput 
+                        ref={ inputRef }
                         name="title"
                         type="text"
                         placeholder="Title"
@@ -145,6 +185,7 @@ const EditNote = () => {
                 </TitleContainer>
 
                 <Note
+                    textareaRef={ textareaRef }
                     note={ note }
                     setNote={ setNote }
                     setNoteContent={ setNoteContent }

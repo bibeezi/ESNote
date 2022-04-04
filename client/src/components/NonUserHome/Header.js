@@ -9,14 +9,17 @@ const Header = ({ homeImage }) => {
 
     return (
         <HeaderBar>
+
             <HomeHeader>
                 <img
                     src={ homeImage }
                     alt="Home Icon"
                     onClick={ goHome }>
                 </img>
+                
                 <HeaderHeading onClick={ goHome }>ESNote</HeaderHeading>
             </HomeHeader>
+
         </HeaderBar>
     );
 };

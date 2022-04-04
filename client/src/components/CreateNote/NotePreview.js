@@ -7,13 +7,9 @@ import { Template } from "../Common/Template.style";
 import { Sections } from "../Common/Section.style"
 import { NextButton } from "../Common/Button.style";
 
-const NotePreview = ({ sectionValues }) => {
+const NotePreview = ({ sectionValues, validInputs }) => {
 
     const [editNote, setEditNote] = useState(false);
-
-    const openEditNote = () => {
-        setEditNote(prevState => !prevState);
-    }
 
     const showSections = (sections) => {
         return sections.map((section) => ( 
@@ -37,13 +33,16 @@ const NotePreview = ({ sectionValues }) => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             }
-        })
-        .then((res) => {
+        }).then((res) => {
+            
             localStorage.setItem("newNoteID", res.data.noteID);
-        }) 
-        .catch((err) => {
+            
+            setEditNote(prevState => !prevState);
+
+        }).catch((err) => {
             console.log("ERROR in CreateNote - /saveTemplate", err);
         });
+
     };
 
     return ( 
@@ -55,7 +54,7 @@ const NotePreview = ({ sectionValues }) => {
             </Template>
 
             <NextButton
-                onClick={ (e) => { openEditNote(); handleNext(e); } }>
+                onClick={ (e) => handleNext(e) }>
                 Next
             </NextButton>
 

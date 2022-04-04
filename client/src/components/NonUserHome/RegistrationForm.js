@@ -52,7 +52,7 @@ const RegistrationForm = ({
                         data: payload
                     }).then(() => {
 
-                        // setRefresh((prevState) => !prevState);
+                        setRefresh((prevState) => !prevState);
                         
                         setUsernameTaken(false);
 

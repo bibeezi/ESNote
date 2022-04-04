@@ -110,8 +110,6 @@ const NonUserHome = () => {
         }
     };
 
-    console.log(user);
-
     return ( 
         <div>
             <Header homeImage={ Images.Home } />

@@ -22,11 +22,11 @@ const Note = ({ note, setNote }) => {
                     return template.sections.map((section, index) => (
                         note.body.length === 1 && template.sections.length === 1 ?
                             note.body[index].sectionID === section._id ?
-                                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> 
+                                <ReadSections key={ section._id } section={ section }>{ note.body[0].content }</ReadSections> 
                             :
                                 null
                         :
-                            <ReadSections key={ section._id } section={ section }>{ note.body[0].content }</ReadSections> 
+                            <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> 
                     ));
                 }
             }

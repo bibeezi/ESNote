@@ -8,6 +8,7 @@ export const NonUserHomeContent = styled.div`
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
     grid-template-columns: none;
     grid-template-rows: 25em;
+    align-items: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         grid-template-rows: 30em;
@@ -18,17 +19,24 @@ export const NonUserHomeContent = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        grid-template-rows: 50em;
+        margin-top: 5.4em;
+        grid-template-rows: 50%;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        min-height: 0;
+        height: calc(100vh - 5.4em);
+        margin-top: 5.4em;
         grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        grid-template-rows: 100%;
     }
 
     @media only screen and (min-width: 1200px) {
+        min-height: 0;
+        height: calc(100vh - 5.4em);
+        margin-top: 5.4em;
         grid-template-columns: 60% 40%;
-        grid-template-rows: 100vh;
+        grid-template-rows: 100%;
     }
 `;
 

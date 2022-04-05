@@ -4,6 +4,8 @@ export const StyledPresentation = styled.div`
 
     box-shadow: 0 0em 1em grey;
     border-radius: 1em;
+    margin: 5em 2em 0 2em;
+    height: 20em;
 
     img {
         display: block;
@@ -14,9 +16,6 @@ export const StyledPresentation = styled.div`
         border-radius: 1em;
     }
 
-    margin: 5em 2em 0 2em;
-    height: 20em;
-
     @media only screen and (min-width: 360px) and (max-width: 600px) {
        
     }
@@ -26,17 +25,17 @@ export const StyledPresentation = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        margin: 10em 2em 0 2em;
+        margin: 0 2em;
         height: 35em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        margin: 13em 2em 0 2em;
-        height: 35em;
+        height: 30em;
+        margin: 0 2em;
     }
 
     @media only screen and (min-width: 1200px) {
-        margin-top: 10em;
-        height: 40em;
+        height: 30em;
+        margin: 0 2em;
     }
 `;

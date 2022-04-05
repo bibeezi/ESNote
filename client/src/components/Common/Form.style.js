@@ -30,14 +30,18 @@ export const LoginFormContainer = styled.div`
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         height: 30em;
-        width: 50%;
-        margin: 13.5em auto auto auto;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        height: 25em;
     }
 
     @media only screen and (min-width: 1200px) {
         height: 30em;
         width: 60%;
-        margin: 13em auto auto auto;
+        margin: 0 auto;
 
     }
 `;

@@ -15,9 +15,10 @@ router.post("/saveTemplate", (req, res) => {
     const data = req.body;
     const userID = data.userID;
     const newTemplateData = [];
+    const noteBodies = [];
 
     data.sections.forEach((section) => newTemplateData.push({
-        id: section.values.id,
+        id: section.id,
         x: section.values.x,
         y: section.values.y,
         h: section.values.h,
@@ -31,12 +32,14 @@ router.post("/saveTemplate", (req, res) => {
             return res.status(500).json({ msg: 'ERROR in template route - /saveTemplate'});
         }
 
+        doc.sections.forEach((section) => noteBodies.push({
+            sectionID: section._id,
+            content: ""
+        }));
+
         const newNoteData = {
             title: "",
-            body: [{
-                sectionID: "",
-                content: ""
-            }],
+            body: noteBodies,
             template: doc._id.toString()
         }
 

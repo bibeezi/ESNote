@@ -13,9 +13,9 @@ const Header = () => {
                 <img
                     src={ Images.Home }
                     alt="Home Icon"
-                    cursor={ false }>
+                    cursor={ "false" }>
                 </img>
-                <HeaderHeading cursor={ false }>ESNote</HeaderHeading>
+                <HeaderHeading cursor={ "false" }>ESNote</HeaderHeading>
             </HomeHeader>
 
             <WelcomeHeader>

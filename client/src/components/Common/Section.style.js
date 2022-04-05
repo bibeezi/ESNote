@@ -71,6 +71,7 @@ export const UserHomeSections = styled.div`
     border: 2px solid lightblue;
     border-style: dotted;
     font-size: 0.2em;
+    overflow: hidden;
     cursor: default;
 
     ${ ({ section }) => css`

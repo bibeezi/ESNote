@@ -83,11 +83,14 @@ const Note = ({ handleChange, setNoteContent, note, setNote, textareaRef }) => {
                     defaultValue={ 
                         note.body.length === 1 && template.sections.length === 1 ? 
                             note.body[index].sectionID === section._id ? 
-                                note.body[0].content
+                                note.body[index].content
                             : 
                                 null 
                         :
-                            note.body[index].content
+                            note.body[index].sectionID === section._id ? 
+                                note.body[index].content
+                            : 
+                                null 
                     }
                     onChange={ (e) => handleChange(e) }>
                 </TextArea>

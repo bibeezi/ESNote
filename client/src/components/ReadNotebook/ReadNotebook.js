@@ -18,7 +18,7 @@ const ReadNotebook = () => {
     useEffect(() => {
         setTimeout(() => {
             getNotebook();
-        }, 500);
+        }, 1000);
 
         getAllNotes();
     }, []);

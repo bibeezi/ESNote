@@ -38,7 +38,7 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
                                     id={ note._id }
                                     onClick={ (e) => handleReadNote(e) }
                                     section={ section }>
-                                    { note.body[0].content }
+                                    { note.body[index].content }
                                 </UserHomeSections> 
                                 :
                                     null
@@ -49,7 +49,7 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
                                 id={ note._id }
                                 onClick={ (e) => handleReadNote(e) }
                                 section={ section }>
-                                { note.body[index].content }
+                                { note.body[0].content }
                             </UserHomeSections>
                         ) }
                     </TemplateUserHome>

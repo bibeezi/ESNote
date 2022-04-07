@@ -13,7 +13,8 @@ const Images = {
     OnSwitch: require('./on_switch.png').default,
     OffSwitch: require('./off_switch.png').default,
     Edit: require('./edit.png').default,
-    Checked: require('./checked.png').default
+    Checked: require('./checked.png').default,
+    Read: require('./note.png').default
 }
 
 export default Images;

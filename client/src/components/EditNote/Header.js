@@ -9,6 +9,7 @@ import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 const Header = ({ handleSettings, note, noteContent }) => {
 
     const [home, setHome] = useState(false);
+    const [readNote, setReadNote] = useState(false);
 
     const goHome = ({ target }) => {
 
@@ -35,6 +36,10 @@ const Header = ({ handleSettings, note, noteContent }) => {
         setHome(prevState => !prevState);
     }
 
+    const handleReadNote = () => {
+        setReadNote(prevState => !prevState);
+    }
+
     return (
         <HeaderBar>
             <HomeHeader>
@@ -51,10 +56,12 @@ const Header = ({ handleSettings, note, noteContent }) => {
             </WelcomeHeader>
             
             <IconsHeaderCreate>
+                <img alt="read note" src={ Images.Read } onClick={ handleReadNote }></img>
                 <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
             </IconsHeaderCreate>
 
             { home ? <Navigate to='/user-home'/> : null }
+            { readNote ? <Navigate to='/read-note'/> : null }
 
         </HeaderBar>
     );

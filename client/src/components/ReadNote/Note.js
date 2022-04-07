@@ -9,6 +9,7 @@ const Note = ({ note, setNote }) => {
     const [template, setTemplate] = useState({});
     const [readSections, setReadSections] = useState([]);
 
+    
     useEffect(() => {
         setTimeout(() => {
             getNote();
@@ -32,6 +33,7 @@ const Note = ({ note, setNote }) => {
             }
         })
     }, [template])
+
 
     const getNote = () => {
 

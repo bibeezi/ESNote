@@ -11,8 +11,6 @@ export const Input = styled.input`
     border: 0.1px solid grey;
     font-size: 1em;
 
-    /* max-width: 360px */
-
     @media only screen and (max-height: 360px) {
         height: 1.5em;
         margin: 0.25em auto;

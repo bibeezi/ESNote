@@ -24,6 +24,7 @@ export const TemplateContainer = styled.div`
     }
 
     @media only screen and (min-width: 1200px) {
+
     }
 `;
 

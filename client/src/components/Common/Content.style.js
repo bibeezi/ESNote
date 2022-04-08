@@ -274,6 +274,7 @@ export const ReadNoteContent = styled.div`
 
 export const ReadNotebookContent = styled.div`
 
+    /* max-width: 360px */
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
     min-height: calc(100vh - 3.4em);

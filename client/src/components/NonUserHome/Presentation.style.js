@@ -25,7 +25,7 @@ export const StyledPresentation = styled.div`
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        margin: 0 2em;
+        margin: 2em;
         height: 35em;
     }
 

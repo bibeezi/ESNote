@@ -1,3 +1,4 @@
+// object of all images required for ESNote
 const Images = {
     Home: require('./home.png').default,
     Presentation: require('./ESNote.gif').default,

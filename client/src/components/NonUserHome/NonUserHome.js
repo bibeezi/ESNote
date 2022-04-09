@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
-
+// React Hooks
+import { useState } from 'react';
+// Image files
 import Images from "../../images/Images";
+// Child Components
 import Header from "./Header";
 import LoginForm from "./LoginForm";
 import RegistrationForm from './RegistrationForm';
+// Styled Components
 import { NonUserHomeContent } from "../Common/Content.style";
 import { StyledPresentation } from "./Presentation.style";
 import { LoginFormContainer, RegistrationFormContainer } from "../Common/Form.style";
@@ -11,103 +14,108 @@ import { Modal } from '../Common/Modal.style';
 
 const NonUserHome = () => {
 
-    const userRegex = /^[a-zA-Z0-9].{5,20}$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$/;
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
-    const [showRegistration, setShowRegistration] = useState(false);
-
+    // Holds user input from login or registration forms
     const [user, setUser] = useState({
         username: '',
         email: '',
-        password: '',
+        password: ''
     });
-    const [passwordMatch, setPasswordMatch] = useState('');
 
+    // Status of valid inputs from registration form
     const [valid, setValid] = useState({
         username: false,
         email: false,
         password: false,
         passwordMatch: false
     });
+
+    // Allows login when user is found
     const [validLogin, setValidLogin] = useState(null);
 
-
-    useEffect(() => {
-
-        const match = user.password === passwordMatch && passwordMatch !== "" ? true : false;
-
-        setValid(prevState => ({
-            ...prevState, 
-            passwordMatch: match
-        }));
-
-    }, [user.password, passwordMatch]);
+    // Regular Expressions to test against inputs during login and registration
+    const userRegex = /^[a-zA-Z0-9].{5,20}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$/;
+    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
 
 
+    // Opens registration form
     const openSignUpForm = (event) => {
-        
+        // Stops the form from refreshing the page on render
         event.preventDefault();
 
-        setShowRegistration(prev => !prev);
-        
+        setShowRegistrationForm(prevState => !prevState);
     };
 
+    // Handles input change for registration and login forms
     const handleChange = ({ target }) => {
+        // Get the name and value attribute from 
+        // the element that triggered the event
         const { name, value } = target;
-
-        var userCopy = user;
         
+        // Set user state to be used for server requests.
+        // Validate input values and set valid state for
+        // error messages or form submission
         switch(name) {
             case "username": {
-
-                userCopy.username = value;
-
-                setUser(userCopy);
-
                 const result = userRegex.test(value);
 
+                setUser(prevState => ({
+                    ...prevState, 
+                    username: value
+                }));
                 setValid(prevState => ({
                     ...prevState,
                     username: result
                 }));
-
-                setValidLogin(null);
                 break;
+
             }
             case "email": {
-
-                userCopy.email = value;
-
-                setUser(userCopy);
-
                 const result = emailRegex.test(value);
 
+                setUser(prevState => ({
+                    ...prevState, 
+                    email: value
+                }));
                 setValid(prevState => ({
                     ...prevState,
                     email: result
                 }));
                 break;
+
             }
             case "password": {
-
-                userCopy.password = value;
-
-                setUser(userCopy);
-
                 const result = passwordRegex.test(value);
 
+                setUser(prevState => ({
+                    ...prevState, 
+                    password: value
+                }));
                 setValid(prevState => ({
                     ...prevState,
                     password: result
                 }));
-
-                setValidLogin(null);
                 break;
+
+            }
+            case "passwordMatch": {
+                const result = user.password === value && value !== "";
+
+                setValid(prevState => ({
+                    ...prevState, 
+                    passwordMatch: result
+                }));
+                break;
+                
             }
             default:
                 break;
         }
+
+        // Ensure null to hide error message for login
+        setValidLogin(null);
     };
 
     return ( 
@@ -136,7 +144,8 @@ const NonUserHome = () => {
                 </LoginFormContainer>
             </NonUserHomeContent>
 
-            {   showRegistration 
+            {/* show the Registration Form when true */}
+            {   showRegistrationForm 
             && 
                 <Modal onClick={ (e) => openSignUpForm(e) }>
                     <RegistrationFormContainer onClick={ (e) => openSignUpForm(e) }>
@@ -144,7 +153,6 @@ const NonUserHome = () => {
                         <RegistrationForm
                             user={ user }
                             valid={ valid }
-                            setPasswordMatch={ setPasswordMatch }
                             handleChange={ handleChange }
                             openSignUpForm={ openSignUpForm }>
                         </RegistrationForm>

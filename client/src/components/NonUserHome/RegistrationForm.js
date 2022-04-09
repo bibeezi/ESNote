@@ -1,6 +1,10 @@
+// React Hooks
 import { useState } from 'react';
+
+// Promise-based HTTP client
 import axios from 'axios';
 
+// Styled Components
 import { StyledRegistrationForm } from "../Common/Form.style";
 import { CloseButton } from "../Common/Close.style";
 import { FormHeadingModal } from "../Common/Heading.style";
@@ -9,58 +13,66 @@ import { BlueButtonRegistration } from "../Common/Button.style";
 import { ErrorMessages } from "../Common/Messages.style";
 
 const RegistrationForm = ({ 
+    // props passed from NonUserHome.js
     user,
     valid,
-    setPasswordMatch, 
     handleChange,
     openSignUpForm 
 }) => {
 
+    // Refreshes window when true
     const [refresh, setRefresh] = useState(false);
+
+    // Shows error messages when user registers with an invalid form
     const [tried, setTried] = useState(false);
-    const [focus, setFocus] = useState({
-        username: false,
-        email: false,
-        password: false,
-        passwordMatch: false
-    });
     const [usernameTaken, setUsernameTaken] = useState(false);
 
-    const handleRegistration = (event) => {
 
+    // Handles submission of registation form when 
+    // 'Create an account' button is clicked
+    const handleRegistration = (event) => {
+        // Stops the form from refreshing the page on render
         event.preventDefault();
 
+        // The user has tried to register
         setTried(true);
-
-        console.log(valid);
         
+        // Only send a request when all input values are valid
         if(valid.username && valid.email && valid.password && valid.passwordMatch) {
 
+            // Gather data to send
             const payload = {
                 username: user.username,
                 email: user.email,
                 password: user.password
             };
 
+            // Finds the username in MongoDB
             axios.get('/user/checkUsername', {
                 params: {
                     data: payload
                 }
             }).then((res) => {
+                // The username is not taken
                 if(res.data.msg !== "Username Taken") {
+
+                    // saves the user to MongoDB
                     axios.post('/user/saveUser', {
                         data: payload
                     }).then(() => {
-
+                        // Refresh the page
                         setRefresh((prevState) => !prevState);
                         
+                        // reset the usernameTaken to hide
+                        // specific error message
                         setUsernameTaken(false);
-
+                        
                     }).catch((err) => {
                         console.log("ERROR in RegistrationForm - /user/saveUser", err);
                     });
                 }
 
+                // The username is taken
                 setUsernameTaken(true);
 
             }).catch((err) => {
@@ -69,80 +81,10 @@ const RegistrationForm = ({
         }
     };
 
-    
-    const handleFocus = ({ target }) => {
-
-        const { name } = target;
-        
-        switch(name) {
-            case "username":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: true
-                }));
-                break;
-
-            case "email":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: true
-                }));
-                break;
-
-            case "password":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: true,
-                }));
-                break;
-
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: true
-                }));
-                break;
-
-            default:
-                break;
-        }
-    };
-
-    const handleBlur = ({ target }) => {
-        const { name } = target;
-        
-        switch(name) {
-            case "username":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: false
-                }));
-                break;
-
-            case "email":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: false
-                }));
-                break;
-
-            case "password":
-                setFocus(prevState => ({
-                    ...prevState,                    
-                    [name]: false
-                }));
-                break;
-
-            case "passwordMatch":
-                setFocus(prevState => ({
-                    ...prevState,
-                    [name]: false
-                }));
-                break;
-                
-            default:
-                break;
-        }
+    // Close 'username taken' error message 
+    // when user changes the username input
+    const handleFocus = () => {
+        setUsernameTaken(false);
     };
 
     return (
@@ -152,62 +94,56 @@ const RegistrationForm = ({
             <FormHeadingModal>Sign Up</FormHeadingModal>
 
             <InputRegistration 
-                onChange={ handleChange } 
+                onChange={ (e) => handleChange(e) } 
                 onFocus={ (e) => handleFocus(e) }
-                onBlur={ (e) => handleBlur(e) }
                 name="username" 
                 placeholder="Username">
             </InputRegistration>
             <ErrorMessages 
-                active={ (focus.username || tried) && !valid.username || usernameTaken }>
+                active={ tried && !valid.username || usernameTaken }>
                 { usernameTaken ? "Username Already Taken" : "Must be 6 to 20 characters, starting with a letter." } 
             </ErrorMessages>
 
             <Input 
-                onChange={ handleChange }
-                onFocus={ (e) => handleFocus(e) }
-                onBlur={ (e) => handleBlur(e) }
+                onChange={ (e) => handleChange(e) }
                 name="email"
                 placeholder="Email" 
                 type='email'>
             </Input>
             <ErrorMessages 
-                active={ (focus.email || tried) && !valid.email }>
+                active={ tried && !valid.email }>
                 Must be filled in - example@example.com
             </ErrorMessages>
 
             <Input 
-                onChange={ handleChange } 
-                onFocus={ (e) => handleFocus(e) }
-                onBlur={ (e) => handleBlur(e) }
+                onChange={ (e) => handleChange(e) }
                 name="password" 
                 placeholder="Password" 
                 type="password">
             </Input>
             <ErrorMessages 
-                active={ (focus.password || tried) && !valid.password }>
-                Must be 8 to 20 characters and must have at least 1 captial letter, 1 number and 1 special character - !@#$%
+                active={ tried && !valid.password }>
+                Must be at least 8 characters and must have at least 1 captial letter, 1 number and 1 special character - !@#$%
             </ErrorMessages>
 
             <Input 
-                onChange={ (e) => setPasswordMatch(e.target.value) }
-                onFocus={ (e) => handleFocus(e) }
-                onBlur={ (e) => handleBlur(e) }
+                onChange={ (e) => handleChange(e) }
                 name="passwordMatch"
                 placeholder="Confirm Password" 
                 type="password">
             </Input>                                
             <ErrorMessages 
-                active={ (focus.passwordMatch || tried) && !valid.passwordMatch }>
+                active={ tried && !valid.passwordMatch }>
                 The password and confirm password inputs don't match!
             </ErrorMessages>
 
             <BlueButtonRegistration
                 type='submit'
-                onClick={ (e) => { handleRegistration(e);}}>
+                onClick={ (e) => handleRegistration(e) }>
                 Create an Account
             </BlueButtonRegistration>
 
+            {/* Refresh the window when required else do nothing */}
             { refresh ? window.location.reload(true) : null }
             
         </StyledRegistrationForm>

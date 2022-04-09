@@ -99,7 +99,7 @@ const RegistrationForm = ({
                 name="username" 
                 placeholder="Username">
             </InputRegistration>
-            { tried && !valid.username || usernameTaken ?
+            { tried && (!valid.username || usernameTaken) ?
                 <ErrorMessages>
                     { usernameTaken ? 
                         "Username Already Taken" 

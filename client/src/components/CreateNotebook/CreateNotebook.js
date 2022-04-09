@@ -9,12 +9,12 @@ const CreateNotebook = () => {
 
     const [strap, setStrap] = useState({
         show: false,
-        x: 2,
+        x: 10,
         hex: "#FFFFFF"
     });
     const [bookmark, setBookmark] = useState({
         show: false,
-        x: 10,
+        x: 2,
         hex: "#FFFFFF"
     });
     const [title, setTitle] = useState('');
@@ -41,7 +41,7 @@ const CreateNotebook = () => {
 
         switch(name) {
             case "strapX":
-                newValue = value === "" ? 2 : value;
+                newValue = value === "" ? 10 : value;
                 
                 setStrap((prevState) => ({
                     ...prevState,
@@ -59,7 +59,7 @@ const CreateNotebook = () => {
                 break;
 
             case "bookmarkX":
-                newValue = value === "" ? 10 : value;
+                newValue = value === "" ? 2 : value;
 
                 setBookmark((prevState) => ({
                     ...prevState,

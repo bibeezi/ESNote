@@ -1,86 +1,64 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+// React Hooks
+import { useState, useEffect } from "react";
+
+// URL Navigation
 import { Navigate } from 'react-router-dom';
 
+// Image files
 import Images from "../../images/Images";
+// Styled Components
 import { SubheaderBar } from "../Common/Header.style";
 import { Subheading } from "../Common/Heading.style";
 import { StyledNotebooks, StyledGrid, StyledContainer, StyledShape } from "./UserHome.style";
 import { UserHomeTitle } from "../Common/Heading.style";
-
 import { TemplateUserHome } from "../Common/Template.style";
 import { Strap, Bookmark } from "../Common/Section.style";
 
+// props passed from 'UserHome.js'
 const Notebooks = ({ search, notes, sortBy, notebooks }) => {
 
+    // Sends user to the Create Notebook page when true
     const [editNotebook, setEditNotebook] = useState(false);
+    // Sends user to the Read Notebook page when true
     const [readNotebook, setReadNotebook] = useState(false);
+
+    // The search result of the notebooks
     const [searchedNotebooks, setSearchedNotebooks] = useState([]);
 
-    
+
+    // runs when notebooks, search and sortBy states are changed
     useEffect(() => {
-        searchSortNotebooks();
-    }, [notebooks, search, sortBy]);
 
+        var searchValue = search.toLowerCase()
 
-    const showNotebooks = (notebooks) => {
-        return notebooks.map((notebook) => (
-            <StyledContainer key={ notebook._id }>
-                <TemplateUserHome 
-                    id={ notebook._id }
-                    colour={ notebook.colour } 
-                    shape={ "notebook" }
-                    onClick={ (e) => handleReadNotebook(e) } >
-                    <Strap strap={ notebook.strap }></Strap>
-                    <Bookmark bookmark={ notebook.bookmark }></Bookmark>
-                </TemplateUserHome>
-                
-                <UserHomeTitle>{ notebook.title }</UserHomeTitle>
-            </StyledContainer>
-        ));
-    };
-
-    const handleReadNotebook = ({ target }) => {
-
-        const payload = {
-            notebookID: target.id
-        };
-
-        axios.get('/notebook/getNotebook', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            res.data !== null ? localStorage.setItem("clickedNotebookID", res.data._id) : alert("Can't get this note!");
-
-            setReadNotebook(prevState => !prevState);
-        })
-        .catch((error) => {
-            console.log("ERROR in Notebooks - /getNotebook", error);
-        });
-
-    }
-
-    const handleAddNotebook = () => {
-        setEditNotebook(prevState => !prevState);
-    }
-
-    const searchSortNotebooks = () => {
-
-        var filteredNotes = notes.filter((note) => 
-            note.title.toLowerCase().search(search.toLowerCase()) !== -1 
+        // Checks the title and content of each section of the note
+        // and removes the notes that do not match the searchValue
+        var filteredNotes = notes.filter(note => 
+            // title check
+            note.title.toLowerCase().search(searchValue) !== -1 
             ||
-            Object.values(note.body).some(val => val.content.toLowerCase().search(search.toLowerCase()) !== -1));
-
+            // note's contents check
+            Object.values(note.body).some(val => 
+                val.content.toLowerCase().search(searchValue) !== -1
+            )
+        );
+        
+        // Gets the IDs of all the notes after the filter
         var noteIDs = filteredNotes.map(note => note._id);
 
+        // Checks the title and notes of each notebook
+        // and removes the notebooks that do not have a note in the noteIDs 
+        // array and whose title does not match with the searchValue
         var filteredNotebooks = notebooks.filter(notebook => 
             notebook.notes.some(val => noteIDs.includes(val)) 
             || 
-            notebook.title.toLowerCase().search(search.toLowerCase()) !== -1);        
+            notebook.title.toLowerCase().search(searchValue) !== -1);        
         
+        // Sorts the notes depending on the select's value
         switch(sortBy) {
+            // The sort function takes two elements in the array,
+            // compares their values to each other and only 
+            // swaps if note1 is more than 2.
             case "nameDESC":
                 filteredNotebooks = filteredNotebooks.sort((notebook1, notebook2) => {
                     if(notebook1.title < notebook2.title) { return -1; }
@@ -113,7 +91,46 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
                 break;
         }
         
+        // display the filtered notebooks
         setSearchedNotebooks(filteredNotebooks);
+    }, [notebooks, notes, search, sortBy]);
+
+
+    // Displays the notebooks onto the StyledGrid component
+    const showNotebooks = (notebooks) => {
+        // Return the notebook components to render
+        return notebooks.map((notebook) => (
+            <StyledContainer key={ notebook._id }>
+                <TemplateUserHome 
+                    id={ notebook._id }
+                    colour={ notebook.colour } 
+                    shape={ "notebook" }
+                    onClick={ (e) => handleReadNotebook(e) }>
+                    
+                    <Strap strap={ notebook.strap } />
+                    <Bookmark bookmark={ notebook.bookmark } />
+
+                </TemplateUserHome>
+                
+                <UserHomeTitle>{ notebook.title }</UserHomeTitle>
+            </StyledContainer>
+        ));
+    };
+
+    // Handles the user clicking on a notebook
+    const handleReadNotebook = ({ target }) => {
+        // Store the clicked notebook's ID to open in 
+        // the Read Notebook page
+        localStorage.setItem("clickedNotebookID", target.id);
+
+        // Opens the Read Notebook page
+        setReadNotebook(prevState => !prevState);
+    }
+
+    // Handles the 'Add Notebook' button
+    const handleAddNotebook = () => {
+        // Opens the Create Note Template page
+        setEditNotebook(prevState => !prevState);
     }
 
     return (
@@ -127,12 +144,23 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
                     <StyledShape onClick={ handleAddNotebook }>
                         <img alt="click to add" src={ Images.Plus } />
                     </StyledShape>
+
                     <UserHomeTitle>Add Notebook</UserHomeTitle>
                 </StyledContainer>
-                { notebooks.length > 0 ? showNotebooks(searchedNotebooks) : null }
+
+                {/* Displays notebooks if there are notebooks, 
+                otherwise display nothing */}    
+                { notebooks.length > 0 ? 
+                    showNotebooks(searchedNotebooks) 
+                : 
+                    null 
+                }
             </StyledGrid>
 
+            {/* Change the URL to open the Create Notebook page */}
             { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
+
+            {/* Change the URL to open the Read Notebook page */}
             { readNotebook ? <Navigate to='/read-notebook'/> : null }
 
         </StyledNotebooks>

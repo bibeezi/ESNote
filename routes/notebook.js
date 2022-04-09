@@ -18,8 +18,10 @@ router.get("/getNotebooks", (req, res) => {
         _id: userID
     })
     .then((data) => {
-        NotebookModel.find(
-            { _id: { "$in": data[0].notebooks }
+        NotebookModel.find({ 
+            _id: { 
+                "$in": data[0].notebooks 
+            }
         }).then((notebooks) => {
             return res.json(notebooks);
         })

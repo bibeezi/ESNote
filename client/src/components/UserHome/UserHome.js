@@ -1,58 +1,58 @@
+// React Hooks
 import { useState, useEffect } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
 
+// Child Components
 import Header from "./Header";
 import SearchSort from "./SearchSort";
 import Notebooks from "./Notebooks";
 import Notes from "./Notes";
+// Styled Components
 import { UserHomeContent, SlideContent } from "../Common/Content.style";
 
 const UserHome = () => {
 
+    // store all user notebooks, notes, and note templates
     const [notebooks, setNotebooks] = useState([]);
     const [notes, setNotes] = useState([]);
     const [noteTemplates, setNoteTemplates] = useState([]);
+
+    // store search value and sorting values
     const [search, setSearch] = useState('');
     const [sortBy, setSortBy] = useState('nameDESC');
 
+    // Runs when rendered
     useEffect(() => {
 
-        getNotebooks();
-        getNotes();
-
-    }, []);
-
-    const getNotebooks = () => {
-
+        // gather data to send to the server
         const payload = {
             userID: localStorage.getItem("userID")
         };
 
+        // get the user's notebooks from MongoDB
         axios.get('/notebook/getNotebooks', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
+            // save the notebooks received into 'notebooks' state
             res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /notebook/getNotebooks", error);
         });
-    };
 
-    const getNotes = () => {
-
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
+        // get the user's notes from MongoDB
         axios.get('/note/getNotes', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
+            // save the notes received into 'notes' state
             res.data.msg !== "Notes Not Found" && setNotes(res.data);
 
             getTemplates(res.data);
@@ -60,38 +60,54 @@ const UserHome = () => {
         .catch((error) => {
             console.log("ERROR in Notes - /getNotes", error);
         });
-    };
 
-    const getTemplates = (noteIDs) => {
+    }, []);
 
+    const getTemplates = (notes) => {
+
+        // gather data to send to the server
         const payload = {
             userID: localStorage.getItem("userID"),
-            noteIDs: noteIDs
+            notes: notes
         };
 
+        // get the user notes' templates
         axios.get('/template/getTemplates', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            setNoteTemplates(res.data);
+            // save the templates received into 'noteTemplates' state
+            res.data.msg !== "Templates Not Found" && setNoteTemplates(res.data);
         })
         .catch((error) => {
             console.log("ERROR in Notes - /getTemplates", error);
         });
     }
 
+    // Handles the input and select changes 
+    // from the search and sort respectively
     const handleChange = ({ target }) => {
+        // Get the name and value attribute from 
+        // the element that triggered the event
         const { name, value } = target;
 
+        // Search the corresponding 
+        // code block to run depending 
+        // on the name of the element 
+        // that triggered the event
         switch(name) {
+            // Set search state or sortBy 
+            // state to the value of the input.
             case "search":
                 setSearch(value);
                 break;
+
             case "sort":
                 setSortBy(value);
                 break;
+                
             default:
                 break;
         }
@@ -105,6 +121,13 @@ const UserHome = () => {
                 <SearchSort handleChange={ handleChange }/>
                 
                 <SlideContent>
+                    <Notes 
+                        search={ search }
+                        sortBy={ sortBy }
+                        notes={ notes }
+                        noteTemplates={ noteTemplates }
+                    />
+                    
                     <Notebooks 
                         search={ search }
                         sortBy={ sortBy }
@@ -112,12 +135,6 @@ const UserHome = () => {
                         notebooks={ notebooks }
                     />
                     
-                    <Notes 
-                        search={ search }
-                        sortBy={ sortBy }
-                        notes={ notes }
-                        noteTemplates={ noteTemplates }
-                    />
                 </SlideContent>
             </UserHomeContent>
         </div>

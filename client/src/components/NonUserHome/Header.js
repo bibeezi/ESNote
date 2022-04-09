@@ -1,6 +1,8 @@
+// Styled Components
 import { HeaderBar, HomeHeader } from "../Common/Header.style";
 import { HeaderHeading } from "../Common/Heading.style";
 
+// props passed from 'NonUserHome.js'
 const Header = ({ homeImage }) => {
 
     return (

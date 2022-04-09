@@ -95,6 +95,7 @@ const LoginForm = ({
                 Login
             </OrangeButton>
 
+            {/* Change the URL to open the User Home page */}
             { userPage ? <Navigate to='/user-home'/> : null }
 
             <hr></hr>

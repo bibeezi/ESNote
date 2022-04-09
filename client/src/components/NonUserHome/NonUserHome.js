@@ -54,10 +54,12 @@ const NonUserHome = () => {
         // the element that triggered the event
         const { name, value } = target;
         
-        // Set user state to be used for server requests.
-        // Validate input values and set valid state for
-        // error messages or form submission
+        // Search the corresponding code block to run depending on the
+        // name of the element that triggered the event
         switch(name) {
+            // Set user state to be used for server requests.
+            // Validate input values and set valid state for
+            // error messages or form submission
             case "username": {
                 const result = userRegex.test(value);
 

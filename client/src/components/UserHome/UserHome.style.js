@@ -125,7 +125,7 @@ export const StyledGrid = styled.div`
     }
 `;
 
-export const StyledNotebooks = styled.div`
+export const StyledNotes = styled.div`
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
         height: calc(100vh - 6.8em);
@@ -167,7 +167,7 @@ export const StyledNotebooks = styled.div`
     }
 `;
 
-export const StyledNotes = styled.div`
+export const StyledNotebooks = styled.div`
 
     border-top: 1px solid #7E2D009A;
 

@@ -86,28 +86,30 @@ router.get("/getTemplates", (req, res) => {
 
     const data = JSON.parse(req.query.data);
 
-    const noteIDs = data.noteIDs.map((note) => {
+    const noteIDs = data.notes.map((note) => {
         return mongoose.Types.ObjectId(note._id);
     });
 
     NoteModel.find({ 
-        _id: { "$in": noteIDs },
-    }, 'template', 
-    (err, docs) => {
-        if (err) return res.status(500).json({ msg: 'ERROR in template route - /getTemplates', err});
-
-        const templateIDs = docs.map((doc) => {
-            return mongoose.Types.ObjectId(doc.template);
+        _id: { 
+            "$in": noteIDs 
+        }
+    }).then(notes => {
+        const templateIDs = notes.map((note) => {
+            return mongoose.Types.ObjectId(note.template);
         });
-
-        NoteTemplateModel.find(
-            { _id: { "$in": templateIDs }
-        }, 
-        (err, docs) => {
-            if (err) return res.status(500).json({ msg: 'ERROR in template route - /getTemplates', err});
-    
-            return res.json(docs);
+        
+        NoteTemplateModel.find({ 
+            _id: { 
+                "$in": templateIDs 
+            }
+        }).then(templates => {
+            return res.json(templates);
+        }).catch(err => {
+            return res.status(200).json({ msg: 'Templates Not Found', error: err});
         });
+    }).catch(err => {
+        return res.status(500).json({ msg: 'ERROR in template route - /getTemplates', error: err});
     });
 });
 

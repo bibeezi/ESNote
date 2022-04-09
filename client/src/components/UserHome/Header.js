@@ -21,9 +21,6 @@ const Header = () => {
             <WelcomeHeader>
                 <WelcomeHeading>Welcome { username }!</WelcomeHeading>
             </WelcomeHeader>
-            
-            <IconsHeader>
-            </IconsHeader>
         </HeaderBarUserHome>
     );
 };

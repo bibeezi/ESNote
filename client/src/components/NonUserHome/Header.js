@@ -6,13 +6,14 @@ const Header = ({ homeImage }) => {
     return (
         <HeaderBar>
 
-            <HomeHeader>
+            {/* uses default cursor on hover of image */}
+            <HomeHeader cursor={ "false" }>
                 <img
                     src={ homeImage }
-                    alt="Home Icon"
-                    cursor={ "false" }>
+                    alt="Home Icon">
                 </img>
-                
+
+                {/* uses default cursor on hover of ESNote */}
                 <HeaderHeading cursor={ "false" }>ESNote</HeaderHeading>
             </HomeHeader>
 

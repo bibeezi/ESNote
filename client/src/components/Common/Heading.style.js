@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderHeading = styled.h1`
 
@@ -6,7 +6,11 @@ export const HeaderHeading = styled.h1`
     color: #7E2D00;
     margin-left: 0.5em;
     font-size: 0.75em;
-    cursor: pointer;
+    ${({ cursor }) => cursor === "false" ? css`
+        cursor: default;
+    ` : css`
+        cursor: pointer;
+    `}
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         margin-left: 0.5em;

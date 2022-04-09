@@ -31,8 +31,8 @@ const NonUserHome = () => {
         passwordMatch: false
     });
 
-    // Allows login when user is found
-    const [validLogin, setValidLogin] = useState(null);
+    // Displays error message when login form is invalid
+    const [validLogin, setValidLogin] = useState(true);
 
     // Regular Expressions to test against inputs during login and registration
     const userRegex = /^[a-zA-Z0-9].{5,20}$/;
@@ -114,8 +114,8 @@ const NonUserHome = () => {
                 break;
         }
 
-        // Ensure null to hide error message for login
-        setValidLogin(null);
+        // Ensure true to hide error message for login
+        setValidLogin(true);
     };
 
     return ( 
@@ -135,7 +135,6 @@ const NonUserHome = () => {
                     <LoginForm
                         user={ user }
                         validLogin={ validLogin }
-                        setUser={ setUser }
                         setValidLogin={ setValidLogin }
                         handleChange={ handleChange }
                         openSignUpForm={ openSignUpForm }>

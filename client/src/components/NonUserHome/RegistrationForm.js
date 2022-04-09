@@ -61,7 +61,7 @@ const RegistrationForm = ({
                         data: payload
                     }).then(() => {
                         // Refresh the page
-                        setRefresh((prevState) => !prevState);
+                        setRefresh(prevState => !prevState);
                         
                         // reset the usernameTaken to hide
                         // specific error message
@@ -99,43 +99,61 @@ const RegistrationForm = ({
                 name="username" 
                 placeholder="Username">
             </InputRegistration>
-            <ErrorMessages 
-                active={ tried && !valid.username || usernameTaken }>
-                { usernameTaken ? "Username Already Taken" : "Must be 6 to 20 characters, starting with a letter." } 
-            </ErrorMessages>
-
+            { tried && !valid.username || usernameTaken ?
+                <ErrorMessages>
+                    { usernameTaken ? 
+                        "Username Already Taken" 
+                    : 
+                        "Must be 6 to 20 characters, starting with a letter." 
+                    } 
+                </ErrorMessages>
+            :
+                null
+            }
+            
             <Input 
                 onChange={ (e) => handleChange(e) }
                 name="email"
                 placeholder="Email" 
                 type='email'>
             </Input>
-            <ErrorMessages 
-                active={ tried && !valid.email }>
-                Must be filled in - example@example.com
-            </ErrorMessages>
-
+            { tried && !valid.email ?
+                <ErrorMessages>
+                    Must be filled in - example@example.com
+                </ErrorMessages>
+            :
+                null
+            }
+            
             <Input 
                 onChange={ (e) => handleChange(e) }
                 name="password" 
                 placeholder="Password" 
                 type="password">
             </Input>
-            <ErrorMessages 
-                active={ tried && !valid.password }>
-                Must be at least 8 characters and must have at least 1 captial letter, 1 number and 1 special character - !@#$%
-            </ErrorMessages>
+            { tried && !valid.password ?
+                <ErrorMessages>
+                    Must be at least 8 characters and 
+                    must have at least 1 captial letter, 
+                    1 number and 1 special character - !@#$%
+                </ErrorMessages>
+            :
+                null
+            }
 
             <Input 
                 onChange={ (e) => handleChange(e) }
                 name="passwordMatch"
                 placeholder="Confirm Password" 
                 type="password">
-            </Input>                                
-            <ErrorMessages 
-                active={ tried && !valid.passwordMatch }>
-                The password and confirm password inputs don't match!
-            </ErrorMessages>
+            </Input>      
+            { tried && !valid.passwordMatch ?
+                <ErrorMessages>
+                    The password and confirm password inputs don't match!
+                </ErrorMessages>
+            :
+                null
+            }
 
             <BlueButtonRegistration
                 type='submit'

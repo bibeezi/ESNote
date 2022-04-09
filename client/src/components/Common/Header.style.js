@@ -80,6 +80,7 @@ export const HomeHeader = styled.div`
         width: 1.5em;
         height: 1.5em;
         ${({ cursor }) => cursor === "false" ? css`
+            cursor: default;
         ` : css`
             cursor: pointer;
         `}

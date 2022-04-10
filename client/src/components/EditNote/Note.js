@@ -1,112 +1,109 @@
+// React Hooks
 import { useEffect, useState } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
 
+// Styled Components
 import { TemplateContainer, TemplateEditNote } from "../Common/Template.style"
 import { TextArea } from "../Common/Section.style";
 
-const Note = ({ handleChange, setNoteContent, note, setNote, textareaRef }) => {
+// props passed from 'EditNote.js'
+const Note = ({ 
+    handleChange, 
+    note, 
+    setNote, 
+    textareaRef 
+}) => {
 
+    // Holds the template details for the note displayed
     const [template, setTemplate] = useState({});
 
+
+    // Runs when note state is changed
     useEffect(() => {
+
+        // Wait 50 milliseconds
         setTimeout(() => {
-            getNote();
-        }, 50);
-    }, []);
 
-
-    const getNote = () => {
-
-        const payload = {
-            noteID: localStorage.getItem("newNoteID")
-        }
-
-        axios.get('/note/getNote', {
-            params: {
-                data: payload
+            // Gather data to send to the server
+            const payload = {
+                noteID: localStorage.getItem("newNoteID")
             }
-        })
-        .then((res) => {
-            setNote(res.data);
+    
+            // Get the current note's details from MongoDB
+            axios.get('/note/getNote', {
+                params: {
+                    data: payload
+                }
+            })
+            .then((res) => {
 
-            getTemplate(res.data.template);
-
-            setNoteContent(prevState => ({
-                ...prevState,
-                template: res.data.template
-            }));
-        })
-        .catch((error) => {
-            console.log("ERROR in Note - /getNote", error);
-        });
-    };
-
-    const getTemplate = (templateID) => {
-
-        const payload = {
-            templateID: templateID
-        }
-
-        axios.get('/template/getTemplate', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setTemplate(res.data);
-
-            res.data.sections.map((section) => {
-                return setNoteContent(prevState => ({
-                    ...prevState,
-                    body: [
-                        ...prevState.body,
-                        {
-                            sectionID: section._id,
-                            content: ""
-                        }
-                    ]
-                }));
+                // Set the note details in note state
+                setNote(res.data);
+    
+                // Get the template for the current note
+                getTemplate(res.data.template);
+            })
+            .catch((error) => {
+                console.log("ERROR in EditNote Note - /note/getNote", error);
             });
-        })
-        .catch((error) => {
-            console.log("ERROR in Note - /getTemplate", error);
-        });
-    }
+        }, 50);
 
+        // Get the template for the current note
+        const getTemplate = (templateID) => {
+
+            // Gather data to send to the server
+            const payload = {
+                templateID: templateID
+            }
+    
+            // Get the template's details from MongoDB
+            axios.get('/template/getTemplate', {
+                params: {
+                    data: payload
+                }
+            })
+            .then((res) => {
+                // Set the template details in template state
+                setTemplate(res.data);
+            })
+            .catch((error) => {
+                console.log("ERROR in Note - /getTemplate", error);
+            });
+        }
+    }, [setNote]);
+
+    // Displays the textareas onto the TemplateEditNote component
     const showTextAreas = (template) => {
+        // Only show textarea when there is a template
         if(Object.keys(template).length !== 0) 
+            // Return the Textarea components to render
             return template.sections.map((section, index) => (
                 <TextArea 
                     key={ section._id }
                     name={ section._id }
                     values={ section }
                     defaultValue={ 
-                        note.body.length === 1 && template.sections.length === 1 ? 
-                            note.body[index].sectionID === section._id ? 
-                                note.body[index].content
-                            : 
-                                null 
-                        :
-                            note.body[index].sectionID === section._id ? 
-                                note.body[index].content
-                            : 
-                                null 
+                        note.body[index].sectionID === section._id ? 
+                            note.body[index].content
+                        : 
+                            null 
                     }
-                    onChange={ (e) => handleChange(e) }>
+                    onChange={ handleChange }>
                 </TextArea>
             ));
     }
-
-    useEffect(() => {
-        showTextAreas(template);
-    }, [template, note])
-
+    
     return (
         <TemplateContainer>
+            {/* Displays the template only when it exists */}
             { Object.keys(template).length !== 0 &&
 
                 <TemplateEditNote ref={ textareaRef }>
 
+
+                    {/* Displays textareas from the template */}   
                     { showTextAreas(template) }
 
                 </TemplateEditNote>

@@ -65,6 +65,7 @@ const NotePreview = ({ sectionValues }) => {
             <div></div>
 
             <Template>
+                {/* Display the grid's lines in the template */}
                 <GridLines gridRow={ 1 } gridColumn={ 1 } /> 
                 <GridLines gridrow={ 1 } gridcolumn={ 2 } /> 
                 <GridLines gridRow={ 1 } gridColumn={ 3 } /> 

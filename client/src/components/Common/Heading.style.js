@@ -205,6 +205,7 @@ export const UserHomeTitle = styled.h1`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -315,13 +316,10 @@ export const SectionTitle = styled.h1`
 export const ReadNoteTitle = styled.h1`
 
     height: fit-content;
-    width: 90%;
+    width: 100%;
     margin: 0;
     color: #7E2D00;
     font-size: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 

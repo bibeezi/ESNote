@@ -22,7 +22,7 @@ const CreateNote = () => {
 
         // Shallow copy the sectionValues
         var copySectionValues = sectionValues;
-        var sectionValue;
+        var sectionValue = value === "" ? 1 : value;
 
         // Search the corresponding code block to run depending on the
         // name of the element that triggered the event
@@ -30,26 +30,21 @@ const CreateNote = () => {
             // If the input value is empty, keep the state's original value.
             // Get the section at index id, and change the corresponding values
             case "x":
-                sectionValue = value === "" ? 1 : value;
-
                 copySectionValues[parseInt(id)-1].values.x = parseInt(sectionValue);
                 break;
 
             case "y":
-                sectionValue = value === "" ? 1 : value;
-
                 copySectionValues[parseInt(id)-1].values.y = parseInt(sectionValue);
                 break;
-            case "h":
-                sectionValue = value === "" ? 1 : value;
 
+            case "h":
                 copySectionValues[parseInt(id)-1].values.h = parseInt(sectionValue);
                 break;
-            case "w":
-                sectionValue = value === "" ? 1 : value;
 
+            case "w":
                 copySectionValues[parseInt(id)-1].values.w = parseInt(sectionValue);
                 break;
+                
             default:
                 break;
         }
@@ -65,35 +60,6 @@ const CreateNote = () => {
                 // Return unchanged object from sectionValues state
                 sectionValues
         }));
-    }
-
-    // Handles the deletion of a section
-    const handleDelete = ({ target }) => {
-        // Get the id attribute from the element 
-        // that holds the id of the clicked section
-        const { id } = target.parentNode.parentNode;
-
-        // Sets the new list of components to render
-        setSectionSettings(prevState => 
-            // Removes the component that was clicked
-            prevState.filter(component => component.props.id !== id )
-            // Returns the new list of components
-            .map(component =>
-                <SectionSetting 
-                    key={ component.props.id } 
-                    id={ component.props.id } 
-                    handleChange={ handleChange }
-                    handleDelete={ handleDelete }
-                    colour={ component.props.colour }>
-                </SectionSetting>
-            )
-        );
-
-        // Sets the new list of section values
-        setSectionValues(prevState => 
-            // Removes the object that holds the values of the section clicked
-            prevState.filter(sectionValues => sectionValues.id !== id)
-        );
     }
 
     // Add a section component to render, an object in sectionValues,
@@ -127,6 +93,35 @@ const CreateNote = () => {
 
         // Increment the count for sections created
         setSectionCounter((prevState) => prevState + 1);
+    }
+
+    // Handles the deletion of a section
+    const handleDelete = ({ target }) => {
+        // Get the id attribute from the element 
+        // that holds the id of the clicked section
+        const { id } = target.parentNode.parentNode;
+
+        // Sets the new list of components to render
+        setSectionSettings(prevState => 
+            // Removes the component that was clicked
+            prevState.filter(component => component.props.id !== id )
+            // Returns the new list of components
+            .map(component =>
+                <SectionSetting 
+                    key={ component.props.id } 
+                    id={ component.props.id } 
+                    handleChange={ handleChange }
+                    handleDelete={ handleDelete }
+                    colour={ component.props.colour }>
+                </SectionSetting>
+            )
+        );
+
+        // Sets the new list of section values
+        setSectionValues(prevState => 
+            // Removes the object that holds the values of the section clicked
+            prevState.filter(sectionValues => sectionValues.id !== id)
+        );
     }
     
     // Holds the values of each section

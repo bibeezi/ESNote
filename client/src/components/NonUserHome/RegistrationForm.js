@@ -56,14 +56,14 @@ const RegistrationForm = ({
                 // The username is not taken
                 if(res.data.msg !== "Username Taken") {
 
-                    // saves the user to MongoDB
+                    // Saves the user to MongoDB
                     axios.post('/user/saveUser', {
                         data: payload
                     }).then(() => {
                         // Refresh the page
                         setRefresh(prevState => !prevState);
                         
-                        // reset the usernameTaken to hide
+                        // Reset the usernameTaken to hide
                         // specific error message
                         setUsernameTaken(false);
                         

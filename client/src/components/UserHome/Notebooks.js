@@ -112,7 +112,11 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
 
                 </TemplateUserHome>
                 
-                <UserHomeTitle>{ notebook.title }</UserHomeTitle>
+                <UserHomeTitle
+                    id={ notebook._id }
+                    onClick={ (e) => handleReadNotebook(e) }>
+                    { notebook.title }
+                </UserHomeTitle>
             </StyledContainer>
         ));
     };

@@ -1,41 +1,88 @@
-import { useState, useEffect } from "react";
+// React Hooks
+import { useState, useEffect, useRef } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
+
+// URL Navigation
 import { Navigate } from "react-router-dom";
 
+// Image files
 import Images from "../../images/Images";
+// Styled Components
 import { CloseButton } from "../Common/Close.style";
 import { SettingContainer, StyledSettingsFormRead, AddedItemsGrid } from "../Common/Form.style";
 import { SettingHeaderRead } from "../Common/Header.style";
 import { FormHeadingModal, SettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
 import { ErrorMessages } from "../Common/Messages.style"
-import { List, ListOptionSetting } from "../Common/List.style";
+import { List, ListOptionSetting, Options } from "../Common/List.style";
 import { SearchInputList } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style"
 
-const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
+// props passed from 'EditNote.js'
+const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
 
+    // Sends user to the User Home page when true
     const [home, setHome] = useState(false);
+
+    // Delete note warning
     const [deleteCounter, setDeleteCounter] = useState(0);
+
+    // Shows list of notebooks available when true
     const [showList, setShowList] = useState(false);
+    // Holds list of notebooks after search result
     const [filteredNotebooks, setFilteredNotebooks] = useState([]);
+    // Holds list of notebooks selected to add current note
     const [addedNotebooks, setAddedNotebooks] = useState([]);
 
+    // Reference instantiation to get the search input value
+    const searchRef = useRef(null);
+
+
+    // Runs when a new notebook is added to addedNotebooks
     useEffect(() => {
-        var addedNotebooksIDs = addedNotebooks.filter((notebook) => notebook.props.id.substring(24) !== "img").map((notebook) => notebook.props.id);
+        // Get the identifiers of each notebook in the list
+        var addedNotebooksIDs = addedNotebooks.filter(notebook => notebook.props.id.substring(24) !== "img")
+            .map((notebook) => notebook.props.id);
         
+        // Stores list of notebook identifiers
         localStorage.setItem("addedNotebookIDs", JSON.stringify(addedNotebooksIDs));
     }, [addedNotebooks]);
 
+    
+    // Get the user's notebooks
+    const getNotebooks = () => {
+        // Gather data to send to the server
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
 
-    const handleList = () => {
-        setShowList((prevState) => !prevState);
+        // Get the user's notebooks from MongoDB
+        axios.get('/notebook/getNotebooks', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            // Save the notebooks received into 'notebooks' state
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in Settings - /notebook/getNotebooks", error);
+        });
     }
 
+    // Handles the events on the search input
     const handleChange = (event) => {
+        // Get the value and event name attributes from 
+        // the element that triggered the event
         const { value } = event.target;
         const reactName = event._reactName;
 
+        // Search the corresponding code block to run depending on the
+        // name of the event that triggered the event
         switch(reactName) {
+            // Show or hide list of notebooks
             case "onBlur":
                 setShowList(false);
                 break;
@@ -44,12 +91,18 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
                 break;
         }
 
-        displayList(value);
+        // Filter the notebooks list using the search input value
+        displayFilteredList(value);
     }
 
+    // Add a notebook to the selected list
     const addNotebook = ({ target }) => {
+        // Get the id and title attributes from 
+        // the element that triggered the event
         const { id, title } = target;
 
+        // Add the notebook title component and the image 
+        // for deleting the notebook to the AddedItemsGrid
         setAddedNotebooks((prevState) => [
             ...prevState,
             <NotebookNoteHeading 
@@ -67,34 +120,53 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
         ]);
     }
 
+    // Delete a notebook in the selected list
     const deleteAddedNotebook = ({ target }) => {
+        // Get the id attribute from 
+        // the element that triggered the event
         const { id } = target;
 
+        // Add the notebook title and the image 
+        // for deleting the notebook to the AddedItemsGrid
         setAddedNotebooks((prevState) => 
+            // Remove the notebook title component and its delete image
             prevState.filter((notebook) => notebook.props.id.substring(24) === "img" ? 
                 notebook.props.id.substring(0, 24) !== id.substring(0, 24) 
             :   
                 notebook.props.id !== id.substring(0, 24) 
+            // Re-render the other notebooks into the selected list
             ).map(component =>
                 component
             )
         );
 
-        var value = target.parentNode.parentNode.childNodes[0].childNodes[0].value;
-
-        displayList(value);
+        // Filter the notebooks list using the search input value
+        displayFilteredList(searchRef.current.value);
     }
 
-    const displayList = (value) => {
+    // Filter the list of notebooks available
+    const displayFilteredList = (value) => {
 
-        var notebookIDsAdded = addedNotebooks.map((notebook) => notebook.props.id);
+        var searchValue = value.toLowerCase();
 
-        var filtered = notebooks.filter((notebook) => 
-            notebook.title.toLowerCase().startsWith(value.toLowerCase()) && 
-            notebookIDsAdded.indexOf(notebook._id) === -1 &&
-            !notebook.notes.includes(note._id));
+        // Get the notebook identifiers of which the note will be added
+        var notebookIDsAdded = addedNotebooks.map(notebook => notebook.props.id);
 
-        setFilteredNotebooks(filtered.length ? filtered.map(notebook => 
+        // Remove the notebooks that do not match the title,
+        // is already in the addedNotebooks list, and
+        // already contains the current note
+        var filtered = notebooks.filter(notebook => 
+            notebook.title.toLowerCase().startsWith(searchValue) 
+            && 
+            notebookIDsAdded.indexOf(notebook._id) === -1 
+            &&
+            ! notebook.notes.includes(note._id)
+        );
+
+        // Set the option components to render
+        setFilteredNotebooks(filtered.length ? 
+            // Return the notebook component option to render
+            filtered.map(notebook => 
                 <ListOptionSetting
                     key={ notebook._id }
                     id={ notebook._id }
@@ -102,114 +174,159 @@ const Settings = ({ handleSettings, notebooks, note, getNotebooks }) => {
                     onMouseDown={ (e) => addNotebook(e) }>
                     { notebook.title }
                 </ListOptionSetting>
-            ) : 
-                <ListOptionSetting>
-                    { 
-                        notebooks.filter((notebook) => 
-                            !notebook.notes.includes(note._id)).length ? 
-                                "No Notebooks Available!" 
-                            : 
-                                "Note Added to All"
-                    }
-                </ListOptionSetting>
+            ) 
+        : 
+            // Return appropriate message when no notebooks are available
+            <ListOptionSetting> { 
+                notebooks.filter(notebook => ! notebook.notes.includes(note._id)).length ? 
+                    "No Notebooks Available!" 
+                : 
+                    "Note Added to All"
+            } </ListOptionSetting>
         );
     }
 
-    const saveNotebooks = () => {
+    // Add the current note to the notebooks selected
+    const updateNotebooks = () => {
+
+        // Gather data to send to the server
         const payload = {
             notebookIDs: JSON.parse(localStorage.getItem("addedNotebookIDs")),
             noteID: note._id
         }
 
+        // Save the note to each notebook selected in MongoDB
         axios.put('/notebook/saveNote', {
             data: payload
-        }).then((res) => {
+        }).then(() => {
+
+            // Get the updated list of notebooks
             getNotebooks();
             
+            // Open the User Home page
             goHome();
-            }).catch((err) => {
-            console.log("ERROR in NotebookPreview - /saveNotebook", err);
+
+        }).catch((err) => {
+            console.log("ERROR in Settings - /notebook/saveNotebook", err);
         });
     }
 
     const deleteNote = () => {
+
+        // Delete the note if the user
+        // clicks on the delete icon twice
         if(deleteCounter === 1) {
+
+            // Gather the data to send to the server
             const payload = {
                 userID: localStorage.getItem("userID"),
                 note: localStorage.getItem("clickedNoteID")
             }
 
+            // Delete the note from MongoDB
             axios.delete('/note/deleteNote', {
                 data: payload
-            }).then((res) => {
+            }).then(() => {
+
+                // Open the User Home page
                 goHome();
+
             }).catch((err) => {
-                console.log("ERROR in Settings - /deleteNote", err)
+                console.log("ERROR in Settings - /note/deleteNote", err)
             });
 
+            // Hide the delete note warning
             setDeleteCounter(0);
+
         } else {
+            // Display the delete note warning
             setDeleteCounter((prevState) => prevState + 1);
         }
+
     }
 
+    // Open the User Home page
     const goHome = () => {
         setHome((prevState) => !prevState);
     }
 
     return (
         <StyledSettingsFormRead onSubmit={ (e) => e.preventDefault() }>
+
+            {/* Close the settings modal and hide the delete note warning*/}
             <CloseButton onMouseDown={ (e) => { handleSettings(e); setDeleteCounter(0); } }></CloseButton>
+
             <FormHeadingModal>Note Settings</FormHeadingModal>
 
             <SettingHeaderRead>
-                <SettingHeading>Add to Notebooks</SettingHeading>        
+                <SettingHeading>Select Notebooks</SettingHeading>        
             </SettingHeaderRead>
 
             <SettingContainer>
+
                 <List showList={ showList }>
                     <label>
                         <SearchInputList
+                            ref={ searchRef }
                             showList={ showList } 
                             onChange={ (e) => handleChange(e) }
-                            onFocus={ handleList }
+                            onFocus={ (e) => handleChange(e) }
                             onBlur={ (e) => handleChange(e) }
                             name="notebook"
                             type="text"
-                            placeholder="Search Notebooks"> 
+                            placeholder="Search for Notebooks"> 
                         </SearchInputList>
                     </label>
 
-                    { showList ? <div>{filteredNotebooks}</div> : null }
+                    {/* Display the list of notebooks available when true */}
+                    { showList ? 
+                        <Options>
+                            { filteredNotebooks }
+                        </Options> 
+                    : 
+                        null 
+                    }
 
+                    {/* Display the list of notebooks selected when there is
+                        at least one notebook selected */}
                     { addedNotebooks.length ? 
-                        <SettingHeading>Notes to be Added:</SettingHeading> &&
-
+                        <SettingHeading>Notes to be Added:</SettingHeading> 
+                        &&
                         <AddedItemsGrid>
 
                             { addedNotebooks }
 
                         </AddedItemsGrid> 
                     : 
-                        null }
+                        null 
+                    }
                 </List>
-            </SettingContainer>
 
-            <SettingHeaderRead>
-                <SettingHeading>Delete Note</SettingHeading>  
-                <img onClick={ deleteNote } src={ Images.Delete } alt="Delete Note"></img>          
-            </SettingHeaderRead>
-            <ErrorMessages active={ deleteCounter !== 1 ? false : true }>
-                { deleteCounter === 1 ? "Click the Delete Icon Again If You're Sure You Want To Delete This Note!" : null }
-            </ErrorMessages>
+            </SettingContainer>
 
             <BlueButtonRegistration 
                 type="button"
-                onClick={ (e) => { saveNotebooks(); displayList(''); } }>
-                Update Note
+                onClick={ () => { updateNotebooks(); displayFilteredList(''); } }>
+                Add Note to Notebooks
             </BlueButtonRegistration>
 
+            <SettingHeaderRead>
+
+                <SettingHeading>Delete Note</SettingHeading>  
+                
+                <img onClick={ deleteNote } src={ Images.Delete } alt="Delete Note"></img>      
+
+            </SettingHeaderRead>
+            {   deleteCounter >= 1
+            &&
+                <ErrorMessages>
+                    Click the Delete Icon Again If You're Sure You Want To Delete This Note!
+                </ErrorMessages>
+            }
+
+            {/* Change the URL to open the User Home page */}
             { home ? <Navigate to="/user-home" /> : null }
+
         </StyledSettingsFormRead>
     );
 }

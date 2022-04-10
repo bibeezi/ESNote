@@ -73,24 +73,28 @@ router.put('/saveNote', (req, res) => {
     const bodies = data.noteBodies;
     const template = data.template;
 
-    NoteModel.findOneAndUpdate(
-        { _id: { "$in": noteID }}, 
-        {
-            $set: {
-                title: title,
-                body: bodies,
-                template: template
-            }
-        },
-        {
-            new: true
-        },
-        (err, doc) => {
-            if(err) return res.status(404).json({ msg: 'ERROR in note route - /saveNote'});
-
-            return res.json(doc);
+    NoteModel.findOneAndUpdate({ 
+        _id: { 
+            "$in": noteID 
         }
-    );
+    }, {
+        $set: {
+            title: title,
+            body: bodies,
+            template: template
+        }
+    }, {
+        new: true
+    }).then((note) => {
+
+        return res.json({
+            msg: "Note Saved",
+            data: note
+        });
+        
+    }).catch((err) => {
+        if (err) return res.status(500).json({ msg: 'ERROR in note route - /saveNote', err});
+    });
 });
 
 router.delete('/deleteNote', (req, res) => {

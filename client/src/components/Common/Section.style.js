@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const Sections = styled.div`
 
     border: 4px solid ${({ colour }) => colour};
+    background-color: whitesmoke;
 
     ${ ({ section }) => css`
         grid-column: ${ section.values.x } / span ${ section.values.w };
@@ -31,11 +32,11 @@ export const Sections = styled.div`
 
 export const ReadSections = styled.div`
 
+    padding: 1em;
     background-color: whitesmoke;
     border: 2px solid lightblue;
     border-style: dotted;
-    overflow-y: auto;
-    padding: 1em;
+    word-wrap: break-word;
 
     ${ ({ section }) => css`
         grid-column: ${ section.x } / span ${ section.w };
@@ -67,12 +68,14 @@ export const ReadSections = styled.div`
 
 export const UserHomeSections = styled.div`
 
+    padding: 1em;
     background-color: whitesmoke;
     border: 2px solid lightblue;
     border-style: dotted;
     font-size: 0.2em;
     overflow: hidden;
-    cursor: default;
+    word-wrap: break-word;
+    cursor: pointer;
 
     ${ ({ section }) => css`
         grid-column: ${ section.x } / span ${ section.w };
@@ -101,7 +104,9 @@ export const UserHomeSections = styled.div`
 export const TextArea = styled.textarea`
 
     margin: 0;
+    padding: 1em;
     resize: none;
+    overflow-x: hidden;
     border: 1px dashed lightblue;
 
     ${ ({ values }) => css`

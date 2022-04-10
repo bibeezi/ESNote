@@ -122,7 +122,11 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
                     </TemplateUserHome>
 
                     {/* Display title under note */}
-                    <UserHomeTitle>{ note.title }</UserHomeTitle> 
+                    <UserHomeTitle
+                        id={ note._id } 
+                        onClick={ (e) => handleReadNote(e) }>
+                        { note.title }
+                    </UserHomeTitle> 
                 </StyledContainer>
             );
         });

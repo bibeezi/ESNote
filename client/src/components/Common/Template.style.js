@@ -36,7 +36,7 @@ export const Template = styled.div`
     grid-auto-flow: columns;
     height: 80%;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: transparent;
     border: 1px solid black;
     ${({ page }) => page === "createNotebook" ? 
     css`
@@ -269,6 +269,7 @@ export const TemplateUserHome = styled.div`
     `}
     border: 1px solid black;
     align-self: end;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 

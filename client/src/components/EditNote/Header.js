@@ -1,43 +1,36 @@
-import { useState } from 'react';
-import axios from 'axios';
+// React Hooks
+import { useState } from "react";
+
+// URL Navigation
 import { Navigate } from 'react-router-dom';
 
+// Image files
 import Images from "../../images/Images";
-import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
+// Styled Components
+import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
-const Header = ({ handleSettings, note, noteContent }) => {
+// props passed from 'EditNote.js'
+const Header = ({ handleSettings, handleSave }) => {
 
-    const [home, setHome] = useState(false);
+    // Sends user to the Read Note page when true
     const [readNote, setReadNote] = useState(false);
-
-    const goHome = ({ target }) => {
-
-        const title = target.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[1];
-        const textareas = target.parentNode.parentNode.parentNode.parentNode.childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes;
-
-        var newBody = Array.from(textareas).map((child) => {
-            return { sectionID: child.name, content: child.value }
-        });
-
-        axios.put('/note/saveNote', {
-            noteBodies: newBody,
-            noteTitle: title.value,
-            noteTemplate: noteContent.template,
-            noteID: note._id
-        })
-        .then((res) => {
-
-        })
-        .catch((err) => {
-            console.log("ERROR in EditNote - /saveNote", err);
-        });
-
-        setHome(prevState => !prevState);
-    }
 
     const handleReadNote = () => {
         setReadNote(prevState => !prevState);
+    }
+
+    // Sends user to the User Home page when true
+    const [home, setHome] = useState(false);
+
+    // Save the note and open the User Home page
+    const goHome = () => {
+
+        // Save note
+        handleSave("home");
+
+        // open the User Home page
+        setHome(prevState => !prevState);
     }
 
     return (
@@ -46,21 +39,24 @@ const Header = ({ handleSettings, note, noteContent }) => {
                 <img
                     src={ Images.Home }
                     alt="Home Icon"
-                    onClick={ (e) => goHome(e) }>
+                    onClick={ goHome }>
                 </img>
-                <HeaderHeading onClick={ (e) => goHome(e) }>ESNote</HeaderHeading>
+                <HeaderHeading onClick={ goHome }>ESNote</HeaderHeading>
             </HomeHeader>
 
             <WelcomeHeader>
                 <WelcomeHeading>Edit Note</WelcomeHeading>
             </WelcomeHeader>
             
-            <IconsHeaderCreate>
+            <IconsHeader>
                 <img alt="read note" src={ Images.Read } onClick={ handleReadNote }></img>
                 <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
-            </IconsHeaderCreate>
+            </IconsHeader>
 
+            {/* Change the URL to open User Home page*/}
             { home ? <Navigate to='/user-home'/> : null }
+
+            {/* Change the URL to open Read Note page*/}
             { readNote ? <Navigate to='/read-note'/> : null }
 
         </HeaderBar>

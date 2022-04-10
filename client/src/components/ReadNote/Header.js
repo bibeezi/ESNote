@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import Images from "../../images/Images";
-import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeaderCreate } from "../Common/Header.style";
+import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 const Header = ({ note, handleSettings }) => {
@@ -34,10 +34,10 @@ const Header = ({ note, handleSettings }) => {
                 <WelcomeHeading>Read Note</WelcomeHeading>
             </WelcomeHeader>
             
-            <IconsHeaderCreate>
+            <IconsHeader>
                 <img alt="Edit Note" src={ Images.Edit } onClick={ handleEditNote }></img>
                 <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
-            </IconsHeaderCreate>
+            </IconsHeader>
 
             { home ? <Navigate to='/user-home'/> : null }
             { editNote ? <Navigate to='/edit-note'/> : null }

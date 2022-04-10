@@ -159,7 +159,8 @@ const NonUserHome = () => {
                         </RegistrationForm>
 
                     </RegistrationFormContainer>
-                </Modal> }
+                </Modal> 
+            }
         </div>
     );
 }

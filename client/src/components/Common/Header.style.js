@@ -167,63 +167,12 @@ export const IconsHeader = styled.div`
     column-gap: 5%;
 
     img {
-        height: 40%;
-        margin: 0;
-        align-self: center;
-        justify-self: center;
-    }
-
-    @media only screen and (max-height: 321px) {
-        grid-auto-columns: 25%;
-    }
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-        grid-auto-columns: 15%;
-        column-gap: 0;
-        justify-content: right;
-    }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        grid-auto-columns: 20%;
-        column-gap: 0;
-        justify-content: right;
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        grid-auto-columns: 15%;
-        column-gap: 0;
-        justify-content: right;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        grid-auto-columns: 15%;
-        column-gap: 0;
-        justify-content: right;
-    }
-`;
-
-export const IconsHeaderCreate = styled.div`
-
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: end;
-
-    img {
         max-height: 40%;
         height: 40px;
         margin: 0;
         align-self: center;
         justify-self: center;
     }
-
-    overflow-x: auto;
-    grid-auto-columns: 35%;
-    column-gap: 5%;
-
 
     @media only screen and (max-height: 321px) {
         grid-auto-columns: 25%;
@@ -420,9 +369,16 @@ export const TitleContainer = styled.div`
 
     display: flex;
     height: 100%;
-    width: 100%;
+    width: 90%;
     justify-content: center;
     align-items: end;
+    overflow-x: auto;
+    justify-self: center;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     label {
         margin-bottom: 0.25em;

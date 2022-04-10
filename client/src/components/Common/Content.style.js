@@ -146,12 +146,25 @@ export const CreateContent = styled.div`
         
     }
 
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        grid-template-rows: 50% 50%;
+    }
+
     @media only screen and (min-width: 600px) and (max-width: 768px) {
 
     }   
 
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        grid-template-rows: 50% 50%;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         height: calc(100vh - 5.4em);
+        padding-top: 5.4em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 1000px) {
+        grid-template-rows: 50% 50%;
         padding-top: 5.4em;
     }
 

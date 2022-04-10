@@ -14,75 +14,75 @@ import { UserHomeContent, SlideContent } from "../Common/Content.style";
 
 const UserHome = () => {
 
-    // store all user notebooks, notes, and note templates
+    // Store all user notebooks, notes, and note templates
     const [notebooks, setNotebooks] = useState([]);
     const [notes, setNotes] = useState([]);
     const [noteTemplates, setNoteTemplates] = useState([]);
 
-    // store search value and sorting values
+    // Store search value and sorting values
     const [search, setSearch] = useState('');
     const [sortBy, setSortBy] = useState('nameDESC');
 
     // Runs when rendered
     useEffect(() => {
 
-        // gather data to send to the server
+        // Gather data to send to the server
         const payload = {
             userID: localStorage.getItem("userID")
         };
 
-        // get the user's notebooks from MongoDB
+        // Get the user's notebooks from MongoDB
         axios.get('/notebook/getNotebooks', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            // save the notebooks received into 'notebooks' state
+            // Save the notebooks received into 'notebooks' state
             res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
         })
         .catch((error) => {
             console.log("ERROR in UserHome - /notebook/getNotebooks", error);
         });
 
-        // get the user's notes from MongoDB
+        // Get the user's notes from MongoDB
         axios.get('/note/getNotes', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            // save the notes received into 'notes' state
+            // Save the notes received into 'notes' state
             res.data.msg !== "Notes Not Found" && setNotes(res.data);
 
             getTemplates(res.data);
         })
         .catch((error) => {
-            console.log("ERROR in Notes - /getNotes", error);
+            console.log("ERROR in UserHome - /note/getNotes", error);
         });
 
     }, []);
 
     const getTemplates = (notes) => {
 
-        // gather data to send to the server
+        // Gather data to send to the server
         const payload = {
             userID: localStorage.getItem("userID"),
             notes: notes
         };
 
-        // get the user notes' templates
+        // Get the user notes' templates
         axios.get('/template/getTemplates', {
             params: {
                 data: payload
             }
         })
         .then((res) => {
-            // save the templates received into 'noteTemplates' state
+            // Save the templates received into 'noteTemplates' state
             res.data.msg !== "Templates Not Found" && setNoteTemplates(res.data);
         })
         .catch((error) => {
-            console.log("ERROR in Notes - /getTemplates", error);
+            console.log("ERROR in UserHome - /template/getTemplates", error);
         });
     }
 

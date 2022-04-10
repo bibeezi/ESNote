@@ -18,7 +18,7 @@ import { Strap, Bookmark } from "../Common/Section.style";
 const Notebooks = ({ search, notes, sortBy, notebooks }) => {
 
     // Sends user to the Create Notebook page when true
-    const [editNotebook, setEditNotebook] = useState(false);
+    const [createNotebook, setCreateNotebook] = useState(false);
     // Sends user to the Read Notebook page when true
     const [readNotebook, setReadNotebook] = useState(false);
 
@@ -98,7 +98,7 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
 
     // Displays the notebooks onto the StyledGrid component
     const showNotebooks = (notebooks) => {
-        // Return the notebook components to render
+        // Return the StyledContainer components to render
         return notebooks.map((notebook) => (
             <StyledContainer key={ notebook._id }>
                 <TemplateUserHome 
@@ -130,7 +130,7 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
     // Handles the 'Add Notebook' button
     const handleAddNotebook = () => {
         // Opens the Create Note Template page
-        setEditNotebook(prevState => !prevState);
+        setCreateNotebook(prevState => !prevState);
     }
 
     return (
@@ -158,7 +158,7 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
             </StyledGrid>
 
             {/* Change the URL to open the Create Notebook page */}
-            { editNotebook ? <Navigate to='/create-notebook-template'/> : null }
+            { createNotebook ? <Navigate to='/create-notebook-template'/> : null }
 
             {/* Change the URL to open the Read Notebook page */}
             { readNotebook ? <Navigate to='/read-notebook'/> : null }

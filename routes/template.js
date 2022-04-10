@@ -12,7 +12,7 @@ const router = express.Router();
 // Routes
 router.post("/saveTemplate", (req, res) => {
 
-    const data = req.body;
+    const data = req.body.data;
     const userID = data.userID;
     const newTemplateData = [];
     const noteBodies = [];
@@ -59,7 +59,7 @@ router.post("/saveTemplate", (req, res) => {
 
             return res.json({
                 noteID: doc._id.toString(),
-                msg: 'Data received in Database!'
+                msg: 'Note and Template Saved'
             });
         });
     });

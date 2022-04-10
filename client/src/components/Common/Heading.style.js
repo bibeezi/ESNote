@@ -289,6 +289,7 @@ export const SectionTitle = styled.h1`
 
     width: fit-content;
     font-size: 1em;
+    color: ${({ colour }) => colour };
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

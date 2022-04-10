@@ -132,7 +132,7 @@ export const SettingInput = styled.input`
     margin: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
-    width: 40%;
+    width: 90%;
     align-self: center;
     background-color: #FEFEFE;
     box-sizing: border-box;
@@ -146,18 +146,27 @@ export const SettingInput = styled.input`
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        
+        width: 40%;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-
+        width: 95%;
     }   
+    
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        width: 40%;
+    }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+        width: 95%;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 1000px) {
+        width: 45%;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
     }
 
     @media only screen and (min-width: 1200px) {

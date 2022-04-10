@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Sections = styled.div`
 
-    border: 1px solid red;
+    border: 4px solid ${({ colour }) => colour};
 
     ${ ({ section }) => css`
         grid-column: ${ section.values.x } / span ${ section.values.w };
@@ -194,4 +194,33 @@ export const Bookmark = styled.div`
 
     }
 
-`
+`;
+
+export const GridLines = styled.div`
+    
+    ${({ gridRow, gridColumn }) => css`
+        grid-row: ${ gridRow };
+        grid-column: ${ gridColumn };
+    `}
+    border: 1px dotted lightblue;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+
+    }
+`;

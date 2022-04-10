@@ -56,15 +56,27 @@ export const Template = styled.div`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-
+        width: 90%;
+        justify-self: center;
     }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
         width: 40%;
+        justify-self: center;
+    }
+    
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        width: 80%;
+        justify-self: center;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        width: 30%;
+        justify-self: center;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (min-height: 900px) {
+        width: 60%;
         justify-self: center;
     }
 
@@ -72,7 +84,17 @@ export const Template = styled.div`
         
     }
 
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        width: 80%;
+        justify-self: center;
+    }
+
     @media only screen and (min-width: 1200px) {
+        height: 90%;
+        width: 80%;
+    }
+
+    @media only screen and (min-width: 1200px) and (max-height: 1105px) {
         height: 90%;
         width: 80%;
     }

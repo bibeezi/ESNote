@@ -88,7 +88,7 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
 
     // Displays the notes onto the StyledGrid component
     const showNotes = (notes) => {
-        // Return the note components to render
+        // Return the StyledContainer components to render
         return notes.map((note) => {
             // Get the template used by the note in question
             const template = noteTemplates.filter(template => template._id === note.template);

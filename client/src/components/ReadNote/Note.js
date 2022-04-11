@@ -75,7 +75,9 @@ const Note = ({
 
     }, [setNote]);
 
+    // Displays the sections into the TemplateReadNote component
     const showSections = (template) => {
+        // Displays the template only when it exists
         if ( template.sections ) {
             return template.sections.map((section, index) => (
                 note.body[index].sectionID === section._id ?
@@ -90,49 +92,50 @@ const Note = ({
         }
     }
 
+    // Displays the text areas into the TemplateEditNote component
     const showTextAreas = (template) => {
-        // Return the Textarea components to render
-        return template.sections.map((section, index) => (
-            <TextArea 
-                key={ section._id }
-                name={ section._id }
-                values={ section }
-                defaultValue={ 
-                    note.body[index].sectionID === section._id ? 
-                        note.body[index].content
-                    : 
-                        null 
-                }
-                onChange={ handleChange }>
-            </TextArea>
-        ));
+        // Displays the template only when it exists
+        if (Object.keys(template).length !== 0 ) {
+            // Return the Textarea components to render
+            return template.sections.map((section, index) => (
+                <TextArea 
+                    key={ section._id }
+                    name={ section._id }
+                    values={ section }
+                    defaultValue={ 
+                        note.body[index].sectionID === section._id ? 
+                            note.body[index].content
+                        : 
+                            null 
+                    }
+                    onChange={ handleChange }>
+                </TextArea>
+            ));
+        }
     }
  
     return (
         <TemplateContainer>
 
-            {/* Displays the template only when it exists */}
-            { Object.keys(template).length !== 0 
-            &&
-                page === "Edit Note" ?
-                    <TemplateEditNote ref={ textareaRef }>
+            { page === "Edit Note" ?
+                <TemplateEditNote ref={ textareaRef }>
 
-                        {/* Displays textareas from the template */}   
-                        { showTextAreas(template) }
+                    {/* Displays textareas from the template */}   
+                    { showTextAreas(template) }
 
-                    </TemplateEditNote>
-                :
-                    <TemplateReadNote>
+                </TemplateEditNote>
+            :
+                <TemplateReadNote>
 
-                        {/* Displays sections with the corresponding 
-                            note content from the template */}   
-                        { showSections(template) }
+                    {/* Displays sections with the corresponding 
+                        note content from the template */}   
+                    { showSections(template) }
 
-                    </TemplateReadNote>
+                </TemplateReadNote>
             }
 
         </TemplateContainer>            
     );
 }
- 
+
 export default Note;

@@ -1,16 +1,23 @@
+// React Hooks
 import { useState, useEffect } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
+
+// URL Navigation
 import { Navigate } from "react-router-dom";
 
+// Image files
 import Images from "../../images/Images";
+// Styled Components
 import { CloseButton } from "../Common/Close.style";
 import { StyledSettingsFormRead, SettingContainer, AddedItemsGrid } from "../Common/Form.style";
 import { SettingHeaderRead } from "../Common/Header.style";
 import { FormHeadingModal, SettingHeading, NotebookNoteHeading} from "../Common/Heading.style";
 import { ErrorMessages } from "../Common/Messages.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
-import { List, ListOptionSetting, Options } from "../Common/List.style"
-import { SearchInputList } from "../Common/Inputs.style"
+import { List, ListOption, Options } from "../Common/List.style";
+import { SearchInputList } from "../Common/Inputs.style";
 
 const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
 
@@ -97,15 +104,15 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
         );
 
         setFilteredNotes(filtered.length ? filtered.map(note => 
-                <ListOptionSetting
+                <ListOption
                     key={ note._id }
                     id={ note._id }
                     title={ note.title }
                     onMouseDown={ (e) => addNote(e) }>
                     { note.title }
-                </ListOptionSetting>
+                </ListOption>
             ) : 
-                <ListOptionSetting>
+                <ListOption>
                     { 
                         notes.filter((note) => 
                             !notebook.notes.includes(note._id)).length ? 
@@ -113,7 +120,7 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
                             : 
                                 "No More Notes To Add"
                     }
-                </ListOptionSetting>
+                </ListOption>
         );
     }
 
@@ -161,11 +168,13 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
 
     return (
         <StyledSettingsFormRead onSubmit={ (e) => e.preventDefault() }>
+
             <CloseButton onMouseDown={ (e) => { handleSettings(e); setDeleteCounter(0); } }/>
+
             <FormHeadingModal>Notebook Settings</FormHeadingModal>
 
             <SettingHeaderRead>
-                <SettingHeading>Add Notes</SettingHeading>        
+                <SettingHeading>Select Notes</SettingHeading>        
             </SettingHeaderRead>
 
             <SettingContainer>
@@ -196,6 +205,12 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
                 </List>
             </SettingContainer>
 
+            <BlueButtonRegistration 
+                type="button"
+                onClick={ (e) => { saveNotebooks(); displayList(''); } }>
+                Update Notebook
+            </BlueButtonRegistration>
+
             <SettingHeaderRead>
                 <SettingHeading>Delete Notebook</SettingHeading>
                 <img onClick={ deleteNotebook } src={ Images.Delete } alt="Delete Note"></img>          
@@ -203,12 +218,6 @@ const Settings = ({ handleSettings, notebook, notes, getNotes }) => {
             <ErrorMessages active={ deleteCounter !== 1 ? false : true }>
                 { deleteCounter === 1 ? "Click the Delete Icon Again If You're Sure You Want To Delete This Notebook!" : null }
             </ErrorMessages>
-
-            <BlueButtonRegistration 
-                type="button"
-                onClick={ (e) => { saveNotebooks(); displayList(''); } }>
-                Update Notebook
-            </BlueButtonRegistration>
 
             { home ? <Navigate to="/user-home" /> : null }
         </StyledSettingsFormRead>

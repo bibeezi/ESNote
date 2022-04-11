@@ -1,14 +1,23 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import Images from "../../images/Images";
+// React Hooks
+import { useState } from "react";
 
+// URL Navigation
+import { Navigate } from "react-router-dom";
+
+// Image files
+import Images from "../../images/Images";
+// Styled Components
 import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Header.style";
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
+// props passed from 'ReadNotebook.js'
 const Header = ({ notebook, handleSettings }) => {
 
+    // Sends user to the User Home page when true
     const [home, setHome] = useState(false);
 
+
+    // Opens the User Home page
     const goHome = () => {
         setHome(prevState => !prevState);
     }
@@ -25,13 +34,14 @@ const Header = ({ notebook, handleSettings }) => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Read { notebook.title ? notebook.title : "Notebook" } </WelcomeHeading>
+                <WelcomeHeading>Notebook: { notebook.title || "No Title" } </WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeader>
                 <img alt="Settings" src={ Images.Setting } onClick={ handleSettings }></img>
             </IconsHeader>
 
+            {/* Change the URL to open User Home page*/}
             { home ? <Navigate to='/user-home'/> : null }
 
         </HeaderBar>

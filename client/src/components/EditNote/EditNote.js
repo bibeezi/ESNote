@@ -6,7 +6,6 @@ import axios from "axios";
 
 // Child Components
 import Header from "./Header";
-// import Note from "./Note";
 import Note from "../ReadNote/Note";
 import Settings from "../ReadNote/Settings";
 // Styled Components
@@ -105,12 +104,17 @@ const EditNote = () => {
     useEffect(() => {
 
         // Wait for three seconds
-        setTimeout(() => {
+        let savedMessage = setTimeout(() => {
 
             // Hide the saved message
             setSavedMessage(false);
             
         }, 5000);
+
+        // Cleanup timeout if not necessary
+        return () => {
+            clearTimeout(savedMessage);
+        }
 
     }, [savedMessage]);
 

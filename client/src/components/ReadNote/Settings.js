@@ -15,11 +15,11 @@ import { SettingContainer, StyledSettingsFormRead, AddedItemsGrid } from "../Com
 import { SettingHeaderRead } from "../Common/Header.style";
 import { FormHeadingModal, SettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
 import { ErrorMessages } from "../Common/Messages.style"
-import { List, ListOptionSetting, Options } from "../Common/List.style";
+import { List, ListOption, Options } from "../Common/List.style";
 import { SearchInputList } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style"
 
-// props passed from 'EditNote.js'
+// props passed from 'EditNote.js' or 'ReadNote.js'
 const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
 
     // Sends user to the User Home page when true
@@ -130,7 +130,7 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
         var notebookIDsAdded = addedNotebooks.map(notebook => notebook.props.id);
 
         // Remove the notebooks that do not match the title,
-        // is already in the addedNotebooks list, and
+        // are already in the addedNotebooks list, and
         // already contains the current note
         var filtered = notebooks.filter(notebook => 
             notebook.title.toLowerCase().startsWith(searchValue) 
@@ -142,24 +142,24 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
 
         // Set the option components to render
         setFilteredNotebooks(filtered.length ? 
-            // Return the notebook component option to render
             filtered.map(notebook => 
-                <ListOptionSetting
+                // Return the notebook option component to render
+                <ListOption
                     key={ notebook._id }
                     id={ notebook._id }
                     title={ notebook.title }
                     onMouseDown={ (e) => addNotebook(e) }>
                     { notebook.title }
-                </ListOptionSetting>
+                </ListOption>
             ) 
         : 
             // Return appropriate message when no notebooks are available
-            <ListOptionSetting> { 
+            <ListOption> { 
                 notebooks.filter(notebook => ! notebook.notes.includes(note._id)).length ? 
                     "No Notebooks Available!" 
                 : 
                     "Note Added to All"
-            } </ListOptionSetting>
+            } </ListOption>
         );
     }
 
@@ -265,6 +265,7 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
             <SettingContainer>
 
                 <List showList={ showList }>
+
                     <label>
                         <SearchInputList
                             ref={ searchRef }
@@ -287,11 +288,10 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
                         null 
                     }
 
+                    <SettingHeading>Notebooks This Note will be Added To:</SettingHeading>
                     {/* Display the list of notebooks selected when there is
-                        at least one notebook selected */}
+                    at least one notebook selected */}
                     { addedNotebooks.length ? 
-                        <SettingHeading>Notes to be Added:</SettingHeading> 
-                        &&
                         <AddedItemsGrid>
 
                             { addedNotebooks }
@@ -300,6 +300,7 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
                     : 
                         null 
                     }
+                    
                 </List>
 
             </SettingContainer>

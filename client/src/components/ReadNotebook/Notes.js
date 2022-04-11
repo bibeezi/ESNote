@@ -1,10 +1,13 @@
+// React Hooks
 import { useEffect, useState } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
 
+// Styled Components
 import { NotebookTitleContainer } from "../Common/Header.style";
 import { ReadNotebookTitle } from "../Common/Heading.style";
-import { TemplateReadNotebook } from "../Common/Template.style";
-import { NoteContainer } from "./ReadNotebook.style";
+import { TemplateReadNotebook, NoteContainer } from "../Common/Template.style";
 import { ReadSections } from "../Common/Section.style";
 
 const Notes = ({ note }) => {
@@ -37,19 +40,31 @@ const Notes = ({ note }) => {
     const showNote = (sections) => {
         return sections.map((section, index) => (
             section._id === note.body[index].sectionID ? 
-                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> :
+                <ReadSections 
+                    key={ section._id } 
+                    section={ section }>
+                    { note.body[index].content }
+                </ReadSections> 
+            :
                 null
         ));
     };
  
     return (
         <NoteContainer>
+
             <NotebookTitleContainer>
                 <ReadNotebookTitle>{ note.title }</ReadNotebookTitle>
             </NotebookTitleContainer>
+
             <TemplateReadNotebook>
-                { Object.keys(template).length !== 0 && showNote(template.sections) }
+
+                {   Object.keys(template).length !== 0 
+                    && 
+                    showNote(template.sections) }
+
             </TemplateReadNotebook>
+
         </NoteContainer>            
     );
 }

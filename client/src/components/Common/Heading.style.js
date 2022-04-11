@@ -267,10 +267,11 @@ export const SettingHeading = styled.h1`
 export const NotebookNoteHeading = styled.h1`
 
     display: inline-block;
-    width: fit-content;
     padding-left: 0.5em;
     font-size: 1em;
     font-weight: 100;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

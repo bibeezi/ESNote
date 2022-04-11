@@ -314,6 +314,7 @@ export const AddedItemsGrid = styled.div`
     margin-bottom: 1em;
     grid-template-columns: 80% 20%;
     align-items: center;
+    width: 100%;
 
     img {
         height: 1.5em;

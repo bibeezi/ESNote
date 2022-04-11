@@ -1,12 +1,14 @@
 
-import Notebook from "./Notebook"
+// Child Components
+import Notebook from "./Notebook";
 import AddNote from "./AddNote";
 import Bookmark from "./Bookmark";
 import Strap from "./Strap";
+// Styled Components
 import { StyledSettings } from "../Common/Content.style";
 import { TemplateForm } from "../Common/Form.style";
 
-
+// props passed from 'CreateNotebook.js'
 const NotebookSettings = ({ 
     handleChange, 
     bookmark,
@@ -17,7 +19,9 @@ const NotebookSettings = ({
 
     return (
         <StyledSettings>
+
             <TemplateForm>
+                
                 <Notebook handleChange={ handleChange } />
 
                 <AddNote />
@@ -33,7 +37,9 @@ const NotebookSettings = ({
                     strap={ strap }
                     handleStrap={ handleStrap }>
                 </Strap>
+
             </TemplateForm>
+
         </StyledSettings>
     );
 }

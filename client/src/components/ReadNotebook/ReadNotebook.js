@@ -1,9 +1,14 @@
+// React Hooks
 import { useEffect, useState } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
 
+// Child Component
 import Header from "./Header";
 import Notes from "./Notes";
 import Settings from "./Settings";
+// Styled Components
 import { ReadNotebookContent } from "../Common/Content.style";
 import { Modal } from "../Common/Modal.style";
 import { ReadSettingsFormContainer } from "../Common/Form.style";

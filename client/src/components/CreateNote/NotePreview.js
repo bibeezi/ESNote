@@ -49,7 +49,7 @@ const NotePreview = ({ sectionValues }) => {
             if(res.data.msg === 'Note and Template Saved') {
                 // Save the new note identifier so that it can be displayed
                 // in the dit Note page.
-                localStorage.setItem("newNoteID", res.data.noteID);
+                localStorage.setItem("clickedNoteID", res.data.noteID);
 
                 // open the Edit Note page
                 setEditNote(prevState => !prevState);

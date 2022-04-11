@@ -44,10 +44,10 @@ export const List = styled.div`
 
 export const Options = styled.div`
 
-    display: grid;
+    display: inline-block;
+    width: 84.5%;
     overflow: auto;
     max-height: 7em;
-    width: 84.5%;
     scrollbar-width: none;
     -ms-overflow-style: none;
     transform: translateY(-0.5em);
@@ -101,53 +101,9 @@ export const ListOption = styled.div`
 
     background-color: whitesmoke;
     box-shadow: inset 0 1px 1px 0 grey;
-    padding: 1em 0;
+    padding: 1em;
     transform: translateY(-0.25em);
-    text-overflow: ellipsis;
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-
-    }   
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
-
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
-
-    }
-
-    @media only screen and (min-width: 1200px) {
-
-    }
-`;
-
-export const ListOptionSetting = styled.div`
-
-    background-color: whitesmoke;
-    box-shadow: inset 0 1px 1px 0 grey;
-    padding: 1em 0;
-    transform: translateY(-0.25em);
+    overflow-x: hidden;
     text-overflow: ellipsis;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

@@ -205,7 +205,14 @@ export const UserHomeTitle = styled.h1`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    overflow-x: auto;
     cursor: pointer;
+
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -338,12 +345,10 @@ export const ReadNoteTitle = styled.h1`
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 1.75em;
-        width: 45%;
 
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 30%;
         font-size: 1.75em;
 
     }

@@ -11,17 +11,22 @@ import { HeaderBar, HomeHeader, WelcomeHeader, IconsHeader } from "../Common/Hea
 import { HeaderHeading, WelcomeHeading } from "../Common/Heading.style";
 
 // props passed from 'EditNote.js'
-const Header = ({ handleSettings, handleSave }) => {
+const Header = ({ handleSettings, handleSave, note }) => {
 
     // Sends user to the Read Note page when true
     const [readNote, setReadNote] = useState(false);
-
-    const handleReadNote = () => {
-        setReadNote(prevState => !prevState);
-    }
-
     // Sends user to the User Home page when true
     const [home, setHome] = useState(false);
+
+
+    // Stores the note identifier and 
+    // Opens the Read Note page
+    const handleReadNote = () => {
+        // Save the note identifier in browser storage
+        localStorage.setItem("clickedNoteID", note._id);
+        // Open the Read Note page
+        setReadNote(prevState => !prevState);
+    }
 
     // Save the note and open the User Home page
     const goHome = () => {

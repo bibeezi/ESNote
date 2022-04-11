@@ -1,88 +1,136 @@
+// React Hooks
 import { useEffect, useState } from "react";
+
+// Promise-based HTTP client
 import axios from "axios";
 
-import { ReadSections } from "../Common/Section.style";
-import { TemplateContainer, TemplateReadNote } from "../Common/Template.style";
+// Styled Components
+import { ReadSections, TextArea } from "../Common/Section.style";
+import { TemplateContainer, TemplateEditNote, TemplateReadNote } from "../Common/Template.style";
 
-const Note = ({ note, setNote }) => {
+// props passed from 'ReadNote.js'
+const Note = ({ 
+    textareaRef,
+    note, 
+    setNote,
+    handleChange,
+    page
+}) => {
 
+    // Holds the note template's details
     const [template, setTemplate] = useState({});
-    const [readSections, setReadSections] = useState([]);
-
     
+    // Runs when rendered
     useEffect(() => {
+
+        // Wait for 50 milliseconds
         setTimeout(() => {
-            getNote();
-        }, 50);
-    }, []);
 
-    useEffect(() => {
-        setReadSections((prevState) => {
-            if ( template ) {
-                if ( template.sections ) {
-                    return template.sections.map((section, index) => (
-                        note.body.length === 1 && template.sections.length === 1 ?
-                            note.body[index].sectionID === section._id ?
-                                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> 
-                            :
-                                null
-                        :
-                            note.body[index].sectionID === section._id ? 
-                                <ReadSections key={ section._id } section={ section }>{ note.body[index].content }</ReadSections> 
-                            : 
-                                null 
-                    ));
+            // Gather data to send to the server
+            const payload = {
+                noteID: localStorage.getItem("clickedNoteID")
+            }
+    
+            // Get the current note's details from MongoDB
+            axios.get('/note/getNote', {
+                params: {
+                    data: payload
                 }
+            }).then((res) => {
+
+                // Set the note details in note state
+                setNote(res.data);
+ 
+                // Get the template for the current note
+                getTemplate(res.data.template);
+
+            }).catch((error) => {
+                console.log("ERROR in ReadNote Note - /note/getNote", error);
+            });
+
+            // Get the template for the current note
+            const getTemplate = (templateID) => {
+
+                // Gather data to send to the server
+                const payload = {
+                    templateID: templateID
+                }
+        
+                // Get the template's details from MongoDB
+                axios.get('/template/getTemplate', {
+                    params: {
+                        data: payload
+                    }
+                }).then((res) => {
+
+                    // Set the template details in template state
+                    setTemplate(res.data);
+
+                }).catch((error) => {
+                    console.log("ERROR in Note - /getTemplate", error);
+                });
             }
-        })
-    }, [template])
 
+        }, 50);
 
-    const getNote = () => {
+    }, [setNote]);
 
-        const payload = {
-            noteID: localStorage.getItem("clickedNoteID")
+    const showSections = (template) => {
+        if ( template.sections ) {
+            return template.sections.map((section, index) => (
+                note.body[index].sectionID === section._id ?
+                    <ReadSections 
+                        key={ section._id } 
+                        section={ section }>
+                        { note.body[index].content }
+                    </ReadSections> 
+                :
+                    null
+            ));
         }
+    }
 
-        axios.get('/note/getNote', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNote(res.data);
-
-            getTemplate(res.data.template);
-        })
-        .catch((error) => {
-            console.log("ERROR in Note - /getNote", error);
-        });
-    };
-
-    const getTemplate = (templateID) => {
-
-        const payload = {
-            templateID: templateID
-        }
-
-        axios.get('/template/getTemplate', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setTemplate(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in Note - /getTemplate", error);
-        });
+    const showTextAreas = (template) => {
+        // Return the Textarea components to render
+        return template.sections.map((section, index) => (
+            <TextArea 
+                key={ section._id }
+                name={ section._id }
+                values={ section }
+                defaultValue={ 
+                    note.body[index].sectionID === section._id ? 
+                        note.body[index].content
+                    : 
+                        null 
+                }
+                onChange={ handleChange }>
+            </TextArea>
+        ));
     }
  
     return (
         <TemplateContainer>
-            <TemplateReadNote>
-                { readSections }
-            </TemplateReadNote>
+
+            {/* Displays the template only when it exists */}
+            { Object.keys(template).length !== 0 
+            &&
+                page === "Edit Note" ?
+                    <TemplateEditNote ref={ textareaRef }>
+
+                        {/* Displays textareas from the template */}   
+                        { showTextAreas(template) }
+
+                    </TemplateEditNote>
+                :
+                    <TemplateReadNote>
+
+                        {/* Displays sections with the corresponding 
+                            note content from the template */}   
+                        { showSections(template) }
+
+                    </TemplateReadNote>
+            }
+
         </TemplateContainer>            
     );
 }

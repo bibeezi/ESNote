@@ -5,20 +5,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 // Styled Components
-import { TemplateContainer, TemplateEditNote } from "../Common/Template.style"
 import { TextArea } from "../Common/Section.style";
+import { TemplateContainer, TemplateEditNote } from "../Common/Template.style";
 
 // props passed from 'EditNote.js'
 const Note = ({ 
     handleChange, 
     note, 
     setNote, 
-    textareaRef 
+    textareaRef
 }) => {
 
     // Holds the template details for the note displayed
     const [template, setTemplate] = useState({});
-
 
     // Runs when note state is changed
     useEffect(() => {
@@ -36,18 +35,18 @@ const Note = ({
                 params: {
                     data: payload
                 }
-            })
-            .then((res) => {
+            }).then((res) => {
 
                 // Set the note details in note state
                 setNote(res.data);
     
                 // Get the template for the current note
                 getTemplate(res.data.template);
-            })
-            .catch((error) => {
+
+            }).catch((error) => {
                 console.log("ERROR in EditNote Note - /note/getNote", error);
             });
+            
         }, 50);
 
         // Get the template for the current note
@@ -63,12 +62,12 @@ const Note = ({
                 params: {
                     data: payload
                 }
-            })
-            .then((res) => {
+            }).then((res) => {
+
                 // Set the template details in template state
                 setTemplate(res.data);
-            })
-            .catch((error) => {
+
+            }).catch((error) => {
                 console.log("ERROR in Note - /getTemplate", error);
             });
         }

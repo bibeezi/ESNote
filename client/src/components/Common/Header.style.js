@@ -370,7 +370,7 @@ export const TitleContainer = styled.div`
 
     display: flex;
     height: 100%;
-    width: 90%;
+    width: 30%;
     justify-content: center;
     align-items: end;
     overflow-x: auto;

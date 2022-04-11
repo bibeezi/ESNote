@@ -6,7 +6,8 @@ import axios from "axios";
 
 // Child Components
 import Header from "./Header";
-import Note from "./Note";
+// import Note from "./Note";
+import Note from "../ReadNote/Note";
 import Settings from "../ReadNote/Settings";
 // Styled Components
 import { TitleContainer } from "../Common/Header.style";
@@ -191,10 +192,8 @@ const EditNote = () => {
         <div>
             <Header 
                 handleSettings={ handleSettings }
-                note={ note }
-                inputRef={ inputRef }
-                textareaRef={ textareaRef }
-                handleSave={ handleSave }>                    
+                handleSave={ handleSave }
+                note={ note }>
             </Header>
 
             <EditNoteContent>
@@ -217,7 +216,8 @@ const EditNote = () => {
                     textareaRef={ textareaRef }
                     note={ note }
                     setNote={ setNote }
-                    handleChange={ handleChange }>
+                    handleChange={ handleChange }
+                    page={ "Edit Note" }>
                 </Note>
 
                 <SaveContainer>

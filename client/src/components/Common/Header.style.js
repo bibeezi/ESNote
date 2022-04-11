@@ -161,6 +161,7 @@ export const WelcomeHeader = styled.div`
 export const IconsHeader = styled.div`
 
     display: grid;
+    justify-content: end;
     grid-auto-flow: column;
     overflow-x: auto;
     grid-auto-columns: 35%;

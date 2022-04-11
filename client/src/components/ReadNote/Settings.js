@@ -49,29 +49,6 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
         localStorage.setItem("addedNotebookIDs", JSON.stringify(addedNotebooksIDs));
     }, [addedNotebooks]);
 
-    
-    // Get the user's notebooks
-    const getNotebooks = () => {
-        // Gather data to send to the server
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
-        // Get the user's notebooks from MongoDB
-        axios.get('/notebook/getNotebooks', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            // Save the notebooks received into 'notebooks' state
-            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in Settings - /notebook/getNotebooks", error);
-        });
-    }
-
     // Handles the events on the search input
     const handleChange = (event) => {
         // Get the value and event name attributes from 
@@ -186,7 +163,7 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
         );
     }
 
-    // Add the current note to the notebooks selected
+    // Add the current note to the notebooks selected in MongoDB
     const updateNotebooks = () => {
 
         // Gather data to send to the server
@@ -211,6 +188,29 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
         });
     }
 
+    // Get the user's notebooks
+    const getNotebooks = () => {
+        // Gather data to send to the server
+        const payload = {
+            userID: localStorage.getItem("userID")
+        };
+
+        // Get the user's notebooks from MongoDB
+        axios.get('/notebook/getNotebooks', {
+            params: {
+                data: payload
+            }
+        })
+        .then((res) => {
+            // Save the notebooks received into 'notebooks' state
+            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
+        })
+        .catch((error) => {
+            console.log("ERROR in Settings - /notebook/getNotebooks", error);
+        });
+    }
+
+    // Delete the current note from MongoDB
     const deleteNote = () => {
 
         // Delete the note if the user
@@ -228,15 +228,15 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
                 data: payload
             }).then(() => {
 
+                // Hide the delete note warning
+                setDeleteCounter(0);
+                
                 // Open the User Home page
                 goHome();
 
             }).catch((err) => {
                 console.log("ERROR in Settings - /note/deleteNote", err)
             });
-
-            // Hide the delete note warning
-            setDeleteCounter(0);
 
         } else {
             // Display the delete note warning

@@ -152,7 +152,7 @@ const EditNote = () => {
             noteTemplate: note.template,
             noteID: note._id
         })
-        .then((res) => {
+        .then(() => {
 
             // Search the corresponding code block to run 
             // depending on the type of action needed

@@ -207,9 +207,6 @@ const Settings = ({ handleSettings, notebook, notes }) => {
                 data: payload
             }).then(() => {
 
-                // Hide the delete note warning
-                setDeleteCounter(0);
-
                 // Open the User Home page
                 goHome();
 

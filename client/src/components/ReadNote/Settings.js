@@ -203,9 +203,6 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
             axios.delete('/note/deleteNote', {
                 data: payload
             }).then(() => {
-
-                // Hide the delete note warning
-                setDeleteCounter(0);
                 
                 // Open the User Home page
                 goHome();

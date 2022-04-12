@@ -39,12 +39,15 @@ router.get("/getNotebook", (req, res) => {
     const data = JSON.parse(req.query.data);
     const notebookID = mongoose.Types.ObjectId(data.notebookID);
 
-    NotebookModel.findById(notebookID, (err, doc) => {
+    NotebookModel.findById(notebookID, (err, notebook) => {
         if(err) {
             return res.status(500).json({ msg: 'ERROR in notebook route - /getNotebook', err});
         }
 
-        return res.json(doc);
+        return res.json({
+            msg: "Notebook Found",
+            notebook: notebook
+        });
     });
 });
 

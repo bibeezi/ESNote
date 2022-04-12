@@ -55,13 +55,18 @@ router.get("/getNotebookNotes", (req, res) => {
         return mongoose.Types.ObjectId(note);
     });
 
-    NoteModel.find(
-        { _id: { "$in": noteIDs }
+    NoteModel.find({ 
+        _id: { 
+            "$in": noteIDs 
+        }
     }, 
     (err, docs) => {
         if (err) return res.status(500).json({ msg: 'ERROR in note route - /getNotebookNotes', err});
 
-        return res.json(docs);
+        return res.json({
+            msg: "Notebook's Notes Found",
+            notes: docs
+        });
     });
 });
 

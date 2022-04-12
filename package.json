@@ -1,7 +1,7 @@
 {
-  "name": "11-21-2021",
+  "name": "esnote",
   "version": "1.0.0",
-  "description": "",
+  "description": "Effective Study Notebook Web Application",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,13 +14,17 @@
     "dev": "concurrently -n 'server,client' -c 'magenta,blue' \"npm run server\" \"npm run client\"",
     "local-dev": "concurrently -n 'server,client' -c 'magenta,blue' \"set PORT=8080 && npm run server\" \"set PORT=3000 && npm run client\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "study",
+    "web application",
+    "responsive",
+    "note taking"
+  ],
+  "author": "Bianca Claudette Palileo",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "concurrently": "^6.4.0",
-    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
@@ -28,7 +32,7 @@
   },
   "proxy": {
     "/api": {
-        "target": "http://localhost:3000"
+      "target": "http://localhost:3000"
     }
   }
 }

@@ -15,84 +15,103 @@ import { ReadSettingsFormContainer } from "../Common/Form.style";
 
 const ReadNotebook = () => {
 
+    // Store all user notebooks and its notes' details
     const [notebook, setNotebook] = useState({});
     const [notebookNotes, setNotebookNotes] = useState([]);
-    const [allNotes, setAllNotes] = useState([]);
+
+    // Store the user's notes
+    const [notes, setNotes] = useState([]);
+
+    // Opens the settings modal when true
     const [openSettings, setOpenSettings] = useState(false);
 
+
+    // Runs when rendered
     useEffect(() => {
+
+        // Wait for 50 milliseconds
         setTimeout(() => {
-            getNotebook();
-        }, 1000);
 
-        getAllNotes();
-    }, []);
+            // Gather data to send to the server
+            const payload = {
+                notebookID: localStorage.getItem("clickedNotebookID")
+            };
+    
+            // Get the notebook's details from MongoDB
+            axios.get('/notebook/getNotebook', {
+                params: {
+                    data: payload
+                }
+            })
+            .then((res) => {
 
-    const getNotebook = () => {
+                // Stores the notebook received into notebook state
+                res.data.msg === "Notebook Found" && setNotebook(res.data.notebook);
 
-        const payload = {
-            notebookID: localStorage.getItem("clickedNotebookID")
-        };
+                // Get the received notebook's notes' details
+                getNotebookNotes(res.data.notebook.notes);
 
-        axios.get('/notebook/getNotebook', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNotebook(res.data);
+            })
+            .catch((error) => {
+                console.log("ERROR in ReadNotebook - /notebook/getNotebook", error);
+            });
 
-            getNotebookNotes(res.data.notes);
-        })
-        .catch((error) => {
-            console.log("ERROR in ReadNotebook - /getNotebook", error);
-        });
-    }
-
-    const getNotebookNotes = (noteIDs) => {
-
-        const payload = {
-            noteIDs: noteIDs
-        };
-
-        axios.get('/note/getNotebookNotes', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            setNotebookNotes(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in ReadNotebook - /getNotebookNotes", error);
-        });
-    };
-
-    const getAllNotes = () => {
+        }, 50);
+        
+        // Gather data to send to the server
         const payload = {
             userID: localStorage.getItem("userID")
         };
 
+        // Get the user's notes from MongoDB
         axios.get('/note/getNotes', {
             params: {
                 data: payload
             }
-        })
-        .then((res) => {
-            setAllNotes(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in ReadNotebook - /getNotes", error);
-        });
-    }
+        }).then((res) => {
 
+            // Store the notes received into notes state
+            res.data.msg !== "Notes Not Found" && setNotes(res.data);
+
+        }).catch((error) => {
+            console.log("ERROR in ReadNotebook - /note/getNotes", error);
+        });
+    }, []);
+
+
+    const getNotebookNotes = (noteIDs) => {
+
+        // Gather data to send to the server
+        const payload = {
+            noteIDs: noteIDs
+        };
+
+        // Get the notebook's notes' details from MongoDB
+        axios.get('/note/getNotebookNotes', {
+            params: {
+                data: payload
+            }
+        }).then((res) => {
+
+            // Stores the notebook's notes received into notebookNotes state
+            res.data.msg === "Notebook's Notes Found" && setNotebookNotes(res.data.notes);
+
+        }).catch((err) => {
+            console.log("ERROR in ReadNotebook - /getNotebookNotes", err);
+        });
+    };
+
+    // Displays the notes onto the ReadNotebookContent component
     const showNotes = (notebookNotes) => {
+        // Return the Notes components to render
         return notebookNotes.map((note) => (
             <Notes key={ note._id } note={ note } />
         ));
     };
 
+    // Opens the settings modal
     const handleSettings = (event) => {
+        // Stops the form from refreshing the page on render
         event.preventDefault();
 
         setOpenSettings(prevState => !prevState);
@@ -103,20 +122,29 @@ const ReadNotebook = () => {
             <Header notebook={ notebook } handleSettings={ handleSettings }/>
 
             <ReadNotebookContent notebookLength={ notebookNotes.length }>
+
+                {/* Display notebook's notes */}
                 { showNotes(notebookNotes) }
+
             </ReadNotebookContent>
 
-            { openSettings && 
-            <Modal onClick={ (e) => handleSettings(e) }>
-                <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
-                    <Settings
-                        handleSettings={ handleSettings }
-                        notebook={ notebook }
-                        notes={ allNotes }
-                        getNotes={ getAllNotes }>
-                    </Settings>
-                </ReadSettingsFormContainer>
-            </Modal>}
+            {/* Opens settings modal when true */}
+            {   openSettings
+            && 
+                <Modal onClick={ (e) => handleSettings(e) }>
+
+                    <ReadSettingsFormContainer onClick={ (e) => handleSettings(e) }>
+
+                        <Settings
+                            handleSettings={ handleSettings }
+                            notebook={ notebook }
+                            notes={ notes }>
+                        </Settings>
+
+                    </ReadSettingsFormContainer>
+
+                </Modal>
+            }
         </div>
     );
 }

@@ -43,12 +43,13 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
     useEffect(() => {
         // Get the identifiers of each notebook in the list
         var addedNotebooksIDs = addedNotebooks.filter(notebook => notebook.props.id.substring(24) !== "img")
-            .map((notebook) => notebook.props.id);
+            .map(notebook => notebook.props.id);
         
         // Stores list of notebook identifiers
         localStorage.setItem("addedNotebookIDs", JSON.stringify(addedNotebooksIDs));
     }, [addedNotebooks]);
 
+    
     // Handles the events on the search input
     const handleChange = (event) => {
         // Get the value and event name attributes from 
@@ -80,7 +81,7 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
 
         // Add the notebook title component and the image 
         // for deleting the notebook to the AddedItemsGrid
-        setAddedNotebooks((prevState) => [
+        setAddedNotebooks(prevState => [
             ...prevState,
             <NotebookNoteHeading 
                 key={ id } 
@@ -105,9 +106,9 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
 
         // Add the notebook title and the image 
         // for deleting the notebook to the AddedItemsGrid
-        setAddedNotebooks((prevState) => 
+        setAddedNotebooks(prevState => 
             // Remove the notebook title component and its delete image
-            prevState.filter((notebook) => notebook.props.id.substring(24) === "img" ? 
+            prevState.filter(notebook => notebook.props.id.substring(24) === "img" ? 
                 notebook.props.id.substring(0, 24) !== id.substring(0, 24) 
             :   
                 notebook.props.id !== id.substring(0, 24) 
@@ -176,37 +177,12 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
         axios.put('/notebook/saveNote', {
             data: payload
         }).then(() => {
-
-            // Get the updated list of notebooks
-            getNotebooks();
             
             // Open the User Home page
             goHome();
 
         }).catch((err) => {
             console.log("ERROR in Settings - /notebook/saveNotebook", err);
-        });
-    }
-
-    // Get the user's notebooks
-    const getNotebooks = () => {
-        // Gather data to send to the server
-        const payload = {
-            userID: localStorage.getItem("userID")
-        };
-
-        // Get the user's notebooks from MongoDB
-        axios.get('/notebook/getNotebooks', {
-            params: {
-                data: payload
-            }
-        })
-        .then((res) => {
-            // Save the notebooks received into 'notebooks' state
-            res.data.msg !== "Notebooks Not Found" && setNotebooks(res.data);
-        })
-        .catch((error) => {
-            console.log("ERROR in Settings - /notebook/getNotebooks", error);
         });
     }
 
@@ -288,9 +264,13 @@ const Settings = ({ handleSettings, notebooks, note, setNotebooks }) => {
                         null 
                     }
 
-                    <SettingHeading>Notebooks This Note will be Added To:</SettingHeading>
                     {/* Display the list of notebooks selected when there is
                     at least one notebook selected */}
+                    { addedNotebooks.length ? 
+                        <SettingHeading>Notebooks This Note will be Added To:</SettingHeading>
+                    : 
+                        null
+                    }
                     { addedNotebooks.length ? 
                         <AddedItemsGrid>
 

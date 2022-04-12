@@ -77,6 +77,7 @@ const ReadNote = () => {
 
             </ReadNoteContent>
 
+            {/* Opens settings modal when true */}
             { openSettings 
             && 
                 <Modal onClick={ (e) => handleSettings(e) }>

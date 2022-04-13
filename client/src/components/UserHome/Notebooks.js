@@ -149,7 +149,7 @@ const Notebooks = ({ search, notes, sortBy, notebooks }) => {
                         <img alt="click to add" src={ Images.Plus } />
                     </StyledShape>
 
-                    <UserHomeTitle>Add Notebook</UserHomeTitle>
+                    <UserHomeTitle onClick={ handleAddNotebook }>Add Notebook</UserHomeTitle>
                 </StyledContainer>
 
                 {/* Displays notebooks if there are notebooks, 

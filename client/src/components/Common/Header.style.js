@@ -173,6 +173,7 @@ export const IconsHeader = styled.div`
         margin: 0;
         align-self: center;
         justify-self: center;
+        cursor: pointer;
     }
 
     @media only screen and (max-height: 321px) {
@@ -287,6 +288,7 @@ export const SettingHeader = styled.div`
 
     img {
         height: 1.5em;
+        cursor: pointer;
 
         ${({ page }) => page === "createNotebook" ? css`            
             padding-left: 0.5em;
@@ -301,6 +303,7 @@ export const SettingHeader = styled.div`
         margin-left: 0.5em;
         border: 1px solid black;
         border-radius: 0.3em;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -339,6 +342,7 @@ export const SubSettingHeader = styled.div`
         margin-right: 1em;
         justify-self: right;
         align-self: center;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -457,6 +461,7 @@ export const SettingHeaderRead = styled.div`
     img {
         height: 1.5em;
         margin-left: 1em;
+        cursor: pointer;
     }
 
     div {

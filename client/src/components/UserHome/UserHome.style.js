@@ -256,15 +256,17 @@ export const StyledShape = styled.div`
     height: 7em;
     width: 5em;
     border: 1px solid #80655C;
+    align-self: end;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
     ${({ shape}) => shape === "note" ? css`
         border-radius: none;
     `
     : css`
         border-radius: 0.25em 1em 1em 0.25em;
     `}
-    align-self: end;
-    align-items: center;
-    justify-content: center;
 
     img {
         position: relative;

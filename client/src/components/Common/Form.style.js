@@ -318,6 +318,7 @@ export const AddedItemsGrid = styled.div`
 
     img {
         height: 1.5em;
+        cursor: pointer;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

@@ -160,7 +160,7 @@ const Notes = ({ search, sortBy, notes, noteTemplates }) => {
                         <img alt="click to add" src={ Images.Plus } />
                     </StyledShape>
 
-                    <UserHomeTitle>Add Note</UserHomeTitle>
+                    <UserHomeTitle onClick={ handleNewNote }>Add Note</UserHomeTitle>
                 </StyledContainer>
 
                 {/* Displays notes if there are notes and templates, 

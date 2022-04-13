@@ -51,6 +51,7 @@ export const Options = styled.div`
     scrollbar-width: none;
     -ms-overflow-style: none;
     transform: translateY(-0.5em);
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         width: 85.5%;

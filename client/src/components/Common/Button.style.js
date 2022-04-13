@@ -10,6 +10,7 @@ export const OrangeButton = styled.button`
     background-color: #FFBB4D;
     margin: 1em auto 1em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -50,6 +51,7 @@ export const BlueButton = styled.button`
     background-color: #61D4D4;
     margin: 0 auto 3em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
@@ -89,6 +91,7 @@ export const BlueButtonRegistration = styled.button`
     background-color: #61D4D4;
     margin: 1em auto;
     padding: 0.5em 1.5em 0.5em 1.5em;
+    cursor: pointer;
 
     @media only screen and (max-height: 360px) {
         margin: 0.25 auto;
@@ -132,6 +135,7 @@ export const NextButton = styled.button`
     letter-spacing: 0.1em;
     background-color: #61D4D4;
     justify-self: center;
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -176,6 +180,7 @@ export const SaveButton = styled.button`
     background-color: #FFBB4D;
     justify-self: right;
     transform: translateY(-0.5em);
+    cursor: pointer;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         padding: 0.5em 2em 0.5em 2em;

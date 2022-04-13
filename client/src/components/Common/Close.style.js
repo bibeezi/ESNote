@@ -12,6 +12,7 @@ export const CloseButton = styled.div`
     opacity: 0.3;
 
     &:hover {
+        cursor: pointer;
         opacity: 1;
     }
 

@@ -189,7 +189,7 @@ const AddNote = () => {
                             showList={ showList } 
                             onChange={ (e) => handleChange(e) }
                             onFocus={ (e) => handleChange(e) }
-                            // onBlur={ (e) => handleChange(e) }
+                            onBlur={ (e) => handleChange(e) }
                             name="note"
                             type="text"
                             placeholder="Search for Notes"> 

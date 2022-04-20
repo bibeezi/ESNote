@@ -302,7 +302,11 @@ export const ReadNotebookContent = styled.div`
 
     display: grid;
     background-image: linear-gradient(#AED9EA55, #E98DBE55);
-    height: calc(100vh - 3.4em);
+    ${({ notebookLength }) => notebookLength > 1 ? css`
+            height: fit-content;
+        ` : css`
+            height: calc(100vh - 3.4em);
+        `}
     padding: 3.4em 0 0 0;
     grid-template-columns: 100%;
     grid-auto-flow: row;
@@ -361,7 +365,7 @@ export const ReadNotebookContent = styled.div`
         ${({ notebookLength }) => notebookLength > 1 ? css`
             grid-template-columns: 50% 50%;
         ` : css`
-            height: calc(150vh - 5.4em);
+            height: calc(100vh - 5.4em);
             grid-template-columns: 100%;
         `}
         padding: 5.4em 0 0 0;

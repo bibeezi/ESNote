@@ -227,6 +227,10 @@ export const EditNoteContent = styled.div`
         grid-template-rows: 10% 90%;
     }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        height: calc(100vw - 3.4em);
+    }
+
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         height: calc(100vh - 5.4em);
         padding-top: 5.4em;

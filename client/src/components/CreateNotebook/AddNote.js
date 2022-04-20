@@ -9,10 +9,10 @@ import Images from "../../images/Images";
 // Styled Components
 import { SettingsGrid, SettingContainer, AddedItemsGrid } from "../Common/Form.style";
 import { SettingHeader } from "../Common/Header.style";
-import { SettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
+import { CheckSettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
 import { SearchInputList } from "../Common/Inputs.style";
-import { Options } from "../Common/List.style";
-import { List, ListOption } from "../Common/List.style";
+import { CreateNotebookOptions } from "../Common/List.style";
+import { List, CreateNotebookListOption } from "../Common/List.style";
 
 const AddNote = () => {
 
@@ -157,38 +157,39 @@ const AddNote = () => {
         setFilteredNotes(filtered.length ? 
             filtered.map(note => 
                 // Return the note option component to render
-                <ListOption 
+                <CreateNotebookListOption 
                     key={ note._id }
                     id={ note._id }
                     title={ note.title }
                     onMouseDown={ (e) => addNote(e) }>
                     { note.title }
-                </ListOption>
+                </CreateNotebookListOption>
             ) : 
                 // Return appropriate message when no notes are available
-                <ListOption>No Notes Found!</ListOption>
+                <CreateNotebookListOption>No Notes Found!</CreateNotebookListOption>
         );
     }
 
     return (
         <>
         <SettingHeader>
-            <SettingHeading>Select Notes For This Notebook</SettingHeading>
+            <CheckSettingHeading>Select Notes For This Notebook</CheckSettingHeading>
         </SettingHeader>
 
         <SettingsGrid>
 
             <SettingContainer>
 
-                <List showList={ showList }>
+                <List showList={ showList } page={ "CreateNotebook"}>
 
                     <label>
                         <SearchInputList
+                            page={ "CreateNotebook"}
                             ref={ searchRef }
                             showList={ showList } 
                             onChange={ (e) => handleChange(e) }
                             onFocus={ (e) => handleChange(e) }
-                            onBlur={ (e) => handleChange(e) }
+                            // onBlur={ (e) => handleChange(e) }
                             name="note"
                             type="text"
                             placeholder="Search for Notes"> 
@@ -197,14 +198,18 @@ const AddNote = () => {
 
                     {/* Display the list of notes available when true */}
                     { showList ? 
-                        <Options>
+                        <CreateNotebookOptions>
                             { filteredNotes }
-                        </Options> 
+                        </CreateNotebookOptions> 
                     : 
                         null 
                     }
                     
-                    <SettingHeading>Notes to be Added in This Notebook:</SettingHeading> 
+                    { addedNotes.length ? 
+                        <CheckSettingHeading>Notes to be Added in This Notebook:</CheckSettingHeading> 
+                    :
+                        null
+                    }  
                     {/* Display the list of notes selected when there is
                         at least one note selected */}
                     { addedNotes.length ? 

@@ -34,7 +34,8 @@ const Header = ({ notebook, handleSettings }) => {
             </HomeHeader>
 
             <WelcomeHeader>
-                <WelcomeHeading>Notebook: { notebook.title || "No Title" } </WelcomeHeading>
+                <WelcomeHeading>Notebook:</WelcomeHeading>
+                <WelcomeHeading>{ notebook.title || "No Title" } </WelcomeHeading>
             </WelcomeHeader>
             
             <IconsHeader>

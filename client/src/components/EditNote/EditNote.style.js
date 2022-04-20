@@ -25,7 +25,11 @@ export const SaveContainer = styled.div`
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        padding: 0 7em;
+
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        padding: 0 1.9em;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 1000px) {

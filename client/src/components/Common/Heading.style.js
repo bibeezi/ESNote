@@ -45,10 +45,17 @@ export const HeaderHeading = styled.h1`
 
 export const WelcomeHeading = styled.h1`
 
+    width: 100%;
+    overflow-x: auto;
     letter-spacing: 0.2em;
     color: #7E2D00;
     font-size: 0.75em;
     margin: auto;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         font-size: 0.75;
@@ -251,6 +258,33 @@ export const SettingHeading = styled.h1`
 
     display: inline-block;
     font-size: 1em;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const CheckSettingHeading = styled.h1`
+
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.5em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

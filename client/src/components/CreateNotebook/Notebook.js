@@ -1,15 +1,15 @@
 // Styled Components
 import { SettingsGrid, SettingContainer } from "../Common/Form.style";
 import { SettingHeader } from "../Common/Header.style";
-import { SettingHeading } from "../Common/Heading.style";
-import { LongSettingInput } from "../Common/Inputs.style";
+import { CheckSettingHeading } from "../Common/Heading.style";
+import { SettingInput } from "../Common/Inputs.style";
 
 // props passed from 'CreateNotebook.js'
 const Notebook = ({ handleChange }) => {
     return (
         <>
         <SettingHeader>
-            <SettingHeading>Title and Colour</SettingHeading>
+            <CheckSettingHeading>Title and Colour</CheckSettingHeading>
         </SettingHeader>
 
         <SettingsGrid>
@@ -17,21 +17,21 @@ const Notebook = ({ handleChange }) => {
             <SettingContainer>
 
                 <label>
-                    <LongSettingInput 
+                    <SettingInput 
                         onChange={ (e) => handleChange(e) }
                         name="notebookTitle"
                         type="text"
                         placeholder="Title"> 
-                    </LongSettingInput>
+                    </SettingInput>
                 </label>
 
                 <label>
-                    <LongSettingInput 
+                    <SettingInput 
                         onChange={ (e) => handleChange(e) }
                         name="notebookHex"
                         type="text"
                         placeholder="Colour or Hex"> 
-                    </LongSettingInput>
+                    </SettingInput>
                 </label>
 
             </SettingContainer>

@@ -3,7 +3,7 @@ import Images from "../../images/Images";
 // Styled Components
 import { SettingsGrid, SettingContainer } from "../Common/Form.style";
 import { SettingHeader } from "../Common/Header.style";
-import { SettingHeading } from "../Common/Heading.style";
+import { CheckSettingHeading } from "../Common/Heading.style";
 import { SettingInput } from "../Common/Inputs.style";
 
 // props passed from 'CreateNotebook.js'
@@ -20,7 +20,7 @@ const Bookmark = ({ handleChange, bookmark, handleBookmark }) => {
                 <div onClick={ handleBookmark }></div>
             }
 
-            <SettingHeading>Bookmark</SettingHeading>
+            <CheckSettingHeading>Bookmark</CheckSettingHeading>
         </SettingHeader>
 
         {/* Display bookmark inputs if true, otherwise display nothing */}

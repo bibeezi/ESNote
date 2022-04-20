@@ -347,6 +347,7 @@ export const AddedItemsGrid = styled.div`
     grid-template-columns: 80% 20%;
     align-items: center;
     justify-items: center;
+    justify-self: center;
 
     img {
         height: 1.5em;

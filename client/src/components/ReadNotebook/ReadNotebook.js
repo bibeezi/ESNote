@@ -56,7 +56,7 @@ const ReadNotebook = () => {
                 console.log("ERROR in ReadNotebook - /notebook/getNotebook", error);
             });
 
-        }, 50);
+        }, 100);
         
         // Gather data to send to the server
         const payload = {

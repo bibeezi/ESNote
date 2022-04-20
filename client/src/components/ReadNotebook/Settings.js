@@ -13,9 +13,9 @@ import Images from "../../images/Images";
 import { CloseButton } from "../Common/Close.style";
 import { StyledSettingsFormRead, SettingContainer, AddedItemsGrid } from "../Common/Form.style";
 import { SettingHeaderRead } from "../Common/Header.style";
-import { FormHeadingModal, SettingHeading, NotebookNoteHeading} from "../Common/Heading.style";
-import { ErrorMessages } from "../Common/Messages.style";
-import { BlueButtonRegistration } from "../Common/Button.style";
+import { FormHeadingModal, SettingHeading, AddedSettingHeading, NotebookNoteHeading } from "../Common/Heading.style";
+import { DeleteMessages } from "../Common/Messages.style";
+import { BlueButtonSettings } from "../Common/Button.style";
 import { List, ListOption, Options } from "../Common/List.style";
 import { SearchInputList } from "../Common/Inputs.style";
 
@@ -234,7 +234,7 @@ const Settings = ({ handleSettings, notebook, notes }) => {
             <FormHeadingModal>Notebook Settings</FormHeadingModal>
 
             <SettingHeaderRead>
-                <SettingHeading>Select Notes</SettingHeading>        
+                <SettingHeading>Select Notes to be Added</SettingHeading>        
             </SettingHeaderRead>
 
             <SettingContainer>
@@ -266,7 +266,7 @@ const Settings = ({ handleSettings, notebook, notes }) => {
                     {/* Display the list of notes selected when there is
                     at least one note selected */}
                     { addedNotes.length ? 
-                        <SettingHeading>Notes to be Added to This Notebook:</SettingHeading>
+                        <AddedSettingHeading>Notes to be Added to This Notebook:</AddedSettingHeading>
                     : 
                         null
                     }
@@ -284,11 +284,11 @@ const Settings = ({ handleSettings, notebook, notes }) => {
 
             </SettingContainer>
 
-            <BlueButtonRegistration 
+            <BlueButtonSettings
                 type="button"
                 onClick={ () => { updateNotebooks(); displayFilteredList(''); } }>
                 Add Notes to Notebook
-            </BlueButtonRegistration>
+            </BlueButtonSettings>
 
             <SettingHeaderRead>
                 <SettingHeading>Delete Notebook</SettingHeading>
@@ -296,9 +296,9 @@ const Settings = ({ handleSettings, notebook, notes }) => {
             </SettingHeaderRead>
             { deleteCounter >= 1
             &&
-                <ErrorMessages>
+                <DeleteMessages>
                     Click the Delete Icon Again If You're Sure You Want To Delete This Notebook!
-                </ErrorMessages>
+                </DeleteMessages>
             }
 
             {/* Change the URL to open the User Home page */}

@@ -251,32 +251,38 @@ export const SubheaderBar = styled.div`
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         height: 2.5em;
-        
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        height: 1.7em;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         height: 3.4em;
-        
     }   
 
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-        height: 5.4em;
-        
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        height: 2.5em;
     }
 
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        height: 5.4em;
-        
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        height: 3.4em;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
         height: 3.4em;
+    }
 
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        height: 5.4em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        height: 3.4em;
     }
 
     @media only screen and (min-width: 1200px) {
         height: 5.4em;
-        
     }
 `;
 
@@ -370,20 +376,12 @@ export const SubSettingHeader = styled.div`
     }
 `;
 
-export const TitleContainer = styled.div`
+export const EditTitleContainer = styled.div`
 
     display: flex;
     height: 100%;
-    width: 30%;
     justify-content: center;
     align-items: end;
-    overflow-x: auto;
-    justify-self: center;
-    scrollbar-width: none;
-
-    ::-webkit-scrollbar {
-        background: transparent;
-    }
 
     label {
         margin-bottom: 0.25em;
@@ -391,6 +389,10 @@ export const TitleContainer = styled.div`
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -422,39 +424,102 @@ export const TitleContainer = styled.div`
     }
 `;
 
+export const ReadTitleContainer = styled.div`
+
+    display: flex;
+    height: 100%;
+    padding: 0 1em;
+    overflow: hidden;
+    align-items: end;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        padding: 0 1.25em;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        padding: 0 1.75em;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        padding: 0 2em;
+    }   
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        padding: 0 2em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        padding: 0 7em;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
+        padding: 0 14.5em;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 992px) and (min-height: 500px) {
+        padding: 0 15em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        padding: 0 19em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        padding: 0 21.5em;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding: 0 43.5em;
+    }
+
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        padding: 0 27em;
+    }
+`;
+
 export const NotebookTitleContainer = styled.div`
 
     display: flex;
     height: 3em;
-    width: 100%;
-    justify-content: center;
     align-items: end;
+    justify-content: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-
+        
     }   
 
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        height: 5em;
+    }
 
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        height: 6em;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 992px) and (min-height: 500px) {
+        
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
+        height: 5em;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        height: 5em;
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        height: 5em;
     }
 `;
 
 export const SettingHeaderRead = styled.div`
 
     display: flex;
-    height: fit-content;
     align-items: center;
     justify-content: center;
 
@@ -462,14 +527,6 @@ export const SettingHeaderRead = styled.div`
         height: 1.5em;
         margin-left: 1em;
         cursor: pointer;
-    }
-
-    div {
-        height: 1.4em;
-        width: 1.4em;
-        margin-left: 0.5em;
-        border: 1px solid black;
-        border-radius: 0.3em;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {

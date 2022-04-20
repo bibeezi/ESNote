@@ -105,7 +105,7 @@ const ReadNotebook = () => {
     const showNotes = (notebookNotes) => {
         // Return the Notes components to render
         return notebookNotes.map((note) => (
-            <Notes key={ note._id } note={ note } />
+            <Notes key={ note._id } note={ note } notebookLength={ notebookNotes.length }/>
         ));
     };
 

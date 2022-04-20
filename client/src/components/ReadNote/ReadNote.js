@@ -10,7 +10,7 @@ import Note from "./Note";
 import Settings from "./Settings";
 // Styled Components
 import { ReadNoteContent } from "../Common/Content.style";
-import { TitleContainer } from "../Common/Header.style";
+import { ReadTitleContainer } from "../Common/Header.style";
 import { ReadNoteTitle } from "../Common/Heading.style";
 import { Modal } from "../Common/Modal.style";
 import { ReadSettingsFormContainer } from "../Common/Form.style";
@@ -64,11 +64,9 @@ const ReadNote = () => {
 
             <ReadNoteContent>
 
-                <div></div>
-                
-                <TitleContainer>
+                <ReadTitleContainer>
                     <ReadNoteTitle>{ note.title }</ReadNoteTitle>
-                </TitleContainer>
+                </ReadTitleContainer>
 
                 <Note 
                     note={ note }

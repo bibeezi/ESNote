@@ -6,10 +6,12 @@ export const Modal = styled.div`
     position: fixed;
     top: 0;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     background-color: #FFFFFFBB;
     z-index: 2;
     overflow-y: scroll;
+    align-items: center;
+    justify-content: center;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
         

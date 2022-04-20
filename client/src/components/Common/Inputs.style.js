@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Input = styled.input`
 
+    display: block;
     margin: 0.5em auto;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
@@ -11,10 +12,8 @@ export const Input = styled.input`
     border: 0.1px solid grey;
     font-size: 1em;
 
-    @media only screen and (max-height: 360px) {
-        height: 1.5em;
-        margin: 0.25em auto;
-        font-size: 1em;
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 80%;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -22,59 +21,19 @@ export const Input = styled.input`
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-
+        width: 80%;
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-
+        width: 75%;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-
+        width: 65%;
     }
 
     @media only screen and (min-width: 1200px) {
-        
-    }
-`;
-
-export const InputRegistration = styled.input`
-
-    margin: 0 auto 0.5em auto;
-    padding: 0.2em 0.2em 0.2em 0.5em;
-    height: 2.5em;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 0.5em;
-    border: 0.1px solid grey;
-    font-size: 1em;
-
-    /* max-width: 360px */
-
-    @media only screen and (max-height: 360px) {
-        height: 1.5em;
-        margin: 0 auto 0.25em auto;
-        font-size: 1em;
-    }
-
-    @media only screen and (min-width: 360px) and (max-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 600px) and (max-width: 768px) {
-
-    }   
-
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-
-    }
-
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-
-    }
-
-    @media only screen and (min-width: 1200px) {
-        
+        width: 75%;
     }
 `;
 
@@ -216,10 +175,10 @@ export const LongSettingInput = styled.input`
 
 export const SearchInputList = styled.input`
 
-    margin: 0.5em;
+    margin: 0.5em 0;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
-    width: 85%;
+    width: 100%;
     align-self: center;
     background-color: #FEFEFE;
     box-sizing: border-box;
@@ -236,14 +195,14 @@ export const SearchInputList = styled.input`
 
     }
 
-    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        
-    }
-
     @media only screen and (min-width: 600px) and (max-width: 768px) {
 
     }   
-
+    
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        font-size: 1.25em;
+    }
+    
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         
     }
@@ -276,13 +235,9 @@ export const SettingInputSearch = styled.input`
 
     }
 
-    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        
-    }
-
     @media only screen and (min-width: 600px) and (max-width: 768px) {
 
-    }   
+    }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         
@@ -302,7 +257,7 @@ export const EditNoteInput = styled.input`
     margin-left: 0.5em;
     padding: 0.2em 0.2em 0.2em 0.5em;
     height: 2.5em;
-    width: 75%;
+    width: 78%;
     background-color: #FEFEFE;
     box-sizing: border-box;
     border: 1px solid #7E2D009A;
@@ -310,28 +265,46 @@ export const EditNoteInput = styled.input`
     font-family: Nunito;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-
+        width: 80%;
     }
 
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 83%;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        width: 83%;
+    }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         font-size: 1em;
-
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         font-size: 1em;
-        
+        width: 63.5%;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 1000px) {
+        width: 45%;    
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        width: 35%;
+        width: 40.5%;
         font-size: 1em;
     }
 
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        width: 28%;
+    }
+
     @media only screen and (min-width: 1200px) {
-        width: 25%;
         font-size: 1.25em;
-    
+        width: 24.5%;
+    }
+
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        width: 28%;
+        font-size: 1.25em;
     }
 `;

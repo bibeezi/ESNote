@@ -8,7 +8,7 @@ import axios from 'axios';
 import { StyledRegistrationForm } from "../Common/Form.style";
 import { CloseButton } from "../Common/Close.style";
 import { FormHeadingModal } from "../Common/Heading.style";
-import { Input, InputRegistration } from "../Common/Inputs.style";
+import { Input } from "../Common/Inputs.style";
 import { BlueButtonRegistration } from "../Common/Button.style";
 import { ErrorMessages } from "../Common/Messages.style";
 
@@ -73,7 +73,9 @@ const RegistrationForm = ({
                 }
 
                 // The username is taken
-                setUsernameTaken(true);
+                console.log(user.username);
+                user.username === "" ? setUsernameTaken(false) : setUsernameTaken(true);
+                // setUsernameTaken(true);
 
             }).catch((err) => {
                 console.log("ERROR in RegistrationForm - /user/checkUsername", err)
@@ -93,12 +95,12 @@ const RegistrationForm = ({
             <CloseButton onMouseDown={ (e) => openSignUpForm(e) }></CloseButton>
             <FormHeadingModal>Sign Up</FormHeadingModal>
 
-            <InputRegistration 
+            <Input 
                 onChange={ (e) => handleChange(e) } 
                 onFocus={ (e) => handleFocus(e) }
                 name="username" 
                 placeholder="Username">
-            </InputRegistration>
+            </Input>
             { tried && (!valid.username || usernameTaken) ?
                 <ErrorMessages>
                     { usernameTaken ? 

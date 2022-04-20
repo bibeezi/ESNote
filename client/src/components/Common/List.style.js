@@ -2,21 +2,21 @@ import styled, { css } from "styled-components";
 
 export const List = styled.div`
 
+    display: inline-grid;
+    justify-items: center;
+
     ${({ showList }) => showList === true ? css`     
-        display: inline-grid;
         position: relative;
         width: 100%;
         background-color: transparent;
         z-index: 2;
-        justify-items: center;
 
         ::-webkit-scrollbar {
             background: transparent;
-            width: 0px;
         }
-    ` : 
-        null
-    }
+    ` : css `
+        
+    `}
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -45,56 +45,54 @@ export const List = styled.div`
 export const Options = styled.div`
 
     display: inline-block;
-    width: 84.5%;
+    width: 92.5%;
     overflow: auto;
     max-height: 7em;
-    scrollbar-width: none;
     -ms-overflow-style: none;
     transform: translateY(-0.5em);
     cursor: pointer;
+    scrollbar-width: none;
+
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        width: 85.5%;
-
+        width: 87%;
     }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
-        width: 62.5%;
+        width: 65%;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        width: 58.5%
+        width: 49%;
     }   
 
     @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
-        width: 56.5%
+        transform: translateY(-0.65em);
+        width: 60%;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        width: 58.5%
-        
+        width: 46.5%        
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 450px) {
-
+    @media only screen and (min-width: 768px) and (max-width: 992px) and (max-height: 1200px) {
+        width: 40.5%
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        width: 48%
     }
 
-    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 800px) {
-        width: 70.5%
-
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        width: 62.5%
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 72.5%
-
+        width: 38.5%
     }
 
-    @media only screen and (min-width: 1200px) and (max-height: 850px) {
-        width: 80%
-
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        width: 57%
     }
 `;
 

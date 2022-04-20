@@ -78,7 +78,7 @@ export const WelcomeHeading = styled.h1`
 
 export const FormHeading = styled.h1`
 
-    margin-top: 1em;
+    margin: 0 0 0.5em 0;
     font-size: 2em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -141,22 +141,35 @@ export const FormHeadingModal = styled.h1`
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         font-size: 2em;
-        transform: translateY(-0.6em);
+        transform: translateY(-0.8em);
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        transform: translateY(-0.8em);
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
         font-size: 2em;
-        transform: translateY(-0.6em);
+        transform: translateY(-0.8em);
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 2em;
-        transform: translateY(-0.6em);
+        transform: translateY(-0.8em);
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        transform: translateY(-0.8em);
     }
 
     @media only screen and (min-width: 1200px) {
         font-size: 2em;
-        transform: translateY(-0.6em);
+        transform: translateY(-0.8em);
+    }
+
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        font-size: 2em;
+        transform: translateY(-0.8em);
     }
 `;
 
@@ -198,7 +211,6 @@ export const UserHomeTitle = styled.h1`
 
     height: fit-content;
     width: 70%;
-    margin: 0;
     text-align: center;
     color: #7E2D00;
     font-size: 0.75em;
@@ -223,24 +235,21 @@ export const UserHomeTitle = styled.h1`
     }
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-
+        font-size: 1em;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
         font-size: 1em;
-
     }
 
     @media only screen and (min-width: 1200px) {
-        font-size: 1em;
+        font-size: 1.25em;
     }
 `;
 
 export const SettingHeading = styled.h1`
 
     display: inline-block;
-    width: fit-content;
-    padding-left: 0.5em;
     font-size: 1em;
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
@@ -249,6 +258,35 @@ export const SettingHeading = styled.h1`
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         
+    }   
+
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+        
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        
+    }
+
+    @media only screen and (min-width: 1200px) {
+        
+    }
+`;
+
+export const AddedSettingHeading = styled.h1`
+
+    font-size: 1em;
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) {
+        
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 80%;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+
     }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
@@ -267,30 +305,52 @@ export const SettingHeading = styled.h1`
 export const NotebookNoteHeading = styled.h1`
 
     display: inline-block;
-    padding-left: 0.5em;
+    width: 80%;
     font-size: 1em;
     font-weight: 100;
-    overflow-x: hidden;
+    overflow-x: auto;
     text-overflow: ellipsis;
+    text-align: center;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
-        
+        width: 76%;
+    }
+
+    @media only screen and (min-width: 360px) and (max-width: 600px) and (max-height: 350px) {
+        width: 56%;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
-        
+        width: 100%;
     }   
 
+    @media only screen and (min-width: 600px) and (max-width: 768px) and (max-height: 380px) {
+        width: 95%;
+    }
+
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        
+        width: 100%;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        width: 89%;
     }
 
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-        
+        width: 100%;
     }
 
     @media only screen and (min-width: 1200px) {
-        
+        width: 100%;
+    }
+
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        width: 100%;
     }
 `;
 
@@ -327,7 +387,14 @@ export const ReadNoteTitle = styled.h1`
     width: 100%;
     margin: 0;
     color: #7E2D00;
-    font-size: 1em;
+    font-size: 1.25em;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -357,14 +424,18 @@ export const ReadNoteTitle = styled.h1`
 
 export const ReadNotebookTitle = styled.h1`
 
-    height: fit-content;
+    height: 1.5em;
     width: 90%;
-    margin: 0;
+    margin: 0 0.75em 0.25em 0.75em;
     color: #7E2D00;
-    font-size: 1em;
-    overflow: hidden;
+    font-size: 1.25em;
+    overflow-x: auto;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        background: transparent;
+    }
 
     @media only screen and (min-width: 360px) and (max-width: 600px) {
 
@@ -372,25 +443,44 @@ export const ReadNotebookTitle = styled.h1`
 
     @media only screen and (min-width: 600px) and (max-width: 768px) {
         font-size: 1.5em;
-
-    }
+    }   
 
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-        font-size: 1.5em;
-
+        width: 55%;
+        font-size: 2em;
     }
 
-
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        ${({ notebookLength }) => notebookLength > 1 ? css`
+            width: 80%;
+        ` : css`
+            width: 45%;
+        `}        
         font-size: 1.75em;
-        width: 90%;
+    }
 
+    @media only screen and (min-width: 992px) and (max-width: 1200px) and (max-height: 700px) {
+        ${({ notebookLength }) => notebookLength > 1 ? css`
+            width: 65%;
+        ` : css`
+            width: 35%;
+        `}
     }
 
     @media only screen and (min-width: 1200px) {
-        width: 70%;
+        ${({ notebookLength }) => notebookLength > 1 ? css`
+            width: 55%;
+        ` : css`
+            width: 30%;
+        `}
         font-size: 1.75em;
+    }
 
+    @media only screen and (min-width: 1200px) and (max-height: 810px) {
+        ${({ notebookLength }) => notebookLength > 1 ? css`
+            width: 65%;
+        ` : css`
+            width: 35%;
+        `}
     }
 `;
-

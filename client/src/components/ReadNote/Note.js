@@ -6,7 +6,7 @@ import axios from "axios";
 
 // Styled Components
 import { ReadSections, TextArea } from "../Common/Section.style";
-import { TemplateContainer, TemplateEditNote, TemplateReadNote } from "../Common/Template.style";
+import { TemplateContainer, TemplateEditReadNote } from "../Common/Template.style";
 
 // props passed from 'ReadNote.js'
 const Note = ({ 
@@ -118,20 +118,20 @@ const Note = ({
         <TemplateContainer>
 
             { page === "Edit Note" ?
-                <TemplateEditNote ref={ textareaRef }>
+                <TemplateEditReadNote ref={ textareaRef }>
 
                     {/* Displays textareas from the template */}   
                     { showTextAreas(template) }
 
-                </TemplateEditNote>
+                </TemplateEditReadNote>
             :
-                <TemplateReadNote>
+                <TemplateEditReadNote>
 
                     {/* Displays sections with the corresponding 
                         note content from the template */}   
                     { showSections(template) }
 
-                </TemplateReadNote>
+                </TemplateEditReadNote>
             }
 
         </TemplateContainer>            

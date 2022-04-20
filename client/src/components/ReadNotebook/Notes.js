@@ -11,7 +11,7 @@ import { TemplateReadNotebook, NoteContainer } from "../Common/Template.style";
 import { ReadSections } from "../Common/Section.style";
 
 // props passed from 'ReadNotebook.js'
-const Notes = ({ note }) => {
+const Notes = ({ note, notebookLength }) => {
 
     // Holds the note template's details
     const [template, setTemplate] = useState({});
@@ -61,10 +61,10 @@ const Notes = ({ note }) => {
         <NoteContainer>
 
             <NotebookTitleContainer>
-                <ReadNotebookTitle>{ note.title }</ReadNotebookTitle>
+                <ReadNotebookTitle notebookLength={ notebookLength }>{ note.title }</ReadNotebookTitle>
             </NotebookTitleContainer>
 
-            <TemplateReadNotebook>
+            <TemplateReadNotebook notebookLength={ notebookLength }>
 
                 {/* Displays sections with the corresponding 
                     note content from the template */}   

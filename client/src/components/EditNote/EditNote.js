@@ -9,10 +9,10 @@ import Header from "./Header";
 import Note from "../ReadNote/Note";
 import Settings from "../ReadNote/Settings";
 // Styled Components
-import { TitleContainer } from "../Common/Header.style";
+import { EditTitleContainer } from "../Common/Header.style";
 import { EditNoteInput } from "../Common/Inputs.style";
 import { EditNoteContent } from "../Common/Content.style";
-import { SaveContainer, SaveButtonContainer, SaveMessageContainer } from "./EditNote.style";
+import { SaveContainer } from "./EditNote.style";
 import { SavedMessages } from "../Common/Messages.style";
 import { SaveButton } from "../Common/Button.style";
 import { Modal } from "../Common/Modal.style";
@@ -201,7 +201,7 @@ const EditNote = () => {
             </Header>
 
             <EditNoteContent>
-                <TitleContainer>
+                <EditTitleContainer>
 
                     <label>Title:</label>
 
@@ -214,7 +214,7 @@ const EditNote = () => {
                         onChange={ handleChange }> 
                     </EditNoteInput>
 
-                </TitleContainer>
+                </EditTitleContainer>
 
                 <Note
                     textareaRef={ textareaRef }
@@ -225,22 +225,14 @@ const EditNote = () => {
                 </Note>
 
                 <SaveContainer>
+                    {/* Show the saved message when true */}
+                    {  savedMessage ? 
+                        <SavedMessages>Saved!</SavedMessages> 
+                    : 
+                        <SavedMessages></SavedMessages>
+                    }
 
-                    <SaveMessageContainer>
-
-                        {/* Show the saved message when true */}
-                        {  savedMessage ? 
-                            <SavedMessages>Saved!</SavedMessages> 
-                        : 
-                            <SavedMessages></SavedMessages>
-                        }
-
-                    </SaveMessageContainer>
-
-                    <SaveButtonContainer>
-                        <SaveButton onClick={ () => handleSave("button") }>Save</SaveButton>
-                    </SaveButtonContainer>
-
+                    <SaveButton onClick={ () => handleSave("button") }>Save</SaveButton>
                 </SaveContainer>
 
                 {/* Show the Settings modal when true */}

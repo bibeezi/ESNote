@@ -38,7 +38,7 @@ const NotebookPreview = ({ strap, bookmark, colour, title }) => {
             strap: strap,
             bookmark: bookmark,
         }
-
+        
         // Save the notebook details to MongoDB
         axios.post('/notebook/saveNotebook', {
             data: payload

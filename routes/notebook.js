@@ -76,14 +76,14 @@ router.get("/getNotebook", (req, res) => {
 // Save a new notebook to MongoDB
 router.post("/saveNotebook", (req, res) => {
 
-    const data = req.body;
+    const data = req.body.data;
     const userID = data.userID;
     const noteIDs = data.noteIDs;
     const strap = data.strap;
     const bookmark = data.bookmark;
     const colour = data.colour;
     const title = data.title; 
-    
+
     // Gather data for the new notebook
     // following the notebookModel
     const newNotebookData = {
@@ -101,6 +101,7 @@ router.post("/saveNotebook", (req, res) => {
             hex: bookmark.hex
         }
     }
+
 
     // Create a new notebook with the NotebookModel
     const newNotebook = new NotebookModel(newNotebookData);

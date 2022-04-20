@@ -18,3 +18,12 @@ To do this, the notebook web application will be simpler, will allow the user to
 I will implement a solution by using a web application for users to use their mobile phones to review their notes on the go, and their laptops to type notes faster than writing.
 
 The application will be evaluated through User Interface and User eXperience, the 10 Nielsen's Heuristics, and Responsiveness to Device with testing made by other students and web developers across the world.
+
+## Running the Application
+To run the application using the command line, type "npm run dev", then open a browser and enter "http://localhost:3000/" in the URL to open the local version.
+
+Otherwise, type "https://esnote-application.herokuapp.com/" in a browser to open the deployed version on Heroku.
+
+Both versions are the latest working system.
+
+All of the code is written by the Bianca Claudette Palileo.
